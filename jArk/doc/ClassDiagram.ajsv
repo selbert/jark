@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AgileJ Ltd. (http://www.agilej.com)-->
+<ajsv>
+    <diagram scope="scopeElementSets.elementSet.Switchable Subtypes" style="standardDiagramStyles.diagramStyle.Standard Basic Style" version="1.5.3">
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Visibility" switchValue="public, protected, package, private"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Signature Length" switchValue="short"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Manhattan Lines" switchValue="dependence, fields, inheritance"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Line Types" switchValue="dependence, field, inheritance"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Members" switchValue="fields, methods, inners, initializers"/>
+        <class className="ch.unisi.inf.pfii.blue.Bonus" project="jArk" xLocation="620" yLocation="-106"/>
+        <class className="ch.unisi.inf.pfii.blue.Game" project="jArk" xLocation="326" yLocation="4"/>
+        <class className="ch.unisi.inf.pfii.blue.Ball" project="jArk" xLocation="74" yLocation="-75"/>
+        <class className="ch.unisi.inf.pfii.blue.Player" project="jArk" xLocation="196" yLocation="258"/>
+        <class className="ch.unisi.inf.pfii.blue.Console" project="jArk" xLocation="930" yLocation="379"/>
+        <class className="ch.unisi.inf.pfii.blue.Vaus" project="jArk" xLocation="404" yLocation="257"/>
+        <class className="ch.unisi.inf.pfii.blue.Brick" project="jArk" xLocation="775" yLocation="310"/>
+        <class className="ch.unisi.inf.pfii.blue.Bonuses" project="jArk" xLocation="919" yLocation="-106"/>
+        <class className="ch.unisi.inf.pfii.blue.Main" project="jArk" xLocation="340" yLocation="-150"/>
+        <class className="ch.unisi.inf.pfii.blue.Level" project="jArk" xLocation="557" yLocation="372"/>
+    </diagram>
+</ajsv>

@@ -28,7 +28,7 @@ public class Level {
 	
 	private void createLevel(int levelNumber) {
 		try{
-			FileInputStream fis = new FileInputStream("src/levels/"+levelNumber);
+			FileInputStream fis = new FileInputStream("src/ch/unisi/inf/pfii/blue/levels/"+levelNumber);
 			BufferedReader myInput = new BufferedReader(new InputStreamReader(fis));
 			String thisLine = "";
 		

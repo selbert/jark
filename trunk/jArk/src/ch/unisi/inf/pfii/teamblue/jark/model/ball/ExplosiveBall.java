@@ -2,6 +2,13 @@ package ch.unisi.inf.pfii.teamblue.jark.model.ball;
 
 import ch.unisi.inf.pfii.teamblue.jark.model.Ball;
 
+/**
+ * 
+ * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
+ * @version $LastChangedDate$
+ *
+ */
+
 public class ExplosiveBall extends Ball {
 
 	public ExplosiveBall(int x, int y) {

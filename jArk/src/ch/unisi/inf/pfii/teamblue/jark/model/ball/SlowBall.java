@@ -2,6 +2,13 @@ package ch.unisi.inf.pfii.teamblue.jark.model.ball;
 
 import ch.unisi.inf.pfii.teamblue.jark.model.Ball;
 
+/**
+ * 
+ * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
+ * @version $LastChangedDate$
+ *
+ */
+
 public class SlowBall extends Ball {
 
 	public SlowBall(int x, int y) {

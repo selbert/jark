@@ -29,7 +29,7 @@ public class Level {
 	
 	private void createLevel(int levelNumber) {
 		try{
-			FileInputStream fis = new FileInputStream("src/ch/unisi/inf/pfii/teamblue/jark/levels/"+levelNumber);
+			FileInputStream fis = new FileInputStream("src/ch/unisi/inf/pfii/teamblue/jark/model/levels/"+levelNumber);
 			BufferedReader myInput = new BufferedReader(new InputStreamReader(fis));
 			String thisLine = "";
 		

@@ -1,6 +1,7 @@
-package ch.unisi.inf.pfii.teamblue.jark;
+package ch.unisi.inf.pfii.teamblue.jark.model;
 
 import java.util.Random;
+
 
 /**
  * 

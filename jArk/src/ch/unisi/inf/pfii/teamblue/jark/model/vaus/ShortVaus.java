@@ -2,6 +2,13 @@ package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
 
 import ch.unisi.inf.pfii.teamblue.jark.model.Vaus;
 
+/**
+ * 
+ * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
+ * @version $LastChangedDate$
+ *
+ */
+
 public class ShortVaus extends Vaus {
 
 	public ShortVaus(int x, int size, int state) {

@@ -45,8 +45,6 @@ enum BonusEnum
 class Game
 
 
-
-
 /* CONTROLLER */
 
 // class to parse mouse/keyboard inputs

@@ -1,10 +1,11 @@
-package ch.unisi.inf.pfii.teamblue.jark;
+package ch.unisi.inf.pfii.teamblue.jark.model;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Random;
+
 
 /**
  * 

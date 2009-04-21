@@ -11,8 +11,8 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Brick;
 
 public class DefaultBrick extends Brick {
 
-	public DefaultBrick(int type) {
-		super(type);
+	public DefaultBrick(int size) {
+		super(size);
 		// TODO Auto-generated constructor stub
 	}
 

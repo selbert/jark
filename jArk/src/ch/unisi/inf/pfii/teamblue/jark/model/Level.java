@@ -20,14 +20,14 @@ public class Level {
 	private Brick[][] grid;
 	
 	
-	public Level(int numOfBonus) {
+	public Level(final int numOfBonus) {
 		grid = new Brick[dimY][dimX];
 		createLevel(0);
 		addBonus(numOfBonus);
 		System.out.println(toString());
 	}
 	
-	private void createLevel(int levelNumber) {
+	private void createLevel(final int levelNumber) {
 		try{
 			FileInputStream fis = new FileInputStream("src/ch/unisi/inf/pfii/teamblue/jark/model/levels/"+levelNumber);
 			BufferedReader myInput = new BufferedReader(new InputStreamReader(fis));
@@ -49,7 +49,7 @@ public class Level {
 		}
 	}
 	
-	private String getBrick(int x, int y) {
+	private String getBrick(final int x, final int y) {
 		Brick tempBrick = grid[x][y];
 		if (tempBrick != null) {
 			Bonus tempBonus = tempBrick.getBonus();

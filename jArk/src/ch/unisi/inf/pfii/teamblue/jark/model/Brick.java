@@ -32,7 +32,7 @@ public class Brick {
 		return type;
 	}
 
-	public void setLives(int lives) {
+	public void setLives(final int lives) {
 		this.lives = lives;
 	}
 	

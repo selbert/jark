@@ -11,15 +11,13 @@ package ch.unisi.inf.pfii.teamblue.jark.model;
  */
 
 public class Brick {
-	private static int SIZE;
-	
-	private final int type;
+	private final int size;
 	
 	private int lives;
 	private Bonus bonus;
 	
-	public Brick(final int type) {
-		this.type = type;
+	public Brick(final int size) {
+		this.size = size;
 		this.bonus = null;
 		
 	}
@@ -28,10 +26,6 @@ public class Brick {
 		return bonus;
 	}
 	
-	public int getType() {
-		return type;
-	}
-
 	public void setLives(final int lives) {
 		this.lives = lives;
 	}
@@ -44,11 +38,7 @@ public class Brick {
 		return lives;
 	}
 
-	public static void setSIZE(final int size) {
-		SIZE = size;
-	}
-
-	public static int getSIZE() {
-		return SIZE;
+	public int getSize() {
+		return size;
 	}
 }

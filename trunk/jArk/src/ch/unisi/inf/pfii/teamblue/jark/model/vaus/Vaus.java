@@ -13,12 +13,10 @@ public class Vaus {
 	private static final int Y = 10;
 	private int x;
 	private int size;
-	private int state;
 	
-	public Vaus(final int x, final int size, final int state) {
+	public Vaus(final int x, final int size) {
 		this.x = x;
 		this.size = size;
-		this.state = state;
 	}
 	
 	public void setX(final int x) {
@@ -37,17 +35,8 @@ public class Vaus {
 		return size;
 	}
 
-	public void setState(final int state) {
-		this.state = state;
-	}
-
-	public int getState() {
-		return state;
-	}
-
 	public static int getY() {
 		return Y;
 	}
-	
 	
 }

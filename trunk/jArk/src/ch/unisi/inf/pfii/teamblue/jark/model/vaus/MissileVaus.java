@@ -10,8 +10,8 @@ package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
 
 public class MissileVaus extends Vaus {
 
-	public MissileVaus(int x, int size, int state) {
-		super(x, size, state);
+	public MissileVaus(int x, int size) {
+		super(x, size);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -10,8 +10,8 @@ package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
 
 public class DefaultVaus extends Vaus {
 
-	public DefaultVaus(int x, int size, int state) {
-		super(x, size, state);
+	public DefaultVaus(int x, int size) {
+		super(x, size);
 		// TODO Auto-generated constructor stub
 	}
 

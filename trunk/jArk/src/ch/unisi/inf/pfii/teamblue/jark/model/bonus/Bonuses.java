@@ -1,4 +1,4 @@
-package ch.unisi.inf.pfii.teamblue.jark.model;
+package ch.unisi.inf.pfii.teamblue.jark.model.bonus;
 
 public enum Bonuses {
 	

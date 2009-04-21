@@ -1,6 +1,5 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.brick;
 
-import ch.unisi.inf.pfii.teamblue.jark.model.Brick;
 
 /**
  * 
@@ -11,8 +10,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Brick;
 
 public class DefaultBrick extends Brick {
 
-	public DefaultBrick(int size) {
-		super(size);
+	public DefaultBrick() {
 		// TODO Auto-generated constructor stub
 	}
 

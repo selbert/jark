@@ -3,6 +3,9 @@ package ch.unisi.inf.pfii.teamblue.jark.model;
 import java.util.ArrayList;
 
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.*;
+import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
+import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
+import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
 
 /**
@@ -13,11 +16,12 @@ import ch.unisi.inf.pfii.teamblue.jark.model.ball.*;
  */
 
 public class Game {
-	
 	private static final int FIELD_WIDTH = 800;
 	private static final int FIELD_HEIGHT =  600;
+	
 	private ArrayList<Ball> balls;
 	private ArrayList<Bonus> bonuses;
+	
 	private Vaus vaus;
 	private Player player;
 	private Level level;

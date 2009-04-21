@@ -1,2 +1,5 @@
 - Added inheritance (bonus, brick, vaus)
-- Changed packet structure
+- Changed packet structure (issue 2 and 3)
+- Removed state from vaus (issue 1)
+
+TODO: redo bonus/bonuse, vaus and brick with inheritance (implement)

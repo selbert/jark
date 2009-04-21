@@ -10,8 +10,8 @@ package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
 
 public class LongVaus extends Vaus {
 
-	public LongVaus(int x, int size, int state) {
-		super(x, size, state);
+	public LongVaus(int x, int size) {
+		super(x, size);
 		// TODO Auto-generated constructor stub
 	}
 

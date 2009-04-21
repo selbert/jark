@@ -6,7 +6,7 @@ package ch.unisi.inf.pfii.teamblue.jark.model;
  * This class contains informations about bricks.
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
- * @version $LastChangedDate: 2009-04-13 15:29:08 +0200 (Mon, 13 Apr 2009) $
+ * @version $LastChangedDate$
  * 
  */
 

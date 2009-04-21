@@ -5,7 +5,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 /**
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
- * @version $LastChangedDate: 2009-04-13 12:02:38 +0200 (Mon, 13 Apr 2009) $
+ * @version $LastChangedDate$
  *
  */
 

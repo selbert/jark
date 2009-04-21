@@ -10,6 +10,7 @@ package ch.unisi.inf.pfii.teamblue.jark.model;
  */
 
 public class Vaus {
+	private static final int Y = 10;
 	private int x;
 	private int size;
 	private int state;
@@ -42,6 +43,10 @@ public class Vaus {
 
 	public int getState() {
 		return state;
+	}
+
+	public static int getY() {
+		return Y;
 	}
 	
 	

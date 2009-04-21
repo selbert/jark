@@ -2,6 +2,8 @@ package ch.unisi.inf.pfii.teamblue.jark.model;
 
 import java.util.ArrayList;
 
+import ch.unisi.inf.pfii.teamblue.jark.model.ball.*;
+
 
 /**
  * 
@@ -23,7 +25,7 @@ public class Game {
 	public Game() {
 		balls = new ArrayList<Ball>();
 		bonuses = new ArrayList<Bonus>();
-		balls.add(new Ball(0, 0));
+		balls.add(new DefaultBall(0, 0));
 		vaus = new Vaus(0, 0, 0);
 		player = new Player("pippo", 3);
 		level = new Level(25);

@@ -13,7 +13,7 @@ public class Player {
 	private int score;
 	private int lives;
 	
-	public Player(String name, int lives) {
+	public Player(final String name, final int lives) {
 		this.name = name;
 		this.score = 0;
 		this.lives = lives;
@@ -23,7 +23,7 @@ public class Player {
 		return name;
 	}
 
-	public void setLives(int lives) {
+	public void setLives(final int lives) {
 		this.lives = lives;
 	}
 
@@ -31,7 +31,7 @@ public class Player {
 		return lives;
 	}
 
-	public void setScore(int score) {
+	public void setScore(final int score) {
 		this.score = score;
 	}
 

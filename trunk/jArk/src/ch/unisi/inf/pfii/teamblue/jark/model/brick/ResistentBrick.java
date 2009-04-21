@@ -11,8 +11,8 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Brick;
 
 public class ResistentBrick extends Brick {
 
-	public ResistentBrick(int type) {
-		super(type);
+	public ResistentBrick(int size) {
+		super(size);
 		// TODO Auto-generated constructor stub
 	}
 

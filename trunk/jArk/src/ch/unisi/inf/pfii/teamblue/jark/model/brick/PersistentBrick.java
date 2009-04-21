@@ -11,8 +11,8 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Brick;
 
 public class PersistentBrick extends Brick {
 
-	public PersistentBrick(int type) {
-		super(type);
+	public PersistentBrick(int size) {
+		super(size);
 		// TODO Auto-generated constructor stub
 	}
 

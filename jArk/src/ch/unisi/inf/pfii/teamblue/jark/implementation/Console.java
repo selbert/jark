@@ -3,7 +3,7 @@ package ch.unisi.inf.pfii.teamblue.jark.implementation;
 /**
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
- * @version $LastChangedDate: 2009-04-13 10:37:16 +0200 (Mon, 13 Apr 2009) $
+ * @version $LastChangedDate$
  */
 
 import java.util.Scanner;

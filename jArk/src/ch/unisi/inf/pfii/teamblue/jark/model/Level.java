@@ -10,7 +10,7 @@ import java.util.Random;
 /**
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
- * @version $LastChangedDate: 2009-04-13 17:30:41 +0200 (Mon, 13 Apr 2009) $
+ * @version $LastChangedDate$
  * 
  */
 public class Level {

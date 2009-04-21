@@ -1,6 +1,5 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.ball;
 
-import ch.unisi.inf.pfii.teamblue.jark.model.Ball;
 
 public class DefaultBall extends Ball {
 

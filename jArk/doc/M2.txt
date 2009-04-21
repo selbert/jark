@@ -1,0 +1,2 @@
+- Added inheritance (bonus, brick, vaus)
+- Changed packet structure

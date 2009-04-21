@@ -1,4 +1,7 @@
-package ch.unisi.inf.pfii.teamblue.jark.model;
+package ch.unisi.inf.pfii.teamblue.jark.model.ball;
+
+import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
+import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
 /**
  * 

@@ -1,5 +1,6 @@
-package ch.unisi.inf.pfii.teamblue.jark.model;
+package ch.unisi.inf.pfii.teamblue.jark.model.brick;
 
+import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
 
 /**
  * 
@@ -11,15 +12,11 @@ package ch.unisi.inf.pfii.teamblue.jark.model;
  */
 
 public class Brick {
-	private final int size;
-	
 	private int lives;
 	private Bonus bonus;
 	
-	public Brick(final int size) {
-		this.size = size;
+	public Brick() {
 		this.bonus = null;
-		
 	}
 	
 	public Bonus getBonus() {
@@ -36,9 +33,5 @@ public class Brick {
 	
 	public int getLives() {
 		return lives;
-	}
-
-	public int getSize() {
-		return size;
 	}
 }

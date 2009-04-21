@@ -1,10 +1,13 @@
-package ch.unisi.inf.pfii.teamblue.jark.model;
+package ch.unisi.inf.pfii.teamblue.jark.model.level;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Random;
+
+import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
+import ch.unisi.inf.pfii.teamblue.jark.model.brick.*;
 
 
 /**
@@ -14,14 +17,16 @@ import java.util.Random;
  * 
  */
 public class Level {
+	private static final int FIELD_WIDTH = 800;
+	private static final int FIELD_HEIGHT =  400;
+	
 	private final int dimX = 20;
 	private final int dimY = 8;
 	
-	private Brick[][] grid;
-	
+	private Brick[][] bricks;
 	
 	public Level(final int numOfBonus) {
-		grid = new Brick[dimY][dimX];
+		bricks = new Brick[dimY][dimX];
 		createLevel(0);
 		addBonus(numOfBonus);
 		System.out.println(toString());
@@ -29,7 +34,7 @@ public class Level {
 	
 	private void createLevel(final int levelNumber) {
 		try{
-			FileInputStream fis = new FileInputStream("src/ch/unisi/inf/pfii/teamblue/jark/model/levels/"+levelNumber);
+			FileInputStream fis = new FileInputStream("src/ch/unisi/inf/pfii/teamblue/jark/model/level/defaultlevels/"+levelNumber);
 			BufferedReader myInput = new BufferedReader(new InputStreamReader(fis));
 			String thisLine = "";
 		
@@ -41,7 +46,7 @@ public class Level {
 					int col = Integer.parseInt(brickInfo[1]);
 					int type = Integer.parseInt(brickInfo[2]);
 				
-					grid[row][col] = new Brick(type);
+					bricks[row][col] = intToBrick(type);
 				}
 			}
 		} catch (Exception e) {
@@ -49,8 +54,17 @@ public class Level {
 		}
 	}
 	
+	private Brick intToBrick(final int i) {
+		switch(i) {
+			case 1: return new ResistentBrick();
+			case 2: return new VeryResistentBrick();
+			case 3: return new PersistentBrick();
+			default: return new DefaultBrick();
+		}
+	}
+	
 	private String getBrick(final int x, final int y) {
-		Brick tempBrick = grid[x][y];
+		Brick tempBrick = bricks[x][y];
 		if (tempBrick != null) {
 			Bonus tempBonus = tempBrick.getBonus();
 			if (tempBonus != null) {
@@ -88,7 +102,7 @@ public class Level {
 		ArrayList<Brick> listOfBricks = new ArrayList<Brick>();
 		Random rnd = new Random();
 		
-		for(Brick[] rowOfBricks : grid) {
+		for(Brick[] rowOfBricks : bricks) {
 			for (Brick brick : rowOfBricks) {
 				if (brick != null) {
 					listOfBricks.add(brick);

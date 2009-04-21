@@ -1,6 +1,5 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
 
-import ch.unisi.inf.pfii.teamblue.jark.model.Vaus;
 
 /**
  * 

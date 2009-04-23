@@ -28,8 +28,8 @@ public class Brick {
 		this.lives = lives;
 	}
 	
-	public void setBonus() {
-		this.bonus = new Bonus();
+	public void setBonus(Bonus bonus) {
+		this.bonus = bonus;
 	}
 	
 	public int getLives() {

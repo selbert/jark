@@ -1,7 +1,5 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.bonus;
 
-import java.util.Random;
-
 
 
 /**
@@ -13,42 +11,13 @@ import java.util.Random;
 
 public class Bonus {
 	private static final int SPEED = 3;
-	private static String bonusDistString = "";
 	private int x;
 	private int y;
-	private int type;
 	
 	public Bonus() {
 		x = 0;
 		y = 0;
-		if (bonusDistString.equals("")) {
-			bonusDistString = getDistributionString();
-		}
-		this.type = createType();
-	}
-	
-
-	// method that randomly selects a bonus type from a string of bonus indexes separated by ","
-	
-	
-	private int createType() {
-		Random rnd = new Random();
-		String[] bonusArray = bonusDistString.split(",");
-		return Integer.parseInt(bonusArray[rnd.nextInt(bonusArray.length)]);
-	}
-	
-	// method that creates a string with the index of the bonus repeated the times defined in the Bonuses enum
-	
-	private String getDistributionString() {
-		String bonusString = "";
-		int numberOfBonus = Bonuses.values().length;
-		for (int a = 0; a < numberOfBonus; a++) {
-			int probability = Bonuses.getProb(a);
-			for (int i = 0; i < probability; i++) {
-				bonusString += "" + a + ",";
-			}
-		}
-		return bonusString.substring(0, bonusString.length()-1);
+		
 	}
 
 	public void setX(int x) {
@@ -66,18 +35,16 @@ public class Bonus {
 	public int getY() {
 		return y;
 	}
-
-	public void setType(int type) {
-		this.type = type;
-	}
-
-	public int getType() {
-		return type;
-	}
 	
 	public void move() {
 		y = y + SPEED;
 	}
 	
-	
+	public Bonus makeMe () {
+		try {
+			return (Bonus) this.clone();
+		} catch (Exception ex) {
+			return null;
+		}
+	}
 }

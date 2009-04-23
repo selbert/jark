@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Random;
 
-import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
+import ch.unisi.inf.pfii.teamblue.jark.model.bonus.*;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.*;
 
 
@@ -24,6 +24,10 @@ public class Level {
 	private static final int COLUMNS = 14;
 	private static final int ROWS = 8;
 	
+	//bonus handling fields
+
+	private static String bonusDistString = "";
+	
 	private Brick[][] bricks;
 	private ArrayList<Bonus> freeBonuses;
 	
@@ -35,10 +39,45 @@ public class Level {
 	 */
 	public Level(final int numOfBonus, final ArrayList<Bonus> freeBonuses) {
 		bricks = new Brick[ROWS][COLUMNS];
+		if (bonusDistString.equals("")) {
+			bonusDistString = getDistributionString();
+		}
+		System.out.println(bonusDistString);
 		this.freeBonuses = freeBonuses;
 		createFullFieldLevel();
 		addBonus(numOfBonus);
 		System.out.println(toString());
+		
+	}
+	
+	/**
+	 * method that creates a string with the index of the bonus repeated 
+	 * the times defined in the Bonuses enum
+	 * 
+	 */
+	
+	private String getDistributionString() {
+		String bonusString = "";
+		int numberOfBonus = Bonuses.values().length;
+		for (int a = 0; a < numberOfBonus; a++) {
+			int probability = Bonuses.getProb(a);
+			for (int i = 0; i < probability; i++) {
+				bonusString += "" + a + ",";
+			}
+		}
+		return bonusString.substring(0, bonusString.length()-1);
+	}
+	
+	/**
+	 * method that randomly selects a bonus type from a string of bonus indexes separated by ","
+	 * 
+	 */ 
+
+	
+	private Bonus createBonus() {
+		Random rnd = new Random();
+		String[] bonusArray = bonusDistString.split(",");
+		return Bonuses.getBonus(Integer.parseInt(bonusArray[rnd.nextInt(bonusArray.length)]));
 	}
 	
 	/**
@@ -104,7 +143,12 @@ public class Level {
 			tab += "  ";
 			for (int col = 0; col<COLUMNS; col++) {
 				if (bricks[row][col] != null) {
-					tab += "__ ";
+					if (bricks[row][col].getBonus() != null) {
+						tab += "** ";
+						
+					} else {
+						tab += "__ ";
+					}
 				} else {
 					tab += "   ";
 				}
@@ -131,7 +175,7 @@ public class Level {
 		
 		for (int i = 0; i < numOfBonus; i++) {
 			int index = rnd.nextInt(listOfBricks.size());
-			listOfBricks.remove(index).setBonus();
+			listOfBricks.remove(index).setBonus(createBonus());
 		}	
 	}
 	

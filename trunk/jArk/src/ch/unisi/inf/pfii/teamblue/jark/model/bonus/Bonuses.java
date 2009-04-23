@@ -1,31 +1,35 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.bonus;
 
+
 public enum Bonuses {
 	
-	STICKY (0, 5),
-	SLOW (1, 5),
-	LONG (2, 5),
-	EXPLOSION (3, 4),
-	DOUBLE (4, 4),
-	LASER (5, 4),
-	ULTRA (6, 3),
-	DBL_LASER (7, 3),
-	MISSILE (8, 2),
-	BOX (9, 1),
-	FAST (10, 5),
-	SHORT (11, 5),
-	GHOST (12, 4),
-	FREEZE (13, 3),
-	RESET (14, 3),
-	FALSE (15, 2),
-	DEATH (16, 1);
+	STICKY (0, 5, new StickyBallBonus()),
+	SLOW (1, 5, new SlowBallBonus()),
+	LONG (2, 5, new LongVausBonus()),
+	EXPLOSIVE (3, 4, new ExplosiveBallBonus()),
+	DOUBLE (4, 4, new DoubleBallBonus()),
+	LASER (5, 4, new LaserVausBonus()),
+	ULTRA (6, 3, new UltraBallBonus()),
+	DBL_LASER (7, 3, new DoubleLaserVausBonus()),
+	MISSILE (8, 2, new MissileVausBonus()),
+	BOX (9, 1, new TheBoxBonus()),
+	FAST (10, 5, new FastBallBonus()),
+	SHORT (11, 5, new ShortVausBonus()),
+	GHOST (12, 4, new GhostBallBonus()),
+	FREEZE (13, 3, new RubberBallBonus()),
+	RESET (14, 3, new ResetVausBonus()),
+	FALSE (15, 2, new FalseBallsBonus()),
+	REM_LIFE (16, 1, new RemoveLifeBonus()),
+	ADD_LIFE (17, 2, new AddLifeBonus());
 	
 	private final int probability;
 	private final int number;
+	private final Bonus bonus;
 	
-	Bonuses(int num, int prob) {
+	Bonuses(int num, int prob, Bonus bonus) {
 		probability = prob;
 		number = num;
+		this.bonus = bonus;
 	}
 	
 	public static int getProb(final int num) {
@@ -35,5 +39,15 @@ public enum Bonuses {
 			}
 		}
 		return -1;
+	}
+	
+	public static Bonus getBonus(final int num) {
+		for (Bonuses b : Bonuses.values()) {
+			if (b.number == num) {
+				Bonus newb = b.bonus;
+				return newb.makeMe();
+			}
+		}
+		return null;
 	}
 }

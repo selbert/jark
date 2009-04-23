@@ -16,8 +16,8 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
  */
 
 public class Game {
-	private static final int FIELD_WIDTH = 800;
-	private static final int FIELD_HEIGHT =  600;
+	private static final int GAME_WIDTH = 800;
+	private static final int GAME_HEIGHT =  600;
 	
 	private ArrayList<Ball> balls;
 	private ArrayList<Bonus> freeBonuses;
@@ -40,6 +40,14 @@ public class Game {
 		for (Ball ball : balls) {
 			ball.move();
 		}
+	}
+
+	public static int getGAME_WIDTH() {
+		return GAME_WIDTH;
+	}
+
+	public static int getGAME_HEIGHT() {
+		return GAME_HEIGHT;
 	}
 	
 	

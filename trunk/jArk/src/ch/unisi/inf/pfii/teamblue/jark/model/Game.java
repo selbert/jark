@@ -29,10 +29,17 @@ public class Game {
 	public Game() {
 		balls = new ArrayList<Ball>();
 		freeBonuses = new ArrayList<Bonus>();
-		vaus = new Vaus(0, 10);
+		vaus = new Vaus(GAME_WIDTH/2 - 20/2, 20);
 		player = new Player("pippo", 3);
 		level = new Level(25, freeBonuses);
 		balls.add(new DefaultBall(vaus, level));
+		balls.get(0).setSpeedX(-2);
+		balls.get(0).setSpeedY(-3);
+		balls.get(0).print();
+		for (int i = 0; i < 1000; i++) {
+			moveBalls();
+			balls.get(0).print();
+		}
 		
 	}
 	

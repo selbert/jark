@@ -27,20 +27,31 @@ public class Level {
 	private Brick[][] bricks;
 	private ArrayList<Bonus> freeBonuses;
 	
+	/**
+	 * Constructor of Level, creates a new level (field of bricks).
+	 * 
+	 * @param numOfBonus total bonuses at disposition
+	 * @param freeBonuses ArrayList of bonus dropping to the vaus 
+	 */
 	public Level(final int numOfBonus, final ArrayList<Bonus> freeBonuses) {
 		bricks = new Brick[ROWS][COLUMNS];
 		this.freeBonuses = freeBonuses;
-		createLevel(0);
+		createFullFieldLevel();
 		addBonus(numOfBonus);
 		System.out.println(toString());
 	}
 	
+	/**
+	 * Create a level from a file which format: lineID.rowID.blockType (i.e. 0.1.0)
+	 * 
+	 * @param levelNumber filename
+	 */
 	private void createLevel(final int levelNumber) {
 		try{
 			FileInputStream fis = new FileInputStream("src/ch/unisi/inf/pfii/teamblue/jark/model/level/defaultlevels/"+levelNumber);
 			BufferedReader myInput = new BufferedReader(new InputStreamReader(fis));
 			String thisLine = "";
-		
+			
 			while ((thisLine = myInput.readLine()) != null) {
 				
 				String[] brickInfo = thisLine.split("\\.");
@@ -57,6 +68,25 @@ public class Level {
 		}
 	}
 	
+	/**
+	 * creates a level field full of defaultblocks for testing
+	 */
+	private void createFullFieldLevel() {
+		for (int row = 0; row<ROWS; row++) {
+			for (int col = 0; col<COLUMNS; col++) {
+				bricks[row][col] = new DefaultBrick();
+			}
+		}
+
+	}
+	
+	/**
+	 * Converts an integer into a specific brick.
+	 * Used when loading levels from files.
+	 * 
+	 * @param i block type (integer)
+	 * @return selected brick 
+	 */
 	private Brick intToBrick(final int i) {
 		switch(i) {
 			case 1: return new ResistentBrick();
@@ -66,16 +96,6 @@ public class Level {
 		}
 	}
 	
-	private String getBrick(final int x, final int y) {
-		Brick tempBrick = bricks[x][y];
-		if (tempBrick != null) {
-			Bonus tempBonus = tempBrick.getBonus();
-			if (tempBonus != null) {
-				return tempBonus.getType()+" ";
-			}
-		}
-		return "  ";
-	}
 	
 	public String toString() {
 		String tab = "\n";
@@ -111,7 +131,15 @@ public class Level {
 		}	
 	}
 	
-	private int[] getFieldPosition(final int x, final int y) {
+	/**
+	 * Converts pixel coordinates into bricks coordinates. 
+	 * Public for testing purposes.
+	 * 
+	 * @param x pixels from the left
+	 * @param y pixels from the top
+	 * @return
+	 */
+	public int[] getFieldPosition(final int x, final int y) {
 		int posy = (int)((float) ROWS/ (float) FIELD_HEIGHT*y);
 		int posx = (int)((float) COLUMNS/ (float)FIELD_WIDTH*x);
 		return new int[] {posx, posy};
@@ -130,13 +158,22 @@ public class Level {
 		int[] newPos = getFieldPosition(newX,newY);
 		
 		if ((newPos[0] < oldPos[0] || newPos[0] > oldPos[0]) && newPos[1] == newPos[1]) {
+			destroyBrick(newPos);
 			return BouncingDirection.HORIZONTAL;
 		} else if (newPos[0] == oldPos[0] && (newPos[1] < oldPos[1]) || newPos[1] > newPos[1]) {
+			destroyBrick(newPos);
 			return BouncingDirection.VERTICAL;
 		} else {
+			//destroy adiacent blocks
+			destroyBrick(new int[] { oldPos[0], newPos[1] });
+			destroyBrick(new int[] { newPos[0], oldPos[1] });
 			return BouncingDirection.DIAGONAL;
 		}
 			
+	}
+	
+	private void destroyBrick(int[] pos) {
+		bricks[pos[1]][pos[0]] = null;
 	}
 	
 	public static int getFIELD_HEIGHT() {

@@ -11,7 +11,8 @@ package ch.unisi.inf.pfii.teamblue.jark.model.brick;
 public class ResistentBrick extends Brick {
 
 	public ResistentBrick() {
-		// TODO Auto-generated constructor stub
+		setLives(2);
+		setPoints(15);
 	}
 
 }

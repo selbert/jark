@@ -11,7 +11,8 @@ package ch.unisi.inf.pfii.teamblue.jark.model.brick;
 public class PersistentBrick extends Brick {
 
 	public PersistentBrick() {
-		// TODO Auto-generated constructor stub
+		setLives(-1);
+		setPoints(0);
 	}
 
 }

@@ -25,7 +25,5 @@ public class Console {
         System.out.println(line);
     }
 
-    public void writeRequest(final String line) {
-        System.out.print(line);
-    }
+ 
 }

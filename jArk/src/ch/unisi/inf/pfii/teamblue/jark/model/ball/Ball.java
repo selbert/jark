@@ -1,5 +1,6 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.ball;
 
+import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.*;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
@@ -40,24 +41,59 @@ public class Ball {
 		this.speedY = speedY;
 	}
 	
+	public void print() {
+		System.out.println(x + " " + y + " " + speedX + " " + speedY);
+	}
 	
 	public void move() {
 		int newX = x+speedX;
 		int newY = y+speedY;
+		if (newX > Game.getGAME_WIDTH()) {
+			speedX = -speedX;
+			newX = Game.getGAME_WIDTH() - 2;
+		}
+		if (newX < 0) {
+			speedX = -speedX;
+			newX = 0;
+		}
+		if (newY < 0) {
+			speedY = -speedY;
+			newY = 0;
+		}
+		
+		//test purpose condition
+		
+		if (newY > Game.getGAME_HEIGHT()) {
+			speedY = -speedY;
+			newY = Game.getGAME_HEIGHT();
+		}
+		
+		//until here
 		if(newY < Level.getFIELD_HEIGHT()) { 
 			if(level.insideBlock(newX, newY)) {
 				BouncingDirection direction = level.computeDirection(x, y, newX, newY);
 				switch(direction) {
 					case VERTICAL:
 						speedY = -speedY;
+						newX = x;
+						newY = y + speedY;
+						break;
 					case HORIZONTAL:
 						speedX = -speedX;
+						newY = y;
+						newX = x + speedX;
+						break;
 					case DIAGONAL:
 						speedY = -speedY;
 						speedX = -speedX;
+						newY = y + speedY;
+						newX = x + speedX;
+						break;
 					default:
 				}
 			}
 		}
+		x = newX;
+		y = newY;
 	}
 }

@@ -2,6 +2,7 @@ package ch.unisi.inf.pfii.teamblue.jark.model;
 
 import java.util.ArrayList;
 
+import ch.unisi.inf.pfii.teamblue.jark.implementation.Console;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.*;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
@@ -25,8 +26,10 @@ public class Game {
 	private Vaus vaus;
 	private Player player;
 	private Level level;
+	private Console console;
 	
 	public Game() {
+		console = new Console();
 		balls = new ArrayList<Ball>();
 		freeBonuses = new ArrayList<Bonus>();
 		vaus = new Vaus(GAME_WIDTH/2 - 20/2, 20);
@@ -35,14 +38,18 @@ public class Game {
 		balls.add(new DefaultBall(vaus, level));
 		balls.get(0).setSpeedX(-2);
 		balls.get(0).setSpeedY(-3);
-		balls.get(0).print();
-		for (int i = 0; i < 10000; i++) {
-			moveBalls();
-			if (i%50 == 0) {
+
+		while (true) {
+			String s = console.readLine();
+			if (s.equals("")) {
+				for(int i = 0; i<50; i++) {
+					moveBalls();
+				}
 				printWorld();
+			} else {
+				break;
 			}
 		}
-		
 	}
 	
 	private void moveBalls() {
@@ -60,6 +67,9 @@ public class Game {
 	}
 	
 	private void printWorld() {
+		char esc = 27;
+		String clear = esc + "[2J";
+		System.out.print(clear);
 		System.out.println(level.toString());
 	}
 }

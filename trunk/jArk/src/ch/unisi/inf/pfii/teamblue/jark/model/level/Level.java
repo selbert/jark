@@ -24,8 +24,7 @@ public class Level {
 	private static final int COLUMNS = 14;
 	private static final int ROWS = 8;
 	
-	//bonus handling fields
-
+	//bonus handling field
 	private static String bonusDistString = "";
 	
 	private Brick[][] bricks;
@@ -42,12 +41,9 @@ public class Level {
 		if (bonusDistString.equals("")) {
 			bonusDistString = getDistributionString();
 		}
-		System.out.println(bonusDistString);
 		this.freeBonuses = freeBonuses;
 		createFullFieldLevel();
 		addBonus(numOfBonus);
-		System.out.println(toString());
-		
 	}
 	
 	/**
@@ -55,7 +51,6 @@ public class Level {
 	 * the times defined in the Bonuses enum
 	 * 
 	 */
-	
 	private String getDistributionString() {
 		String bonusString = "";
 		int numberOfBonus = Bonuses.values().length;
@@ -69,11 +64,9 @@ public class Level {
 	}
 	
 	/**
-	 * method that randomly selects a bonus type from a string of bonus indexes separated by ","
-	 * 
+	 * Method that randomly selects a bonus type from a string of bonus indexes separated by ","
+	 * @return Bonus
 	 */ 
-
-	
 	private Bonus createBonus() {
 		Random rnd = new Random();
 		String[] bonusArray = bonusDistString.split(",");
@@ -135,7 +128,9 @@ public class Level {
 		}
 	}
 	
-	
+	/**
+	 * Returns the current field as String
+	 */
 	public String toString() {
 		String tab = "\n";
 
@@ -157,10 +152,13 @@ public class Level {
 
 		}
 
-		return tab+"\n\n\n             ð";
+		return tab+"\n\n\n             @";
 	}
 
-	
+	/**
+	 * Add bonuses to random bricks
+	 * @param numOfBonus
+	 */
 	private void addBonus(final int numOfBonus) {
 		ArrayList<Brick> listOfBricks = new ArrayList<Brick>();
 		Random rnd = new Random();
@@ -193,6 +191,12 @@ public class Level {
 		return new int[] {posx, posy};
 	}
 	
+	/**
+	 * Returns true if the given position is inside a brick
+	 * @param x
+	 * @param y
+	 * @return true if inside a brick
+	 */
 	public boolean insideBlock(final int x, final int y) {
 		int[] pos = getFieldPosition(x,y);
 		if (bricks[pos[1]][pos[0]] != null) {
@@ -201,6 +205,16 @@ public class Level {
 		return false;
 	}
 	
+	/**
+	 * Action taken after the ball hits a brick, 
+	 * calls the destruction of the brick and returns the direction of the ball
+	 * 
+	 * @param oldX current position x
+	 * @param oldY current position y
+	 * @param newX next position x
+	 * @param newY next position y
+	 * @return direction of the ball
+	 */
 	public BouncingDirection computeDirection(final int oldX, final int oldY, final int newX, final int newY) {
 		int[] oldPos = getFieldPosition(oldX,oldY);
 		int[] newPos = getFieldPosition(newX,newY);
@@ -220,7 +234,11 @@ public class Level {
 			
 	}
 	
-	private void destroyBrick(int[] pos) {
+	/**
+	 * Destroy a brick
+	 * @param pos the position array
+	 */
+	private void destroyBrick(final int[] pos) {
 		bricks[pos[1]][pos[0]] = null;
 	}
 	

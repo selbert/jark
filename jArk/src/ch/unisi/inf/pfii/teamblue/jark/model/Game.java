@@ -52,24 +52,30 @@ public class Game {
 		}
 	}
 	
+	/**
+	 * Move all the balls in the game
+	 */
 	private void moveBalls() {
 		for (Ball ball : balls) {
 			ball.move();
 		}
 	}
-
+	
+	/**
+	 * Print the current world, showing only the field at the moment.
+	 */
+	private void printWorld() {
+		char esc = 27;
+		String clear = esc + "[2J";
+		System.out.print(clear);
+		System.out.println(level.toString());
+	}
+	
 	public static int getGAME_WIDTH() {
 		return GAME_WIDTH;
 	}
 
 	public static int getGAME_HEIGHT() {
 		return GAME_HEIGHT;
-	}
-	
-	private void printWorld() {
-		char esc = 27;
-		String clear = esc + "[2J";
-		System.out.print(clear);
-		System.out.println(level.toString());
 	}
 }

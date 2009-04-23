@@ -41,10 +41,16 @@ public class Ball {
 		this.speedY = speedY;
 	}
 	
+	/**
+	 * @Return ball main fields to string (test purpose only)
+	 */
 	public String toString() {
 		return x + " " + y + " " + speedX + " " + speedY;
 	}
 	
+	/** 
+	 * Moves a ball
+	 */
 	public void move() {
 		int newX = x+speedX;
 		int newY = y+speedY;
@@ -62,7 +68,6 @@ public class Ball {
 		}
 		
 		//test purpose condition
-		
 		if (newY > Game.getGAME_HEIGHT()) {
 			speedY = -speedY;
 			newY = Game.getGAME_HEIGHT();

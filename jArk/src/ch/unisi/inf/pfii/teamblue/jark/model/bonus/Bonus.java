@@ -40,6 +40,10 @@ public class Bonus {
 		y = y + SPEED;
 	}
 	
+	/**
+	 * To clone the Bonus (used by the Bonuses enum)
+	 * @return the same Bonus as this
+	 */
 	public Bonus makeMe () {
 		try {
 			return (Bonus) this.clone();

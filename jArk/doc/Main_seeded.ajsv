@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AgileJ Ltd. (http://www.agilej.com)-->
+<ajsv>
+    <diagram scope="scopeElementSets.elementSet.Switchable Subtypes" style="standardDiagramStyles.diagramStyle.Standard Basic Style" version="1.5.3">
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Visibility" switchValue="public, protected, package, private"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Signature Length" switchValue="short"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Manhattan Lines" switchValue="dependence, fields, inheritance"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Line Types" switchValue="dependence, field, inheritance"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Members" switchValue="fields, methods, inners, initializers"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.Main" project="jArk" xLocation="1314" yLocation="428"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.implementation.Console" project="jArk" xLocation="2106" yLocation="536"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.Game" project="jArk" xLocation="988" yLocation="352"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.Player" project="jArk" xLocation="1056" yLocation="90"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.ball.SlowBall" project="jArk" xLocation="700" yLocation="1272"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.ball.StickyBall" project="jArk" xLocation="615" yLocation="1088"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.ball.UltraBall" project="jArk" xLocation="581" yLocation="718"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.ball.FastBall" project="jArk" xLocation="928" yLocation="1094"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.ball.DefaultBall" project="jArk" xLocation="822" yLocation="405"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.ball.GhostBall" project="jArk" xLocation="369" yLocation="1048"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball" project="jArk" xLocation="577" yLocation="380"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.ball.RubberBall" project="jArk" xLocation="601" yLocation="902"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.ball.ExplosiveBall" project="jArk" xLocation="807" yLocation="589"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonuses" project="jArk" xLocation="1298" yLocation="-143"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.ResetVausBonus" project="jArk" xLocation="1862" yLocation="298"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.StickyBallBonus" project="jArk" xLocation="1298" yLocation="612"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.LaserVausBonus" project="jArk" xLocation="1408" yLocation="935"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.SlowBallBonus" project="jArk" xLocation="1575" yLocation="269"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.GhostBallBonus" project="jArk" xLocation="1864" yLocation="798"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus" project="jArk" xLocation="1550" yLocation="430"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.TheBoxBonus" project="jArk" xLocation="1693" yLocation="1130"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.RemoveLifeBonus" project="jArk" xLocation="1584" yLocation="105"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.FastBallBonus" project="jArk" xLocation="1862" yLocation="637"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.UltraBallBonus" project="jArk" xLocation="1417" yLocation="1096"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.FalseBallsBonus" project="jArk" xLocation="1669" yLocation="960"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.LongVausBonus" project="jArk" xLocation="1151" yLocation="1098"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.MissileVausBonus" project="jArk" xLocation="1142" yLocation="934"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.ShortVausBonus" project="jArk" xLocation="2118" yLocation="373"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.DoubleBallBonus" project="jArk" xLocation="1576" yLocation="-57"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.ExplosiveBallBonus" project="jArk" xLocation="999" yLocation="772"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.AddLifeBonus" project="jArk" xLocation="1864" yLocation="465"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.DoubleLaserVausBonus" project="jArk" xLocation="847" yLocation="933"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.RubberBallBonus" project="jArk" xLocation="1275" yLocation="773"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.brick.PersistentBrick" project="jArk" xLocation="51" yLocation="729"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.brick.Brick" project="jArk" xLocation="67" yLocation="404"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.brick.DefaultBrick" project="jArk" xLocation="338" yLocation="862"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.brick.VeryResistentBrick" project="jArk" xLocation="-220" yLocation="729"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.brick.ResistentBrick" project="jArk" xLocation="76" yLocation="916"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.level.Level" project="jArk" xLocation="307" yLocation="474"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.vaus.ShortVaus" project="jArk" xLocation="726" yLocation="-150"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.vaus.DoubleLaserVaus" project="jArk" xLocation="313" yLocation="289"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.vaus.MissileVaus" project="jArk" xLocation="343" yLocation="105"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.vaus.LongVaus" project="jArk" xLocation="958" yLocation="-97"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus" project="jArk" xLocation="584" yLocation="39"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.vaus.DefaultVaus" project="jArk" xLocation="73" yLocation="218"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.vaus.LaserVaus" project="jArk" xLocation="821" yLocation="209"/>
+    </diagram>
+</ajsv>

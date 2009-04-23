@@ -11,7 +11,7 @@ package ch.unisi.inf.pfii.teamblue.jark.model.brick;
 public class DefaultBrick extends Brick {
 
 	public DefaultBrick() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 }

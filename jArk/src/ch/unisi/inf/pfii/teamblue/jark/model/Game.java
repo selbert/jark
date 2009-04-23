@@ -62,7 +62,4 @@ public class Game {
 	private void printWorld() {
 		System.out.println(level.toString());
 	}
-	
-	
-	
 }

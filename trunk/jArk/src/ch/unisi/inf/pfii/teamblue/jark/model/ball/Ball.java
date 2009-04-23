@@ -41,8 +41,8 @@ public class Ball {
 		this.speedY = speedY;
 	}
 	
-	public void print() {
-		System.out.println(x + " " + y + " " + speedX + " " + speedY);
+	public String toString() {
+		return x + " " + y + " " + speedX + " " + speedY;
 	}
 	
 	public void move() {

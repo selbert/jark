@@ -2,4 +2,10 @@
 - Changed packet structure (issue 2 and 3)
 - Removed state from vaus (issue 1)
 
+- issue: bouncing method.
+	- solved with current and next position of the ball on the matrix.
+
+- issue: bonus returning w/o passing from ball (to lower the coupling)
+	- bonus treated by game, ball returns the brick to explode and the game class lets the level class handle it and return a bonus.
+
 TODO: redo bonus/bonuse, vaus and brick with inheritance (implement)

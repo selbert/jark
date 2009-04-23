@@ -20,7 +20,7 @@ public class Game {
 	private static final int FIELD_HEIGHT =  600;
 	
 	private ArrayList<Ball> balls;
-	private ArrayList<Bonus> bonuses;
+	private ArrayList<Bonus> freeBonuses;
 	
 	private Vaus vaus;
 	private Player player;
@@ -28,12 +28,18 @@ public class Game {
 	
 	public Game() {
 		balls = new ArrayList<Ball>();
-		bonuses = new ArrayList<Bonus>();
-		balls.add(new DefaultBall(0, 0));
+		freeBonuses = new ArrayList<Bonus>();
 		vaus = new Vaus(0, 10);
 		player = new Player("pippo", 3);
-		level = new Level(25);
+		level = new Level(25, freeBonuses);
+		balls.add(new DefaultBall(vaus, level));
 		
+	}
+	
+	private void moveBalls() {
+		for (Ball ball : balls) {
+			ball.move();
+		}
 	}
 	
 	

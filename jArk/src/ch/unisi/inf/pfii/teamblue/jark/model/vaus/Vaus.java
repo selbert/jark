@@ -10,7 +10,7 @@ package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
  */
 
 public class Vaus {
-	private static final int Y = 10;
+	private static final int Y = 560;
 	private int x;
 	private int size;
 	

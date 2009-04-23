@@ -80,13 +80,13 @@ public class Ball {
 				switch(direction) {
 					case VERTICAL:
 						speedY = -speedY;
-						newX = x;
-						newY = y + speedY;
+						newX = x + speedX;
+						newY = y;
 						break;
 					case HORIZONTAL:
 						speedX = -speedX;
-						newY = y;
-						newX = x + speedX;
+						newY = y + speedY;
+						newX = x;
 						break;
 					case DIAGONAL:
 						speedY = -speedY;

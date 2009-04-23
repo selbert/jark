@@ -49,5 +49,6 @@ public class MainTest extends TestCase {
 		assertTrue(ball.toString().equals("10 402 0 -5"));
 		ball.move();
 		assertTrue(ball.toString().equals("10 402 0 5"));
+		//the block in 10,395 disappears.
 	}
 }

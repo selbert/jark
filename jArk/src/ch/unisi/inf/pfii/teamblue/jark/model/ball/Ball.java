@@ -28,7 +28,7 @@ public class Ball {
 		this.vaus = vaus;
 		this.level = level;
 		x = vaus.getX() + (vaus.getSize() / 2);
-		y = vaus.getY() - RADIUS;
+		y = Vaus.getY() - RADIUS;
 		speedX = 0;
 		speedY = 0;
 	}

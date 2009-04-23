@@ -13,6 +13,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
 
 public class Brick {
 	private int lives;
+	private int points;
 	private Bonus bonus;
 	
 	public Brick() {
@@ -33,5 +34,13 @@ public class Brick {
 	
 	public int getLives() {
 		return lives;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
+	}
+
+	public int getPoints() {
+		return points;
 	}
 }

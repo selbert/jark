@@ -11,7 +11,8 @@ package ch.unisi.inf.pfii.teamblue.jark.model.brick;
 public class DefaultBrick extends Brick {
 
 	public DefaultBrick() {
-		
+		setLives(1);
+		setPoints(10);
 	}
 
 }

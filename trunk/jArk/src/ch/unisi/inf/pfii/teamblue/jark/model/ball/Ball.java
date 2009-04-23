@@ -48,9 +48,9 @@ public class Ball {
 	public void move() {
 		int newX = x+speedX;
 		int newY = y+speedY;
-		if (newX > Game.getGAME_WIDTH()) {
+		if (newX >= Game.getGAME_WIDTH()) {
 			speedX = -speedX;
-			newX = Game.getGAME_WIDTH() - 2;
+			newX = Game.getGAME_WIDTH() - 1;
 		}
 		if (newX < 0) {
 			speedX = -speedX;

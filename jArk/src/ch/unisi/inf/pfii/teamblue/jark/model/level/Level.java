@@ -103,7 +103,11 @@ public class Level {
 		for (int row = 0; row<ROWS; row++) {
 			tab += "  ";
 			for (int col = 0; col<COLUMNS; col++) {
-				tab += "__ ";
+				if (bricks[row][col] != null) {
+					tab += "__ ";
+				} else {
+					tab += "   ";
+				}
 			}
 			tab = tab.substring(0, tab.length()-1)+"\n";
 

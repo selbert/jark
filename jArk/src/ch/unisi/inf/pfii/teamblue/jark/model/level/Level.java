@@ -17,16 +17,19 @@ import ch.unisi.inf.pfii.teamblue.jark.model.brick.*;
  * 
  */
 public class Level {
+	//field dimension in pixels
 	private static final int FIELD_WIDTH = 800;
 	private static final int FIELD_HEIGHT =  400;
-	
-	private final int dimX = 20;
-	private final int dimY = 8;
+	//field dimension in bricks
+	private static final int COLUMNS = 14;
+	private static final int ROWS = 8;
 	
 	private Brick[][] bricks;
+	private ArrayList<Bonus> freeBonuses;
 	
-	public Level(final int numOfBonus) {
-		bricks = new Brick[dimY][dimX];
+	public Level(final int numOfBonus, final ArrayList<Bonus> freeBonuses) {
+		bricks = new Brick[ROWS][COLUMNS];
+		this.freeBonuses = freeBonuses;
 		createLevel(0);
 		addBonus(numOfBonus);
 		System.out.println(toString());
@@ -77,20 +80,12 @@ public class Level {
 	public String toString() {
 		String tab = "\n";
 
-		for (int row = 0; row<dimY; row++) {
+		for (int row = 0; row<ROWS; row++) {
 			tab += "  ";
-			for (int col = 0; col<dimX; col++) {
-				tab += getBrick(row,col)+"|";
+			for (int col = 0; col<COLUMNS; col++) {
+				tab += "__ ";
 			}
-			tab = tab.substring(0, tab.length()-1);
-
-			if (row != dimY-1) {
-				tab += "\n  ";
-				for (int col = 0; col<dimX; col++) {
-					tab += "--+";
-				}
-				tab = tab.substring(0, tab.length()-1) + "\n";
-			}
+			tab = tab.substring(0, tab.length()-1)+"\n";
 
 		}
 
@@ -114,6 +109,38 @@ public class Level {
 			int index = rnd.nextInt(listOfBricks.size());
 			listOfBricks.remove(index).setBonus();
 		}	
+	}
+	
+	private int[] getFieldPosition(final int x, final int y) {
+		int posy = (int)((float) ROWS/ (float) FIELD_HEIGHT*y);
+		int posx = (int)((float) COLUMNS/ (float)FIELD_WIDTH*x);
+		return new int[] {posx, posy};
+	}
+	
+	public boolean insideBlock(final int x, final int y) {
+		int[] pos = getFieldPosition(x,y);
+		if (bricks[pos[1]][pos[0]] != null) {
+			return true;
+		}
+		return false;
+	}
+	
+	public BouncingDirection computeDirection(final int oldX, final int oldY, final int newX, final int newY) {
+		int[] oldPos = getFieldPosition(oldX,oldY);
+		int[] newPos = getFieldPosition(newX,newY);
+		
+		if ((newPos[0] < oldPos[0] || newPos[0] > oldPos[0]) && newPos[1] == newPos[1]) {
+			return BouncingDirection.HORIZONTAL;
+		} else if (newPos[0] == oldPos[0] && (newPos[1] < oldPos[1]) || newPos[1] > newPos[1]) {
+			return BouncingDirection.VERTICAL;
+		} else {
+			return BouncingDirection.DIAGONAL;
+		}
+			
+	}
+	
+	public static int getFIELD_HEIGHT() {
+		return FIELD_HEIGHT;
 	}
 	
 }

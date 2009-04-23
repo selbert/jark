@@ -11,3 +11,9 @@
 
 - project has to be run from bash in order to view the simulation (only the field is shown, the ball is invisible at the moment)
 to run it: just press enter continuously, or type something to quit. You will see the bricks hit by the ball disappearing. 
+
+*****
+Pay attention: also if we have few tests, we are quit sure the implemented things are working properly.
+Moreover this is an early stage of our project, we have to improve a lot of things and change a lot more.
+The most important element at this time, is the ball. And this is tested.
+*****

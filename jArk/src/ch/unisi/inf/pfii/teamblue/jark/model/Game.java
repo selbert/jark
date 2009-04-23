@@ -36,9 +36,11 @@ public class Game {
 		balls.get(0).setSpeedX(-2);
 		balls.get(0).setSpeedY(-3);
 		balls.get(0).print();
-		for (int i = 0; i < 1000; i++) {
+		for (int i = 0; i < 10000; i++) {
 			moveBalls();
-			balls.get(0).print();
+			if (i%50 == 0) {
+				printWorld();
+			}
 		}
 		
 	}
@@ -55,6 +57,10 @@ public class Game {
 
 	public static int getGAME_HEIGHT() {
 		return GAME_HEIGHT;
+	}
+	
+	private void printWorld() {
+		System.out.println(level.toString());
 	}
 	
 	

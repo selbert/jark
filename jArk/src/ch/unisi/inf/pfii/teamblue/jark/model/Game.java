@@ -7,6 +7,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.ball.*;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
+import ch.unisi.inf.pfii.teamblue.jark.view.GameView;
 
 
 /**
@@ -29,6 +30,7 @@ public class Game {
 	private Console console;
 	
 	public Game() {
+		GameView gameView = new GameView();
 		console = new Console();
 		balls = new ArrayList<Ball>();
 		freeBonuses = new ArrayList<Bonus>();

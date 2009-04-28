@@ -74,7 +74,7 @@ public class Ball implements Constants {
 		
 		//until here
 		if(newY < FIELD_HEIGHT) { 
-			if(level.insideBlock(newX, newY)) {
+			if(level.brickHasBallInside(newX, newY)) {
 				BouncingDirection direction = level.computeDirection(x, y, newX, newY);
 				switch(direction) {
 					case VERTICAL:

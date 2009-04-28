@@ -1,5 +1,7 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
 
+import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
+
 /**
  * 
  * This class represents the Vaus (the paddle), it has a state, a size and a position (x).
@@ -9,8 +11,7 @@ package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
  * 
  */
 
-public class Vaus {
-	private static final int Y = 560;
+public class Vaus implements Constants {
 	private int x;
 	private int size;
 	
@@ -36,7 +37,7 @@ public class Vaus {
 	}
 
 	public static int getY() {
-		return Y;
+		return VAUS_Y;
 	}
 	
 }

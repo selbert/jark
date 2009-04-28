@@ -44,8 +44,13 @@ public enum Bonuses {
 	public static Bonus getBonus(final int num) {
 		for (Bonuses b : Bonuses.values()) {
 			if (b.number == num) {
-				Bonus newb = b.bonus;
-				return newb.makeMe();
+				try {
+					return b.bonus.getClass().newInstance();
+				} catch (InstantiationException e) {
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return null;

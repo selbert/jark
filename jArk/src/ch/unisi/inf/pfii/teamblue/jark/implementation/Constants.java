@@ -9,5 +9,5 @@ public interface Constants {
 	public static final int FIELD_WIDTH = 800;
 	public static final int FIELD_HEIGHT =  400;
 	public static final int FIELD_COLUMNS = 14;
-	public static final int FIELD_ROWS = 8;
+	public static final int FIELD_ROWS = 16;
 }

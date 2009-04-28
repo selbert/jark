@@ -210,5 +210,9 @@ public final class Level implements Constants {
 		bricks[pos[1]][pos[0]] = null;
 	}
 	
+	public Brick[][] getBricks() {
+		return bricks;
+	}
+	
 }
 

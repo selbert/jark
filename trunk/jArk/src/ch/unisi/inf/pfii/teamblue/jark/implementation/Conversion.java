@@ -1,5 +1,11 @@
 package ch.unisi.inf.pfii.teamblue.jark.implementation;
 
+import ch.unisi.inf.pfii.teamblue.jark.model.brick.Brick;
+import ch.unisi.inf.pfii.teamblue.jark.model.brick.DefaultBrick;
+import ch.unisi.inf.pfii.teamblue.jark.model.brick.PersistentBrick;
+import ch.unisi.inf.pfii.teamblue.jark.model.brick.ResistentBrick;
+import ch.unisi.inf.pfii.teamblue.jark.model.brick.VeryResistentBrick;
+
 public abstract class Conversion implements Constants {
 	
 	/**
@@ -16,4 +22,20 @@ public abstract class Conversion implements Constants {
 		return new int[] {posx, posy};
 	}
 
+	/**
+	 * Converts an integer into a specific brick.
+	 * Used when loading levels from files.
+	 * 
+	 * @param i block type (integer)
+	 * @return selected brick 
+	 */
+	public static Brick intToBrick(final int i) {
+		switch(i) {
+			case 1: return new ResistentBrick();
+			case 2: return new VeryResistentBrick();
+			case 3: return new PersistentBrick();
+			default: return new DefaultBrick();
+		}
+	}
+	
 }

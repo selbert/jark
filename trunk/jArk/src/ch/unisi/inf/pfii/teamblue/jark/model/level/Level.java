@@ -87,7 +87,7 @@ public class Level implements Constants {
 					int col = Integer.parseInt(brickInfo[1]);
 					int type = Integer.parseInt(brickInfo[2]);
 				
-					bricks[row][col] = intToBrick(type);
+					bricks[row][col] = Conversion.intToBrick(type);
 				}
 			}
 		} catch (Exception e) {
@@ -107,22 +107,7 @@ public class Level implements Constants {
 
 	}
 	
-	/**
-	 * Converts an integer into a specific brick.
-	 * Used when loading levels from files.
-	 * 
-	 * @param i block type (integer)
-	 * @return selected brick 
-	 */
-	private Brick intToBrick(final int i) {
-		switch(i) {
-			case 1: return new ResistentBrick();
-			case 2: return new VeryResistentBrick();
-			case 3: return new PersistentBrick();
-			default: return new DefaultBrick();
-		}
-	}
-	
+
 	/**
 	 * Returns the current field as String
 	 */
@@ -180,7 +165,7 @@ public class Level implements Constants {
 	 * @param y
 	 * @return true if inside a brick
 	 */
-	public boolean insideBlock(final int x, final int y) {
+	public boolean brickHasBallInside(final int x, final int y) {
 		int[] pos = Conversion.getFieldPosition(x,y);
 		if (bricks[pos[1]][pos[0]] != null) {
 			return true;

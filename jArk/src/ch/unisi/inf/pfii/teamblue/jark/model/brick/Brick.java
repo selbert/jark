@@ -11,7 +11,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
  * 
  */
 
-public class Brick {
+public abstract class Brick {
 	private int lives;
 	private int points;
 	private Bonus bonus;

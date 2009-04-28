@@ -8,7 +8,7 @@ package ch.unisi.inf.pfii.teamblue.jark.model.brick;
  *
  */
 
-public class PersistentBrick extends Brick {
+public final class PersistentBrick extends Brick {
 
 	public PersistentBrick() {
 		setLives(-1);

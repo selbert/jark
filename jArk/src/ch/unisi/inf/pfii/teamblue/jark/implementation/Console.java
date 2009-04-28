@@ -9,7 +9,7 @@ package ch.unisi.inf.pfii.teamblue.jark.implementation;
 import java.util.Scanner;
 
 
-public class Console {
+public final class Console {
 
     private final Scanner scanner;
     
@@ -17,11 +17,11 @@ public class Console {
         scanner = new Scanner(System.in);
     }
     
-    public String readLine() {
+    public final String readLine() {
         return scanner.nextLine();
     }
     
-    public void writeLine(final String line) {
+    public final void writeLine(final String line) {
         System.out.println(line);
     }
 

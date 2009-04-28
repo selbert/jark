@@ -53,9 +53,9 @@ public class Ball implements Constants {
 	public void move() {
 		int newX = x+speedX;
 		int newY = y+speedY;
-		if (newX >= Game.getGAME_WIDTH()) {
+		if (newX >= GAME_WIDTH) {
 			speedX = -speedX;
-			newX = Game.getGAME_WIDTH() - 1;
+			newX = GAME_WIDTH - 1;
 		}
 		if (newX < 0) {
 			speedX = -speedX;
@@ -67,9 +67,9 @@ public class Ball implements Constants {
 		}
 		
 		//test purpose condition
-		if (newY > Game.getGAME_HEIGHT()) {
+		if (newY > GAME_HEIGHT) {
 			speedY = -speedY;
-			newY = Game.getGAME_HEIGHT();
+			newY = GAME_HEIGHT;
 		}
 		
 		//until here

@@ -3,6 +3,7 @@ package ch.unisi.inf.pfii.teamblue.jark.model;
 import java.util.ArrayList;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Console;
+import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.*;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
@@ -17,10 +18,7 @@ import ch.unisi.inf.pfii.teamblue.jark.view.GameView;
  * 
  */
 
-public class Game {
-	private static final int GAME_WIDTH = 800;
-	private static final int GAME_HEIGHT =  600;
-	
+public class Game implements Constants {
 	private ArrayList<Ball> balls;
 	private ArrayList<Bonus> freeBonuses;
 	

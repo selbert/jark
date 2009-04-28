@@ -15,6 +15,7 @@ import javax.swing.*;
 public class GamePanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		
 		for (int j = 0; j < 16; j++) {
 			for (int i = 0; i < 14; i++) {
 				g.setColor(Color.blue);

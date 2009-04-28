@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Random;
 
+import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
+import ch.unisi.inf.pfii.teamblue.jark.implementation.Conversion;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.*;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.*;
 
@@ -16,16 +18,9 @@ import ch.unisi.inf.pfii.teamblue.jark.model.brick.*;
  * @version $LastChangedDate$
  * 
  */
-public class Level {
-	//field dimension in pixels
-	private static final int FIELD_WIDTH = 800;
-	private static final int FIELD_HEIGHT =  400;
-	//field dimension in bricks
-	private static final int COLUMNS = 14;
-	private static final int ROWS = 8;
-	
+public class Level implements Constants {
 	//bonus handling field
-	private static String bonusDistString = "";
+	private String bonusDistString;
 	
 	private Brick[][] bricks;
 	private ArrayList<Bonus> freeBonuses;
@@ -37,8 +32,8 @@ public class Level {
 	 * @param freeBonuses ArrayList of bonus dropping to the vaus 
 	 */
 	public Level(final int numOfBonus, final ArrayList<Bonus> freeBonuses) {
-		bricks = new Brick[ROWS][COLUMNS];
-		if (bonusDistString.equals("")) {
+		bricks = new Brick[FIELD_ROWS][FIELD_COLUMNS];
+		if (bonusDistString == null) {
 			bonusDistString = getDistributionString();
 		}
 		this.freeBonuses = freeBonuses;
@@ -104,8 +99,8 @@ public class Level {
 	 * creates a level field full of defaultblocks for testing
 	 */
 	private void createFullFieldLevel() {
-		for (int row = 0; row<ROWS; row++) {
-			for (int col = 0; col<COLUMNS; col++) {
+		for (int row = 0; row<FIELD_ROWS; row++) {
+			for (int col = 0; col<FIELD_COLUMNS; col++) {
 				bricks[row][col] = new DefaultBrick();
 			}
 		}
@@ -134,9 +129,9 @@ public class Level {
 	public String toString() {
 		String tab = "\n";
 
-		for (int row = 0; row<ROWS; row++) {
+		for (int row = 0; row<FIELD_ROWS; row++) {
 			tab += "  ";
-			for (int col = 0; col<COLUMNS; col++) {
+			for (int col = 0; col<FIELD_COLUMNS; col++) {
 				if (bricks[row][col] != null) {
 					if (bricks[row][col].getBonus() != null) {
 						tab += "** ";
@@ -177,19 +172,7 @@ public class Level {
 		}	
 	}
 	
-	/**
-	 * Converts pixel coordinates into bricks coordinates. 
-	 * Public for testing purposes.
-	 * 
-	 * @param x pixels from the left
-	 * @param y pixels from the top
-	 * @return
-	 */
-	public int[] getFieldPosition(final int x, final int y) {
-		int posy = (int)((float) ROWS/ (float) FIELD_HEIGHT*y);
-		int posx = (int)((float) COLUMNS/ (float)FIELD_WIDTH*x);
-		return new int[] {posx, posy};
-	}
+	
 	
 	/**
 	 * Returns true if the given position is inside a brick
@@ -198,7 +181,7 @@ public class Level {
 	 * @return true if inside a brick
 	 */
 	public boolean insideBlock(final int x, final int y) {
-		int[] pos = getFieldPosition(x,y);
+		int[] pos = Conversion.getFieldPosition(x,y);
 		if (bricks[pos[1]][pos[0]] != null) {
 			return true;
 		}
@@ -216,8 +199,8 @@ public class Level {
 	 * @return direction of the ball
 	 */
 	public BouncingDirection computeDirection(final int oldX, final int oldY, final int newX, final int newY) {
-		int[] oldPos = getFieldPosition(oldX,oldY);
-		int[] newPos = getFieldPosition(newX,newY);
+		int[] oldPos = Conversion.getFieldPosition(oldX,oldY);
+		int[] newPos = Conversion.getFieldPosition(newX,newY);
 		
 		if ((newPos[0] < oldPos[0] || newPos[0] > oldPos[0]) && newPos[1] == newPos[1]) {
 			destroyBrick(newPos);
@@ -240,10 +223,6 @@ public class Level {
 	 */
 	private void destroyBrick(final int[] pos) {
 		bricks[pos[1]][pos[0]] = null;
-	}
-	
-	public static int getFIELD_HEIGHT() {
-		return FIELD_HEIGHT;
 	}
 	
 }

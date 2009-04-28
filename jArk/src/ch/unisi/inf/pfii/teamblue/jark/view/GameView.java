@@ -1,10 +1,21 @@
 package ch.unisi.inf.pfii.teamblue.jark.view;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.EtchedBorder;
 
 /**
  * 
@@ -15,10 +26,7 @@ import javax.swing.border.EtchedBorder;
  * 
  */
 
-public class GameView {
-	// main window
-	private JFrame frame;
-
+public class GameView extends JFrame {
 	// the main panel (Container)
 	private JPanel contentPane;
 
@@ -33,15 +41,15 @@ public class GameView {
 	 * Create the main Window
 	 */
 	private void makeFrame() {
-		frame = new JFrame("[ jArk ] [ Arkanoid as never seen before ]");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLocation(300, 100);
-		frame.setResizable(false);
+		setTitle("[ jArk ] [ Arkanoid as never seen before ]");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocation(300, 100);
+		setResizable(false);
 		// create menu
 		makeMenu();
 		// cast to use borders, Container (supertype) doesn't have setBorder
 		// method
-		contentPane = (JPanel) frame.getContentPane();
+		contentPane = (JPanel) getContentPane();
 		// border between frame and inner components
 		contentPane.setBorder(new EmptyBorder(6, 6, 6, 6));
 		// border between inner components
@@ -69,9 +77,9 @@ public class GameView {
 		contentPane.add(center, BorderLayout.CENTER);
 		
 		// pack the frame together
-		frame.pack();
+		pack();
 		// and show it
-		frame.setVisible(true);
+		setVisible(true);
 	}
 
 	/**
@@ -79,7 +87,7 @@ public class GameView {
 	 */
 	private void makeMenu() {
 		JMenuBar menubar = new JMenuBar();
-		frame.setJMenuBar(menubar);
+		setJMenuBar(menubar);
 
 		// menu file
 		JMenu fileMenu = new JMenu("File");
@@ -155,7 +163,7 @@ public class GameView {
 	private void showAbout() {
 		JOptionPane
 				.showMessageDialog(
-						frame,
+						this,
 						"This is a test Dialog.\nBeing modal, you have to click Ok to proceed.",
 						"About This Crap", JOptionPane.INFORMATION_MESSAGE);
 	}

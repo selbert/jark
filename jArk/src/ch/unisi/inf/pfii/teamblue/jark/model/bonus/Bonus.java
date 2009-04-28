@@ -1,5 +1,7 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.bonus;
 
+import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
+
 
 
 /**
@@ -9,8 +11,7 @@ package ch.unisi.inf.pfii.teamblue.jark.model.bonus;
  * 
  */
 
-public class Bonus {
-	private static final int SPEED = 3;
+public class Bonus implements Constants {
 	private int x;
 	private int y;
 	
@@ -37,18 +38,8 @@ public class Bonus {
 	}
 	
 	public void move() {
-		y = y + SPEED;
+		y = y + BONUS_SPEED;
 	}
 	
-	/**
-	 * To clone the Bonus (used by the Bonuses enum)
-	 * @return the same Bonus as this
-	 */
-	public Bonus makeMe () {
-		try {
-			return (Bonus) this.clone();
-		} catch (Exception ex) {
-			return null;
-		}
-	}
+	
 }

@@ -1,5 +1,6 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.ball;
 
+import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.*;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
@@ -13,9 +14,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
  * 
  */
 
-public class Ball {
-	private static final int RADIUS = 8;
-	
+public class Ball implements Constants {
 	private int x;
 	private int y;
 	private int speedX;
@@ -28,7 +27,7 @@ public class Ball {
 		this.vaus = vaus;
 		this.level = level;
 		x = vaus.getX() + (vaus.getSize() / 2);
-		y = Vaus.getY() - RADIUS;
+		y = Vaus.getY() - BALL_RADIUS;
 		speedX = 0;
 		speedY = 0;
 	}
@@ -74,7 +73,7 @@ public class Ball {
 		}
 		
 		//until here
-		if(newY < Level.getFIELD_HEIGHT()) { 
+		if(newY < FIELD_HEIGHT) { 
 			if(level.insideBlock(newX, newY)) {
 				BouncingDirection direction = level.computeDirection(x, y, newX, newY);
 				switch(direction) {

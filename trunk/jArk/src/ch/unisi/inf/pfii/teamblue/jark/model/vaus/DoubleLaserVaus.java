@@ -8,7 +8,7 @@ package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
  *
  */
 
-public class DoubleLaserVaus extends Vaus {
+public final class DoubleLaserVaus extends Vaus {
 
 	public DoubleLaserVaus(int x, int size) {
 		super(x, size);

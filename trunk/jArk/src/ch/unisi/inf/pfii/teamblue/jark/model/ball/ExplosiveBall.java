@@ -10,7 +10,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
  *
  */
 
-public class ExplosiveBall extends Ball {
+public final class ExplosiveBall extends Ball {
 
 	public ExplosiveBall(final Vaus vaus, final Level level) {
 		super(vaus,level);

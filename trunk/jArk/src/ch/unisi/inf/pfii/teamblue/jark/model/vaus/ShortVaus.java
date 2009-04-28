@@ -8,7 +8,7 @@ package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
  *
  */
 
-public class ShortVaus extends Vaus {
+public final class ShortVaus extends Vaus {
 
 	public ShortVaus(int x, int size) {
 		super(x, size);

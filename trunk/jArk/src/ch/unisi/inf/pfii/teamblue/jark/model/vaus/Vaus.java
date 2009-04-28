@@ -11,7 +11,7 @@ import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
  * 
  */
 
-public class Vaus implements Constants {
+public abstract class Vaus implements Constants {
 	private int x;
 	private int size;
 	

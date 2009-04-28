@@ -14,7 +14,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
  * 
  */
 
-public class Ball implements Constants {
+public abstract class Ball implements Constants {
 	private int x;
 	private int y;
 	private int speedX;
@@ -32,18 +32,18 @@ public class Ball implements Constants {
 		speedY = 0;
 	}
 	
-	public void setSpeedX(final int speedX) {
+	public final void setSpeedX(final int speedX) {
 		this.speedX = speedX;
 	}
 	
-	public void setSpeedY(final int speedY) {
+	public final void setSpeedY(final int speedY) {
 		this.speedY = speedY;
 	}
 	
 	/**
 	 * @Return ball main fields to string (test purpose only)
 	 */
-	public String toString() {
+	public final String toString() {
 		return x + " " + y + " " + speedX + " " + speedY;
 	}
 	

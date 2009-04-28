@@ -7,6 +7,7 @@ import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.*;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
+import ch.unisi.inf.pfii.teamblue.jark.model.vaus.DefaultVaus;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 import ch.unisi.inf.pfii.teamblue.jark.view.GameView;
 
@@ -32,7 +33,7 @@ public final class Game implements Constants {
 		console = new Console();
 		balls = new ArrayList<Ball>();
 		freeBonuses = new ArrayList<Bonus>();
-		vaus = new Vaus(GAME_WIDTH/2 - 20/2, 20);
+		vaus = new DefaultVaus(GAME_WIDTH/2 - 20/2, 20);
 		player = new Player("pippo", 3);
 		level = new Level(25, freeBonuses);
 		balls.add(new DefaultBall(vaus, level));

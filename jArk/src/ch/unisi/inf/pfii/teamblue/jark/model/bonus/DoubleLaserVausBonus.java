@@ -8,6 +8,6 @@ package ch.unisi.inf.pfii.teamblue.jark.model.bonus;
  *
  */
 
-public class DoubleLaserVausBonus extends Bonus {
+public final class DoubleLaserVausBonus extends Bonus {
 
 }

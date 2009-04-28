@@ -8,7 +8,7 @@ package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
  *
  */
 
-public class MissileVaus extends Vaus {
+public final class MissileVaus extends Vaus {
 
 	public MissileVaus(int x, int size) {
 		super(x, size);

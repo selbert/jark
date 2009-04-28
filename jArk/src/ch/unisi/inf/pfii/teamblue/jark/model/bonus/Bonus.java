@@ -11,7 +11,7 @@ import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
  * 
  */
 
-public class Bonus implements Constants {
+public abstract class Bonus implements Constants {
 	private int x;
 	private int y;
 	

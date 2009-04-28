@@ -18,7 +18,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.brick.*;
  * @version $LastChangedDate$
  * 
  */
-public class Level implements Constants {
+public final class Level implements Constants {
 	//bonus handling field
 	private String bonusDistString;
 	
@@ -46,7 +46,7 @@ public class Level implements Constants {
 	 * the times defined in the Bonuses enum
 	 * 
 	 */
-	private String getDistributionString() {
+	private final String getDistributionString() {
 		String bonusString = "";
 		int numberOfBonus = Bonuses.values().length;
 		for (int a = 0; a < numberOfBonus; a++) {
@@ -62,7 +62,7 @@ public class Level implements Constants {
 	 * Method that randomly selects a bonus type from a string of bonus indexes separated by ","
 	 * @return Bonus
 	 */ 
-	private Bonus createBonus() {
+	private final Bonus createBonus() {
 		Random rnd = new Random();
 		String[] bonusArray = bonusDistString.split(",");
 		return Bonuses.getBonus(Integer.parseInt(bonusArray[rnd.nextInt(bonusArray.length)]));
@@ -73,7 +73,7 @@ public class Level implements Constants {
 	 * 
 	 * @param levelNumber filename
 	 */
-	private void createLevel(final int levelNumber) {
+	private final void createLevel(final int levelNumber) {
 		try{
 			FileInputStream fis = new FileInputStream("src/ch/unisi/inf/pfii/teamblue/jark/model/level/defaultlevels/"+levelNumber);
 			BufferedReader myInput = new BufferedReader(new InputStreamReader(fis));
@@ -98,7 +98,7 @@ public class Level implements Constants {
 	/**
 	 * creates a level field full of defaultblocks for testing
 	 */
-	private void createFullFieldLevel() {
+	private final void createFullFieldLevel() {
 		for (int row = 0; row<FIELD_ROWS; row++) {
 			for (int col = 0; col<FIELD_COLUMNS; col++) {
 				bricks[row][col] = new DefaultBrick();
@@ -111,7 +111,7 @@ public class Level implements Constants {
 	/**
 	 * Returns the current field as String
 	 */
-	public String toString() {
+	public final String toString() {
 		String tab = "\n";
 
 		for (int row = 0; row<FIELD_ROWS; row++) {
@@ -139,7 +139,7 @@ public class Level implements Constants {
 	 * Add bonuses to random bricks
 	 * @param numOfBonus
 	 */
-	private void addBonus(final int numOfBonus) {
+	private final void addBonus(final int numOfBonus) {
 		ArrayList<Brick> listOfBricks = new ArrayList<Brick>();
 		Random rnd = new Random();
 		
@@ -165,7 +165,7 @@ public class Level implements Constants {
 	 * @param y
 	 * @return true if inside a brick
 	 */
-	public boolean brickHasBallInside(final int x, final int y) {
+	public final boolean brickHasBallInside(final int x, final int y) {
 		int[] pos = Conversion.getFieldPosition(x,y);
 		if (bricks[pos[1]][pos[0]] != null) {
 			return true;
@@ -183,7 +183,7 @@ public class Level implements Constants {
 	 * @param newY next position y
 	 * @return direction of the ball
 	 */
-	public BouncingDirection computeDirection(final int oldX, final int oldY, final int newX, final int newY) {
+	public final BouncingDirection computeDirection(final int oldX, final int oldY, final int newX, final int newY) {
 		int[] oldPos = Conversion.getFieldPosition(oldX,oldY);
 		int[] newPos = Conversion.getFieldPosition(newX,newY);
 		
@@ -206,7 +206,7 @@ public class Level implements Constants {
 	 * Destroy a brick
 	 * @param pos the position array
 	 */
-	private void destroyBrick(final int[] pos) {
+	private final void destroyBrick(final int[] pos) {
 		bricks[pos[1]][pos[0]] = null;
 	}
 	

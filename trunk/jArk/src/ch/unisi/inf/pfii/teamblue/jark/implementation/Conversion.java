@@ -16,7 +16,7 @@ public abstract class Conversion implements Constants {
 	 * @param y pixels from the top
 	 * @return
 	 */
-	public static int[] getFieldPosition(final int x, final int y) {
+	public final static int[] getFieldPosition(final int x, final int y) {
 		int posy = (int)((float) FIELD_ROWS/ (float) FIELD_HEIGHT*y);
 		int posx = (int)((float) FIELD_COLUMNS/ (float)FIELD_WIDTH*x);
 		return new int[] {posx, posy};
@@ -29,7 +29,7 @@ public abstract class Conversion implements Constants {
 	 * @param i block type (integer)
 	 * @return selected brick 
 	 */
-	public static Brick intToBrick(final int i) {
+	public final static Brick intToBrick(final int i) {
 		switch(i) {
 			case 1: return new ResistentBrick();
 			case 2: return new VeryResistentBrick();

@@ -8,7 +8,7 @@ package ch.unisi.inf.pfii.teamblue.jark.model.brick;
  *
  */
 
-public class VeryResistentBrick extends Brick {
+public final class VeryResistentBrick extends Brick {
 
 	public VeryResistentBrick() {
 		setLives(3);

@@ -18,7 +18,7 @@ import ch.unisi.inf.pfii.teamblue.jark.view.GameView;
  * 
  */
 
-public class Game implements Constants {
+public final class Game implements Constants {
 	private ArrayList<Ball> balls;
 	private ArrayList<Bonus> freeBonuses;
 	
@@ -55,7 +55,7 @@ public class Game implements Constants {
 	/**
 	 * Move all the balls in the game
 	 */
-	private void moveBalls() {
+	private final void moveBalls() {
 		for (Ball ball : balls) {
 			ball.move();
 		}
@@ -64,18 +64,11 @@ public class Game implements Constants {
 	/**
 	 * Print the current world, showing only the field at the moment.
 	 */
-	private void printWorld() {
+	private final void printWorld() {
 		char esc = 27;
 		String clear = esc + "[2J";
 		System.out.print(clear);
 		System.out.println(level.toString());
 	}
-	
-	public static int getGAME_WIDTH() {
-		return GAME_WIDTH;
-	}
 
-	public static int getGAME_HEIGHT() {
-		return GAME_HEIGHT;
-	}
 }

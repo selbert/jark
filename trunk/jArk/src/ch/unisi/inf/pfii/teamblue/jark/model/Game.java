@@ -1,6 +1,7 @@
 package ch.unisi.inf.pfii.teamblue.jark.model;
 
 import java.util.ArrayList;
+import java.util.concurrent.*;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Console;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
@@ -31,6 +32,7 @@ public final class Game implements Constants {
 	private Player player;
 	private Level level;
 	private Console console;
+	private ExecutorService ex;
 
 	public Game(GamePanel fieldView) {
 
@@ -45,26 +47,32 @@ public final class Game implements Constants {
 		balls.add(new DefaultBall(vaus, level));
 		balls.get(0).setSpeedX(-2);
 		balls.get(0).setSpeedY(-3);
-
 		fieldView.setBricks(level.getBricks());
+		ex = Executors.newFixedThreadPool(2);
 
 	}
+	
+	public void play() {
+		ex.execute(new GameStart());
+	}
 
-	public final void play() {
-		while (true) {
-			String s = console.readLine();
-			if (s.equals("")) {
-				for (int i = 0; i < 50; i++) {
-					moveBalls();
-				}
-				printWorld();
+	class GameStart implements Runnable {
+		public final void run() {
+			//while (true) {
+				//String s = console.readLine();
+				//if (s.equals("")) {
+					for (int i = 0; i < 50; i++) {
+						moveBalls();
+					}
+					fieldView.repaint();
 
-			} else {
-				break;
-			}
+			//	} else {
+			//		break;
+			//	}
+		//	}
+
 		}
-
-	}
+	};
 
 	/**
 	 * Move all the balls in the game

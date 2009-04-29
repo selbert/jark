@@ -39,13 +39,13 @@ public final class Game implements Constants {
 	public Game(GamePanel fieldView) {
 
 		this.fieldView = fieldView;
-
+		
 		console = new Console();
 		balls = new ArrayList<Ball>();
 		freeBonuses = new ArrayList<Bonus>();
 		vaus = new DefaultVaus(GAME_WIDTH / 2 - 20 / 2, 20);
 		player = new Player("pippo", 3);
-		level = new Level(3, freeBonuses);
+		level = new Level(30, freeBonuses);
 		balls.add(new DefaultBall(vaus, level));
 		balls.get(0).setSpeedX(-2);
 		balls.get(0).setSpeedY(-3);

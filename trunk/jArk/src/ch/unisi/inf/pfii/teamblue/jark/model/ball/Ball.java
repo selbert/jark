@@ -100,4 +100,11 @@ public abstract class Ball implements Constants {
 		x = newX;
 		y = newY;
 	}
+	
+	public final int getX() {
+		return x;
+	}
+	public final int getY() {
+		return y;
+	}
 }

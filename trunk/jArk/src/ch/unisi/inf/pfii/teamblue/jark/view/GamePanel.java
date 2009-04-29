@@ -1,9 +1,11 @@
 package ch.unisi.inf.pfii.teamblue.jark.view;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
+import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.Brick;
 
 /**
@@ -18,6 +20,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.brick.Brick;
 public class GamePanel extends JPanel {
 	
 	private Brick[][] bricks;
+	private ArrayList<Ball> balls;
 	
 	
 	public GamePanel() {
@@ -54,12 +57,21 @@ public class GamePanel extends JPanel {
 					g.drawRect(57 * i, j * 25, 57, 25);
 				}
 			}
+			
+			for (Ball ball : balls) {
+				int x = ball.getX();
+				int y = ball.getY();
+				g.setColor(Color.black);
+				g.drawOval(x, y, 1, 1);
+			}
 		}
 	}
 
 	public void setBricks(Brick[][] bricks) {
 		this.bricks = bricks;
 	}
-
 	
+	public void setBalls(ArrayList<Ball> balls) {
+		this.balls = balls;
+	}
 }

@@ -33,6 +33,8 @@ public final class Game implements Constants {
 	private Level level;
 	private Console console;
 	private ExecutorService ex;
+	
+	private boolean running;
 
 	public Game(GamePanel fieldView) {
 
@@ -48,28 +50,39 @@ public final class Game implements Constants {
 		balls.get(0).setSpeedX(-2);
 		balls.get(0).setSpeedY(-3);
 		fieldView.setBricks(level.getBricks());
-		ex = Executors.newFixedThreadPool(2);
+		fieldView.setBalls(balls);
+		ex = Executors.newFixedThreadPool(1);
+		running = false;
 
 	}
 	
 	public void play() {
-		ex.execute(new GameStart());
+		if (!running) {
+			running = true;
+			ex.execute(new GameStart());
+		} else {
+			running = false;
+		}
 	}
 
 	class GameStart implements Runnable {
 		public final void run() {
-			//while (true) {
+			while (running) {
 				//String s = console.readLine();
 				//if (s.equals("")) {
-					for (int i = 0; i < 50; i++) {
-						moveBalls();
-					}
+					moveBalls();
 					fieldView.repaint();
+					try {
+						Thread.sleep(10);
+					} catch (InterruptedException e) {
+						//donithing
+						e.printStackTrace();
+					}
 
 			//	} else {
 			//		break;
 			//	}
-		//	}
+			}
 
 		}
 	};
@@ -82,15 +95,4 @@ public final class Game implements Constants {
 			ball.move();
 		}
 	}
-
-	/**
-	 * Print the current world, showing only the field at the moment.
-	 */
-	private final void printWorld() {
-		char esc = 27;
-		String clear = esc + "[2J";
-		System.out.print(clear);
-		System.out.println(level.toString());
-	}
-
 }

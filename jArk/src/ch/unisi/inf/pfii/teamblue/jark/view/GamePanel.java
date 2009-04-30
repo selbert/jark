@@ -39,9 +39,9 @@ public class GamePanel extends JPanel {
 	
 	public GamePanel() {
 
-		brick = new ImageIcon("brick.png").getImage();
-		brick2 = new ImageIcon("brick2.png").getImage();
-		ballz = new ImageIcon("ball.gif").getImage();
+		brick = new ImageIcon("src/ch/unisi/inf/pfii/teamblue/jark/view/images/brick.png").getImage();
+		brick2 = new ImageIcon("src/ch/unisi/inf/pfii/teamblue/jark/view/images/brick2.png").getImage();
+		ballz = new ImageIcon("src/ch/unisi/inf/pfii/teamblue/jark/view/images/ball.gif").getImage();
 		setBackground(Color.GRAY);
 		setPreferredSize(new Dimension(798,600));
 	}

@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Thu Apr 30 22:31:12 CEST 2009
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=jArk_fat.jar
+manifest.mergeall=true
+manifest.mainclass=ch.unisi.inf.pfii.teamblue.jark.Main
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=<po|jArk>~test/;<po|jArk>~.DS_Store;<po|jArk>~index.html;<po|jArk>~java.policy.applet;<jar|junit.jar>
+includes=

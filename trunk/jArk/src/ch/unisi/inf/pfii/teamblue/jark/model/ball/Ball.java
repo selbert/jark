@@ -59,7 +59,6 @@ public abstract class Ball implements Constants {
 		if (newY < FIELD_HEIGHT) { 
 			if (level.brickHasBallInside(x, newY)) {
 				speedY = -speedY;
-				System.out.println(x + " " + y + " " + newY + " " + (2*BALL_RADIUS));
 				if (level.brickHasBallInside(x + (2*BALL_RADIUS), newY)) {
 					level.removeBrick(x + BALL_RADIUS, newY);
 				} else {
@@ -100,7 +99,7 @@ public abstract class Ball implements Constants {
 			} else if (level.brickHasBallInside(newX + (2*BALL_RADIUS), y)) {
 				speedX = -speedX;
 				if (level.brickHasBallInside(newX + (2*BALL_RADIUS), y + (2*BALL_RADIUS))) {
-					level.removeBrick(newX + BALL_RADIUS, y + (2*BALL_RADIUS));
+					level.removeBrick(newX + (2*BALL_RADIUS), y + BALL_RADIUS);
 				} else {
 					level.removeBrick(newX + (2*BALL_RADIUS), y);
 				}

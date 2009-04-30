@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.Brick;
 
@@ -28,7 +29,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.brick.Brick;
  * 
  */
 
-public class GamePanel extends JPanel {
+public class GamePanel extends JPanel implements Constants {
 	
 	private Brick[][] bricks;
 	private ArrayList<Ball> balls;
@@ -72,7 +73,7 @@ public class GamePanel extends JPanel {
 			for (Ball ball : balls) {
 				int x = ball.getX();
 				int y = ball.getY();
-				g2d.drawImage(ballz, x, y, null);
+				g2d.drawImage(ballz, x, y, BALL_RADIUS*2, BALL_RADIUS*2, null);
 				
 			}
 		}

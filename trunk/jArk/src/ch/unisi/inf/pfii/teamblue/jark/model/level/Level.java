@@ -151,34 +151,6 @@ public final class Level implements Constants {
 		}
 	}
 	
-	/**
-	 * Action taken after the ball hits a brick, 
-	 * calls the destruction of the brick and returns the direction of the ball
-	 * 
-	 * @param oldX current position x
-	 * @param oldY current position y
-	 * @param newX next position x
-	 * @param newY next position y
-	 * @return direction of the ball
-	 */
-	public final BouncingDirection computeDirection(final int oldX, final int oldY, final int newX, final int newY) {
-		int[] oldPos = Conversion.getFieldPosition(oldX,oldY);
-		int[] newPos = Conversion.getFieldPosition(newX,newY);
-		
-		if ((newPos[0] < oldPos[0] || newPos[0] > oldPos[0]) && newPos[1] == newPos[1]) {
-			destroyBrick(newPos);
-			return BouncingDirection.HORIZONTAL;
-		} else if (newPos[0] == oldPos[0] && (newPos[1] < oldPos[1]) || newPos[1] > newPos[1]) {
-			destroyBrick(newPos);
-			return BouncingDirection.VERTICAL;
-		} else {
-			//destroy adiacent blocks
-			destroyBrick(new int[] { oldPos[0], newPos[1] });
-			destroyBrick(new int[] { newPos[0], oldPos[1] });
-			return BouncingDirection.DIAGONAL;
-		}
-			
-	}
 	
 	/**
 	 * Removes a brick

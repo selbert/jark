@@ -106,34 +106,6 @@ public final class Level implements Constants {
 		}
 
 	}
-	
-
-	/**
-	 * Returns the current field as String
-	 */
-	public final String toString() {
-		String tab = "\n";
-
-		for (int row = 0; row<FIELD_ROWS; row++) {
-			tab += "  ";
-			for (int col = 0; col<FIELD_COLUMNS; col++) {
-				if (bricks[row][col] != null) {
-					if (bricks[row][col].getBonus() != null) {
-						tab += "** ";
-						
-					} else {
-						tab += "__ ";
-					}
-				} else {
-					tab += "   ";
-				}
-			}
-			tab = tab.substring(0, tab.length()-1)+"\n";
-
-		}
-
-		return tab+"\n\n\n             @";
-	}
 
 	/**
 	 * Add bonuses to random bricks
@@ -166,11 +138,15 @@ public final class Level implements Constants {
 	 * @return true if inside a brick
 	 */
 	public final boolean brickHasBallInside(final int x, final int y) {
-		int[] pos = Conversion.getFieldPosition(x,y);
-		if (bricks[pos[1]][pos[0]] != null) {
-			return true;
+		try {
+			int[] pos = Conversion.getFieldPosition(x,y);
+			if (bricks[pos[1]][pos[0]] != null) {
+				return true;
+			}
+			return false;
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return false;
 		}
-		return false;
 	}
 	
 	/**
@@ -200,6 +176,15 @@ public final class Level implements Constants {
 			return BouncingDirection.DIAGONAL;
 		}
 			
+	}
+	
+	/**
+	 * Removes a brick
+	 * @param pos the position array
+	 */
+	public final void removeBrick(final int remX, final int remY) {
+		int[] remPos = Conversion.getFieldPosition(remX,remY);
+		destroyBrick(remPos);
 	}
 	
 	/**

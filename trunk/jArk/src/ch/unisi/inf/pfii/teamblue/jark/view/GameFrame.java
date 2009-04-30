@@ -36,7 +36,6 @@ public class GameFrame extends JFrame {
 	private void makeFrame() {
 		setTitle("[ jArk ] [ Arkanoid as never seen before ]");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocation(300, 100);
 		setResizable(false);
 		setBackground(Color.ORANGE);
 		((JPanel) getContentPane()).setBorder(new EmptyBorder(6, 6, 6, 6));
@@ -48,6 +47,8 @@ public class GameFrame extends JFrame {
 		
 		// pack the frame together
 		pack();
+		//center
+		setLocationRelativeTo(null);
 		// and show it
 		setVisible(true);
 	}

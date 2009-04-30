@@ -24,7 +24,7 @@ public class InteractionPanel extends JPanel {
 		this.game = game;
 		
 		setLayout(new GridLayout(2, 1));
-
+		
 		// first button
 		startButton = new JButton("Start");
 		startButton.addActionListener(new ActionListener() {

@@ -1,9 +1,20 @@
 package ch.unisi.inf.pfii.teamblue.jark.view;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.swing.*;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.Brick;
@@ -22,47 +33,47 @@ public class GamePanel extends JPanel {
 	private Brick[][] bricks;
 	private ArrayList<Ball> balls;
 	
+	private Image brick2;
+	private Image brick;
+	private Image ballz;
 	
 	public GamePanel() {
-		setBackground(Color.GREEN);
-		setPreferredSize(new Dimension(800,600));
-		
+
+		brick = new ImageIcon("brick.png").getImage();
+		brick2 = new ImageIcon("brick2.png").getImage();
+		ballz = new ImageIcon("ball.gif").getImage();
+		setBackground(Color.GRAY);
+		setPreferredSize(new Dimension(798,600));
 	}
 	
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		Graphics2D g2d = (Graphics2D) g;
+		
 		if (bricks == null) {
 			System.out.println("OMGGG");
 			JLabel welcomeText = new JLabel("Welcome to Hell");
-			welcomeText.setBackground(Color.red);
+			welcomeText.setBackground(Color.RED);
 			add(welcomeText);
 		} else {
-			for (int j = 0; j < 16; j++) {
-				for (int i = 0; i < 14; i++) {
+			for (int j = 0; j < bricks.length; j++) {
+				for (int i = 0; i < bricks[j].length; i++) {
 					if(bricks[j][i] != null) {
 						if(bricks[j][i].getBonus() != null) {
-							g.setColor(Color.red);
-							g.fillRect(57 * i, j * 25, 57, 25);
+							g2d.drawImage(brick, 57 * i, j * 25, null);
 						} else {
-							g.setColor(Color.blue);
-							g.fillRect(57 * i, j * 25, 57, 25);
+							g2d.drawImage(brick2, 57 * i, j * 25, null);
 						}
-					} else {
-						g.setColor(Color.green);
-						g.fillRect(57 * i, j * 25, 57, 25);
 					}
-
-					g.setColor(Color.black);
-					g.drawRect(57 * i, j * 25, 57, 25);
 				}
 			}
 			
 			for (Ball ball : balls) {
 				int x = ball.getX();
 				int y = ball.getY();
-				g.setColor(Color.black);
-				g.drawOval(x, y, 1, 1);
+				g2d.drawImage(ballz, x, y, null);
+				
 			}
 		}
 	}

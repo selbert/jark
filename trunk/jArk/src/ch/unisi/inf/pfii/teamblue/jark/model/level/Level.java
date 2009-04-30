@@ -3,6 +3,7 @@ package ch.unisi.inf.pfii.teamblue.jark.model.level;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -75,8 +76,9 @@ public final class Level implements Constants {
 	 */
 	private final void createLevel(final int levelNumber) {
 		try{
-			FileInputStream fis = new FileInputStream("src/ch/unisi/inf/pfii/teamblue/jark/model/level/defaultlevels/"+levelNumber);
-			BufferedReader myInput = new BufferedReader(new InputStreamReader(fis));
+			URL filePath = getClass().getResource("level/defaultlevels/"+levelNumber);
+			InputStreamReader streamReader = new InputStreamReader(filePath.openStream());
+			BufferedReader myInput = new BufferedReader(streamReader);
 			String thisLine = "";
 			
 			while ((thisLine = myInput.readLine()) != null) {

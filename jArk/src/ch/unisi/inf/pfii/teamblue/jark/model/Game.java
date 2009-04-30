@@ -46,9 +46,11 @@ public final class Game implements Constants {
 		vaus = new DefaultVaus(GAME_WIDTH / 2 - 20 / 2, 20);
 		player = new Player("pippo", 3);
 		level = new Level(30, freeBonuses);
-		balls.add(new DefaultBall(vaus, level));
-		balls.get(0).setSpeedX(-1);
-		balls.get(0).setSpeedY(-2);
+		for (int i = 0; i < 10; i++) {
+			balls.add(new DefaultBall(vaus, level));
+			balls.get(i).setSpeedX(-1);
+			balls.get(i).setSpeedY(-2);
+		}
 		fieldView.setBricks(level.getBricks());
 		fieldView.setBalls(balls);
 		ex = Executors.newFixedThreadPool(1);
@@ -73,7 +75,7 @@ public final class Game implements Constants {
 					moveBalls();
 					fieldView.repaint();
 					try {
-						Thread.sleep(30);
+						Thread.sleep(10);
 					} catch (InterruptedException e) {
 						//donithing
 						e.printStackTrace();

@@ -124,8 +124,9 @@ public abstract class Ball implements Constants {
 		}
 
 		//test purpose condition
-		if (newY + (BALL_RADIUS*2) > VAUS_Y-1 && newX >= vaus.getX() && newX <= vaus.getX() + VAUS_WIDTH) {
+		if (newY + (BALL_RADIUS*2) > VAUS_Y-1 && newY + (BALL_RADIUS*2) < VAUS_Y+5 && newX >= vaus.getX() && newX <= vaus.getX() + VAUS_WIDTH) {
 			speedY = -speedY;
+			speedX = (newX - (vaus.getX() + (VAUS_WIDTH / 2))) / 20;
 			newY =  VAUS_Y-1 - (BALL_RADIUS*2);
 		}
 		x = newX;

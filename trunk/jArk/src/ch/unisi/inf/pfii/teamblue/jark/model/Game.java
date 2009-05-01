@@ -33,17 +33,17 @@ public final class Game implements Constants {
 	private Level level;
 	private Console console;
 	private ExecutorService ex;
-	
+
 	private boolean running;
 
 	public Game(GamePanel fieldView) {
 
 		this.fieldView = fieldView;
-		
+
 		console = new Console();
 		balls = new ArrayList<Ball>();
 		freeBonuses = new ArrayList<Bonus>();
-		vaus = new DefaultVaus(GAME_WIDTH / 2 - 20 / 2, 20);
+		vaus = new DefaultVaus(GAME_WIDTH / 2 - 100 / 2, 20);
 		player = new Player("pippo", 3);
 		level = new Level(30, freeBonuses);
 		for (int i = 0; i < 10; i++) {
@@ -53,11 +53,12 @@ public final class Game implements Constants {
 		}
 		fieldView.setBricks(level.getBricks());
 		fieldView.setBalls(balls);
+		fieldView.setVaus(vaus);
 		ex = Executors.newFixedThreadPool(1);
 		running = false;
 
 	}
-	
+
 	public void play() {
 		if (!running) {
 			running = true;
@@ -70,20 +71,13 @@ public final class Game implements Constants {
 	class GameStart implements Runnable {
 		public final void run() {
 			while (running) {
-				//String s = console.readLine();
-				//if (s.equals("")) {
-					moveBalls();
-					fieldView.repaint();
-					try {
-						Thread.sleep(10);
-					} catch (InterruptedException e) {
-						//donithing
-						e.printStackTrace();
-					}
-
-			//	} else {
-			//		break;
-			//	}
+				moveBalls();
+				fieldView.repaint();
+				try {
+					Thread.sleep(10);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 
 		}

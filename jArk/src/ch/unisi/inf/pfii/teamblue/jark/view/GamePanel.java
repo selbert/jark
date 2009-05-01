@@ -5,6 +5,10 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
@@ -34,7 +38,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
  * 
  */
 
-public class GamePanel extends JPanel implements Constants, MouseMotionListener {
+public class GamePanel extends JPanel implements Constants, MouseMotionListener,KeyListener  {
 
 	private Brick[][] bricks;
 	private ArrayList<Ball> balls;
@@ -46,17 +50,17 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener 
 	private Image vausz;
 	
 	public GamePanel() {
-
+		setFocusable(true);
+		addKeyListener(this);
 		brick = new ImageIcon(getClass().getResource("images/brick.png")).getImage();
 		brick2 = new ImageIcon(getClass().getResource("images/brick2.png")).getImage();
 		ballz = new ImageIcon(getClass().getResource("images/ball.png")).getImage();
 		vausz = new ImageIcon(getClass().getResource("images/vaus.png")).getImage();
-		
-        //setFocusable(true);
 
 		setBackground(Color.GRAY);
 		setPreferredSize(new Dimension(798, 600));
 		addMouseMotionListener(this);
+		
 	}
 
 	public void paintComponent(Graphics g) {
@@ -92,7 +96,6 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener 
     }
     
     public void mouseDragged(MouseEvent e) {
-        
     }
 
 	public void setBricks(Brick[][] bricks) {
@@ -106,4 +109,20 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener 
 	public void setVaus(Vaus vaus) {
 		this.vaus = vaus;
 	}
+
+	public void keyPressed(KeyEvent e) {
+		vaus.pressedKey(e);
+	}
+
+	public void keyReleased(KeyEvent e) {
+		vaus.releasedKey(e);
+	}
+
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
 }

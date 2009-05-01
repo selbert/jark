@@ -1,5 +1,7 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
 
+import java.awt.event.KeyEvent;
+
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 
 /**
@@ -13,7 +15,8 @@ import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 
 public abstract class Vaus implements Constants {
 	private int posX;
-
+	private int moveX;
+	
 	private int size;
 	
 	public Vaus(final int posX, final int size) {
@@ -29,6 +32,34 @@ public abstract class Vaus implements Constants {
 		} else {
 			posX = deltaX;
 		}
+	}
+	
+	public void move() {
+		posX += moveX;
+		if (posX <= 5) {
+			posX = 5;
+		}
+		if (posX + VAUS_WIDTH + 5 >= GAME_WIDTH) {
+			posX = GAME_WIDTH - VAUS_WIDTH - 5;
+		}
+	}
+	
+	public void pressedKey(KeyEvent e) {
+		int keyCode = e.getKeyCode();
+		if (keyCode == KeyEvent.VK_LEFT) {
+            moveX = -5;
+        }
+
+        if (keyCode == KeyEvent.VK_RIGHT) {
+        	moveX = 5;
+        }
+	}
+	
+	public void releasedKey(KeyEvent e) {
+		int keyCode = e.getKeyCode();
+		if (keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_RIGHT) {
+            moveX = 0;
+        }
 	}
 	
 	public void setX(final int posX) {

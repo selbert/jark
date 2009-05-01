@@ -74,6 +74,7 @@ public final class Game implements Constants {
 		public final void run() {
 			while (running) {
 				moveBalls();
+				vaus.move();
 				fieldView.repaint();
 				try {
 					Thread.sleep(10);

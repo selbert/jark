@@ -3,6 +3,8 @@ package ch.unisi.inf.pfii.teamblue.jark.model;
 import java.util.ArrayList;
 import java.util.concurrent.*;
 
+import org.w3c.dom.Notation;
+
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Console;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.*;
@@ -88,7 +90,14 @@ public final class Game implements Constants {
 	 */
 	private final void moveBalls() {
 		for (Ball ball : balls) {
-			ball.move();
+			if (ball.isDead()) {
+				balls.remove(ball);
+			} else {
+				ball.move();
+				//TODO it crashes :D
+			}
 		}
 	}
+	
+	
 }

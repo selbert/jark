@@ -22,6 +22,7 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
@@ -51,6 +52,9 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener,
 	
 	public GamePanel() {
 		setFocusable(true);
+		if(!requestFocusInWindow()) {
+			new JOptionPane("Clicca sto pannello! Idiota!");
+			}
 		addKeyListener(this);
 		brick = new ImageIcon(getClass().getResource("images/brick.png")).getImage();
 		brick2 = new ImageIcon(getClass().getResource("images/brick2.png")).getImage();

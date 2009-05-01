@@ -1,28 +1,21 @@
 package ch.unisi.inf.pfii.teamblue.jark.view;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
-import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.awt.image.MemoryImageSource;
 import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
@@ -39,32 +32,40 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
  * 
  */
 
-public class GamePanel extends JPanel implements Constants, MouseMotionListener,KeyListener  {
+public class GamePanel extends JPanel implements Constants,
+		MouseMotionListener, KeyListener {
 
 	private Brick[][] bricks;
 	private ArrayList<Ball> balls;
 	private Vaus vaus;
-	
+
 	private Image brick2;
 	private Image brick;
 	private Image ballz;
 	private Image vausz;
-	
+
 	public GamePanel() {
 		setFocusable(true);
-		if(!requestFocusInWindow()) {
-			new JOptionPane("Clicca sto pannello! Idiota!");
-			}
+		int[] pixels = new int[16 * 16];
+		Image image = Toolkit.getDefaultToolkit().createImage(
+				new MemoryImageSource(16, 16, pixels, 0, 16));
+		Cursor transparentCursor = Toolkit.getDefaultToolkit()
+				.createCustomCursor(image, new Point(0, 0), "invisibleCursor");
+		setCursor(transparentCursor);
 		addKeyListener(this);
-		brick = new ImageIcon(getClass().getResource("images/brick.png")).getImage();
-		brick2 = new ImageIcon(getClass().getResource("images/brick2.png")).getImage();
-		ballz = new ImageIcon(getClass().getResource("images/ball.png")).getImage();
-		vausz = new ImageIcon(getClass().getResource("images/vaus.png")).getImage();
+		brick = new ImageIcon(getClass().getResource("images/brick.png"))
+				.getImage();
+		brick2 = new ImageIcon(getClass().getResource("images/brick2.png"))
+				.getImage();
+		ballz = new ImageIcon(getClass().getResource("images/ball.png"))
+				.getImage();
+		vausz = new ImageIcon(getClass().getResource("images/vaus.png"))
+				.getImage();
 
 		setBackground(Color.GRAY);
 		setPreferredSize(new Dimension(798, 600));
 		addMouseMotionListener(this);
-		
+
 	}
 
 	public void paintComponent(Graphics g) {
@@ -87,20 +88,21 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener,
 			int x = ball.getX();
 			int y = ball.getY();
 			g2d.drawImage(ballz, x, y, BALL_RADIUS * 2, BALL_RADIUS * 2, this);
-			
+
 		}
-		
-		g2d.drawImage(vausz, vaus.getX(), VAUS_Y, VAUS_WIDTH, VAUS_HEIGHT, this);
+
+		g2d
+				.drawImage(vausz, vaus.getX(), VAUS_Y, VAUS_WIDTH, VAUS_HEIGHT,
+						this);
 
 	}
-	
-	
+
 	public void mouseMoved(MouseEvent e) {
-        vaus.move(e.getX() - VAUS_WIDTH/2);
-    }
-    
-    public void mouseDragged(MouseEvent e) {
-    }
+		vaus.move(e.getX() - VAUS_WIDTH / 2);
+	}
+
+	public void mouseDragged(MouseEvent e) {
+	}
 
 	public void setBricks(Brick[][] bricks) {
 		this.bricks = bricks;
@@ -109,7 +111,7 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener,
 	public void setBalls(ArrayList<Ball> balls) {
 		this.balls = balls;
 	}
-	
+
 	public void setVaus(Vaus vaus) {
 		this.vaus = vaus;
 	}
@@ -123,9 +125,7 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener,
 	}
 
 	public void keyTyped(KeyEvent e) {
-		//do nothing
+		// do nothing
 	}
-
-	
 
 }

@@ -22,12 +22,11 @@ public abstract class Ball implements Constants {
 	private Vaus vaus;
 	private Level level;
 	
-	
 	public Ball(Vaus vaus, Level level) {
 		this.vaus = vaus;
 		this.level = level;
-		x = vaus.getX() + (vaus.getSize() / 2);
-		y = Vaus.getY() - BALL_RADIUS;
+		x = vaus.getX() + (VAUS_WIDTH / 2) - BALL_RADIUS;
+		y = VAUS_Y - 2*BALL_RADIUS;
 		speedX = 0;
 		speedY = 0;
 	}
@@ -39,13 +38,7 @@ public abstract class Ball implements Constants {
 	public final void setSpeedY(final int speedY) {
 		this.speedY = speedY;
 	}
-	
-	/**
-	 * @Return ball main fields to string (test purpose only)
-	 */
-	public final String toString() {
-		return x + " " + y + " " + speedX + " " + speedY;
-	}
+
 	
 	/** 
 	 * Moves a ball
@@ -109,11 +102,6 @@ public abstract class Ball implements Constants {
 				level.removeBrick(newX + (2*BALL_RADIUS), y + (2*BALL_RADIUS));
 				newX = x;
 			} 
-			
-			
-			
-			
-			
 			
 		}
 		if (newX + (BALL_RADIUS*2) >= GAME_WIDTH) {

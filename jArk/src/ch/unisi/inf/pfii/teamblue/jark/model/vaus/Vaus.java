@@ -12,20 +12,31 @@ import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
  */
 
 public abstract class Vaus implements Constants {
-	private int x;
+	private int posX;
+
 	private int size;
 	
-	public Vaus(final int x, final int size) {
-		this.x = x;
+	public Vaus(final int posX, final int size) {
+		this.posX = posX;
 		this.size = size;
 	}
 	
-	public void setX(final int x) {
-		this.x = x;
+	public void move(final int deltaX) {
+		if (deltaX <= 5) {
+			posX = 5;
+		} else if (deltaX + VAUS_WIDTH + 5 >= GAME_WIDTH) {
+			posX = GAME_WIDTH - VAUS_WIDTH - 5;
+		} else {
+			posX = deltaX;
+		}
+	}
+	
+	public void setX(final int posX) {
+		this.posX = posX;
 	}
 	
 	public int getX() {
-		return x;
+		return posX;
 	}
 
 	public void setSize(final int size) {
@@ -34,10 +45,6 @@ public abstract class Vaus implements Constants {
 
 	public int getSize() {
 		return size;
-	}
-
-	public static int getY() {
-		return VAUS_Y;
 	}
 	
 }

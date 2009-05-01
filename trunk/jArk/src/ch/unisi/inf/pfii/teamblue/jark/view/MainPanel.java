@@ -1,6 +1,7 @@
 package ch.unisi.inf.pfii.teamblue.jark.view;
 
 import java.awt.BorderLayout;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JPanel;
 
@@ -31,6 +32,5 @@ public class MainPanel extends JPanel {
 		add(infoPanel, BorderLayout.NORTH);
 		add(interactionPanel, BorderLayout.WEST);
 	}
-	
-	
+
 }

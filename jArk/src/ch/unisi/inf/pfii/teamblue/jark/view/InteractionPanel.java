@@ -29,7 +29,7 @@ public class InteractionPanel extends JPanel {
 		startButton = new JButton("Start");
 		startButton.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
-				showCenterText();
+				game.play(); 
 			}
 		});
 
@@ -46,10 +46,6 @@ public class InteractionPanel extends JPanel {
 		add(startButton);
 		add(stopButton);
 
-	}
-
-	private void showCenterText() {
-		gamePanel.setBackground(Color.CYAN);
 	}
 
 }

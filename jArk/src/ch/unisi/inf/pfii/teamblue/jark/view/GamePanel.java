@@ -119,8 +119,7 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener,
 	}
 
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
+		//do nothing
 	}
 
 	

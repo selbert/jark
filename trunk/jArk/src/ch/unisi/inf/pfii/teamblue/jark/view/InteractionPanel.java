@@ -39,7 +39,7 @@ public class InteractionPanel extends JPanel {
 		
 			public void actionPerformed(ActionEvent e) {
 				game.play(); 
-		
+				
 			}
 		});
 		

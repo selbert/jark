@@ -64,6 +64,7 @@ public final class Game implements Constants {
 	public void play() {
 		if (!running) {
 			running = true;
+			fieldView.requestFocusInWindow();
 			ex.execute(new GameStart());
 		} else {
 			running = false;

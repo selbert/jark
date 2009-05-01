@@ -50,7 +50,11 @@ public abstract class Ball implements Constants {
 		int newY = y+speedY;
 		
 
-		//until here
+		if (newY >= GAME_HEIGHT) {
+			dead = true; //remove ball
+			return;
+		}
+		
 		if (newY < FIELD_HEIGHT) { 
 			if (level.brickHasBallInside(x, newY)) {
 				speedY = -speedY;
@@ -123,9 +127,6 @@ public abstract class Ball implements Constants {
 		if (newY + (BALL_RADIUS*2) > VAUS_Y-1 && newX >= vaus.getX() && newX <= vaus.getX() + VAUS_WIDTH) {
 			speedY = -speedY;
 			newY =  VAUS_Y-1 - (BALL_RADIUS*2);
-		}
-		if (newY >= GAME_HEIGHT) {
-			dead = true; //remove ball
 		}
 		x = newX;
 		y = newY;

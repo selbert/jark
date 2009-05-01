@@ -89,12 +89,12 @@ public final class Game implements Constants {
 	 * Move all the balls in the game
 	 */
 	private final void moveBalls() {
-		for (Ball ball : balls) {
-			if (ball.isDead()) {
-				balls.remove(ball);
+		for (int i = 0 ; i < balls.size();) {
+			if (balls.get(i).isDead()) {
+				balls.remove(balls.get(i));
 			} else {
-				ball.move();
-				//TODO it crashes :D
+				balls.get(i).move();
+				i++;
 			}
 		}
 	}

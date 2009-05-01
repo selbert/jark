@@ -22,6 +22,8 @@ public abstract class Ball implements Constants {
 	private Vaus vaus;
 	private Level level;
 	
+	private boolean dead;
+	
 	public Ball(Vaus vaus, Level level) {
 		this.vaus = vaus;
 		this.level = level;
@@ -118,14 +120,21 @@ public abstract class Ball implements Constants {
 		}
 
 		//test purpose condition
-		if (newY + (BALL_RADIUS*2) > GAME_HEIGHT) {
+		if (newY + (BALL_RADIUS*2) > VAUS_Y-1 && newX >= vaus.getX() && newX <= vaus.getX() + VAUS_WIDTH) {
 			speedY = -speedY;
-			newY = GAME_HEIGHT - (BALL_RADIUS*2);
+			newY =  VAUS_Y-1 - (BALL_RADIUS*2);
+		}
+		if (newY >= GAME_HEIGHT) {
+			dead = true; //remove ball
 		}
 		x = newX;
 		y = newY;
 	}
 
+	public boolean isDead() {
+		return dead;
+	}
+	
 	public final int getX() {
 		return x;
 	}

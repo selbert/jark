@@ -126,7 +126,7 @@ public abstract class Ball implements Constants {
 		
 		if (newY + (BALL_RADIUS*2) > VAUS_Y-1 && newY + (BALL_RADIUS*2) < VAUS_Y+5 && newX + (BALL_RADIUS*2) >= vaus.getX() && newX <= vaus.getX() + VAUS_WIDTH) {
 			speedY = -speedY;
-			speedX = (newX - (vaus.getX() + (VAUS_WIDTH / 2))) / 20;
+			speedX = ((newX + BALL_RADIUS) - (vaus.getX() + (VAUS_WIDTH / 2))) / 10;
 			newY =  VAUS_Y-1 - (BALL_RADIUS*2);
 		}
 		x = newX;

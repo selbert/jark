@@ -26,15 +26,15 @@ public class InteractionPanel extends JPanel {
 		setLayout(new GridLayout(2, 1));
 		
 		// first button
-		startButton = new JButton("Start");
+		startButton = new JButton("Add Ball");
 		startButton.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
-				game.play(); 
+				game.addBall(); 
 			}
 		});
 
 		// another button
-		stopButton = new JButton("Stop");
+		stopButton = new JButton("Play/Pause");
 		stopButton.addActionListener(new ActionListener() {
 		
 			public void actionPerformed(ActionEvent e) {

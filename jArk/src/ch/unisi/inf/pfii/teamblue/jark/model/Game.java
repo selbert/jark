@@ -1,6 +1,7 @@
 package ch.unisi.inf.pfii.teamblue.jark.model;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.concurrent.*;
 
 import org.w3c.dom.Notation;
@@ -37,9 +38,10 @@ public final class Game implements Constants {
 	private ExecutorService ex;
 
 	private boolean running;
-
+	private Random rnd;
+	
 	public Game(GamePanel fieldView) {
-
+		rnd = new Random();
 		this.fieldView = fieldView;
 
 		console = new Console();
@@ -56,6 +58,7 @@ public final class Game implements Constants {
 		fieldView.setBricks(level.getBricks());
 		fieldView.setBalls(balls);
 		fieldView.setVaus(vaus);
+		
 		ex = Executors.newFixedThreadPool(1);
 		running = false;
 
@@ -101,5 +104,19 @@ public final class Game implements Constants {
 		}
 	}
 	
+	private final int getRandomSpeed() {
+		final int rndSpeed = rnd.nextInt(5)+1;
+		if (rnd.nextBoolean()) {
+			return -1*rndSpeed;
+		}
+		return rndSpeed;
+	}
+	
+	public final void addBall() {
+		Ball newBall = new DefaultBall(vaus, level);
+		newBall.setSpeedX(getRandomSpeed());
+		newBall.setSpeedY(-3);
+		balls.add(newBall);
+	}
 	
 }

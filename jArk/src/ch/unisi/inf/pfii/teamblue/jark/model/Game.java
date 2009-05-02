@@ -52,7 +52,7 @@ public final class Game implements Constants {
 		level = new Level(30, freeBonuses);
 		for (int i = 0; i < 10; i++) {
 			balls.add(new DefaultBall(vaus, level));
-			balls.get(i).setSpeedX(-1);
+			balls.get(i).setSpeedX(-2);
 			balls.get(i).setSpeedY(-2);
 		}
 		fieldView.setBricks(level.getBricks());
@@ -81,7 +81,7 @@ public final class Game implements Constants {
 				vaus.move();
 				fieldView.repaint();
 				try {
-					Thread.sleep(10);
+					Thread.sleep(20);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

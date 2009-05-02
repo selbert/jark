@@ -38,7 +38,8 @@ public final class Level implements Constants {
 			bonusDistString = getDistributionString();
 		}
 		this.freeBonuses = freeBonuses;
-		createFullFieldLevel();
+		//createFullFieldLevel();
+		createLevel(0);
 		addBonus(numOfBonus);
 	}
 	
@@ -76,7 +77,7 @@ public final class Level implements Constants {
 	 */
 	private final void createLevel(final int levelNumber) {
 		try{
-			URL filePath = getClass().getResource("level/defaultlevels/"+levelNumber);
+			URL filePath = getClass().getResource("defaultlevels/"+levelNumber);
 			InputStreamReader streamReader = new InputStreamReader(filePath.openStream());
 			BufferedReader myInput = new BufferedReader(streamReader);
 			String thisLine = "";

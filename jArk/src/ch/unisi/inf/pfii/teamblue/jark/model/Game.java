@@ -81,7 +81,7 @@ public final class Game implements Constants {
 				vaus.move();
 				fieldView.repaint();
 				try {
-					Thread.sleep(20);
+					Thread.sleep(15);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -114,6 +114,7 @@ public final class Game implements Constants {
 	
 	public final void addBall() {
 		Ball newBall = new DefaultBall(vaus, level);
+		fieldView.requestFocusInWindow();
 		newBall.setSpeedX(getRandomSpeed());
 		newBall.setSpeedY(-3);
 		balls.add(newBall);

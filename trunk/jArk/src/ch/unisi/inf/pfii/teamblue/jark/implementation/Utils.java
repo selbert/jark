@@ -6,7 +6,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.brick.PersistentBrick;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.ResistentBrick;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.VeryResistentBrick;
 
-public abstract class Conversion implements Constants {
+public abstract class Utils implements Constants {
 	
 	/**
 	 * Converts pixel coordinates into bricks coordinates. 

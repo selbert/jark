@@ -44,7 +44,7 @@ public final class Game implements Constants {
 		freeBonuses = new ArrayList<Bonus>();
 		vaus = new DefaultVaus(GAME_WIDTH / 2 - 100 / 2, 20);
 		player = new Player("pippo", 3);
-		level = new Level(10, freeBonuses);
+		level = new Level(20, freeBonuses);
 		
 		for (int i = 0; i < 10; i++) {
 			balls.add(new DefaultBall(vaus, level));

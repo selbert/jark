@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
-import ch.unisi.inf.pfii.teamblue.jark.implementation.Conversion;
+import ch.unisi.inf.pfii.teamblue.jark.implementation.Utils;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.*;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.*;
 
@@ -38,8 +38,7 @@ public final class Level implements Constants {
 			bonusDistString = getDistributionString();
 		}
 		this.freeBonuses = freeBonuses;
-		//createFullFieldLevel();
-		createLevel(0);
+		createTestFieldLevel();
 		addBonus(numOfBonus);
 	}
 	
@@ -90,7 +89,7 @@ public final class Level implements Constants {
 					int col = Integer.parseInt(brickInfo[1]);
 					int type = Integer.parseInt(brickInfo[2]);
 				
-					bricks[row][col] = Conversion.intToBrick(type);
+					bricks[row][col] = Utils.intToBrick(type);
 				}
 			}
 		} catch (Exception e) {
@@ -101,8 +100,8 @@ public final class Level implements Constants {
 	/**
 	 * creates a level field full of defaultblocks for testing
 	 */
-	private final void createFullFieldLevel() {
-		for (int row = 0; row<FIELD_ROWS; row++) {
+	private final void createTestFieldLevel() {
+		for (int row = 4; row<FIELD_ROWS; row++) {
 			for (int col = 0; col<FIELD_COLUMNS; col++) {
 				bricks[row][col] = new DefaultBrick();
 			}
@@ -142,7 +141,7 @@ public final class Level implements Constants {
 	 */
 	public final boolean brickHasBallInside(final int x, final int y) {
 		try {
-			int[] pos = Conversion.getFieldPosition(x,y);
+			int[] pos = Utils.getFieldPosition(x,y);
 			if (bricks[pos[1]][pos[0]] != null) {
 				return true;
 			}
@@ -158,7 +157,7 @@ public final class Level implements Constants {
 	 * @param pos the position array
 	 */
 	public final void removeBrick(final int remX, final int remY) {
-		int[] remPos = Conversion.getFieldPosition(remX,remY);
+		int[] remPos = Utils.getFieldPosition(remX,remY);
 		destroyBrick(remPos);
 	}
 	

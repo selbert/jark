@@ -83,9 +83,8 @@ public final class Game implements Constants {
 					e.printStackTrace();
 				}
 			}
-
 		}
-	};
+	}
 
 	/**
 	 * Move all the balls in the game

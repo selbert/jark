@@ -1,1 +1,7 @@
-issues
+For this Milestone we implemented a basic GUI with mouse and key event listener, 
+and a main Thread which provides us with a sort of "tick" where we reprint the game and update everything.
+
+Issues: how to compute the intersection between the ball (which is not a pixel anymore) and the bricks, 
+		how to make the ball bounce on the vaus
+		how to structure the view (divided in panels, ...)
+		

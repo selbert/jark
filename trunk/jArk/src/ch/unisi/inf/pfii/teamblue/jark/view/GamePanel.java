@@ -82,8 +82,8 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener,
 		}
 
 		for (Ball ball : balls) {
-			int x = ball.getX();
-			int y = ball.getY();
+			int x = (int)ball.getX();
+			int y = (int)ball.getY();
 			g2d.drawImage(ballz, x, y, BALL_RADIUS * 2, BALL_RADIUS * 2, this);
 
 		}

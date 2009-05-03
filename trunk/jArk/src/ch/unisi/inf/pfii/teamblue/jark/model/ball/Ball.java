@@ -15,10 +15,10 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
  */
 
 public abstract class Ball implements Constants {
-	private int x;
-	private int y;
-	private int speedX;
-	private int speedY;
+	private float x;
+	private float y;
+	private float speedX;
+	private float speedY;
 	private Vaus vaus;
 	private Level level;
 	
@@ -27,17 +27,17 @@ public abstract class Ball implements Constants {
 	public Ball(Vaus vaus, Level level) {
 		this.vaus = vaus;
 		this.level = level;
-		x = vaus.getX() + (VAUS_WIDTH / 2) - BALL_RADIUS;
-		y = VAUS_Y - 2*BALL_RADIUS;
+		x = (float)vaus.getX() + ((float)VAUS_WIDTH / 2) - (float)BALL_RADIUS;
+		y = (float)(VAUS_Y - 2*BALL_RADIUS);
 		speedX = 0;
 		speedY = 0;
 	}
 	
-	public final void setSpeedX(final int speedX) {
+	public final void setSpeedX(final float speedX) {
 		this.speedX = speedX;
 	}
 	
-	public final void setSpeedY(final int speedY) {
+	public final void setSpeedY(final float speedY) {
 		this.speedY = speedY;
 	}
 
@@ -46,8 +46,8 @@ public abstract class Ball implements Constants {
 	 * Moves a ball
 	 */
 	public void move() {
-		int newX = x+speedX;
-		int newY = y+speedY;
+		float newX = x+speedX;
+		float newY = y+speedY;
 		
 
 		if (newY >= GAME_HEIGHT) {
@@ -86,7 +86,7 @@ public abstract class Ball implements Constants {
 		y = newY;
 	}
 	
-	private boolean bounceVaus(final int newX, final int newY) {
+	private boolean bounceVaus(final float newX, final float newY) {
 		if (newY + (BALL_RADIUS*2) > VAUS_Y-1 && newY + (BALL_RADIUS*2) < VAUS_Y+5 && newX + (BALL_RADIUS*2) >= vaus.getX() && newX <= vaus.getX() + VAUS_WIDTH) {
 			speedY = -speedY;
 			speedX = ((newX + BALL_RADIUS) - (vaus.getX() + (VAUS_WIDTH / 2))) / 10;
@@ -95,7 +95,7 @@ public abstract class Ball implements Constants {
 		return false;
 	}
 	
-	private boolean bounceX(final int newX) {
+	private boolean bounceX(final float newX) {
 		if (level.brickHasBallInside(newX, y)) {
 			speedX = -speedX;
 			if(level.brickHasBallInside(newX, y + (2*BALL_RADIUS))) {
@@ -125,7 +125,7 @@ public abstract class Ball implements Constants {
 	}
 	
 	
-	private boolean bounceY(final int newY) {
+	private boolean bounceY(final float newY) {
 		if (level.brickHasBallInside(x, newY)) {
 			speedY = -speedY;
 			if (level.brickHasBallInside(x + (2*BALL_RADIUS), newY)) {
@@ -159,10 +159,10 @@ public abstract class Ball implements Constants {
 		return dead;
 	}
 	
-	public final int getX() {
+	public final float getX() {
 		return x;
 	}
-	public final int getY() {
+	public final float getY() {
 		return y;
 	}
 }

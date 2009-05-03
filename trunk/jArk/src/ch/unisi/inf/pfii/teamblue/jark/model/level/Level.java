@@ -139,9 +139,9 @@ public final class Level implements Constants {
 	 * @param y
 	 * @return true if inside a brick
 	 */
-	public final boolean brickHasBallInside(final int x, final int y) {
+	public final boolean brickHasBallInside(final float x, final float y) {
 		try {
-			int[] pos = Utils.getFieldPosition(x,y);
+			int[] pos = Utils.getFieldPosition((int)x,(int)y);
 			if (bricks[pos[1]][pos[0]] != null) {
 				return true;
 			}
@@ -156,8 +156,8 @@ public final class Level implements Constants {
 	 * Removes a brick
 	 * @param pos the position array
 	 */
-	public final void removeBrick(final int remX, final int remY) {
-		int[] remPos = Utils.getFieldPosition(remX,remY);
+	public final void removeBrick(final float remX, final float remY) {
+		int[] remPos = Utils.getFieldPosition((int)remX,(int)remY);
 		destroyBrick(remPos);
 	}
 	

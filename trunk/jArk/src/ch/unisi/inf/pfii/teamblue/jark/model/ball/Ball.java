@@ -165,4 +165,8 @@ public abstract class Ball implements Constants {
 	public final float getY() {
 		return y;
 	}
+	
+	public final String toString() {
+		return x + " " + y + " " + speedX + " " + speedY;
+	}
 }

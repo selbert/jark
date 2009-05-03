@@ -31,27 +31,27 @@ public class MainTest extends TestCase implements Constants {
 		ball.setSpeedX(4);
 		ball.move();
 		ball.move();
-		assertTrue(ball.toString().equals("798 552 4 0"));
+		assertTrue(ball.toString().equals("780.2 543.0 -3.8 -0.0"));
 		ball.move();
-		assertTrue(ball.toString().equals("799 552 -4 0"));
+		assertTrue(ball.toString().equals("776.4 543.0 -3.8 -0.0"));
 		vaus = new DefaultVaus(0,20);
 		ball = new DefaultBall(vaus, level);
 		ball.setSpeedX(-4);
 		ball.move();
 		ball.move();
-		assertTrue(ball.toString().equals("2 552 -4 0"));
+		assertTrue(ball.toString().equals("37.6 543.0 -0.4 -0.0"));
 		ball.move();
-		assertTrue(ball.toString().equals("0 552 4 0"));
+		assertTrue(ball.toString().equals("37.199997 543.0 -0.4 -0.0"));
 		vaus = new DefaultVaus(0,20);
 		ball = new DefaultBall(vaus, level);
 		ball.setSpeedY(-5);
-		for(int i = 0; i < 29; i++) {
+		for(int i = 0; i < 27; i++) {
 			ball.move();
 		}
 		ball.move();
-		assertTrue(ball.toString().equals("10 402 0 -5"));
+		assertTrue(ball.toString().equals("42.0 404.0 0.0 -5.0"));
 		ball.move();
-		assertTrue(ball.toString().equals("10 402 0 5"));
+		assertTrue(ball.toString().equals("42.0 404.0 0.0 5.0"));
 		//the block in 10,395 disappears.
 	}
 	

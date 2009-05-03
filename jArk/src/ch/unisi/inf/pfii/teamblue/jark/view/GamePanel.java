@@ -15,6 +15,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.MemoryImageSource;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -32,8 +33,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
  * 
  */
 
-public class GamePanel extends JPanel implements Constants,
-		MouseMotionListener, KeyListener {
+public class GamePanel extends JPanel implements Constants, MouseMotionListener, KeyListener {
 
 	private Brick[][] bricks;
 	private ArrayList<Ball> balls;
@@ -45,27 +45,24 @@ public class GamePanel extends JPanel implements Constants,
 	private Image vausz;
 
 	public GamePanel() {
-		setFocusable(true);
+		//to hide the cursor
 		int[] pixels = new int[16 * 16];
-		Image image = Toolkit.getDefaultToolkit().createImage(
-				new MemoryImageSource(16, 16, pixels, 0, 16));
-		Cursor transparentCursor = Toolkit.getDefaultToolkit()
-				.createCustomCursor(image, new Point(0, 0), "invisibleCursor");
+		Image image = Toolkit.getDefaultToolkit().createImage(new MemoryImageSource(16, 16, pixels, 0, 16));
+		Cursor transparentCursor = Toolkit.getDefaultToolkit().createCustomCursor(image, new Point(0, 0), "invisibleCursor");
 		setCursor(transparentCursor);
-		addKeyListener(this);
-		brick = new ImageIcon(getClass().getResource("images/brick.png"))
-				.getImage();
-		brick2 = new ImageIcon(getClass().getResource("images/brick2.png"))
-				.getImage();
-		ballz = new ImageIcon(getClass().getResource("images/ball.png"))
-				.getImage();
-		vausz = new ImageIcon(getClass().getResource("images/vaus.png"))
-				.getImage();
-
+		
+		//images
+		brick = new ImageIcon(getClass().getResource("images/brick.png")).getImage();
+		brick2 = new ImageIcon(getClass().getResource("images/brick2.png")).getImage();
+		ballz = new ImageIcon(getClass().getResource("images/ball.png")).getImage();
+		vausz = new ImageIcon(getClass().getResource("images/vaus.png")).getImage();
+		
+		setBorder(BorderFactory.createLineBorder(Color.black));
 		setBackground(Color.GRAY);
 		setPreferredSize(new Dimension(798, 600));
+		setFocusable(true);
+		addKeyListener(this);
 		addMouseMotionListener(this);
-
 	}
 
 	public void paintComponent(Graphics g) {
@@ -91,10 +88,7 @@ public class GamePanel extends JPanel implements Constants,
 
 		}
 
-		g2d
-				.drawImage(vausz, vaus.getX(), VAUS_Y, VAUS_WIDTH, VAUS_HEIGHT,
-						this);
-
+		g2d.drawImage(vausz, vaus.getX(), VAUS_Y, VAUS_WIDTH, VAUS_HEIGHT, this);
 	}
 
 	public void mouseMoved(MouseEvent e) {
@@ -125,7 +119,6 @@ public class GamePanel extends JPanel implements Constants,
 	}
 
 	public void keyTyped(KeyEvent e) {
-		// do nothing
 	}
 
 }

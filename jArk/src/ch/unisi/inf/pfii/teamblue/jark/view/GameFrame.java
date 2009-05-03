@@ -3,8 +3,6 @@ package ch.unisi.inf.pfii.teamblue.jark.view;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -16,7 +14,7 @@ import javax.swing.border.EmptyBorder;
 
 /**
  * 
- * The main window of the game
+ * The main frame of the game
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
  * @version $LastChangedDate$
@@ -25,9 +23,8 @@ import javax.swing.border.EmptyBorder;
 
 public class GameFrame extends JFrame {
 
-	// the game area
-	private MainPanel center;
-	
+	private MainPanel mainPanel;
+
 	public GameFrame() {
 		makeFrame();
 	}
@@ -36,20 +33,19 @@ public class GameFrame extends JFrame {
 	 * Create the main Window
 	 */
 	private void makeFrame() {
-		setTitle("[ jArk ] [ Arkanoid as never seen before ]");
+		setTitle("[ jArk ] [ an Arkanoid implementation ]");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
-		setBackground(Color.ORANGE);
+		setBackground(Color.LIGHT_GRAY);
 		((JPanel) getContentPane()).setBorder(new EmptyBorder(6, 6, 6, 6));
 
 		makeMenu();
-		center = new MainPanel();
-		add(center);
-		
-		
+		mainPanel = new MainPanel();
+		add(mainPanel);
+
 		// pack the frame together
 		pack();
-		//center
+		// center
 		setLocationRelativeTo(null);
 		// and show it
 		setVisible(true);
@@ -66,13 +62,13 @@ public class GameFrame extends JFrame {
 		menubar.add(fileMenu);
 
 		// menu items: using anonymous inner classes for events
-		final JMenuItem openItem = new JMenuItem("Open");
-		openItem.addActionListener(new ActionListener() {
+		final JMenuItem newGameItem = new JMenuItem("New Game");
+		newGameItem.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
-				openFile();
+				startNewGame();
 			}
 		});
-		fileMenu.add(openItem);
+		fileMenu.add(newGameItem);
 
 		// another item
 		final JMenuItem quitItem = new JMenuItem("Quit");
@@ -83,38 +79,16 @@ public class GameFrame extends JFrame {
 		});
 		fileMenu.add(quitItem);
 
-		// test of an item directly in the menubar (doesn't work quite as I
-		// thought)
-		final JMenuItem aboutMenu = new JMenuItem("About");
-		aboutMenu.addActionListener(new ActionListener() {
-			public void actionPerformed(final ActionEvent e) {
-				showAbout();
-			}
-		});
-		menubar.add(aboutMenu);
+		//set the menubar
 		setJMenuBar(menubar);
 	}
 
-
-	
-
-	private void openFile() {
-		System.out.println("open file?");
+	private void startNewGame() {
+		//TODO
 	}
 
 	private void quitApp() {
-		// quit the application
 		System.exit(0);
 	}
-	
-	// a modal dialog using JOptionPane
-	private void showAbout() {
-		JOptionPane
-				.showMessageDialog(
-						this,
-						"This is a test Dialog.\nBeing modal, you have to click Ok to proceed.",
-						"About This Crap", JOptionPane.INFORMATION_MESSAGE);
-	}
-	
-	
+
 }

@@ -5,10 +5,20 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
+
+/**
+ * 
+ * The interaction panel hosts the buttons
+ * 
+ * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
+ * @version $LastChangedDate$
+ * 
+ */
 
 public class InteractionPanel extends JPanel {
 
@@ -17,35 +27,32 @@ public class InteractionPanel extends JPanel {
 
 	private final GamePanel gamePanel;
 	private final Game game;
-	
 
 	public InteractionPanel(final GamePanel gamePanel, final Game game) {
 		this.gamePanel = gamePanel;
 		this.game = game;
 		
-		setLayout(new GridLayout(2, 1));
-		
+		setBorder(BorderFactory.createLineBorder(Color.black));
+		setLayout(new GridLayout(10, 1));
+
 		// first button
 		startButton = new JButton("Add Ball");
 		startButton.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
-				game.addBall(); 
+				game.addBall();
 			}
 		});
 
 		// another button
 		stopButton = new JButton("Play/Pause");
 		stopButton.addActionListener(new ActionListener() {
-		
 			public void actionPerformed(ActionEvent e) {
-				game.play(); 
-				
+				game.play();
 			}
 		});
-		
+
 		add(startButton);
 		add(stopButton);
-
 	}
 
 }

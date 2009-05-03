@@ -2,20 +2,17 @@ package ch.unisi.inf.pfii.teamblue.jark.model;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-import org.w3c.dom.Notation;
-
-import ch.unisi.inf.pfii.teamblue.jark.implementation.Console;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
-import ch.unisi.inf.pfii.teamblue.jark.model.ball.*;
+import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
+import ch.unisi.inf.pfii.teamblue.jark.model.ball.DefaultBall;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.DefaultVaus;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 import ch.unisi.inf.pfii.teamblue.jark.view.GamePanel;
-import ch.unisi.inf.pfii.teamblue.jark.view.GameFrame;
-import ch.unisi.inf.pfii.teamblue.jark.view.MainPanel;
 
 /**
  * 
@@ -26,7 +23,7 @@ import ch.unisi.inf.pfii.teamblue.jark.view.MainPanel;
 
 public final class Game implements Constants {
 
-	private GamePanel fieldView;
+	private GamePanel gamePanel;
 
 	private ArrayList<Ball> balls;
 	private ArrayList<Bonus> freeBonuses;
@@ -34,30 +31,30 @@ public final class Game implements Constants {
 	private Vaus vaus;
 	private Player player;
 	private Level level;
-	private Console console;
 	private ExecutorService ex;
 
 	private boolean running;
 	private Random rnd;
 	
-	public Game(GamePanel fieldView) {
+	public Game(GamePanel gamePanel) {
 		rnd = new Random();
-		this.fieldView = fieldView;
+		this.gamePanel = gamePanel;
 
-		console = new Console();
 		balls = new ArrayList<Ball>();
 		freeBonuses = new ArrayList<Bonus>();
 		vaus = new DefaultVaus(GAME_WIDTH / 2 - 100 / 2, 20);
 		player = new Player("pippo", 3);
 		level = new Level(10, freeBonuses);
+		
 		for (int i = 0; i < 10; i++) {
 			balls.add(new DefaultBall(vaus, level));
 			balls.get(i).setSpeedX(-2);
 			balls.get(i).setSpeedY(-3);
 		}
-		fieldView.setBricks(level.getBricks());
-		fieldView.setBalls(balls);
-		fieldView.setVaus(vaus);
+		
+		gamePanel.setBricks(level.getBricks());
+		gamePanel.setBalls(balls);
+		gamePanel.setVaus(vaus);
 		
 		ex = Executors.newFixedThreadPool(1);
 		running = false;
@@ -67,7 +64,7 @@ public final class Game implements Constants {
 	public void play() {
 		if (!running) {
 			running = true;
-			fieldView.requestFocusInWindow();
+			gamePanel.requestFocusInWindow();
 			ex.execute(new GameStart());
 		} else {
 			running = false;
@@ -79,9 +76,9 @@ public final class Game implements Constants {
 			while (running) {
 				moveBalls();
 				vaus.move();
-				fieldView.repaint();
+				gamePanel.repaint();
 				try {
-					Thread.sleep(15);
+					Thread.sleep(10);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -114,7 +111,7 @@ public final class Game implements Constants {
 	
 	public final void addBall() {
 		Ball newBall = new DefaultBall(vaus, level);
-		fieldView.requestFocusInWindow();
+		gamePanel.requestFocusInWindow();
 		newBall.setSpeedX(getRandomSpeed());
 		newBall.setSpeedY(-3);
 		balls.add(newBall);

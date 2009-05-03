@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import junit.framework.TestCase;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
-import ch.unisi.inf.pfii.teamblue.jark.implementation.Conversion;
+import ch.unisi.inf.pfii.teamblue.jark.implementation.Utils;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.DefaultBall;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonuses;
@@ -67,7 +67,7 @@ public class MainTest extends TestCase implements Constants {
 	
 	//pixels to brick position
 	public void testGetFieldPosition() {
-		assertTrue(Arrays.equals(new int[] {0,0},Conversion.getFieldPosition(0, 0)));
+		assertTrue(Arrays.equals(new int[] {0,0},Utils.getFieldPosition(0, 0)));
 	}
 	
 	public void testBrickHasBallInside() {

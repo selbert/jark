@@ -1,5 +1,7 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.bonus;
 
+import java.awt.Image;
+
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
@@ -75,4 +77,6 @@ public abstract class Bonus implements Constants {
 	
 	//public abstract Vaus getNewVaus();
 	//public abstract Ball getNewBall();
+	//public abstract void apply();
+	public abstract Image getImage();
 }

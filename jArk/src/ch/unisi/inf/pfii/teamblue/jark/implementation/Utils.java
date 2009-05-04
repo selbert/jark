@@ -21,6 +21,12 @@ public abstract class Utils implements Constants {
 		int posx = (int)((float) FIELD_COLUMNS/ (float)FIELD_WIDTH*x);
 		return new int[] {posx, posy};
 	}
+	
+	public final static int[] getPixelPosition(final int x, final int y) {
+		int posy = y * (int)((float)FIELD_HEIGHT / (float)FIELD_ROWS);
+		int posx = x * (int)((float)FIELD_WIDTH / (float)FIELD_COLUMNS);
+		return new int[] {posx, posy};
+	}
 
 	/**
 	 * Converts an integer into a specific brick.

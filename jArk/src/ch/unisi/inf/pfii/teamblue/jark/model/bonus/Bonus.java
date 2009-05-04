@@ -1,8 +1,8 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.bonus;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
-
-
+import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
+import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
 /**
  * 
@@ -14,17 +14,20 @@ import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 public abstract class Bonus implements Constants {
 	private int x;
 	private int y;
+	private Vaus vaus;
+	private boolean taken;
+	private boolean dead;
 	
 	public Bonus() {
 		x = 0;
 		y = 0;
-		
+		vaus = null;
 	}
 
 	public void setX(int x) {
 		this.x = x;
 	}
-	
+
 	public int getX() {
 		return x;
 	}
@@ -36,10 +39,40 @@ public abstract class Bonus implements Constants {
 	public int getY() {
 		return y;
 	}
+
+	public void setVaus(Vaus vaus) {
+		this.vaus = vaus;
+	}
 	
 	public void move() {
 		y = y + BONUS_SPEED;
+		checkVausCollision();
+		checkOutOfReach();
+	}
+
+	private void checkVausCollision() {
+		if (y + BRICK_HEIGHT > VAUS_Y 
+				&& y + BRICK_HEIGHT < VAUS_Y + 5
+				&& x + BRICK_WIDTH >= vaus.getX()
+				&& x <= vaus.getX() + VAUS_WIDTH) {
+			taken = true;
+		}
 	}
 	
+	private void checkOutOfReach() {
+		if (y > GAME_HEIGHT) {
+			dead = true;
+		}
+	}
 	
+	public boolean isDead() {
+		return dead;
+	}
+	
+	public boolean isTaken() {
+		return taken;
+	}
+	
+	//public abstract Vaus getNewVaus();
+	//public abstract Ball getNewBall();
 }

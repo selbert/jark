@@ -21,6 +21,7 @@ import javax.swing.JPanel;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
+import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.Brick;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
@@ -37,6 +38,7 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener,
 
 	private Brick[][] bricks;
 	private ArrayList<Ball> balls;
+	private ArrayList<Bonus> bonuses;
 	private Vaus vaus;
 
 	private Image brick2;
@@ -54,7 +56,7 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener,
 		//images
 		brick = new ImageIcon(getClass().getResource("images/brick.png")).getImage();
 		brick2 = new ImageIcon(getClass().getResource("images/brick2.png")).getImage();
-		ballz = new ImageIcon(getClass().getResource("images/ball.png")).getImage();
+		ballz = new ImageIcon(getClass().getResource("images/testball.png")).getImage();
 		vausz = new ImageIcon(getClass().getResource("images/vaus.png")).getImage();
 		
 		setBorder(BorderFactory.createLineBorder(Color.black));
@@ -87,6 +89,13 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener,
 			g2d.drawImage(ballz, x, y, BALL_RADIUS * 2, BALL_RADIUS * 2, this);
 
 		}
+		
+		for (Bonus bonus : bonuses) {
+			int x = (int)bonus.getX();
+			int y = (int)bonus.getY();
+			g2d.drawImage(brick, x, y, this);
+
+		}
 
 		g2d.drawImage(vausz, vaus.getX(), VAUS_Y, VAUS_WIDTH, VAUS_HEIGHT, this);
 	}
@@ -98,6 +107,10 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener,
 	public void mouseDragged(MouseEvent e) {
 	}
 
+	public void setBonuses(ArrayList<Bonus> bonuses) {
+		this.bonuses = bonuses;
+	}
+	
 	public void setBricks(Brick[][] bricks) {
 		this.bricks = bricks;
 	}

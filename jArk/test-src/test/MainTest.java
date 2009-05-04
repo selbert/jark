@@ -26,7 +26,7 @@ public class MainTest extends TestCase implements Constants {
 	public void testBallMove() {
 		ArrayList<Bonus> freeBonuses = new ArrayList<Bonus>();
 		Vaus vaus = new DefaultVaus(GAME_WIDTH - 20, 20);
-		Level level = new Level(25, freeBonuses);
+		Level level = new Level(25, freeBonuses, vaus);
 		DefaultBall ball = new DefaultBall(vaus, level);
 		ball.setSpeedX(4);
 		ball.move();

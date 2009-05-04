@@ -44,16 +44,17 @@ public final class Game implements Constants {
 		freeBonuses = new ArrayList<Bonus>();
 		vaus = new DefaultVaus(GAME_WIDTH / 2 - 100 / 2, 20);
 		player = new Player("pippo", 3);
-		level = new Level(20, freeBonuses);
+		level = new Level(50, freeBonuses, vaus);
 		
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 150; i++) {
 			balls.add(new DefaultBall(vaus, level));
-			balls.get(i).setSpeedX(-2);
+			balls.get(i).setSpeedX(getRandomSpeed());
 			balls.get(i).setSpeedY(-3);
 		}
 		
 		gamePanel.setBricks(level.getBricks());
 		gamePanel.setBalls(balls);
+		gamePanel.setBonuses(freeBonuses);
 		gamePanel.setVaus(vaus);
 		
 		ex = Executors.newFixedThreadPool(1);
@@ -75,6 +76,7 @@ public final class Game implements Constants {
 		public final void run() {
 			while (running) {
 				moveBalls();
+				moveBonuses();
 				vaus.move();
 				gamePanel.repaint();
 				try {
@@ -99,9 +101,27 @@ public final class Game implements Constants {
 			}
 		}
 	}
+
+	/**
+	 * Move all the free bonuses in the game
+	 */
+	private final void moveBonuses() {
+		for (int i = 0 ; i < freeBonuses.size();) {
+			
+			if (freeBonuses.get(i).isDead()) {
+				freeBonuses.remove(freeBonuses.get(i));
+			} else if (freeBonuses.get(i).isTaken()) {
+				freeBonuses.remove(freeBonuses.get(i));
+				//TODO add bonus effect
+			} else {
+				freeBonuses.get(i).move();
+				i++;
+			}
+		}
+	}
 	
-	private final int getRandomSpeed() {
-		final int rndSpeed = rnd.nextInt(5)+1;
+	private final float getRandomSpeed() {
+		final float rndSpeed = rnd.nextFloat()*5;
 		if (rnd.nextBoolean()) {
 			return -1*rndSpeed;
 		}

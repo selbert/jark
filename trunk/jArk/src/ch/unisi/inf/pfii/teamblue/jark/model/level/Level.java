@@ -11,6 +11,7 @@ import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Utils;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.*;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.*;
+import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
 
 /**
@@ -26,18 +27,21 @@ public final class Level implements Constants {
 	private Brick[][] bricks;
 	private ArrayList<Bonus> freeBonuses;
 	
+	private Vaus vaus;
+	
 	/**
 	 * Constructor of Level, creates a new level (field of bricks).
 	 * 
 	 * @param numOfBonus total bonuses at disposition
 	 * @param freeBonuses ArrayList of bonus dropping to the vaus 
 	 */
-	public Level(final int numOfBonus, final ArrayList<Bonus> freeBonuses) {
+	public Level(final int numOfBonus, final ArrayList<Bonus> freeBonuses, final Vaus vaus) {
 		bricks = new Brick[FIELD_ROWS][FIELD_COLUMNS];
 		if (bonusDistString == null) {
 			bonusDistString = getDistributionString();
 		}
 		this.freeBonuses = freeBonuses;
+		this.vaus = vaus;
 		createTestFieldLevel();
 		addBonus(numOfBonus);
 	}
@@ -127,7 +131,9 @@ public final class Level implements Constants {
 		
 		for (int i = 0; i < numOfBonus; i++) {
 			int index = rnd.nextInt(listOfBricks.size());
-			listOfBricks.remove(index).setBonus(createBonus());
+			Bonus bonus = createBonus();
+			bonus.setVaus(vaus);
+			listOfBricks.remove(index).setBonus(bonus);
 		}	
 	}
 	
@@ -157,17 +163,17 @@ public final class Level implements Constants {
 	 * @param pos the position array
 	 */
 	public final void removeBrick(final float remX, final float remY) {
-		int[] remPos = Utils.getFieldPosition((int)remX,(int)remY);
-		destroyBrick(remPos);
-	}
-	
-	/**
-	 * Destroy a brick
-	 * @param pos the position array
-	 */
-	private final void destroyBrick(final int[] pos) {
+		int[] pos = Utils.getFieldPosition((int)remX,(int)remY);
+		Bonus bonus = bricks[pos[1]][pos[0]].getBonus();
+		if (bonus != null) { 
+			int[] a = Utils.getPixelPosition(pos[0], pos[1]);
+			bonus.setX(a[0]);
+			bonus.setY(a[1]);
+			freeBonuses.add(bonus); 
+		}
 		bricks[pos[1]][pos[0]] = null;
 	}
+	
 	
 	public Brick[][] getBricks() {
 		return bricks;

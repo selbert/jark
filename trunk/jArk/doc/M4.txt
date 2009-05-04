@@ -1,0 +1,1 @@
+Bonuses: when a bonus get "taken", through game we ask the bonus to return what he modifies (a new vaus, new balls..)

@@ -46,7 +46,7 @@ public final class Game implements Constants {
 		player = new Player("pippo", 3);
 		level = new Level(50, freeBonuses, vaus);
 		
-		for (int i = 0; i < 150; i++) {
+		for (int i = 0; i < 4; i++) {
 			balls.add(new DefaultBall(vaus, level));
 			balls.get(i).setSpeedX(getRandomSpeed());
 			balls.get(i).setSpeedY(-3);

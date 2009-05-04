@@ -1,5 +1,9 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.bonus;
 
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+
 
 /**
  * 
@@ -10,4 +14,8 @@ package ch.unisi.inf.pfii.teamblue.jark.model.bonus;
 
 public final class DoubleBallBonus extends Bonus {
 
+	public Image getImage() {
+		return new ImageIcon(getClass().getResource("../../view/images/bonuses/bonus_doubleball.png")).getImage();
+	}
+	
 }

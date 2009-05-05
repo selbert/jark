@@ -1,9 +1,12 @@
 package ch.unisi.inf.pfii.teamblue.jark.model;
 
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import javax.swing.Timer;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
@@ -23,7 +26,7 @@ import ch.unisi.inf.pfii.teamblue.jark.view.InfoPanel;
  * 
  */
 
-public final class Game implements Constants {
+public class Game implements Constants {
 
 	private GamePanel gamePanel;
 	private InfoPanel infoPanel;
@@ -38,6 +41,9 @@ public final class Game implements Constants {
 
 	private boolean running;
 	private Random rnd;
+	
+	final Timer tick;
+	final ActionListener li;
 	
 	public Game(GamePanel gamePanel, InfoPanel infoPanel) {
 		rnd = new Random();
@@ -61,8 +67,9 @@ public final class Game implements Constants {
 		gamePanel.setBonuses(freeBonuses);
 		gamePanel.setVaus(vaus);
 		infoPanel.setLives(player.getLives());
-		ex = Executors.newFixedThreadPool(1);
-		running = false;
+		
+		li = new TimerTickHandler(this, vaus, gamePanel);
+        tick = new Timer(TICKS_PER_SECOND, li);
 
 	}
 
@@ -70,32 +77,17 @@ public final class Game implements Constants {
 		if (!running) {
 			running = true;
 			gamePanel.requestFocusInWindow();
-			ex.execute(new GameStart());
+			tick.start();
 		} else {
 			running = false;
 		}
 	}
 
-	class GameStart implements Runnable {
-		public final void run() {
-			while (running) {
-				moveBalls();
-				moveBonuses();
-				vaus.move();
-				gamePanel.repaint();
-				try {
-					Thread.sleep(10);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}
 
 	/**
 	 * Move all the balls in the game
 	 */
-	private final void moveBalls() {
+	public final void moveBalls() {
 		for (int i = 0 ; i < balls.size();) {
 			if (balls.get(i).isDead()) {
 				balls.remove(balls.get(i));
@@ -109,7 +101,7 @@ public final class Game implements Constants {
 	/**
 	 * Move all the free bonuses in the game
 	 */
-	private final void moveBonuses() {
+	public final void moveBonuses() {
 		for (int i = 0 ; i < freeBonuses.size();) {
 			
 			if (freeBonuses.get(i).isDead()) {

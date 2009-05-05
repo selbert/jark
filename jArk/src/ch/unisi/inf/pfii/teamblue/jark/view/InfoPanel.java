@@ -6,6 +6,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import ch.unisi.inf.pfii.teamblue.jark.model.Game;
+
 /**
  * 
  * The info panel gives the player informations (score, lives, ..)
@@ -17,16 +19,20 @@ import javax.swing.JPanel;
 
 public class InfoPanel extends JPanel {
 
-	private final JLabel label;
-
+	private final JLabel lblLives;
+	
 	public InfoPanel() {
 		
 		setBorder(BorderFactory.createLineBorder(Color.black));
 
-		label = new JLabel("Score:  Lives: [other info here]");
-
+		JLabel label = new JLabel("Lives:");
+		lblLives = new JLabel("");
 		add(label);
+		add(lblLives);
 
 	}
-
+	
+	public void setLives(int lives) {
+		lblLives.setText(lives+"");
+	}
 }

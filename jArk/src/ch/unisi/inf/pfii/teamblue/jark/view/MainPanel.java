@@ -29,7 +29,8 @@ public class MainPanel extends JPanel {
 
 		gamePanel = new GamePanel();
 		infoPanel = new InfoPanel();
-		game = new Game(gamePanel);
+		game = new Game(gamePanel, infoPanel);
+		
 		interactionPanel = new InteractionPanel(gamePanel, game);
 
 		add(gamePanel, BorderLayout.CENTER);

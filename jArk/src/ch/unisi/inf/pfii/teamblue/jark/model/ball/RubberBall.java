@@ -16,5 +16,10 @@ public final class RubberBall extends Ball {
 		super(vaus,level);
 		// TODO Auto-generated constructor stub
 	}
-
+	public Ball copy() {
+		Ball returnBall = new RubberBall(vaus, level);
+		returnBall.setX(x);
+		returnBall.setY(y);
+		return returnBall;
+	}
 }

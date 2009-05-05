@@ -31,6 +31,10 @@ public class Player {
 		return lives;
 	}
 
+	public void incrementLives() {
+		lives++;
+	}
+	
 	public void setScore(final int score) {
 		this.score = score;
 	}

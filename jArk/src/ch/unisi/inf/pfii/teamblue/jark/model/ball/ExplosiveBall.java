@@ -16,5 +16,11 @@ public final class ExplosiveBall extends Ball {
 		super(vaus,level);
 		// TODO Auto-generated constructor stub
 	}
+	public Ball copy() {
+		Ball returnBall = new ExplosiveBall(vaus, level);
+		returnBall.setX(x);
+		returnBall.setY(y);
+		return returnBall;
+	}
 
 }

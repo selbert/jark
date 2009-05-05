@@ -9,5 +9,12 @@ public final class DefaultBall extends Ball {
 		super(vaus,level);
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Ball copy() {
+		Ball returnBall = new DefaultBall(vaus, level);
+		returnBall.setX(x);
+		returnBall.setY(y);
+		return returnBall;
+	}
 
 }

@@ -42,11 +42,11 @@ public final class Game implements Constants {
 
 		balls = new ArrayList<Ball>();
 		freeBonuses = new ArrayList<Bonus>();
-		vaus = new DefaultVaus(GAME_WIDTH / 2 - 100 / 2, 20);
+		vaus = new DefaultVaus(GAME_WIDTH / 2 - VAUS_WIDTH / 2, 20);
 		player = new Player("pippo", 3);
-		level = new Level(50, freeBonuses, vaus);
+		level = new Level(100, freeBonuses, vaus);
 		
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 10; i++) {
 			balls.add(new DefaultBall(vaus, level));
 			balls.get(i).setSpeedX(getRandomSpeed());
 			balls.get(i).setSpeedY(-3);
@@ -111,8 +111,8 @@ public final class Game implements Constants {
 			if (freeBonuses.get(i).isDead()) {
 				freeBonuses.remove(freeBonuses.get(i));
 			} else if (freeBonuses.get(i).isTaken()) {
+				freeBonuses.get(i).apply(this);
 				freeBonuses.remove(freeBonuses.get(i));
-				//TODO add bonus effect
 			} else {
 				freeBonuses.get(i).move();
 				i++;
@@ -134,6 +134,13 @@ public final class Game implements Constants {
 		newBall.setSpeedX(getRandomSpeed());
 		newBall.setSpeedY(-3);
 		balls.add(newBall);
+	}
+
+	public Player getPlayer() {
+		return player;
+	}
+	public ArrayList<Ball> getBalls() {
+		return balls;
 	}
 	
 }

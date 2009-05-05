@@ -14,7 +14,6 @@ public final class BoxBall extends Ball {
 
 	public BoxBall(final Vaus vaus, final Level level) {
 		super(vaus,level);
-		// TODO Auto-generated constructor stub
 	}
 	public Ball copy() {
 		Ball returnBall = new BoxBall(vaus, level);
@@ -28,7 +27,7 @@ public final class BoxBall extends Ball {
 		float newY = y + speedY;
 		
 
-		if (newY + (2*BALL_RADIUS) >= VAUS_Y + VAUS_HEIGHT) {
+		if (newY + (2*BALL_RADIUS) >= VAUS_Y + VAUS_HEIGHT + 1) {
 			speedY = -speedY;
 			return;
 		}

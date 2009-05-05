@@ -8,6 +8,8 @@ public interface Constants {
 	int BONUS_SPEED = 2;
 	int VAUS_Y = 560;
 	int VAUS_WIDTH = 100;
+	int LONGVAUS_WIDTH = 150;
+	int SHORTVAUS_WIDTH = 65;
 	int VAUS_HEIGHT = 20;
 	int FIELD_WIDTH = 798;
 	int FIELD_HEIGHT =  400;

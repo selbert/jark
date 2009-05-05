@@ -1,5 +1,9 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
 
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+
 
 /**
  * 
@@ -10,9 +14,11 @@ package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
 
 public final class MissileVaus extends Vaus {
 
-	public MissileVaus(int x, int size) {
-		super(x, size);
-		// TODO Auto-generated constructor stub
+	public MissileVaus(int x) {
+		super(x);
 	}
-
+	public Image getImage() {
+		return new ImageIcon(getClass().getResource("../../view/images/vauses/defaultVaus.png")).getImage();
+	}
+	
 }

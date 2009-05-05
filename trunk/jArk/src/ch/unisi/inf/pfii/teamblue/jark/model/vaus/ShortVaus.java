@@ -1,5 +1,9 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
 
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+
 
 /**
  * 
@@ -10,9 +14,14 @@ package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
 
 public final class ShortVaus extends Vaus {
 
-	public ShortVaus(int x, int size) {
-		super(x, size);
-		// TODO Auto-generated constructor stub
+	public ShortVaus(int x) {
+		super(x);
 	}
-
+	public Image getImage() {
+		return new ImageIcon(getClass().getResource("../../view/images/vauses/defaultVaus.png")).getImage();
+	}
+	public int getWidth() {
+		return SHORTVAUS_WIDTH;
+	}
+	
 }

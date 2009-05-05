@@ -44,7 +44,6 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener,
 	private Image brick2;
 	private Image brick;
 	private Image ballz;
-	private Image vausz;
 
 	private boolean drawBox;
 	
@@ -59,7 +58,6 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener,
 		brick = new ImageIcon(getClass().getResource("images/brick.png")).getImage();
 		brick2 = new ImageIcon(getClass().getResource("images/brick2.png")).getImage();
 		ballz = new ImageIcon(getClass().getResource("images/testball.png")).getImage();
-		vausz = new ImageIcon(getClass().getResource("images/vaus.png")).getImage();
 		
 		setBorder(BorderFactory.createLineBorder(Color.black));
 		setBackground(Color.GRAY);
@@ -96,10 +94,9 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener,
 			int x = (int)bonus.getX();
 			int y = (int)bonus.getY();
 			g2d.drawImage(bonus.getImage(), x, y, this);
-
 		}
 
-		g2d.drawImage(vausz, vaus.getX(), VAUS_Y, VAUS_WIDTH, VAUS_HEIGHT, this);
+		g2d.drawImage(vaus.getImage(), vaus.getX(), VAUS_Y, vaus.getWidth(), VAUS_HEIGHT, this);
 		
 		if (drawBox) {
 			g2d.fillRect(0, VAUS_Y+VAUS_HEIGHT+1, GAME_WIDTH, 3);
@@ -109,9 +106,12 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener,
 	public void drawBoxLine() {
 		drawBox = true;
 	}
+	public void removeBoxLine() {
+		drawBox = false;
+	}
 	
 	public void mouseMoved(MouseEvent e) {
-		vaus.move(e.getX() - VAUS_WIDTH / 2);
+		vaus.move(e.getX() - vaus.getWidth() / 2);
 	}
 
 	public void mouseDragged(MouseEvent e) {

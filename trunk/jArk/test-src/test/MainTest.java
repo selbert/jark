@@ -25,7 +25,7 @@ public class MainTest extends TestCase implements Constants {
 	}
 	public void testBallMove() {
 		ArrayList<Bonus> freeBonuses = new ArrayList<Bonus>();
-		Vaus vaus = new DefaultVaus(GAME_WIDTH - 20, 20);
+		Vaus vaus = new DefaultVaus(GAME_WIDTH - 20);
 		Level level = new Level(25, freeBonuses, vaus);
 		DefaultBall ball = new DefaultBall(vaus, level);
 		ball.setSpeedX(4);
@@ -34,7 +34,7 @@ public class MainTest extends TestCase implements Constants {
 		assertTrue(ball.toString().equals("780.2 543.0 -3.8 -0.0"));
 		ball.move();
 		assertTrue(ball.toString().equals("776.4 543.0 -3.8 -0.0"));
-		vaus = new DefaultVaus(0,20);
+		vaus = new DefaultVaus(0);
 		ball = new DefaultBall(vaus, level);
 		ball.setSpeedX(-4);
 		ball.move();
@@ -42,7 +42,7 @@ public class MainTest extends TestCase implements Constants {
 		assertTrue(ball.toString().equals("37.6 543.0 -0.4 -0.0"));
 		ball.move();
 		assertTrue(ball.toString().equals("37.199997 543.0 -0.4 -0.0"));
-		vaus = new DefaultVaus(0,20);
+		vaus = new DefaultVaus(0);
 		ball = new DefaultBall(vaus, level);
 		ball.setSpeedY(-5);
 		for(int i = 0; i < 27; i++) {

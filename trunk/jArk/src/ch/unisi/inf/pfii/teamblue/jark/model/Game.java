@@ -52,7 +52,7 @@ public class Game implements Constants {
 
 		balls = new ArrayList<Ball>();
 		freeBonuses = new ArrayList<Bonus>();
-		vaus = new DefaultVaus(GAME_WIDTH / 2 - VAUS_WIDTH / 2, 20);
+		vaus = new DefaultVaus(GAME_WIDTH / 2 - VAUS_WIDTH / 2);
 		player = new Player("pippo", 3);
 		level = new Level(100, freeBonuses, vaus);
 		
@@ -139,11 +139,15 @@ public class Game implements Constants {
 	public ArrayList<Ball> getBalls() {
 		return balls;
 	}
-
+	public void setVaus(Vaus vaus) {
+		this.vaus = vaus;
+	}
+	public Vaus getVaus() {
+		return vaus;
+	}
 	public InfoPanel getInfoPanel() {
 		return infoPanel;
 	}
-	
 	public GamePanel getGamePanel() {
 		return gamePanel;
 	}

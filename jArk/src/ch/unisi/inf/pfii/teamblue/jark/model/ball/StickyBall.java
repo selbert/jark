@@ -22,4 +22,7 @@ public final class StickyBall extends Ball {
 		returnBall.setY(y);
 		return returnBall;
 	}
+	public void move() {
+		super.move((float) 1);
+	}
 }

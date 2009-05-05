@@ -22,5 +22,114 @@ public final class ExplosiveBall extends Ball {
 		returnBall.setY(y);
 		return returnBall;
 	}
+	
+	public void move() {
+		float newX = x+speedX;
+		float newY = y+speedY;
+		
+
+		if (newY >= GAME_HEIGHT) {
+			dead = true; //remove ball
+			return;
+		}
+		
+		if (newY < FIELD_HEIGHT) { 
+			if (bounceY(newY)){
+				newY = y;
+			}
+			
+			if (bounceX(newX)){
+				newX = x;
+			}
+		}
+		
+		if (newX + (BALL_RADIUS*2) >= GAME_WIDTH) {
+			speedX = -speedX;
+			newX = GAME_WIDTH - (BALL_RADIUS*2);
+		}
+		if (newX < 0) {
+			speedX = -speedX;
+			newX = 0;
+		}
+		if (newY < 0) {
+			speedY = -speedY;
+			newY = 0;
+		}
+		
+		
+		if (bounceVaus(newX, newY)) {
+			newY =  VAUS_Y-1 - (BALL_RADIUS*2);
+		}
+		x = newX;
+		y = newY;
+	}
+	
+	private boolean bounceX(final float newX) {
+		if (level.brickHasBallInside(newX, y)) {
+			speedX = -speedX;
+			if(level.brickHasBallInside(newX, y + (2*BALL_RADIUS))) {
+				explosionDestroy(newX, y + BALL_RADIUS);
+			} else {
+				explosionDestroy(newX, y);
+			}
+			return true;
+		} else if (level.brickHasBallInside(newX, y + (2*BALL_RADIUS))) {
+			speedX = -speedX;
+			explosionDestroy(newX, y + (2*BALL_RADIUS));
+			return true;
+		} else if (level.brickHasBallInside(newX + (2*BALL_RADIUS), y)) {
+			speedX = -speedX;
+			if (level.brickHasBallInside(newX + (2*BALL_RADIUS), y + (2*BALL_RADIUS))) {
+				explosionDestroy(newX + (2*BALL_RADIUS), y + BALL_RADIUS);
+			} else {
+				explosionDestroy(newX + (2*BALL_RADIUS), y);
+			}
+			return true;
+		} else if (level.brickHasBallInside(newX + (2*BALL_RADIUS), y + (2*BALL_RADIUS))) {
+			speedX = -speedX;
+			explosionDestroy(newX + (2*BALL_RADIUS), y + (2*BALL_RADIUS));
+			return true;
+		} 
+		return false;
+	}
+	
+	
+	private boolean bounceY(final float newY) {
+		if (level.brickHasBallInside(x, newY)) {
+			speedY = -speedY;
+			if (level.brickHasBallInside(x + (2*BALL_RADIUS), newY)) {
+				explosionDestroy(x + BALL_RADIUS, newY);
+			} else {
+				explosionDestroy(x, newY);
+			}
+			return true;
+		} else if (level.brickHasBallInside(x + (2*BALL_RADIUS), newY)) {
+			speedY = -speedY;
+			explosionDestroy(x + (2*BALL_RADIUS), newY);
+			return true;
+		} else if (level.brickHasBallInside(x, newY + (2*BALL_RADIUS))) {
+			speedY = -speedY;
+			if (level.brickHasBallInside(x + (2*BALL_RADIUS), newY + (2*BALL_RADIUS))) {
+				explosionDestroy(x + BALL_RADIUS, newY + (2*BALL_RADIUS));
+			} else {
+				explosionDestroy(x, newY + (2*BALL_RADIUS));
+			}
+			return true;
+		} else if (level.brickHasBallInside(x + (2*BALL_RADIUS), newY + (2*BALL_RADIUS))) {
+			speedY = -speedY;
+			explosionDestroy(x + (2*BALL_RADIUS), newY + (2*BALL_RADIUS));
+			return true;
+		}
+		return false;
+
+	}
+	
+	private final void explosionDestroy(final float x, final float y) {
+		level.removeBrick(x, y);
+		level.removeBrick(x - BRICK_WIDTH, y);
+		level.removeBrick(x + BRICK_WIDTH, y);
+		level.removeBrick(x, y - BRICK_HEIGHT);
+		level.removeBrick(x, y + BRICK_HEIGHT);
+	}
 
 }

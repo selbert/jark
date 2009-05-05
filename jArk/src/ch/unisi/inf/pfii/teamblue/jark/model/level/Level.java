@@ -163,15 +163,19 @@ public final class Level implements Constants {
 	 * @param pos the position array
 	 */
 	public final void removeBrick(final float remX, final float remY) {
-		int[] pos = Utils.getFieldPosition((int)remX,(int)remY);
-		Bonus bonus = bricks[pos[1]][pos[0]].getBonus();
-		if (bonus != null) { 
-			int[] a = Utils.getPixelPosition(pos[0], pos[1]);
-			bonus.setX(a[0]);
-			bonus.setY(a[1]);
-			freeBonuses.add(bonus); 
+		if (remX > 0 && remX < FIELD_WIDTH && remY < FIELD_HEIGHT && remY > 0) {
+			int[] pos = Utils.getFieldPosition((int)remX,(int)remY);
+			if (bricks[pos[1]][pos[0]] != null)  {
+				Bonus bonus = bricks[pos[1]][pos[0]].getBonus();
+				if (bonus != null) { 
+					int[] a = Utils.getPixelPosition(pos[0], pos[1]);
+					bonus.setX(a[0]);
+					bonus.setY(a[1]);
+					freeBonuses.add(bonus); 
+				}
+				bricks[pos[1]][pos[0]] = null;
+			}
 		}
-		bricks[pos[1]][pos[0]] = null;
 	}
 	
 	

@@ -8,6 +8,7 @@ import java.util.concurrent.Executors;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.DefaultBall;
+import ch.unisi.inf.pfii.teamblue.jark.model.ball.UltraBall;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.DefaultVaus;
@@ -46,7 +47,7 @@ public final class Game implements Constants {
 		player = new Player("pippo", 3);
 		level = new Level(100, freeBonuses, vaus);
 		
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 1; i++) {
 			balls.add(new DefaultBall(vaus, level));
 			balls.get(i).setSpeedX(getRandomSpeed());
 			balls.get(i).setSpeedY(-3);

@@ -16,5 +16,10 @@ public final class GhostBall extends Ball {
 		super(vaus,level);
 		// TODO Auto-generated constructor stub
 	}
-
+	public Ball copy() {
+		Ball returnBall = new GhostBall(vaus, level);
+		returnBall.setX(x);
+		returnBall.setY(y);
+		return returnBall;
+	}
 }

@@ -3,7 +3,7 @@ package ch.unisi.inf.pfii.teamblue.jark.model.bonus;
 import java.awt.Image;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
-import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
+import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
 /**
@@ -54,7 +54,7 @@ public abstract class Bonus implements Constants {
 
 	private void checkVausCollision() {
 		if (y + BRICK_HEIGHT > VAUS_Y 
-				&& y + BRICK_HEIGHT < VAUS_Y + 5
+				&& y + BRICK_HEIGHT < VAUS_Y + BRICK_HEIGHT
 				&& x + BRICK_WIDTH >= vaus.getX()
 				&& x <= vaus.getX() + VAUS_WIDTH) {
 			taken = true;
@@ -75,8 +75,6 @@ public abstract class Bonus implements Constants {
 		return taken;
 	}
 	
-	//public abstract Vaus getNewVaus();
-	//public abstract Ball getNewBall();
-	//public abstract void apply();
+	public abstract void apply(Game game);
 	public abstract Image getImage();
 }

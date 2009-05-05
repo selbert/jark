@@ -15,12 +15,12 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
  */
 
 public abstract class Ball implements Constants {
-	private float x;
-	private float y;
+	protected float x;
+	protected float y;
 	private float speedX;
 	private float speedY;
-	private Vaus vaus;
-	private Level level;
+	protected Vaus vaus;
+	protected Level level;
 	
 	private boolean dead;
 	
@@ -89,7 +89,7 @@ public abstract class Ball implements Constants {
 	private boolean bounceVaus(final float newX, final float newY) {
 		if (newY + (BALL_RADIUS*2) > VAUS_Y-1 && newY + (BALL_RADIUS*2) < VAUS_Y+(BALL_RADIUS*2) && newX + (BALL_RADIUS*2) >= vaus.getX() && newX <= vaus.getX() + VAUS_WIDTH) {
 			speedY = -speedY;
-			speedX = ((newX + BALL_RADIUS) - (vaus.getX() + (VAUS_WIDTH / 2))) / 10;
+			speedX = ((newX + BALL_RADIUS) - (vaus.getX() + (VAUS_WIDTH / 2))) / (VAUS_WIDTH / 10);
 			return true;
 		}
 		return false;
@@ -155,8 +155,26 @@ public abstract class Ball implements Constants {
 
 	}
 	
+	public abstract Ball copy();
+	
+	
+	protected void setY(final float y) {
+		this.y = y;
+	}
+
+	protected void setX(final float x) {
+		this.x = x;
+	}
+
 	public boolean isDead() {
 		return dead;
+	}
+	
+	public void setVaus(Vaus vaus) {
+		this.vaus = vaus;
+	}
+	public void setLevel(Level level) {
+		this.level = level;
 	}
 	
 	public final float getX() {
@@ -165,8 +183,16 @@ public abstract class Ball implements Constants {
 	public final float getY() {
 		return y;
 	}
+	public final float getSpeedX() {
+		return speedX;
+	}
 	
 	public final String toString() {
 		return x + " " + y + " " + speedX + " " + speedY;
 	}
+
+	public float getSpeedY() {
+		return speedY;
+	}
+	
 }

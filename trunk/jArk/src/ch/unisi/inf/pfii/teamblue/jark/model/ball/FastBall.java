@@ -16,5 +16,10 @@ public final class FastBall extends Ball {
 		super(vaus,level);
 		// TODO Auto-generated constructor stub
 	}
-
+	public Ball copy() {
+		Ball returnBall = new FastBall(vaus, level);
+		returnBall.setX(x);
+		returnBall.setY(y);
+		return returnBall;
+	}
 }

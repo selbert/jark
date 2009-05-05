@@ -16,5 +16,10 @@ public final class UltraBall extends Ball {
 		super(vaus,level);
 		// TODO Auto-generated constructor stub
 	}
-
+	public Ball copy() {
+		Ball returnBall = new UltraBall(vaus, level);
+		returnBall.setX(x);
+		returnBall.setY(y);
+		return returnBall;
+	}
 }

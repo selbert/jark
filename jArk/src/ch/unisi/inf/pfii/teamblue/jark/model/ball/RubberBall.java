@@ -64,7 +64,7 @@ public final class RubberBall extends Ball {
 		y = newY;
 	}
 	
-	private boolean bounceX(final float newX) {
+	protected boolean bounceX(final float newX) {
 		if ((level.brickHasBallInside(newX, y)) 
 			|| (level.brickHasBallInside(newX, y + (2*BALL_RADIUS)))
 			|| (level.brickHasBallInside(newX + (2*BALL_RADIUS), y))
@@ -76,7 +76,7 @@ public final class RubberBall extends Ball {
 	}
 	
 	
-	private boolean bounceY(final float newY) {
+	protected boolean bounceY(final float newY) {
 		if ((level.brickHasBallInside(x, newY))
 			|| (level.brickHasBallInside(x + (2*BALL_RADIUS), newY))
 			|| (level.brickHasBallInside(x, newY + (2*BALL_RADIUS)))

@@ -64,7 +64,7 @@ public final class ExplosiveBall extends Ball {
 		y = newY;
 	}
 	
-	private boolean bounceX(final float newX) {
+	protected boolean bounceX(final float newX) {
 		if (level.brickHasBallInside(newX, y)) {
 			speedX = -speedX;
 			if(level.brickHasBallInside(newX, y + (2*BALL_RADIUS))) {
@@ -94,7 +94,7 @@ public final class ExplosiveBall extends Ball {
 	}
 	
 	
-	private boolean bounceY(final float newY) {
+	protected boolean bounceY(final float newY) {
 		if (level.brickHasBallInside(x, newY)) {
 			speedY = -speedY;
 			if (level.brickHasBallInside(x + (2*BALL_RADIUS), newY)) {

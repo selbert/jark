@@ -73,7 +73,7 @@ public final class UltraBall extends Ball {
 		return false;
 	}
 	
-	private boolean bounceX(final float newX) {
+	protected boolean bounceX(final float newX) {
 		if (level.brickHasBallInside(newX, y)) {
 			if(level.brickHasBallInside(newX, y + (2*BALL_RADIUS))) {
 				level.removeBrick(newX, y + BALL_RADIUS);
@@ -99,7 +99,7 @@ public final class UltraBall extends Ball {
 	}
 	
 	
-	private boolean bounceY(final float newY) {
+	protected boolean bounceY(final float newY) {
 		if (level.brickHasBallInside(x, newY)) {
 			if (level.brickHasBallInside(x + (2*BALL_RADIUS), newY)) {
 				level.removeBrick(x + BALL_RADIUS, newY);

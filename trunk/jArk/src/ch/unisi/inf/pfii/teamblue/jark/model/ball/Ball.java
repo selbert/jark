@@ -17,12 +17,12 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 public abstract class Ball implements Constants {
 	protected float x;
 	protected float y;
-	private float speedX;
-	private float speedY;
+	protected float speedX;
+	protected float speedY;
 	protected Vaus vaus;
 	protected Level level;
 	
-	private boolean dead;
+	protected boolean dead;
 	
 	public Ball(Vaus vaus, Level level) {
 		this.vaus = vaus;
@@ -40,14 +40,18 @@ public abstract class Ball implements Constants {
 	public final void setSpeedY(final float speedY) {
 		this.speedY = speedY;
 	}
+	
+	
+	
 
+	public abstract void move();
 	
 	/** 
 	 * Moves a ball
 	 */
-	public void move() {
-		float newX = x+speedX;
-		float newY = y+speedY;
+	public void move(final float speedMod) {
+		float newX = x+(speedX * speedMod);
+		float newY = y+(speedY * speedMod);
 		
 
 		if (newY >= GAME_HEIGHT) {
@@ -86,7 +90,7 @@ public abstract class Ball implements Constants {
 		y = newY;
 	}
 	
-	private boolean bounceVaus(final float newX, final float newY) {
+	protected boolean bounceVaus(final float newX, final float newY) {
 		if (newY + (BALL_RADIUS*2) > VAUS_Y-1 && newY + (BALL_RADIUS*2) < VAUS_Y+(BALL_RADIUS*2) && newX + (BALL_RADIUS*2) >= vaus.getX() && newX <= vaus.getX() + VAUS_WIDTH) {
 			speedY = -speedY;
 			speedX = ((newX + BALL_RADIUS) - (vaus.getX() + (VAUS_WIDTH / 2))) / (VAUS_WIDTH / 10);
@@ -158,11 +162,11 @@ public abstract class Ball implements Constants {
 	public abstract Ball copy();
 	
 	
-	protected void setY(final float y) {
+	public void setY(final float y) {
 		this.y = y;
 	}
 
-	protected void setX(final float x) {
+	public void setX(final float x) {
 		this.x = x;
 	}
 
@@ -170,11 +174,11 @@ public abstract class Ball implements Constants {
 		return dead;
 	}
 	
-	public void setVaus(Vaus vaus) {
-		this.vaus = vaus;
+	public Vaus getVaus() {
+		return vaus;
 	}
-	public void setLevel(Level level) {
-		this.level = level;
+	public Level getLevel() {
+		return level;
 	}
 	
 	public final float getX() {

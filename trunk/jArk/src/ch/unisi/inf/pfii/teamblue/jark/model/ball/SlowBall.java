@@ -22,4 +22,8 @@ public final class SlowBall extends Ball {
 		returnBall.setY(y);
 		return returnBall;
 	}
+	
+	public void move() {
+		super.move((float) 0.5);
+	}
 }

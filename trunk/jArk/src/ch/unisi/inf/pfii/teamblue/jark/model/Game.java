@@ -79,6 +79,7 @@ public class Game implements Constants {
 			gamePanel.requestFocusInWindow();
 			tick.start();
 		} else {
+			tick.stop();
 			running = false;
 		}
 	}

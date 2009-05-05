@@ -1,6 +1,7 @@
 package ch.unisi.inf.pfii.teamblue.jark.implementation;
 
 public interface Constants {
+	int TICKS_PER_SECOND = 10;
 	int GAME_WIDTH = 798;
 	int GAME_HEIGHT =  600;
 	int BALL_RADIUS = 8;

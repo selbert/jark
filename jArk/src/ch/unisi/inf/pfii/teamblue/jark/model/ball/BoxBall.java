@@ -28,7 +28,7 @@ public final class BoxBall extends Ball {
 		float newY = y + speedY;
 		
 
-		if (newY + (2*BALL_RADIUS) >= GAME_HEIGHT) {
+		if (newY + (2*BALL_RADIUS) >= VAUS_Y + VAUS_HEIGHT) {
 			speedY = -speedY;
 			return;
 		}

@@ -19,7 +19,7 @@ public enum Bonuses {
 	RESET (13, 3, new ResetVausBonus()),
 	FALSE (14, 2, new FalseBallsBonus()),
 	REM_LIFE (15, 1, new RemoveLifeBonus()),
-	ADD_LIFE (16, 2, new AddLifeBonus());
+	ADD_LIFE (16, 1, new AddLifeBonus());
 	
 	private final int probability;
 	private final int number;

@@ -46,6 +46,8 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener,
 	private Image ballz;
 	private Image vausz;
 
+	private boolean drawBox;
+	
 	public GamePanel() {
 		//to hide the cursor
 		int[] pixels = new int[16 * 16];
@@ -98,8 +100,16 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener,
 		}
 
 		g2d.drawImage(vausz, vaus.getX(), VAUS_Y, VAUS_WIDTH, VAUS_HEIGHT, this);
+		
+		if (drawBox) {
+			g2d.fillRect(0, VAUS_Y+VAUS_HEIGHT+1, GAME_WIDTH, 3);
+		}
 	}
 
+	public void drawBoxLine() {
+		drawBox = true;
+	}
+	
 	public void mouseMoved(MouseEvent e) {
 		vaus.move(e.getX() - VAUS_WIDTH / 2);
 	}

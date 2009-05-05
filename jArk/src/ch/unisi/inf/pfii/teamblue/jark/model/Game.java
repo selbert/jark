@@ -144,4 +144,7 @@ public class Game implements Constants {
 		return infoPanel;
 	}
 	
+	public GamePanel getGamePanel() {
+		return gamePanel;
+	}
 }

@@ -36,5 +36,7 @@ public final class TheBoxBonus extends Bonus {
 			
 			balls.set(i,newBall);
 		}
+		
+		game.getGamePanel().drawBoxLine();
 	}
 }

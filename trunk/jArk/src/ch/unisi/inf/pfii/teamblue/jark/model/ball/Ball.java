@@ -41,9 +41,6 @@ public abstract class Ball implements Constants {
 		this.speedY = speedY;
 	}
 	
-	
-	
-
 	public abstract void move();
 	
 	/** 

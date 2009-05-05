@@ -14,6 +14,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.DefaultVaus;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 import ch.unisi.inf.pfii.teamblue.jark.view.GamePanel;
+import ch.unisi.inf.pfii.teamblue.jark.view.InfoPanel;
 
 /**
  * 
@@ -25,7 +26,8 @@ import ch.unisi.inf.pfii.teamblue.jark.view.GamePanel;
 public final class Game implements Constants {
 
 	private GamePanel gamePanel;
-
+	private InfoPanel infoPanel;
+	
 	private ArrayList<Ball> balls;
 	private ArrayList<Bonus> freeBonuses;
 
@@ -37,9 +39,10 @@ public final class Game implements Constants {
 	private boolean running;
 	private Random rnd;
 	
-	public Game(GamePanel gamePanel) {
+	public Game(GamePanel gamePanel, InfoPanel infoPanel) {
 		rnd = new Random();
 		this.gamePanel = gamePanel;
+		this.infoPanel = infoPanel;
 
 		balls = new ArrayList<Ball>();
 		freeBonuses = new ArrayList<Bonus>();
@@ -57,7 +60,7 @@ public final class Game implements Constants {
 		gamePanel.setBalls(balls);
 		gamePanel.setBonuses(freeBonuses);
 		gamePanel.setVaus(vaus);
-		
+		infoPanel.setLives(player.getLives());
 		ex = Executors.newFixedThreadPool(1);
 		running = false;
 
@@ -142,6 +145,10 @@ public final class Game implements Constants {
 	}
 	public ArrayList<Ball> getBalls() {
 		return balls;
+	}
+
+	public InfoPanel getInfoPanel() {
+		return infoPanel;
 	}
 	
 }

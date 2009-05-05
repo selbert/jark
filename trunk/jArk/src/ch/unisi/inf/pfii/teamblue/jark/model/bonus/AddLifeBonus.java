@@ -21,5 +21,6 @@ public final class AddLifeBonus extends Bonus {
 	
 	public void apply(Game game) {
 		game.getPlayer().incrementLives();
+		game.getInfoPanel().setLives(game.getPlayer().getLives());
 	}
 }

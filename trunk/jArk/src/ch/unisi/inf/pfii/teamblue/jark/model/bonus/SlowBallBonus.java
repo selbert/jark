@@ -20,7 +20,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.ball.SlowBall;
 public final class SlowBallBonus extends Bonus {
 	@Override
 	public Image getImage() {
-		return new ImageIcon(getClass().getResource("../../view/images/bonuses/malus_slowball.png")).getImage();
+		return new ImageIcon(getClass().getResource("../../view/images/bonuses/neutral_slowball.png")).getImage();
 	}
 	@Override
 	public void apply(Game game) {

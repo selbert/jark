@@ -20,10 +20,10 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
  *
  */
 
-public final class ResetVausBonus extends Bonus {
+public final class ResetStatusBonus extends Bonus {
 	@Override
 	public Image getImage() {
-		return new ImageIcon(getClass().getResource("../../view/images/bonuses/bonus_doubleball.png")).getImage();
+		return new ImageIcon(getClass().getResource("../../view/images/bonuses/neutral_resetstatus.png")).getImage();
 	}
 	@Override
 	public void apply(Game game) {

@@ -34,10 +34,9 @@ public final class ExplosiveBallBonus extends Bonus {
 			newBall.setX(balls.get(i).getX());
 			newBall.setY(balls.get(i).getY());
 			
-			game.addVausListener(newBall);
-			game.removeVausListener(balls.get(i));
+			game.replaceBall(balls.get(i), newBall);
 			
-			balls.set(i,newBall);
+			
 		}
 	}
 }

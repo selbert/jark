@@ -35,10 +35,7 @@ public final class FastBallBonus extends Bonus {
 			newBall.setX(balls.get(i).getX());
 			newBall.setY(balls.get(i).getY());
 			
-			game.addVausListener(newBall);
-			game.removeVausListener(balls.get(i));
-			
-			balls.set(i,newBall);
+			game.replaceBall(balls.get(i), newBall);
 		}
 	}
 }

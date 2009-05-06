@@ -57,7 +57,7 @@ public abstract class Bonus implements Constants, VausListener {
 		if (y + BRICK_HEIGHT > VAUS_Y 
 				&& y + BRICK_HEIGHT < VAUS_Y + BRICK_HEIGHT
 				&& x + BRICK_WIDTH >= vaus.getX()
-				&& x <= vaus.getX() + VAUS_WIDTH) {
+				&& x <= vaus.getX() + vaus.getWidth()) {
 			taken = true;
 		}
 	}

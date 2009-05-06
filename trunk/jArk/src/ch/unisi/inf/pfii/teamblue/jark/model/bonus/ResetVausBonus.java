@@ -40,6 +40,6 @@ public final class ResetVausBonus extends Bonus {
 			game.replaceBall(balls.get(i), newBall);
 		}
 		Vaus newVaus = new DefaultVaus(game.getVaus().getX());
-		game.setVaus(newVaus);
+		game.setVaus(newVaus); 
 	}
 }

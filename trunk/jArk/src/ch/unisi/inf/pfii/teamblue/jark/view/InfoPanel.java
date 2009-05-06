@@ -21,7 +21,7 @@ public class InfoPanel extends JPanel {
 
 	private final JLabel lblLives;
 	
-	public InfoPanel() {
+	public InfoPanel(Game game) {
 		
 		setBorder(BorderFactory.createLineBorder(Color.black));
 

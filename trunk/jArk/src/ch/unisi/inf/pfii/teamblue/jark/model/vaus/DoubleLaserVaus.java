@@ -17,6 +17,7 @@ public final class DoubleLaserVaus extends Vaus {
 	public DoubleLaserVaus(int x) {
 		super(x);
 	}
+	@Override
 	public Image getImage() {
 		return new ImageIcon(getClass().getResource("../../view/images/vauses/defaultVaus.png")).getImage();
 	}

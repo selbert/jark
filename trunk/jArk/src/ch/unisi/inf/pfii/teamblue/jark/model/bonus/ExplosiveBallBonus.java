@@ -18,9 +18,11 @@ import ch.unisi.inf.pfii.teamblue.jark.model.ball.ExplosiveBall;
  */
 
 public final class ExplosiveBallBonus extends Bonus {
+	@Override
 	public Image getImage() {
 		return new ImageIcon(getClass().getResource("../../view/images/bonuses/bonus_explosionball.png")).getImage();
 	}
+	@Override
 	public void apply(Game game) {
 		ArrayList<Ball> balls = game.getBalls();
 		int numberOfBalls = balls.size();

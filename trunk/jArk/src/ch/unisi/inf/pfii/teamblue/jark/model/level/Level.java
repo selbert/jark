@@ -1,7 +1,6 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.level;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
@@ -183,5 +182,8 @@ public final class Level implements Constants {
 		return bricks;
 	}
 	
+	public void setVaus(Vaus vaus) {
+		this.vaus = vaus;
+	}
 }
 

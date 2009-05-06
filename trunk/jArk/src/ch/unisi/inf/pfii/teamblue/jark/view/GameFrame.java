@@ -8,9 +8,10 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 
 /**
  * 
@@ -25,14 +26,7 @@ public class GameFrame extends JFrame {
 
 	private MainPanel mainPanel;
 
-	public GameFrame() {
-		makeFrame();
-	}
-
-	/**
-	 * Create the main Window
-	 */
-	private void makeFrame() {
+	public GameFrame(Game game) {
 		setTitle("[ jArk ] [ an Arkanoid implementation ]");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -40,7 +34,7 @@ public class GameFrame extends JFrame {
 		((JPanel) getContentPane()).setBorder(new EmptyBorder(6, 6, 6, 6));
 
 		makeMenu();
-		mainPanel = new MainPanel();
+		mainPanel = new MainPanel(game);
 		add(mainPanel);
 
 		// pack the frame together

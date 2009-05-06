@@ -10,7 +10,6 @@ public abstract class Utils implements Constants {
 	
 	/**
 	 * Converts pixel coordinates into bricks coordinates. 
-	 * Public for testing purposes.
 	 * 
 	 * @param x pixels from the left
 	 * @param y pixels from the top
@@ -22,6 +21,13 @@ public abstract class Utils implements Constants {
 		return new int[] {posx, posy};
 	}
 	
+	/**
+	 * Converts brick coordinates into pixel coordinates. 
+	 * 
+	 * @param x bricks from the left
+	 * @param y bricks from the top
+	 * @return
+	 */
 	public final static int[] getPixelPosition(final int x, final int y) {
 		int posy = y * (int)((float)FIELD_HEIGHT / (float)FIELD_ROWS);
 		int posx = x * (int)((float)FIELD_WIDTH / (float)FIELD_COLUMNS);

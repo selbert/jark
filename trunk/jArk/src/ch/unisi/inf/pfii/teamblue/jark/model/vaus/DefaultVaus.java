@@ -18,6 +18,7 @@ public final class DefaultVaus extends Vaus {
 		super(x);
 	}
 	
+	@Override
 	public Image getImage() {
 		return new ImageIcon(getClass().getResource("../../view/images/vauses/defaultVaus.png")).getImage();
 	}

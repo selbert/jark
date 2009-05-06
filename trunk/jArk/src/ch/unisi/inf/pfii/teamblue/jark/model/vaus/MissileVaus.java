@@ -17,6 +17,7 @@ public final class MissileVaus extends Vaus {
 	public MissileVaus(int x) {
 		super(x);
 	}
+	@Override
 	public Image getImage() {
 		return new ImageIcon(getClass().getResource("../../view/images/vauses/defaultVaus.png")).getImage();
 	}

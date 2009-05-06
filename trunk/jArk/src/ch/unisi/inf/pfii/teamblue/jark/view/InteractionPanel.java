@@ -40,6 +40,7 @@ public class InteractionPanel extends JPanel {
 		startButton.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
 				game.addBall();
+				gamePanel.requestFocusInWindow();
 			}
 		});
 
@@ -47,7 +48,8 @@ public class InteractionPanel extends JPanel {
 		stopButton = new JButton("Play/Pause");
 		stopButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				game.play();
+				gamePanel.play();
+				gamePanel.requestFocusInWindow();
 			}
 		});
 

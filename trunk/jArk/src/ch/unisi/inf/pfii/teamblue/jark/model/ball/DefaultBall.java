@@ -9,6 +9,7 @@ public final class DefaultBall extends Ball {
 		super(vaus,level);
 	}
 	
+	@Override
 	public Ball copy() {
 		Ball returnBall = new DefaultBall(vaus, level);
 		returnBall.setX(x);
@@ -16,8 +17,9 @@ public final class DefaultBall extends Ball {
 		return returnBall;
 	}
 	
+	@Override
 	public void move() {
-		super.move((float) 1);
+		super.move(1);
 	}
 
 }

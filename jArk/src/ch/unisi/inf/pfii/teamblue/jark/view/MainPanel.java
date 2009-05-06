@@ -21,15 +21,15 @@ public class MainPanel extends JPanel {
 	private final InfoPanel infoPanel;
 	private final InteractionPanel interactionPanel;
 
-	private final Game game;
+	//private final Game game;
 
-	public MainPanel() {
+	public MainPanel(Game game) {
 
 		setLayout(new BorderLayout(6, 6));
 
-		gamePanel = new GamePanel();
-		infoPanel = new InfoPanel();
-		game = new Game(gamePanel, infoPanel);
+		gamePanel = new GamePanel(game);
+		infoPanel = new InfoPanel(game);
+		//game = new Game(gamePanel, infoPanel);
 		
 		interactionPanel = new InteractionPanel(gamePanel, game);
 

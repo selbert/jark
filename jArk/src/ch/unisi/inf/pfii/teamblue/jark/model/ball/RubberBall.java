@@ -16,6 +16,7 @@ public final class RubberBall extends Ball {
 		super(vaus,level);
 		// TODO Auto-generated constructor stub
 	}
+	@Override
 	public Ball copy() {
 		Ball returnBall = new RubberBall(vaus, level);
 		returnBall.setX(x);
@@ -23,6 +24,7 @@ public final class RubberBall extends Ball {
 		return returnBall;
 	}
 	
+	@Override
 	public void move() {
 		float newX = x+speedX;
 		float newY = y+speedY;
@@ -64,6 +66,7 @@ public final class RubberBall extends Ball {
 		y = newY;
 	}
 	
+	@Override
 	protected boolean bounceX(final float newX) {
 		if ((level.brickHasBallInside(newX, y)) 
 			|| (level.brickHasBallInside(newX, y + (2*BALL_RADIUS)))
@@ -76,6 +79,7 @@ public final class RubberBall extends Ball {
 	}
 	
 	
+	@Override
 	protected boolean bounceY(final float newY) {
 		if ((level.brickHasBallInside(x, newY))
 			|| (level.brickHasBallInside(x + (2*BALL_RADIUS), newY))

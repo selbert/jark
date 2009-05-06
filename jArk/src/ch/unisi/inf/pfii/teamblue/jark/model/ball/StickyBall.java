@@ -16,13 +16,15 @@ public final class StickyBall extends Ball {
 		super(vaus,level);
 		// TODO Auto-generated constructor stub
 	}
+	@Override
 	public Ball copy() {
 		Ball returnBall = new StickyBall(vaus, level);
 		returnBall.setX(x);
 		returnBall.setY(y);
 		return returnBall;
 	}
+	@Override
 	public void move() {
-		super.move((float) 1);
+		super.move(1);
 	}
 }

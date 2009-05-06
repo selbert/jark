@@ -15,9 +15,11 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Game;
  */
 
 public final class MissileVausBonus extends Bonus {
+	@Override
 	public Image getImage() {
 		return new ImageIcon(getClass().getResource("../../view/images/bonuses/bonus_doubleball.png")).getImage();
 	}
+	@Override
 	public void apply(Game game) {
 		
 	}

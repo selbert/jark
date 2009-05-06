@@ -1,7 +1,6 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.ball;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
-import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.*;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
@@ -27,8 +26,8 @@ public abstract class Ball implements Constants {
 	public Ball(Vaus vaus, Level level) {
 		this.vaus = vaus;
 		this.level = level;
-		x = (float)vaus.getX() + ((float)vaus.getWidth() / 2) - (float)BALL_RADIUS;
-		y = (float)(VAUS_Y - 2*BALL_RADIUS);
+		x = vaus.getX() + ((float)vaus.getWidth() / 2) - BALL_RADIUS;
+		y = (VAUS_Y - 2*BALL_RADIUS);
 		speedX = 0;
 		speedY = 0;
 	}
@@ -174,6 +173,9 @@ public abstract class Ball implements Constants {
 	public Vaus getVaus() {
 		return vaus;
 	}
+	public void setVaus(Vaus vaus) {
+		this.vaus = vaus;
+	}
 	public Level getLevel() {
 		return level;
 	}
@@ -188,6 +190,7 @@ public abstract class Ball implements Constants {
 		return speedX;
 	}
 	
+	@Override
 	public final String toString() {
 		return x + " " + y + " " + speedX + " " + speedY;
 	}

@@ -15,6 +15,7 @@ public final class BoxBall extends Ball {
 	public BoxBall(final Vaus vaus, final Level level) {
 		super(vaus,level);
 	}
+	@Override
 	public Ball copy() {
 		Ball returnBall = new BoxBall(vaus, level);
 		returnBall.setX(x);
@@ -22,6 +23,7 @@ public final class BoxBall extends Ball {
 		return returnBall;
 	}
 	
+	@Override
 	public void move() {
 		float newX = x + speedX;
 		float newY = y + speedY;

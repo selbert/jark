@@ -8,6 +8,8 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -18,8 +20,10 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
+import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.Brick;
@@ -46,8 +50,27 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener,
 	private Image ballz;
 
 	private boolean drawBox;
+	private boolean running;
 	
-	public GamePanel() {
+	private Timer ticker; 
+	
+	public GamePanel(final Game game) {
+		
+		ActionListener li = new ActionListener() {
+            public void actionPerformed(final ActionEvent ev) {
+            	game.moveBalls();
+                game.moveBonuses();
+        		game.getVaus().move();
+        		repaint();
+            }
+        };
+        ticker = new Timer(TICKS_PER_SECOND, li);
+        
+		bricks = game.getBricks();
+		balls = game.getBalls();
+		bonuses = game.getBonuses();
+		vaus = game.getVaus();
+		
 		//to hide the cursor
 		int[] pixels = new int[16 * 16];
 		Image image = Toolkit.getDefaultToolkit().createImage(new MemoryImageSource(16, 16, pixels, 0, 16));
@@ -67,6 +90,7 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener,
 		addMouseMotionListener(this);
 	}
 
+	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
@@ -91,8 +115,8 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener,
 		}
 		
 		for (Bonus bonus : bonuses) {
-			int x = (int)bonus.getX();
-			int y = (int)bonus.getY();
+			int x = bonus.getX();
+			int y = bonus.getY();
 			g2d.drawImage(bonus.getImage(), x, y, this);
 		}
 
@@ -103,6 +127,16 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener,
 		}
 	}
 
+	public void play() {
+		if (!running) {
+			running = true;
+			ticker.start();
+		} else {
+			ticker.stop();
+			running = false;
+		}
+	}
+	
 	public void drawBoxLine() {
 		drawBox = true;
 	}
@@ -115,22 +149,6 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener,
 	}
 
 	public void mouseDragged(MouseEvent e) {
-	}
-
-	public void setBonuses(ArrayList<Bonus> bonuses) {
-		this.bonuses = bonuses;
-	}
-	
-	public void setBricks(Brick[][] bricks) {
-		this.bricks = bricks;
-	}
-
-	public void setBalls(ArrayList<Ball> balls) {
-		this.balls = balls;
-	}
-
-	public void setVaus(Vaus vaus) {
-		this.vaus = vaus;
 	}
 
 	public void keyPressed(KeyEvent e) {

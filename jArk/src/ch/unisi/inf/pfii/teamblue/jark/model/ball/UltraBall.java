@@ -16,6 +16,7 @@ public final class UltraBall extends Ball {
 		super(vaus,level);
 		// TODO Auto-generated constructor stub
 	}
+	@Override
 	public Ball copy() {
 		Ball returnBall = new UltraBall(vaus, level);
 		returnBall.setX(x);
@@ -23,6 +24,7 @@ public final class UltraBall extends Ball {
 		return returnBall;
 	}
 	
+	@Override
 	public void move() {
 		float newX = x + speedX;
 		float newY = y + speedY;
@@ -64,6 +66,7 @@ public final class UltraBall extends Ball {
 		y = newY;
 	}
 	
+	@Override
 	protected boolean bounceVaus(final float newX, final float newY) {
 		if (newY + (BALL_RADIUS*2) > VAUS_Y-1 && newY + (BALL_RADIUS*2) < VAUS_Y+(BALL_RADIUS*2) && newX + (BALL_RADIUS*2) >= vaus.getX() && newX <= vaus.getX() + vaus.getWidth()) {
 			speedY = -speedY;
@@ -73,6 +76,7 @@ public final class UltraBall extends Ball {
 		return false;
 	}
 	
+	@Override
 	protected boolean bounceX(final float newX) {
 		if (level.brickHasBallInside(newX, y)) {
 			if(level.brickHasBallInside(newX, y + (2*BALL_RADIUS))) {
@@ -99,6 +103,7 @@ public final class UltraBall extends Ball {
 	}
 	
 	
+	@Override
 	protected boolean bounceY(final float newY) {
 		if (level.brickHasBallInside(x, newY)) {
 			if (level.brickHasBallInside(x + (2*BALL_RADIUS), newY)) {

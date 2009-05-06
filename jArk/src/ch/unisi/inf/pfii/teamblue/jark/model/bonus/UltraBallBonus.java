@@ -7,7 +7,6 @@ import javax.swing.ImageIcon;
 
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
-import ch.unisi.inf.pfii.teamblue.jark.model.ball.ExplosiveBall;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.UltraBall;
 
 
@@ -19,9 +18,11 @@ import ch.unisi.inf.pfii.teamblue.jark.model.ball.UltraBall;
  */
 
 public final class UltraBallBonus extends Bonus {
+	@Override
 	public Image getImage() {
 		return new ImageIcon(getClass().getResource("../../view/images/bonuses/bonus_ultraball.png")).getImage();
 	}
+	@Override
 	public void apply(Game game) {
 		ArrayList<Ball> balls = game.getBalls();
 		int numberOfBalls = balls.size();

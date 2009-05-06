@@ -8,7 +8,6 @@ import javax.swing.ImageIcon;
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.BoxBall;
-import ch.unisi.inf.pfii.teamblue.jark.model.ball.FastBall;
 
 
 /**
@@ -19,10 +18,12 @@ import ch.unisi.inf.pfii.teamblue.jark.model.ball.FastBall;
  */
 
 public final class TheBoxBonus extends Bonus {
+	@Override
 	public Image getImage() {
 		return new ImageIcon(getClass().getResource("../../view/images/bonuses/bonus_box.png")).getImage();
 	}
 	
+	@Override
 	public void apply(Game game) {
 		ArrayList<Ball> balls = game.getBalls();
 		int numberOfBalls = balls.size();
@@ -37,6 +38,6 @@ public final class TheBoxBonus extends Bonus {
 			balls.set(i,newBall);
 		}
 		
-		game.getGamePanel().drawBoxLine();
+		//game.getGamePanel().drawBoxLine();
 	}
 }

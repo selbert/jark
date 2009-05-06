@@ -16,6 +16,7 @@ public final class FastBall extends Ball {
 		super(vaus,level);
 		// TODO Auto-generated constructor stub
 	}
+	@Override
 	public Ball copy() {
 		Ball returnBall = new FastBall(vaus, level);
 		returnBall.setX(x);
@@ -23,6 +24,7 @@ public final class FastBall extends Ball {
 		return returnBall;
 	}
 	
+	@Override
 	public void move() {
 		super.move((float) 1.5);
 	}

@@ -16,6 +16,7 @@ public final class ExplosiveBall extends Ball {
 		super(vaus,level);
 		// TODO Auto-generated constructor stub
 	}
+	@Override
 	public Ball copy() {
 		Ball returnBall = new ExplosiveBall(vaus, level);
 		returnBall.setX(x);
@@ -23,6 +24,7 @@ public final class ExplosiveBall extends Ball {
 		return returnBall;
 	}
 	
+	@Override
 	public void move() {
 		float newX = x+speedX;
 		float newY = y+speedY;
@@ -64,6 +66,7 @@ public final class ExplosiveBall extends Ball {
 		y = newY;
 	}
 	
+	@Override
 	protected boolean bounceX(final float newX) {
 		if (level.brickHasBallInside(newX, y)) {
 			speedX = -speedX;
@@ -94,6 +97,7 @@ public final class ExplosiveBall extends Ball {
 	}
 	
 	
+	@Override
 	protected boolean bounceY(final float newY) {
 		if (level.brickHasBallInside(x, newY)) {
 			speedY = -speedY;

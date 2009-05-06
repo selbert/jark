@@ -20,7 +20,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.ball.FastBall;
 public final class FastBallBonus extends Bonus {
 	@Override
 	public Image getImage() {
-		return new ImageIcon(getClass().getResource("../../view/images/bonuses/bonus_fastball.png")).getImage();
+		return new ImageIcon(getClass().getResource("../../view/images/bonuses/neutral_fastball.png")).getImage();
 	}
 	
 	@Override

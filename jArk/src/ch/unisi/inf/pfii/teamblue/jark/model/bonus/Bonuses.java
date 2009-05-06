@@ -16,7 +16,7 @@ public enum Bonuses {
 	FAST (10, 5, new FastBallBonus()),
 	SHORT (11, 5, new ShortVausBonus()),
 	FREEZE (12, 3, new RubberBallBonus()),
-	RESET (13, 3, new ResetVausBonus()),
+	RESET (13, 3, new ResetStatusBonus()),
 	FALSE (14, 2, new FalseBallsBonus()),
 	REM_LIFE (15, 1, new RemoveLifeBonus()),
 	ADD_LIFE (16, 1, new AddLifeBonus());

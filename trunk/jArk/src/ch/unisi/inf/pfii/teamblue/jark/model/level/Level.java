@@ -42,7 +42,8 @@ public final class Level implements Constants, VausListener {
 		}
 		this.freeBonuses = freeBonuses;
 		this.vaus = vaus;
-		createTestFieldLevel();
+		//createTestFieldLevel();
+		createLevel(0);
 		addBonus(numOfBonus);
 	}
 	
@@ -164,16 +165,27 @@ public final class Level implements Constants, VausListener {
 	public final void removeBrick(final float remX, final float remY) {
 		if (remX > 0 && remX < FIELD_WIDTH && remY < FIELD_HEIGHT && remY > 0) {
 			int[] pos = Utils.getFieldPosition((int)remX,(int)remY);
-			if (bricks[pos[1]][pos[0]] != null)  {
-				Bonus bonus = bricks[pos[1]][pos[0]].getBonus();
-				if (bonus != null) { 
-					int[] a = Utils.getPixelPosition(pos[0], pos[1]);
-					bonus.setX(a[0]);
-					bonus.setY(a[1]);
-					bonus.setVaus(vaus);
-					freeBonuses.add(bonus); 
+			final Brick brick = bricks[pos[1]][pos[0]];
+			final int lives = brick.getLives();
+			
+			if (brick != null)  {
+				if (lives == 1) {
+					Bonus bonus = bricks[pos[1]][pos[0]].getBonus();
+					if (bonus != null) { 
+						int[] a = Utils.getPixelPosition(pos[0], pos[1]);
+						bonus.setX(a[0]);
+						bonus.setY(a[1]);
+						bonus.setVaus(vaus);
+						freeBonuses.add(bonus); 
+					}
+					bricks[pos[1]][pos[0]] = null;
+				} else if (lives == 2) {
+					bricks[pos[1]][pos[0]] = new DefaultBrick();
+				} else if (lives == 3) {
+					bricks[pos[1]][pos[0]] = new ResistentBrick();
+				} else {
+					//persistent brick - do nothing
 				}
-				bricks[pos[1]][pos[0]] = null;
 			}
 		}
 	}

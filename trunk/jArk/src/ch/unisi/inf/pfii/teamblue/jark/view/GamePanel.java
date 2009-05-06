@@ -82,8 +82,7 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener,
 		setCursor(transparentCursor);
 		
 		//images
-		brick = new ImageIcon(getClass().getResource("images/brick.png")).getImage();
-		brick2 = new ImageIcon(getClass().getResource("images/brick2.png")).getImage();
+		//brick2 = new ImageIcon(getClass().getResource("images/brick.png")).getImage();
 		ballz = new ImageIcon(getClass().getResource("images/testball.png")).getImage();
 		
 		setBorder(BorderFactory.createLineBorder(Color.black));
@@ -101,12 +100,9 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener,
 
 		for (int j = 0; j < bricks.length; j++) {
 			for (int i = 0; i < bricks[j].length; i++) {
-				if (bricks[j][i] != null) {
-					if (bricks[j][i].getBonus() != null) {
-						g2d.drawImage(brick, 57 * i, j * 25, this);
-					} else {
-						g2d.drawImage(brick2, 57 * i, j * 25, this);
-					}
+				final Brick brick = bricks[j][i];
+				if (brick != null) {
+					g2d.drawImage(brick.getImage(), 57 * i, j * 25, this);
 				}
 			}
 		}

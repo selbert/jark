@@ -159,6 +159,11 @@ public class Game implements Constants {
 		}
 	}
 
+	public final void replaceBall(Ball oldBall, Ball newBall) {
+		removeVausListener(oldBall);
+		addVausListener(newBall);
+		balls.set(balls.indexOf(oldBall),newBall);
+	}
 	
 }
 

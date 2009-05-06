@@ -31,10 +31,7 @@ public final class UltraBallBonus extends Bonus {
 			Ball newBall = new UltraBall(balls.get(i).getVaus(), balls.get(i).getLevel());
 			newBall.setSpeedX(balls.get(i).getSpeedX());
 			newBall.setSpeedY(balls.get(i).getSpeedY());
-			newBall.setX(balls.get(i).getX());
-			newBall.setY(balls.get(i).getY());
-			
-			balls.set(i,newBall);
+			game.replaceBall(balls.get(i), newBall);
 		}
 	}
 }

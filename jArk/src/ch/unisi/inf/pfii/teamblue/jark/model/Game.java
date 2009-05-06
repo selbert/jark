@@ -89,8 +89,6 @@ public class Game implements Constants {
 		}
 	}
 
-
-
 	/**
 	 * Move all the free bonuses in the game
 	 */

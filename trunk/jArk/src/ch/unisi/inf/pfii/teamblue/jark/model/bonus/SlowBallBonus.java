@@ -33,7 +33,8 @@ public final class SlowBallBonus extends Bonus {
 			newBall.setSpeedY(balls.get(i).getSpeedY());
 			newBall.setX(balls.get(i).getX());
 			newBall.setY(balls.get(i).getY());
-			
+			game.addVausListener(newBall);
+			game.removeVausListener(balls.get(i));
 			balls.set(i,newBall);
 		}
 	}

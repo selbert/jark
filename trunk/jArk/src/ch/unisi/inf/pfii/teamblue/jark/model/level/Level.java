@@ -8,6 +8,7 @@ import java.util.Random;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Utils;
+import ch.unisi.inf.pfii.teamblue.jark.implementation.VausListener;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.*;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.*;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
@@ -19,7 +20,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
  * @version $LastChangedDate$
  * 
  */
-public final class Level implements Constants {
+public final class Level implements Constants, VausListener {
 	//bonus handling field
 	private String bonusDistString;
 	
@@ -131,7 +132,6 @@ public final class Level implements Constants {
 		for (int i = 0; i < numOfBonus; i++) {
 			int index = rnd.nextInt(listOfBricks.size());
 			Bonus bonus = createBonus();
-			bonus.setVaus(vaus);
 			listOfBricks.remove(index).setBonus(bonus);
 		}	
 	}
@@ -170,6 +170,7 @@ public final class Level implements Constants {
 					int[] a = Utils.getPixelPosition(pos[0], pos[1]);
 					bonus.setX(a[0]);
 					bonus.setY(a[1]);
+					bonus.setVaus(vaus);
 					freeBonuses.add(bonus); 
 				}
 				bricks[pos[1]][pos[0]] = null;
@@ -184,6 +185,9 @@ public final class Level implements Constants {
 	
 	public void setVaus(Vaus vaus) {
 		this.vaus = vaus;
+		for (Bonus b : freeBonuses) {
+			b.setVaus(vaus);
+		}
 	}
 }
 

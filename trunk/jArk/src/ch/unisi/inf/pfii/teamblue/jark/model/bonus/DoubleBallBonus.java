@@ -32,7 +32,7 @@ public final class DoubleBallBonus extends Bonus {
 			Ball newBall = balls.get(i).copy();
 			newBall.setSpeedX(-1 * balls.get(i).getSpeedX());
 			newBall.setSpeedY(balls.get(i).getSpeedY());
-			balls.add(newBall);
+			game.addBall(newBall);
 		}
 	}
 }

@@ -1,6 +1,7 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.ball;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
+import ch.unisi.inf.pfii.teamblue.jark.implementation.VausListener;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.*;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
@@ -13,7 +14,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
  * 
  */
 
-public abstract class Ball implements Constants {
+public abstract class Ball implements Constants, VausListener {
 	protected float x;
 	protected float y;
 	protected float speedX;

@@ -23,7 +23,7 @@ public final class LongVausBonus extends Bonus {
 	}
 	@Override
 	public void apply(Game game) {
-		//Vaus newVaus = new LongVaus(game.getVaus().getX());
-		//game.setVaus(newVaus);
+		Vaus newVaus = new LongVaus(game.getVaus().getX());
+		game.setVaus(newVaus);
 	}
 }

@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
+import ch.unisi.inf.pfii.teamblue.jark.implementation.VausListener;
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
@@ -38,7 +39,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
  * 
  */
 
-public class GamePanel extends JPanel implements Constants, MouseMotionListener, KeyListener {
+public class GamePanel extends JPanel implements Constants, MouseMotionListener, KeyListener, VausListener {
 
 	private Brick[][] bricks;
 	private ArrayList<Ball> balls;
@@ -65,6 +66,9 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener,
             }
         };
         ticker = new Timer(TICKS_PER_SECOND, li);
+        
+        //to listen to vaus changes
+        game.addVausListener(this);
         
 		bricks = game.getBricks();
 		balls = game.getBalls();
@@ -160,6 +164,11 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener,
 	}
 
 	public void keyTyped(KeyEvent e) {
+	}
+
+	public void setVaus(Vaus vaus) {
+		this.vaus = vaus;
+		
 	}
 
 }

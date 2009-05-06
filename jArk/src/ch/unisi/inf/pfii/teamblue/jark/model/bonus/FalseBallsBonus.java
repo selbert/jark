@@ -39,7 +39,7 @@ public final class FalseBallsBonus extends Bonus {
 				Ball newBall1 = balls.get(i).copy();
 				newBall1.setSpeedX(-1 * balls.get(i).getSpeedX());
 				newBall1.setSpeedY(balls.get(i).getSpeedY());
-				balls.add(newBall1);
+				game.addBall(newBall1);
 			}
 		}
 	}

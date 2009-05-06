@@ -39,7 +39,7 @@ public class InteractionPanel extends JPanel {
 		startButton = new JButton("Add Ball");
 		startButton.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
-				game.addBall();
+				game.addRandomBall();
 				gamePanel.requestFocusInWindow();
 			}
 		});

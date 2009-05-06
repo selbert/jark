@@ -19,7 +19,7 @@ public final class ShortVaus extends Vaus {
 	}
 	@Override
 	public Image getImage() {
-		return new ImageIcon(getClass().getResource("../../view/images/vauses/defaultVaus.png")).getImage();
+		return new ImageIcon(getClass().getResource("../../view/images/vauses/shortVaus.png")).getImage();
 	}
 	@Override
 	public int getWidth() {

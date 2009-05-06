@@ -8,6 +8,9 @@ import javax.swing.ImageIcon;
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.DefaultBall;
+import ch.unisi.inf.pfii.teamblue.jark.model.vaus.DefaultVaus;
+import ch.unisi.inf.pfii.teamblue.jark.model.vaus.LongVaus;
+import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
 
 /**
@@ -34,7 +37,9 @@ public final class ResetVausBonus extends Bonus {
 			newBall.setX(balls.get(i).getX());
 			newBall.setY(balls.get(i).getY());
 			
-			balls.set(i,newBall);
+			game.replaceBall(balls.get(i), newBall);
 		}
+		Vaus newVaus = new DefaultVaus(game.getVaus().getX());
+		game.setVaus(newVaus);
 	}
 }

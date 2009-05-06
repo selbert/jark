@@ -154,9 +154,6 @@ public class Game implements Constants {
 	}
 	
 	private final void fireVausChanged() {
-		for (Ball b : balls) {
-			b.setVaus(vaus);
-		}
 		for (VausListener l : vausListeners) {
 			l.setVaus(vaus);
 		}

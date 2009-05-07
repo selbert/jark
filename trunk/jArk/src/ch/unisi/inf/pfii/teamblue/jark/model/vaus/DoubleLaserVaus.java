@@ -2,6 +2,7 @@ package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
 
 
 /**
+ * The Vaus with double lasers
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
  * @version $LastChangedDate$
@@ -10,12 +11,13 @@ package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
 
 public final class DoubleLaserVaus extends Vaus {
 
-	public DoubleLaserVaus(int x) {
+	public DoubleLaserVaus(final int x) {
 		super(x);
 	}
 	@Override
-	public String toString() {
+	public final String toString() {
 		return "doubleLaserVaus";
 	}
-
+	//TODO all
+	
 }

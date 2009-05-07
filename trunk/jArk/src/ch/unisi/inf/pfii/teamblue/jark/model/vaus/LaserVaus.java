@@ -1,7 +1,7 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
 
-
 /**
+ * The Vaus with laser
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
  * @version $LastChangedDate$
@@ -10,13 +10,13 @@ package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
 
 public final class LaserVaus extends Vaus {
 
-	public LaserVaus(int x) {
+	public LaserVaus(final int x) {
 		super(x);
 	}
 	@Override
-	public String toString() {
+	public final String toString() {
 		return "laserVaus";
 	}
-	
+	//TODO all
 	
 }

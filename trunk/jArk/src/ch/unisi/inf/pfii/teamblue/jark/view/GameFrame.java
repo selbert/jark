@@ -14,7 +14,6 @@ import javax.swing.border.EmptyBorder;
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 
 /**
- * 
  * The main frame of the game
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
@@ -22,11 +21,11 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Game;
  * 
  */
 
-public class GameFrame extends JFrame {
+public final class GameFrame extends JFrame {
 
-	private MainPanel mainPanel;
+	private final MainPanel mainPanel;
 
-	public GameFrame(Game game) {
+	public GameFrame(final Game game) {
 		setTitle("[ jArk ] [ an Arkanoid implementation ]");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -48,7 +47,7 @@ public class GameFrame extends JFrame {
 	/**
 	 * Create the Menu
 	 */
-	private void makeMenu() {
+	private final void makeMenu() {
 		final JMenuBar menubar = new JMenuBar();
 
 		// menu file
@@ -77,11 +76,11 @@ public class GameFrame extends JFrame {
 		setJMenuBar(menubar);
 	}
 
-	private void startNewGame() {
-		//TODO
+	private final void startNewGame() {
+		//TODO ?
 	}
 
-	private void quitApp() {
+	private final void quitApp() {
 		System.exit(0);
 	}
 

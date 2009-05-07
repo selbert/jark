@@ -14,6 +14,7 @@ public interface Constants {
 	int GAME_HEIGHT = 600;
 	int BALL_RADIUS = 8;
 	int BONUS_SPEED = 2;
+	int VAUS_SPEED = 6;
 	int VAUS_Y = 560;
 	int VAUS_WIDTH = 100;
 	int LONGVAUS_WIDTH = 150;

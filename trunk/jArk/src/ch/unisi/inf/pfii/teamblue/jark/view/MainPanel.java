@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 
 /**
- * 
  * The main panel of the game
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
@@ -15,22 +14,18 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Game;
  * 
  */
 
-public class MainPanel extends JPanel {
+public final class MainPanel extends JPanel {
 
 	private final GamePanel gamePanel;
 	private final InfoPanel infoPanel;
 	private final InteractionPanel interactionPanel;
 
-	//private final Game game;
-
-	public MainPanel(Game game) {
-
+	public MainPanel(final Game game) {
 		setLayout(new BorderLayout(6, 6));
 
 		gamePanel = new GamePanel(game);
 		infoPanel = new InfoPanel(game);
-		//game = new Game(gamePanel, infoPanel);
-		
+
 		interactionPanel = new InteractionPanel(gamePanel, game);
 
 		add(gamePanel, BorderLayout.CENTER);

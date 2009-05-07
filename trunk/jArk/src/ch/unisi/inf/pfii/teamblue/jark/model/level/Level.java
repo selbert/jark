@@ -179,10 +179,8 @@ public final class Level implements Constants, VausListener {
 						freeBonuses.add(bonus); 
 					}
 					bricks[pos[1]][pos[0]] = null;
-				} else if (lives == 2) {
-					bricks[pos[1]][pos[0]] = new DefaultBrick();
-				} else if (lives == 3) {
-					bricks[pos[1]][pos[0]] = new ResistentBrick();
+				} else if (lives > 1) {
+					bricks[pos[1]][pos[0]].decrementLives();
 				} else {
 					//persistent brick - do nothing
 				}

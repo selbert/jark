@@ -1,6 +1,5 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
 
-import java.awt.Image;
 import java.awt.event.KeyEvent;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
@@ -22,7 +21,8 @@ public abstract class Vaus implements Constants {
 		this.posX = posX;
 	}
 	
-	public abstract Image getImage();
+	@Override
+	public abstract String toString();
 	
 	public void move(final int deltaX) {
 		if (deltaX <= 5) {

@@ -26,14 +26,14 @@ public class MainTest extends TestCase implements Constants {
 	public void testBallMove() {
 		ArrayList<Bonus> freeBonuses = new ArrayList<Bonus>();
 		Vaus vaus = new DefaultVaus(GAME_WIDTH - 20);
-		Level level = new Level(25, freeBonuses, vaus);
+		Level level = new Level(0, freeBonuses, vaus);
 		DefaultBall ball = new DefaultBall(vaus, level);
 		ball.setSpeedX(4);
 		ball.move();
 		ball.move();
-		assertTrue(ball.toString().equals("780.2 543.0 -3.8 -0.0"));
+		assertTrue(ball.toString().equals("778.2 543.0 -3.8 -0.0"));
 		ball.move();
-		assertTrue(ball.toString().equals("776.4 543.0 -3.8 -0.0"));
+		assertTrue(ball.toString().equals("774.4 543.0 -3.8 -0.0"));
 		vaus = new DefaultVaus(0);
 		ball = new DefaultBall(vaus, level);
 		ball.setSpeedX(-4);

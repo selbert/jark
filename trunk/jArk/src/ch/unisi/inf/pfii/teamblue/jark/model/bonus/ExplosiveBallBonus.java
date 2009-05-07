@@ -1,9 +1,6 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.bonus;
 
-import java.awt.Image;
 import java.util.ArrayList;
-
-import javax.swing.ImageIcon;
 
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
@@ -19,8 +16,8 @@ import ch.unisi.inf.pfii.teamblue.jark.model.ball.ExplosiveBall;
 
 public final class ExplosiveBallBonus extends Bonus {
 	@Override
-	public Image getImage() {
-		return new ImageIcon(getClass().getResource("../../view/images/bonuses/bonus_explosionball.png")).getImage();
+	public String toString() {
+		return "bonus_explosionball";
 	}
 	@Override
 	public void apply(Game game) {

@@ -23,6 +23,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 public final class Level implements Constants, VausListener {
 	//bonus handling field
 	private String bonusDistString;
+	private Random rnd;
 	
 	private Brick[][] bricks;
 	private ArrayList<Bonus> freeBonuses;
@@ -42,6 +43,7 @@ public final class Level implements Constants, VausListener {
 		}
 		this.freeBonuses = freeBonuses;
 		this.vaus = vaus;
+		rnd = new Random();
 		createTestFieldLevel();
 		//createLevel(0);
 		addBonus(numOfBonus);
@@ -108,7 +110,7 @@ public final class Level implements Constants, VausListener {
 	private final void createTestFieldLevel() {
 		for (int row = 4; row<FIELD_ROWS; row++) {
 			for (int col = 0; col<FIELD_COLUMNS; col++) {
-				bricks[row][col] = new DefaultBrick();
+				bricks[row][col] = Utils.intToBrick(rnd.nextInt(4));
 			}
 		}
 

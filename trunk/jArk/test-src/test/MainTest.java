@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import junit.framework.TestCase;
-import sun.tools.native2ascii.Main;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Utils;
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;

@@ -42,8 +42,8 @@ public final class Level implements Constants, VausListener {
 		}
 		this.freeBonuses = freeBonuses;
 		this.vaus = vaus;
-		//createTestFieldLevel();
-		createLevel(0);
+		createTestFieldLevel();
+		//createLevel(0);
 		addBonus(numOfBonus);
 	}
 	
@@ -166,9 +166,9 @@ public final class Level implements Constants, VausListener {
 		if (remX > 0 && remX < FIELD_WIDTH && remY < FIELD_HEIGHT && remY > 0) {
 			int[] pos = Utils.getFieldPosition((int)remX,(int)remY);
 			final Brick brick = bricks[pos[1]][pos[0]];
-			final int lives = brick.getLives();
 			
 			if (brick != null)  {
+				final int lives = brick.getLives();
 				if (lives == 1) {
 					Bonus bonus = bricks[pos[1]][pos[0]].getBonus();
 					if (bonus != null) { 

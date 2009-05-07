@@ -2,11 +2,10 @@ package ch.unisi.inf.pfii.teamblue.jark.model.ball;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.VausListener;
-import ch.unisi.inf.pfii.teamblue.jark.model.level.*;
+import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
 /**
- * 
  * This class contains information about a ball.
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
@@ -24,7 +23,7 @@ public abstract class Ball implements Constants, VausListener {
 	
 	protected boolean dead;
 	
-	public Ball(Vaus vaus, Level level) {
+	public Ball(final Vaus vaus, final Level level) {
 		this.vaus = vaus;
 		this.level = level;
 		x = vaus.getX() + ((float)vaus.getWidth() / 2) - BALL_RADIUS;
@@ -33,16 +32,49 @@ public abstract class Ball implements Constants, VausListener {
 		speedY = 0;
 	}
 	
+	public abstract void move();
+	public abstract String toString();
+	public abstract Ball copy();
+	
+	//setters
+	public void setY(final float y) {
+		this.y = y;
+	}
+	public void setX(final float x) {
+		this.x = x;
+	}
 	public final void setSpeedX(final float speedX) {
 		this.speedX = speedX;
 	}
-	
 	public final void setSpeedY(final float speedY) {
 		this.speedY = speedY;
 	}
+	public void setVaus(Vaus vaus) {
+		this.vaus = vaus;
+	}
 	
-	public abstract void move();
-	public abstract String toString();
+	//getters
+	public final boolean isDead() {
+		return dead;
+	}
+	public final Vaus getVaus() {
+		return vaus;
+	}
+	public final Level getLevel() {
+		return level;
+	}
+	public final float getX() {
+		return x;
+	}
+	public final float getY() {
+		return y;
+	}
+	public final float getSpeedX() {
+		return speedX;
+	}
+	public final float getSpeedY() {
+		return speedY;
+	}
 	
 	/** 
 	 * Moves a ball
@@ -57,11 +89,11 @@ public abstract class Ball implements Constants, VausListener {
 		}
 		
 		if (newY < FIELD_HEIGHT) { 
-			if (bounceY(newY)){
+			if (bounceY(newY)) {
 				newY = y;
 			}
 			
-			if (bounceX(newX)){
+			if (bounceX(newX)) {
 				newX = x;
 			}
 		}
@@ -79,7 +111,6 @@ public abstract class Ball implements Constants, VausListener {
 			newY = 0;
 		}
 		
-		
 		if (bounceVaus(newX, newY)) {
 			newY =  VAUS_Y-1 - (BALL_RADIUS*2);
 		}
@@ -87,6 +118,12 @@ public abstract class Ball implements Constants, VausListener {
 		y = newY;
 	}
 	
+	/**
+	 * When the ball intersects the Vaus
+	 * @param newX
+	 * @param newY
+	 * @return true if the ball intersects the vaus
+	 */
 	protected boolean bounceVaus(final float newX, final float newY) {
 		if (newY + (BALL_RADIUS*2) > VAUS_Y-1 && newY + (BALL_RADIUS*2) < VAUS_Y+(BALL_RADIUS*2) && newX + (BALL_RADIUS*2) >= vaus.getX() && newX <= vaus.getX() + vaus.getWidth()) {
 			speedY = -speedY;
@@ -96,6 +133,11 @@ public abstract class Ball implements Constants, VausListener {
 		return false;
 	}
 	
+	/**
+	 * Check the intersections of the X component of the ball
+	 * @param newX
+	 * @return
+	 */
 	protected boolean bounceX(final float newX) {
 		if (level.brickHasBallInside(newX, y)) {
 			speedX = -speedX;
@@ -125,7 +167,11 @@ public abstract class Ball implements Constants, VausListener {
 		return false;
 	}
 	
-	
+	/**
+	 * Check the intersections of the Y component of the ball
+	 * @param newY
+	 * @return
+	 */
 	protected boolean bounceY(final float newY) {
 		if (level.brickHasBallInside(x, newY)) {
 			speedY = -speedY;
@@ -153,50 +199,13 @@ public abstract class Ball implements Constants, VausListener {
 			return true;
 		}
 		return false;
-
 	}
 	
-	public abstract Ball copy();
-	
-	
-	public void setY(final float y) {
-		this.y = y;
-	}
-
-	public void setX(final float x) {
-		this.x = x;
-	}
-
-	public boolean isDead() {
-		return dead;
-	}
-	
-	public Vaus getVaus() {
-		return vaus;
-	}
-	public void setVaus(Vaus vaus) {
-		this.vaus = vaus;
-	}
-	public Level getLevel() {
-		return level;
-	}
-	
-	public final float getX() {
-		return x;
-	}
-	public final float getY() {
-		return y;
-	}
-	public final float getSpeedX() {
-		return speedX;
-	}
-
+	/**
+	 * For test purposes only
+	 * @return
+	 */
 	public final String toStringTest() {
 		return x + " " + y + " " + speedX + " " + speedY;
 	}
-	
-	public float getSpeedY() {
-		return speedY;
-	}
-	
 }

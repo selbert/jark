@@ -6,6 +6,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
 /**
+ * This is the main bonus class, extended by all the bonuses.
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
  * @version $LastChangedDate$
@@ -24,34 +25,46 @@ public abstract class Bonus implements Constants, VausListener {
 		y = 0;
 		vaus = null;
 	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public int getX() {
+	
+	@Override
+	public abstract String toString();
+	public abstract void apply(final Game game);
+	
+	//getters
+	public final int getX() {
 		return x;
 	}
-
-	public void setY(int y) {
-		this.y = y;
-	}
-
-	public int getY() {
+	public final int getY() {
 		return y;
 	}
-
-	public void setVaus(Vaus vaus) {
+	public final boolean isDead() {
+		return dead;
+	}
+	public final boolean isTaken() {
+		return taken;
+	}
+	
+	//setters
+	public final void setX(final int x) {
+		this.x = x;
+	}
+	public final void setY(final int y) {
+		this.y = y;
+	}
+	public final void setVaus(final Vaus vaus) {
 		this.vaus = vaus;
 	}
 	
-	public void move() {
+	/**
+	 * Called each time the bonus has to move
+	 */
+	public final void move() {
 		y = y + BONUS_SPEED;
 		checkVausCollision();
 		checkOutOfReach();
 	}
-
-	private void checkVausCollision() {
+	
+	private final void checkVausCollision() {
 		if (y + BRICK_HEIGHT > VAUS_Y 
 				&& y + BRICK_HEIGHT < VAUS_Y + BRICK_HEIGHT
 				&& x + BRICK_WIDTH >= vaus.getX()
@@ -60,21 +73,10 @@ public abstract class Bonus implements Constants, VausListener {
 		}
 	}
 	
-	private void checkOutOfReach() {
+	private final void checkOutOfReach() {
 		if (y > GAME_HEIGHT) {
 			dead = true;
 		}
 	}
-	
-	public boolean isDead() {
-		return dead;
-	}
-	
-	public boolean isTaken() {
-		return taken;
-	}
-	
-	public abstract void apply(Game game);
-	@Override
-	public abstract String toString();
+
 }

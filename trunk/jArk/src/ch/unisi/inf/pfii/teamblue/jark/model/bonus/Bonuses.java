@@ -1,12 +1,19 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.bonus;
 
+/**
+ * This enum returns a new instance of the given bonus
+ * 
+ * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
+ * @version $LastChangedDate$
+ * 
+ */
 
 public enum Bonuses {
 	
 	STICKY (0, 5, new StickyBallBonus()),
 	SLOW (1, 5, new SlowBallBonus()),
 	LONG (2, 5, new LongVausBonus()),
-	EXPLOSIVE (3, 4, new ExplosiveBallBonus()),
+	EXPLOSIVE (3, 4, new ExplosionBallBonus()),
 	DOUBLE (4, 4, new DoubleBallBonus()),
 	LASER (5, 4, new LaserVausBonus()),
 	ULTRA (6, 3, new UltraBallBonus()),
@@ -25,13 +32,13 @@ public enum Bonuses {
 	private final int number;
 	private final Bonus bonus;
 	
-	Bonuses(int num, int prob, Bonus bonus) {
+	Bonuses(final int num, final int prob, final Bonus bonus) {
 		probability = prob;
 		number = num;
 		this.bonus = bonus;
 	}
 	
-	public static int getProb(final int num) {
+	public final static int getProb(final int num) {
 		for (Bonuses b : Bonuses.values()) {
 			if (b.number == num) {
 				return b.probability;
@@ -40,7 +47,7 @@ public enum Bonuses {
 		return -1;
 	}
 	
-	public static Bonus getBonus(final int num) {
+	public final static Bonus getBonus(final int num) {
 		for (Bonuses b : Bonuses.values()) {
 			if (b.number == num) {
 				try {

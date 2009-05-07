@@ -2,6 +2,7 @@ package ch.unisi.inf.pfii.teamblue.jark.model;
 
 import java.util.ArrayList;
 import java.util.Random;
+
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.VausListener;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
@@ -13,24 +14,25 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.DefaultVaus;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
 /**
+ * The game core class (inits and runs the model of the game)
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
  * @version $LastChangedDate$
  * 
  */
 
-public class Game implements Constants {
+public final class Game implements Constants {
 
-	private ArrayList<Ball> balls;
-	private ArrayList<Bonus> freeBonuses;
+	private final ArrayList<Ball> balls;
+	private final ArrayList<Bonus> freeBonuses;
 	
-	private ArrayList<VausListener> vausListeners;
+	private final ArrayList<VausListener> vausListeners;
 
+	private final Random rnd;
+	
 	private Vaus vaus;
 	private Player player;
 	private Level level;
-
-	private Random rnd;
 	
 	public Game() {
 		rnd = new Random();
@@ -55,23 +57,51 @@ public class Game implements Constants {
 	}
 	
 	//getters
-	public Brick[][] getBricks() {
+	public final Brick[][] getBricks() {
 		return level.getBricks();
 	}
-	public ArrayList<Bonus> getBonuses() {
+	public final ArrayList<Bonus> getBonuses() {
 		return freeBonuses;
 	}
-	public ArrayList<Ball> getBalls() {
+	public final ArrayList<Ball> getBalls() {
 		return balls;
 	}
-	public int getPlayerLives() {
+	public final int getPlayerLives() {
 		return player.getLives();
 	}
-	public Player getPlayer() {
+	public final Player getPlayer() {
 		return player;
 	}
-	public Vaus getVaus() {
+	public final Vaus getVaus() {
 		return vaus;
+	}
+	
+	//setters
+	private final void setLevel(final Level level) {
+		this.level = level;
+		addVausListener(level);
+	}
+	public final void setVaus(final Vaus vaus) {
+		this.vaus = vaus;
+		fireVausChanged();
+	}
+	
+	/**
+	 * Add a ball to the game
+	 * @param ball
+	 */
+	public final void addBall(final Ball ball) {
+		balls.add(ball);
+		addVausListener(ball);
+	}
+	public final void replaceBall(final Ball oldBall, final Ball newBall) {
+		removeVausListener(oldBall);
+		addVausListener(newBall);
+		balls.set(balls.indexOf(oldBall),newBall);
+	}
+	private void removeBall(final Ball ball) {
+		balls.remove(ball);
+		removeVausListener(ball);
 	}
 	
 	/**
@@ -93,7 +123,6 @@ public class Game implements Constants {
 	 */
 	public final void moveBonuses() {
 		for (int i = 0 ; i < freeBonuses.size();) {
-			
 			if (freeBonuses.get(i).isDead()) {
 				freeBonuses.remove(freeBonuses.get(i));
 			} else if (freeBonuses.get(i).isTaken()) {
@@ -114,11 +143,6 @@ public class Game implements Constants {
 		return rndSpeed;
 	}
 	
-	public final void addBall(Ball ball) {
-		balls.add(ball);
-		addVausListener(ball);
-	}
-	
 	public final void addRandomBall() {
 		Ball newBall = new DefaultBall(vaus, level);
 		newBall.setSpeedX(getRandomSpeed());
@@ -126,41 +150,19 @@ public class Game implements Constants {
 		addBall(newBall);
 	}
 	
-	private void removeBall(Ball ball) {
-		balls.remove(ball);
-		removeVausListener(ball);
-	}
-	
-	private final void setLevel(final Level level) {
-		this.level = level;
-		addVausListener(level);
-	}
-	
-	public final void setVaus(final Vaus vaus) {
-		this.vaus = vaus;
-		fireVausChanged();
-	}
-	
-	public final void addVausListener(VausListener li) {
+	//vaus listeners
+	public final void addVausListener(final VausListener li) {
 		vausListeners.add(li);
 	}
-	
-	public final void removeVausListener(VausListener li) {
+	public final void removeVausListener(final VausListener li) {
 		vausListeners.remove(li);
-		
 	}
-	
 	private final void fireVausChanged() {
 		for (VausListener li : vausListeners) {
 			li.setVaus(vaus);
 		}
 	}
 
-	public final void replaceBall(Ball oldBall, Ball newBall) {
-		removeVausListener(oldBall);
-		addVausListener(newBall);
-		balls.set(balls.indexOf(oldBall),newBall);
-	}
 	
 }
 

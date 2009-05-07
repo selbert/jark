@@ -4,6 +4,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
 /**
+ * This ball bounces under the vaus as if in a box, instead of going out.
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
  * @version $LastChangedDate$
@@ -16,19 +17,17 @@ public final class BoxBall extends Ball {
 		super(vaus,level);
 	}
 	@Override
-	public Ball copy() {
+	public final Ball copy() {
 		Ball returnBall = new BoxBall(vaus, level);
 		returnBall.setX(x);
 		returnBall.setY(y);
 		return returnBall;
 	}
-	
 	@Override
-	public void move() {
+	public final void move() {
 		float newX = x + speedX;
 		float newY = y + speedY;
 		
-
 		if (newY + (2*BALL_RADIUS) >= VAUS_Y + VAUS_HEIGHT + 1) {
 			speedY = -speedY;
 			return;
@@ -57,16 +56,14 @@ public final class BoxBall extends Ball {
 			newY = 0;
 		}
 		
-		
 		if (bounceVaus(newX, newY)) {
 			newY =  VAUS_Y-1 - (BALL_RADIUS*2);
 		}
 		x = newX;
 		y = newY;
 	}
-	
 	@Override
-	public String toString() {
+	public final String toString() {
 		return "boxBall";
 	}
 	

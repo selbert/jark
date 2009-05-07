@@ -4,6 +4,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
 /**
+ * This ball is made out of rubber, it won't destroy anything it touches.
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
  * @version $LastChangedDate$
@@ -14,21 +15,18 @@ public final class RubberBall extends Ball {
 
 	public RubberBall(final Vaus vaus, final Level level) {
 		super(vaus,level);
-		// TODO Auto-generated constructor stub
 	}
 	@Override
-	public Ball copy() {
+	public final Ball copy() {
 		Ball returnBall = new RubberBall(vaus, level);
 		returnBall.setX(x);
 		returnBall.setY(y);
 		return returnBall;
 	}
-	
 	@Override
-	public void move() {
+	public final void move() {
 		float newX = x+speedX;
 		float newY = y+speedY;
-		
 
 		if (newY >= GAME_HEIGHT) {
 			dead = true; //remove ball
@@ -58,16 +56,14 @@ public final class RubberBall extends Ball {
 			newY = 0;
 		}
 		
-		
 		if (bounceVaus(newX, newY)) {
 			newY =  VAUS_Y-1 - (BALL_RADIUS*2);
 		}
 		x = newX;
 		y = newY;
 	}
-	
 	@Override
-	protected boolean bounceX(final float newX) {
+	protected final boolean bounceX(final float newX) {
 		if ((level.brickHasBallInside(newX, y)) 
 			|| (level.brickHasBallInside(newX, y + (2*BALL_RADIUS)))
 			|| (level.brickHasBallInside(newX + (2*BALL_RADIUS), y))
@@ -77,10 +73,8 @@ public final class RubberBall extends Ball {
 		}
 		return false;
 	}
-	
-	
 	@Override
-	protected boolean bounceY(final float newY) {
+	protected final boolean bounceY(final float newY) {
 		if ((level.brickHasBallInside(x, newY))
 			|| (level.brickHasBallInside(x + (2*BALL_RADIUS), newY))
 			|| (level.brickHasBallInside(x, newY + (2*BALL_RADIUS)))
@@ -91,9 +85,8 @@ public final class RubberBall extends Ball {
 		return false;
 
 	}
-	
 	@Override
-	public String toString() {
+	public final String toString() {
 		return "rubberBall";
 	}
 }

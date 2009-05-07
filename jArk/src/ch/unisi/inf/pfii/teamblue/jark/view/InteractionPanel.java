@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 
 /**
- * 
  * The interaction panel hosts the buttons
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
@@ -20,7 +19,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Game;
  * 
  */
 
-public class InteractionPanel extends JPanel {
+public final class InteractionPanel extends JPanel {
 
 	private final JButton startButton;
 	private final JButton stopButton;
@@ -31,7 +30,7 @@ public class InteractionPanel extends JPanel {
 	public InteractionPanel(final GamePanel gamePanel, final Game game) {
 		this.gamePanel = gamePanel;
 		this.game = game;
-		
+
 		setBorder(BorderFactory.createLineBorder(Color.black));
 		setLayout(new GridLayout(10, 1));
 

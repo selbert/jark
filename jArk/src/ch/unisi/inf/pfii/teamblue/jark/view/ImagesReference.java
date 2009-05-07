@@ -64,11 +64,11 @@ public final class ImagesReference {
 		images.put("neutral_stickyball", setImage("images/bonuses/neutral_stickyball.png"));
 	}
 	
-	private final Image setImage(String path) {
+	private final Image setImage(final String path) {
 		return new ImageIcon(getClass().getResource(path)).getImage();
 	}
 	
-	public final Image getImage(String stringImage) {
+	public final Image getImage(final String stringImage) {
 		return images.get(stringImage);
 	}
 }

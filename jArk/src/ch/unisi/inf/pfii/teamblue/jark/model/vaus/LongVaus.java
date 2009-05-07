@@ -1,7 +1,7 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
 
-
 /**
+ * The long Vaus
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
  * @version $LastChangedDate$
@@ -10,15 +10,16 @@ package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
 
 public final class LongVaus extends Vaus {
 
-	public LongVaus(int x) {
+	public LongVaus(final int x) {
 		super(x);
 	}
 	@Override
-	public String toString() {
+	public final String toString() {
 		return "longVaus";
 	}
 	@Override
-	public int getWidth() {
+	public final int getWidth() {
 		return LONGVAUS_WIDTH;
 	}
+	
 }

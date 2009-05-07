@@ -1,12 +1,11 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
 
-import java.awt.event.KeyEvent;
-
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 
 /**
  * 
  * This class represents the Vaus (the paddle), it has a state, a size and a position (x).
+ * It is extended by the different types of vaus.
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
  * @version $LastChangedDate$
@@ -24,6 +23,22 @@ public abstract class Vaus implements Constants {
 	@Override
 	public abstract String toString();
 	
+	//getters and setters
+	public void setX(final int posX) {
+		this.posX = posX;
+	}
+	public int getX() {
+		return posX;
+	}
+	//get default vaus width
+	public int getWidth() { 
+		return VAUS_WIDTH;
+	}
+	
+	/**
+	 * Move the Vaus of a specified deltaX
+	 * @param deltaX
+	 */
 	public void move(final int deltaX) {
 		if (deltaX <= 5) {
 			posX = 5;
@@ -34,6 +49,9 @@ public abstract class Vaus implements Constants {
 		}
 	}
 	
+	/**
+	 * Move the Vaus based on the moveX field
+	 */
 	public void move() {
 		posX += moveX;
 		if (posX <= 5) {
@@ -44,32 +62,15 @@ public abstract class Vaus implements Constants {
 		}
 	}
 
-	public void pressedKey(KeyEvent e) {
-		int keyCode = e.getKeyCode();
-		if (keyCode == KeyEvent.VK_LEFT) {
-			moveX = -5;
-		}
-		if (keyCode == KeyEvent.VK_RIGHT) {
-			moveX = 5;
-		}
+	public final void moveLeft() {
+		moveX = -1*VAUS_SPEED;
+	}
+	public final void moveRight() {
+		moveX = VAUS_SPEED;
 	}
 
-	public void releasedKey(KeyEvent e) {
-		int keyCode = e.getKeyCode();
-		if (keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_RIGHT) {
-			moveX = 0;
-		}
+	public void stop() {
+		moveX = 0;
 	}
 	
-	public void setX(final int posX) {
-		this.posX = posX;
-	}
-	
-	public int getX() {
-		return posX;
-	}
-	
-	public int getWidth() { 
-		return VAUS_WIDTH;
-	}
 }

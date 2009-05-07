@@ -2,6 +2,7 @@ package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
 
 
 /**
+ * The vaus which shots missiles
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
  * @version $LastChangedDate$
@@ -10,12 +11,13 @@ package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
 
 public final class MissileVaus extends Vaus {
 
-	public MissileVaus(int x) {
+	public MissileVaus(final int x) {
 		super(x);
 	}
 	@Override
-	public String toString() {
+	public final String toString() {
 		return "missileVaus";
 	}
+	//TODO all
 	
 }

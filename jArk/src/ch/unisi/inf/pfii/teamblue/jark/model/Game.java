@@ -141,18 +141,18 @@ public class Game implements Constants {
 		fireVausChanged();
 	}
 	
-	public final void addVausListener(VausListener l) {
-		vausListeners.add(l);
+	public final void addVausListener(VausListener li) {
+		vausListeners.add(li);
 	}
 	
-	public final void removeVausListener(VausListener l) {
-		vausListeners.remove(l);
+	public final void removeVausListener(VausListener li) {
+		vausListeners.remove(li);
 		
 	}
 	
 	private final void fireVausChanged() {
-		for (VausListener l : vausListeners) {
-			l.setVaus(vaus);
+		for (VausListener li : vausListeners) {
+			li.setVaus(vaus);
 		}
 	}
 

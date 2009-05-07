@@ -1,1 +1,26 @@
-Bonuses: when a bonus get "taken", through game we ask the bonus to return what he modifies (a new vaus, new balls..)
+Issues:
+- The view has to know the Model, and not the inverse. 
+  We had to refactor the project. At this moment Model and View are completely divided.
+- The different images of each element (bonus, vaus, ball and brick) were inside the element, 
+  and each time they were needed they were created (new). Now the images are all in a class in View and
+  there is only one instance of each image for all the elements 
+  (they are created wih the constructor of that class and only the reference is passed on).
+- We had to add Listeners in order to apply the changes given by bonuses (ie. to the vaus)
+
+Implemented:
+Bonuses: everything except for shooting vauses and sticky ball (lives are half implemented)
+
+Brick types: 
+we have 4 different bricks: 
+default, destroyed the fist time it is hit;
+persistent, which doesn't get destroyed;
+resistent, needs to be hit 2 times
+very resistent, three times.
+
+Images: each bonus/vaus/ball/brick has its image. 
+		Those images are created inside an hashmap in view.ImagesReference, 
+		and only a reference is given to the GamePanel which draws them.
+		
+Swing Timer instead of Threads
+
+Furthermore, we added more tests, fixed a lot of bugs, and refactored the entire project.

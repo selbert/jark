@@ -2,9 +2,8 @@ package test;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import sun.tools.native2ascii.Main;
-
 import junit.framework.TestCase;
+import sun.tools.native2ascii.Main;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Utils;
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
@@ -44,6 +43,11 @@ import ch.unisi.inf.pfii.teamblue.jark.model.brick.ResistentBrick;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.VeryResistentBrick;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.DefaultVaus;
+import ch.unisi.inf.pfii.teamblue.jark.model.vaus.DoubleLaserVaus;
+import ch.unisi.inf.pfii.teamblue.jark.model.vaus.LaserVaus;
+import ch.unisi.inf.pfii.teamblue.jark.model.vaus.LongVaus;
+import ch.unisi.inf.pfii.teamblue.jark.model.vaus.MissileVaus;
+import ch.unisi.inf.pfii.teamblue.jark.model.vaus.ShortVaus;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
 
@@ -53,7 +57,13 @@ public class MainTest extends TestCase implements Constants {
 	 * This test is just for showing that we are sure the method to create a 
 	 * level from a file works(visual/running test)
 	 */
-	public void testLevelCreationFromFile() {
+	
+/*	public void testMain() {
+		String[] a = new String[0];
+		Main.main(a);
+	}*/
+	
+	public void testGameAndPlayerCreation() {
 		Game g = new Game();
 		Player p = new Player("pippo", 2);
 		p.setLives(3);
@@ -75,6 +85,7 @@ public class MainTest extends TestCase implements Constants {
 		Level level = new Level(0, freeBonuses, vaus);
 		Ball testBall = new DefaultBall(vaus, level);
 		assertTrue(testBall instanceof Ball);
+		assertTrue(testBall.toString().equals("defaultBall"));
 		testBall = new BoxBall(vaus, level);
 		testBall.setX(50);
 		testBall.setY(401);
@@ -85,38 +96,45 @@ public class MainTest extends TestCase implements Constants {
 		testBall.setSpeedY(5);
 		testBall.move();
 		assertTrue(testBall instanceof Ball);
+		assertTrue(testBall.toString().equals("boxBall"));
 		testBall = new ExplosiveBall(vaus, level);
 		testBall.setX(50);
 		testBall.setY(401);
 		testBall.setSpeedY(-5);
 		testBall.move();
 		assertTrue(testBall instanceof Ball);
+		assertTrue(testBall.toString().equals("explosionBall"));
 		testBall = new FastBall(vaus, level);
 		testBall.setX(50);
 		testBall.setY(401);
 		testBall.setSpeedY(-5);
 		testBall.move();
 		assertTrue(testBall instanceof Ball);
+		assertTrue(testBall.toString().equals("fastBall"));
 		testBall = new RubberBall(vaus, level);
 		testBall.setX(50);
 		testBall.setY(401);
 		testBall.setSpeedY(-5);
 		testBall.move();
 		assertTrue(testBall instanceof Ball);
+		assertTrue(testBall.toString().equals("rubberBall"));
 		testBall = new SlowBall(vaus, level);
 		testBall.setX(50);
 		testBall.setY(401);
 		testBall.setSpeedY(-5);
 		testBall.move();
 		assertTrue(testBall instanceof Ball);
+		assertTrue(testBall.toString().equals("slowBall"));
 		testBall = new StickyBall(vaus, level);
 		assertTrue(testBall instanceof Ball);
+		assertTrue(testBall.toString().equals("stickyBall"));
 		testBall = new UltraBall(vaus, level);
 		testBall.setX(50);
 		testBall.setY(401);
 		testBall.setSpeedY(-5);
 		testBall.move();
 		assertTrue(testBall instanceof Ball);
+		assertTrue(testBall.toString().equals("ultraBall"));
 		
 	}
 	
@@ -167,6 +185,23 @@ public class MainTest extends TestCase implements Constants {
 		assertTrue(brick.toString().equals("resistentBrick2"));
 		brick = new VeryResistentBrick();
 		assertTrue(brick.toString().equals("veryResistentBrick3"));
+	}
+	
+	public void testVausCreation() {
+		Vaus vaus = new DefaultVaus(0);
+		assertTrue(vaus.toString().equals("defaultVaus"));
+		vaus.setX(5);
+		assertTrue(vaus.getX() == 5);
+		vaus = new LaserVaus(0);
+		assertTrue(vaus.toString().equals("laserVaus"));
+		vaus = new DoubleLaserVaus(0);
+		assertTrue(vaus.toString().equals("doubleLaserVaus"));
+		vaus = new MissileVaus(0);
+		assertTrue(vaus.toString().equals("missileVaus"));
+		vaus = new LongVaus(0);
+		assertTrue(vaus.toString().equals("longVaus"));
+		vaus = new ShortVaus(0);
+		assertTrue(vaus.toString().equals("shortVaus"));
 	}
 
 	public void testBallMove() {

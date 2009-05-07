@@ -118,6 +118,6 @@ public final class UltraBall extends Ball {
 	
 	@Override
 	public String toString() {
-		return "defaultBall";
+		return "ultraBall";
 	}
 }

@@ -31,6 +31,6 @@ public final class SlowBall extends Ball {
 	
 	@Override
 	public String toString() {
-		return "defaultBall";
+		return "slowBall";
 	}
 }

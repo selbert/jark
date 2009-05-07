@@ -49,9 +49,7 @@ public final class Game implements Constants {
 		
 		//starting balls
 		for (int i = 0; i < 1; i++) {
-			addBall(new DefaultBall(vaus, level));
-			balls.get(i).setSpeedX(getRandomSpeed());
-			balls.get(i).setSpeedY(-3);
+			addRandomBall();
 		}
 		
 	}
@@ -135,6 +133,9 @@ public final class Game implements Constants {
 		}
 	}
 	
+	/**
+	 * Get a float number from -5 to 5
+	 */
 	private final float getRandomSpeed() {
 		final float rndSpeed = rnd.nextFloat()*5;
 		if (rnd.nextBoolean()) {
@@ -143,6 +144,10 @@ public final class Game implements Constants {
 		return rndSpeed;
 	}
 	
+	
+	/**
+	 * Add a ball at random x speed to the game
+	 */
 	public final void addRandomBall() {
 		Ball newBall = new DefaultBall(vaus, level);
 		newBall.setSpeedX(getRandomSpeed());

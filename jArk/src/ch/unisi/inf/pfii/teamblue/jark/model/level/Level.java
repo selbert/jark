@@ -10,8 +10,9 @@ import java.util.Random;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Utils;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.VausListener;
-import ch.unisi.inf.pfii.teamblue.jark.model.bonus.*;
-import ch.unisi.inf.pfii.teamblue.jark.model.brick.*;
+import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
+import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonuses;
+import ch.unisi.inf.pfii.teamblue.jark.model.brick.Brick;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
 /**

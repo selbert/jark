@@ -29,27 +29,46 @@ public enum Bonuses {
 	ADD_LIFE (16, 1, new AddLifeBonus());
 	
 	private final int probability;
-	private final int number;
+	private final int bonusNumber;
 	private final Bonus bonus;
 	
-	Bonuses(final int num, final int prob, final Bonus bonus) {
+	/*
+	 * Constructor of the enum
+	 * 
+	 * @param bonusNumber
+	 * @param prob
+	 * @param bonus
+	 */
+	Bonuses(final int bonusNumber, final int prob, final Bonus bonus) {
 		probability = prob;
-		number = num;
+		this.bonusNumber = bonusNumber;
 		this.bonus = bonus;
 	}
 	
-	public final static int getProb(final int num) {
+	/*
+	 * Get the probability that a bonus occurs (on a scale from 1 (rarest) to 5 (common)
+	 * 
+	 * @param bonusNumber
+	 */
+	
+	public final static int getProb(final int bonusNumber) {
 		for (Bonuses b : Bonuses.values()) {
-			if (b.number == num) {
+			if (b.bonusNumber == bonusNumber) {
 				return b.probability;
 			}
 		}
 		return -1;
 	}
 	
-	public final static Bonus getBonus(final int num) {
+	/*
+	 * Get a bonus given its bonus number
+	 * 
+	 * @param bonusNumber
+	 */
+	
+	public final static Bonus getBonus(final int bonusNumber) {
 		for (Bonuses b : Bonuses.values()) {
-			if (b.number == num) {
+			if (b.bonusNumber == bonusNumber) {
 				try {
 					return b.bonus.getClass().newInstance();
 				} catch (InstantiationException e) {

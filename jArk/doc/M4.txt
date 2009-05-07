@@ -5,6 +5,8 @@ TODO:	we have to finish implementing some bonus
 		add player support
 		add ending event
 		finish the gui
+		add a level editor
+		add an algorithm to create levels
 		...
 
 Solved Issues:

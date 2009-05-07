@@ -4,6 +4,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
 /**
+ * This ball destroys the brick over, under, on the left and on the right side of the hit brick.
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
  * @version $LastChangedDate$
@@ -14,22 +15,19 @@ public final class ExplosionBall extends Ball {
 
 	public ExplosionBall(final Vaus vaus, final Level level) {
 		super(vaus,level);
-		// TODO Auto-generated constructor stub
 	}
 	@Override
-	public Ball copy() {
+	public final Ball copy() {
 		Ball returnBall = new ExplosionBall(vaus, level);
 		returnBall.setX(x);
 		returnBall.setY(y);
 		return returnBall;
 	}
-	
 	@Override
-	public void move() {
+	public final void move() {
 		float newX = x+speedX;
 		float newY = y+speedY;
 		
-
 		if (newY >= GAME_HEIGHT) {
 			dead = true; //remove ball
 			return;
@@ -58,16 +56,14 @@ public final class ExplosionBall extends Ball {
 			newY = 0;
 		}
 		
-		
 		if (bounceVaus(newX, newY)) {
 			newY =  VAUS_Y-1 - (BALL_RADIUS*2);
 		}
 		x = newX;
 		y = newY;
 	}
-	
 	@Override
-	protected boolean bounceX(final float newX) {
+	protected final boolean bounceX(final float newX) {
 		if (level.brickHasBallInside(newX, y)) {
 			speedX = -speedX;
 			if(level.brickHasBallInside(newX, y + (2*BALL_RADIUS))) {
@@ -95,10 +91,8 @@ public final class ExplosionBall extends Ball {
 		} 
 		return false;
 	}
-	
-	
 	@Override
-	protected boolean bounceY(final float newY) {
+	protected final boolean bounceY(final float newY) {
 		if (level.brickHasBallInside(x, newY)) {
 			speedY = -speedY;
 			if (level.brickHasBallInside(x + (2*BALL_RADIUS), newY)) {
@@ -125,9 +119,8 @@ public final class ExplosionBall extends Ball {
 			return true;
 		}
 		return false;
-
 	}
-	
+	//the bricks to destroy
 	private final void explosionDestroy(final float x, final float y) {
 		level.removeBrick(x, y);
 		level.removeBrick(x - BRICK_WIDTH, y);
@@ -135,9 +128,8 @@ public final class ExplosionBall extends Ball {
 		level.removeBrick(x, y - BRICK_HEIGHT);
 		level.removeBrick(x, y + BRICK_HEIGHT);
 	}
-
 	@Override
-	public String toString() {
+	public final String toString() {
 		return "explosionBall";
 	}
 }

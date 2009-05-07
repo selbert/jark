@@ -1,14 +1,13 @@
 package ch.unisi.inf.pfii.teamblue.jark.model;
 
 /**
- * 
  * This class contains information about the current player (the name, the score and the lives).
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
  * @version $LastChangedDate$
  * 
  */
-public class Player {
+public final class Player {
 	private final String name;
 	private int score;
 	private int lives;

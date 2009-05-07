@@ -2,8 +2,8 @@ package ch.unisi.inf.pfii.teamblue.jark.model.bonus;
 
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 
-
 /**
+ * Changes the vaus in a double laser equipped vaus
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
  * @version $LastChangedDate$
@@ -11,12 +11,14 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Game;
  */
 
 public final class DoubleLaserVausBonus extends Bonus {
+	
 	@Override
-	public String toString() {
+	public final String toString() {
 		return "bonus_doublelaservaus";
 	}
 	@Override
-	public void apply(Game game) {
-		
+	public void apply(final Game game) {
+		//TODO
 	}
+	
 }

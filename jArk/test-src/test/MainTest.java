@@ -22,7 +22,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonuses;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.DoubleBallBonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.DoubleLaserVausBonus;
-import ch.unisi.inf.pfii.teamblue.jark.model.bonus.ExplosiveBallBonus;
+import ch.unisi.inf.pfii.teamblue.jark.model.bonus.ExplosionBallBonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.FalseBallsBonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.FastBallBonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.LaserVausBonus;
@@ -143,7 +143,7 @@ public class MainTest extends TestCase implements Constants {
 		assertTrue(bonus.toString().equals("bonus_addlife"));
 		bonus = new DoubleBallBonus();
 		assertTrue(bonus.toString().equals("bonus_doubleball"));
-		bonus = new ExplosiveBallBonus();
+		bonus = new ExplosionBallBonus();
 		assertTrue(bonus.toString().equals("bonus_explosionball"));
 		bonus = new FalseBallsBonus();
 		assertTrue(bonus.toString().equals("malus_falseball"));

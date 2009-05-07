@@ -4,8 +4,18 @@ import java.awt.Image;
 import java.util.HashMap;
 
 import javax.swing.ImageIcon;
-	
-public class ImagesReference {
+
+/**
+ * This class stores all the images of the game trough its constructor, 
+ * and when an image is needed it gives the reference to that image 
+ * (so that there is only one object for each image)
+ * 
+ * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
+ * @version $LastChangedDate$
+ * 
+ */
+
+public final class ImagesReference {
 	private final HashMap<String, Image> images;
 	
 	public ImagesReference() {
@@ -52,14 +62,13 @@ public class ImagesReference {
 		images.put("neutral_resetstatus", setImage("images/bonuses/neutral_resetstatus.png"));
 		images.put("neutral_slowball", setImage("images/bonuses/neutral_slowball.png"));
 		images.put("neutral_stickyball", setImage("images/bonuses/neutral_stickyball.png"));
-		
 	}
 	
-	private Image setImage(String path) {
+	private final Image setImage(String path) {
 		return new ImageIcon(getClass().getResource(path)).getImage();
 	}
 	
-	public Image getImage(String stringImage) {
+	public final Image getImage(String stringImage) {
 		return images.get(stringImage);
 	}
 }

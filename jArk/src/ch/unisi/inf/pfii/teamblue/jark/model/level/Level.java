@@ -15,6 +15,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
 
 /**
+ * The level is defined by an array of bricks
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
  * @version $LastChangedDate$

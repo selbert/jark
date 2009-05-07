@@ -1,9 +1,5 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.brick;
 
-import java.awt.Image;
-
-import javax.swing.ImageIcon;
-
 
 /**
  * 
@@ -19,8 +15,8 @@ public final class PersistentBrick extends Brick {
 		setPoints(0);
 	}
 	@Override
-	public Image getImage() {
-		return new ImageIcon(getClass().getResource("../../view/images/bricks/persistentBrick.png")).getImage();
+	public String toString() {
+		return "persistentBrick";
 	}
 
 }

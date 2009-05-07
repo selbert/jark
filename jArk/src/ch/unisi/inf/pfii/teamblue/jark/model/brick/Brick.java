@@ -1,7 +1,5 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.brick;
 
-import java.awt.Image;
-
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
 
 /**
@@ -18,33 +16,38 @@ public abstract class Brick {
 	private int points;
 	private Bonus bonus;
 	
-	public abstract Image getImage();
+	@Override
+	public abstract String toString();
 	
 	public Brick() {
 		this.bonus = null;
 	}
 	
-	public Bonus getBonus() {
+	public final Bonus getBonus() {
 		return bonus;
 	}
 	
-	public void setLives(final int lives) {
+	public final void setLives(final int lives) {
 		this.lives = lives;
 	}
 	
-	public void setBonus(Bonus bonus) {
+	public final void decrementLives() {
+		lives--;
+	}
+	
+	public final void setBonus(final Bonus bonus) {
 		this.bonus = bonus;
 	}
 	
-	public int getLives() {
+	public final int getLives() {
 		return lives;
 	}
 
-	public void setPoints(int points) {
+	public final void setPoints(final int points) {
 		this.points = points;
 	}
 
-	public int getPoints() {
+	public final int getPoints() {
 		return points;
 	}
 }

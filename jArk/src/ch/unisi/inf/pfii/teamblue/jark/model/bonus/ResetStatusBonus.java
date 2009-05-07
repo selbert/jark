@@ -1,15 +1,11 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.bonus;
 
-import java.awt.Image;
 import java.util.ArrayList;
-
-import javax.swing.ImageIcon;
 
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.DefaultBall;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.DefaultVaus;
-import ch.unisi.inf.pfii.teamblue.jark.model.vaus.LongVaus;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
 
@@ -22,8 +18,8 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
 public final class ResetStatusBonus extends Bonus {
 	@Override
-	public Image getImage() {
-		return new ImageIcon(getClass().getResource("../../view/images/bonuses/neutral_resetstatus.png")).getImage();
+	public String toString() {
+		return "neutral_resetstatus";
 	}
 	@Override
 	public void apply(Game game) {

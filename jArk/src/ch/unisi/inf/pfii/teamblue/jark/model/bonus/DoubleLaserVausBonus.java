@@ -1,9 +1,5 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.bonus;
 
-import java.awt.Image;
-
-import javax.swing.ImageIcon;
-
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 
 
@@ -16,8 +12,8 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 
 public final class DoubleLaserVausBonus extends Bonus {
 	@Override
-	public Image getImage() {
-		return new ImageIcon(getClass().getResource("../../view/images/bonuses/bonus_doublelaservaus.png")).getImage();
+	public String toString() {
+		return "bonus_doublelaservaus";
 	}
 	@Override
 	public void apply(Game game) {

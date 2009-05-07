@@ -1,9 +1,5 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.brick;
 
-import java.awt.Image;
-
-import javax.swing.ImageIcon;
-
 
 /**
  * 
@@ -19,8 +15,15 @@ public final class VeryResistentBrick extends Brick {
 		setPoints(5);
 	}
 	@Override
-	public Image getImage() {
-		return new ImageIcon(getClass().getResource("../../view/images/bricks/veryResistentBrick.png")).getImage();
+	public String toString() {
+		int i = getLives();
+		if (i == 3) {
+			return "veryResistentBrick3";
+		} else if (i == 2) {
+			return "veryResistentBrick2";
+		} else {
+			return "veryResistentBrick1";
+		}
 	}
 
 }

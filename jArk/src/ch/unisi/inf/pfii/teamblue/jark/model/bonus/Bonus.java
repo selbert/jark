@@ -1,7 +1,5 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.bonus;
 
-import java.awt.Image;
-
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.VausListener;
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
@@ -77,5 +75,6 @@ public abstract class Bonus implements Constants, VausListener {
 	}
 	
 	public abstract void apply(Game game);
-	public abstract Image getImage();
+	@Override
+	public abstract String toString();
 }

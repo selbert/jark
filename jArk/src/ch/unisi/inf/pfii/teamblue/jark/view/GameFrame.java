@@ -22,7 +22,6 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Game;
  */
 
 public final class GameFrame extends JFrame {
-
 	private final MainPanel mainPanel;
 
 	public GameFrame(final Game game) {

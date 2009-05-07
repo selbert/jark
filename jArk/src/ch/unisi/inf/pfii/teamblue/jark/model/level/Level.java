@@ -90,6 +90,7 @@ public final class Level implements Constants, VausListener {
 	 * 
 	 * @param levelNumber filename
 	 */
+	@SuppressWarnings("unused")
 	private final void createLevel(final int levelNumber) {
 		try{
 			final URL filePath = getClass().getResource("defaultlevels/"+levelNumber);

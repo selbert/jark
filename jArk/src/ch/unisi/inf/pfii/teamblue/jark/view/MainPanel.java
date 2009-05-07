@@ -15,7 +15,6 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Game;
  */
 
 public final class MainPanel extends JPanel {
-
 	private final GamePanel gamePanel;
 	private final InfoPanel infoPanel;
 	private final InteractionPanel interactionPanel;

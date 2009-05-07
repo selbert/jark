@@ -1,6 +1,7 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.level;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
@@ -13,7 +14,6 @@ import ch.unisi.inf.pfii.teamblue.jark.model.bonus.*;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.*;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
-
 /**
  * The level is defined by an array of bricks
  * 
@@ -22,12 +22,11 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
  * 
  */
 public final class Level implements Constants, VausListener {
-	//bonus handling field
+	private final Random rnd;
 	private String bonusDistString;
-	private Random rnd;
 	
-	private Brick[][] bricks;
-	private ArrayList<Bonus> freeBonuses;
+	private final Brick[][] bricks;
+	private final ArrayList<Bonus> freeBonuses;
 	
 	private Vaus vaus;
 	
@@ -46,20 +45,30 @@ public final class Level implements Constants, VausListener {
 		this.vaus = vaus;
 		rnd = new Random();
 		createTestFieldLevel();
-		//createLevel(0);
 		addBonus(numOfBonus);
 	}
 	
+	//getters and setters
+	
+	public final Brick[][] getBricks() {
+		return bricks;
+	}
+	public final void setVaus(Vaus vaus) {
+		this.vaus = vaus;
+		for (Bonus b : freeBonuses) {
+			b.setVaus(vaus);
+		}
+	}
+	
 	/**
-	 * method that creates a string with the index of the bonus repeated 
+	 * Creates a string with the index of the bonus repeated 
 	 * the times defined in the Bonuses enum
-	 * 
 	 */
 	private final String getDistributionString() {
 		String bonusString = "";
-		int numberOfBonus = Bonuses.values().length;
+		final int numberOfBonus = Bonuses.values().length;
 		for (int a = 0; a < numberOfBonus; a++) {
-			int probability = Bonuses.getProb(a);
+			final int probability = Bonuses.getProb(a);
 			for (int i = 0; i < probability; i++) {
 				bonusString += "" + a + ",";
 			}
@@ -68,45 +77,44 @@ public final class Level implements Constants, VausListener {
 	}
 	
 	/**
-	 * Method that randomly selects a bonus type from a string of bonus indexes separated by ","
+	 * Randomly selects a bonus type from a string of bonus indexes separated by ","
 	 * @return Bonus
 	 */ 
 	private final Bonus createBonus() {
-		Random rnd = new Random();
 		String[] bonusArray = bonusDistString.split(",");
 		return Bonuses.getBonus(Integer.parseInt(bonusArray[rnd.nextInt(bonusArray.length)]));
 	}
 	
 	/**
-	 * Create a level from a file which format: lineID.rowID.blockType (i.e. 0.1.0)
+	 * Create a level from a file with format: lineID.rowID.blockType (i.e. 0.1.0)
 	 * 
 	 * @param levelNumber filename
 	 */
 	private final void createLevel(final int levelNumber) {
 		try{
-			URL filePath = getClass().getResource("defaultlevels/"+levelNumber);
-			InputStreamReader streamReader = new InputStreamReader(filePath.openStream());
-			BufferedReader myInput = new BufferedReader(streamReader);
+			final URL filePath = getClass().getResource("defaultlevels/"+levelNumber);
+			final InputStreamReader streamReader = new InputStreamReader(filePath.openStream());
+			final BufferedReader myInput = new BufferedReader(streamReader);
 			String thisLine = "";
 			
 			while ((thisLine = myInput.readLine()) != null) {
 				
 				String[] brickInfo = thisLine.split("\\.");
 				if (brickInfo.length > 1) {
-					int row = Integer.parseInt(brickInfo[0]);
-					int col = Integer.parseInt(brickInfo[1]);
-					int type = Integer.parseInt(brickInfo[2]);
+					final int row = Integer.parseInt(brickInfo[0]);
+					final int col = Integer.parseInt(brickInfo[1]);
+					final int type = Integer.parseInt(brickInfo[2]);
 				
 					bricks[row][col] = Utils.intToBrick(type);
 				}
 			}
-		} catch (Exception e) {
-			System.out.println(e);
+		} catch (IOException ex) {
+			System.out.println(ex);
 		}
 	}
 	
 	/**
-	 * creates a level field full of defaultblocks for testing
+	 * Randomly creates a field of bricks
 	 */
 	private final void createTestFieldLevel() {
 		for (int row = 4; row<FIELD_ROWS; row++) {
@@ -114,7 +122,6 @@ public final class Level implements Constants, VausListener {
 				bricks[row][col] = Utils.intToBrick(rnd.nextInt(10));
 			}
 		}
-
 	}
 
 	/**
@@ -122,8 +129,7 @@ public final class Level implements Constants, VausListener {
 	 * @param numOfBonus
 	 */
 	private final void addBonus(final int numOfBonus) {
-		ArrayList<Brick> listOfBricks = new ArrayList<Brick>();
-		Random rnd = new Random();
+		final ArrayList<Brick> listOfBricks = new ArrayList<Brick>();
 		
 		for(Brick[] rowOfBricks : bricks) {
 			for (Brick brick : rowOfBricks) {
@@ -134,13 +140,11 @@ public final class Level implements Constants, VausListener {
 		}
 		
 		for (int i = 0; i < numOfBonus; i++) {
-			int index = rnd.nextInt(listOfBricks.size());
-			Bonus bonus = createBonus();
+			final int index = rnd.nextInt(listOfBricks.size());
+			final Bonus bonus = createBonus();
 			listOfBricks.remove(index).setBonus(bonus);
 		}	
 	}
-	
-	
 	
 	/**
 	 * Returns true if the given position is inside a brick
@@ -150,7 +154,7 @@ public final class Level implements Constants, VausListener {
 	 */
 	public final boolean brickHasBallInside(final float x, final float y) {
 		try {
-			int[] pos = Utils.getFieldPosition((int)x,(int)y);
+			final int[] pos = Utils.getFieldPosition((int)x,(int)y);
 			if (bricks[pos[1]][pos[0]] != null) {
 				return true;
 			}
@@ -160,22 +164,21 @@ public final class Level implements Constants, VausListener {
 		}
 	}
 	
-	
 	/**
 	 * Removes a brick
 	 * @param pos the position array
 	 */
 	public final void removeBrick(final float remX, final float remY) {
 		if (remX > 0 && remX < FIELD_WIDTH && remY < FIELD_HEIGHT && remY > 0) {
-			int[] pos = Utils.getFieldPosition((int)remX,(int)remY);
+			final int[] pos = Utils.getFieldPosition((int)remX,(int)remY);
 			final Brick brick = bricks[pos[1]][pos[0]];
 			
 			if (brick != null)  {
 				final int lives = brick.getLives();
 				if (lives == 1) {
-					Bonus bonus = bricks[pos[1]][pos[0]].getBonus();
+					final Bonus bonus = bricks[pos[1]][pos[0]].getBonus();
 					if (bonus != null) { 
-						int[] a = Utils.getPixelPosition(pos[0], pos[1]);
+						final int[] a = Utils.getPixelPosition(pos[0], pos[1]);
 						bonus.setX(a[0]);
 						bonus.setY(a[1]);
 						bonus.setVaus(vaus);
@@ -191,16 +194,5 @@ public final class Level implements Constants, VausListener {
 		}
 	}
 	
-	
-	public Brick[][] getBricks() {
-		return bricks;
-	}
-	
-	public void setVaus(Vaus vaus) {
-		this.vaus = vaus;
-		for (Bonus b : freeBonuses) {
-			b.setVaus(vaus);
-		}
-	}
 }
 

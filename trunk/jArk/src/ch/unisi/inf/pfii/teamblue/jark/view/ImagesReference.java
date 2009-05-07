@@ -12,7 +12,7 @@ public class ImagesReference {
 		images = new HashMap<String, Image>();
 		//bricks
 		images.put("defaultBrick", setImage("images/bricks/defaultBrick.png"));
-		images.put("persistentBrick", setImage("images/bricks/persistentBrick.png"));
+		images.put("persistentBrick", setImage("images/bricks/persistentBrick2.png"));
 		images.put("resistentBrick1", setImage("images/bricks/resistentBrick1.png"));
 		images.put("resistentBrick2", setImage("images/bricks/resistentBrick2.png"));
 		images.put("veryResistentBrick1", setImage("images/bricks/veryResistentBrick1.png"));

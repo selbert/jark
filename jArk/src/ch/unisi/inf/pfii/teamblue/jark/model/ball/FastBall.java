@@ -28,5 +28,10 @@ public final class FastBall extends Ball {
 	public void move() {
 		super.move((float) 1.5);
 	}
+	
+	@Override
+	public String toString() {
+		return "defaultBall";
+	}
 
 }

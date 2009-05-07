@@ -15,7 +15,7 @@ public final class MissileVaus extends Vaus {
 	}
 	@Override
 	public String toString() {
-		return "defaultVaus";
+		return "missileVaus";
 	}
 	
 }

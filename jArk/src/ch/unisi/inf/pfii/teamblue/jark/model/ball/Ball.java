@@ -42,6 +42,7 @@ public abstract class Ball implements Constants, VausListener {
 	}
 	
 	public abstract void move();
+	public abstract String toString();
 	
 	/** 
 	 * Moves a ball
@@ -50,7 +51,6 @@ public abstract class Ball implements Constants, VausListener {
 		float newX = x+(speedX * speedMod);
 		float newY = y+(speedY * speedMod);
 		
-
 		if (newY >= GAME_HEIGHT) {
 			dead = true; //remove ball
 			return;
@@ -190,12 +190,11 @@ public abstract class Ball implements Constants, VausListener {
 	public final float getSpeedX() {
 		return speedX;
 	}
-	
-	@Override
-	public final String toString() {
+
+	public final String toStringTest() {
 		return x + " " + y + " " + speedX + " " + speedY;
 	}
-
+	
 	public float getSpeedY() {
 		return speedY;
 	}

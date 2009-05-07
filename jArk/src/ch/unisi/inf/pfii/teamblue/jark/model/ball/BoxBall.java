@@ -65,4 +65,9 @@ public final class BoxBall extends Ball {
 		y = newY;
 	}
 	
+	@Override
+	public String toString() {
+		return "defaultBall";
+	}
+	
 }

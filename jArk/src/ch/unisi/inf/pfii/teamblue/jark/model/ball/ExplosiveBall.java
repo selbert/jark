@@ -136,4 +136,8 @@ public final class ExplosiveBall extends Ball {
 		level.removeBrick(x, y + BRICK_HEIGHT);
 	}
 
+	@Override
+	public String toString() {
+		return "defaultBall";
+	}
 }

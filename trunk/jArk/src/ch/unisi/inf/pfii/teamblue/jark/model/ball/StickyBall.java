@@ -32,6 +32,6 @@ public final class StickyBall extends Ball {
 	
 	@Override
 	public String toString() {
-		return "defaultBall";
+		return "stickyBall";
 	}
 }

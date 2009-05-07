@@ -31,7 +31,7 @@ public final class FastBall extends Ball {
 	
 	@Override
 	public String toString() {
-		return "defaultBall";
+		return "fastBall";
 	}
 
 }

@@ -138,6 +138,6 @@ public final class ExplosiveBall extends Ball {
 
 	@Override
 	public String toString() {
-		return "defaultBall";
+		return "explosionBall";
 	}
 }

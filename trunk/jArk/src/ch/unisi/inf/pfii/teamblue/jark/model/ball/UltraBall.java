@@ -127,6 +127,10 @@ public final class UltraBall extends Ball {
 			return true;
 		}
 		return false;
-
+	}
+	
+	@Override
+	public String toString() {
+		return "defaultBall";
 	}
 }

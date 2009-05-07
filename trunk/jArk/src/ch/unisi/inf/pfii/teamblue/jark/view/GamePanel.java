@@ -46,10 +46,9 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener,
 	private ArrayList<Bonus> bonuses;
 	private Vaus vaus;
 
-	private Image brick2;
-	private Image brick;
+	private ImagesReference ir;
 	private Image ballz;
-
+	
 	private boolean drawBox;
 	private boolean running;
 	
@@ -70,6 +69,7 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener,
         //to listen to vaus changes
         game.addVausListener(this);
         
+        ir = new ImagesReference();
 		bricks = game.getBricks();
 		balls = game.getBalls();
 		bonuses = game.getBonuses();
@@ -80,10 +80,6 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener,
 		Image image = Toolkit.getDefaultToolkit().createImage(new MemoryImageSource(16, 16, pixels, 0, 16));
 		Cursor transparentCursor = Toolkit.getDefaultToolkit().createCustomCursor(image, new Point(0, 0), "invisibleCursor");
 		setCursor(transparentCursor);
-		
-		//images
-		//brick2 = new ImageIcon(getClass().getResource("images/brick.png")).getImage();
-		ballz = new ImageIcon(getClass().getResource("images/testball.png")).getImage();
 		
 		setBorder(BorderFactory.createLineBorder(Color.black));
 		setBackground(Color.GRAY);
@@ -102,7 +98,7 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener,
 			for (int i = 0; i < bricks[j].length; i++) {
 				final Brick brick = bricks[j][i];
 				if (brick != null) {
-					g2d.drawImage(brick.getImage(), 57 * i, j * 25, this);
+					g2d.drawImage(ir.getImage(brick.toString()), 57 * i, j * 25, this);
 				}
 			}
 		}
@@ -110,17 +106,16 @@ public class GamePanel extends JPanel implements Constants, MouseMotionListener,
 		for (Ball ball : balls) {
 			int x = (int)ball.getX();
 			int y = (int)ball.getY();
-			g2d.drawImage(ballz, x, y, BALL_RADIUS * 2, BALL_RADIUS * 2, this);
-
+			g2d.drawImage(ir.getImage(ball.toString()), x, y, BALL_RADIUS * 2, BALL_RADIUS * 2, this);
 		}
 		
 		for (Bonus bonus : bonuses) {
 			int x = bonus.getX();
 			int y = bonus.getY();
-			g2d.drawImage(bonus.getImage(), x, y, this);
+			g2d.drawImage(ir.getImage(bonus.toString()), x, y, this);
 		}
 
-		g2d.drawImage(vaus.getImage(), vaus.getX(), VAUS_Y, vaus.getWidth(), VAUS_HEIGHT, this);
+		g2d.drawImage(ir.getImage(vaus.toString()), vaus.getX(), VAUS_Y, vaus.getWidth(), VAUS_HEIGHT, this);
 		
 		if (drawBox) {
 			g2d.fillRect(0, VAUS_Y+VAUS_HEIGHT+1, GAME_WIDTH, 3);

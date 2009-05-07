@@ -28,4 +28,9 @@ public final class SlowBall extends Ball {
 	public void move() {
 		super.move((float) 0.5);
 	}
+	
+	@Override
+	public String toString() {
+		return "defaultBall";
+	}
 }

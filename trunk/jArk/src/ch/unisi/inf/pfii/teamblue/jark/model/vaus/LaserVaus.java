@@ -15,7 +15,7 @@ public final class LaserVaus extends Vaus {
 	}
 	@Override
 	public String toString() {
-		return "defaultVaus";
+		return "laserVaus";
 	}
 	
 	

@@ -91,4 +91,9 @@ public final class RubberBall extends Ball {
 		return false;
 
 	}
+	
+	@Override
+	public String toString() {
+		return "defaultBall";
+	}
 }

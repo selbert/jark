@@ -21,5 +21,10 @@ public final class DefaultBall extends Ball {
 	public void move() {
 		super.move(1);
 	}
+	
+	@Override
+	public String toString() {
+		return "defaultBall";
+	}
 
 }

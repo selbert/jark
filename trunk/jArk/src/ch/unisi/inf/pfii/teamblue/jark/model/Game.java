@@ -46,7 +46,7 @@ public class Game implements Constants {
 		addVausListener(level);
 		
 		//starting balls
-		for (int i = 0; i < 1; i++) {
+		for (int i = 0; i < 10; i++) {
 			addBall(new DefaultBall(vaus, level));
 			balls.get(i).setSpeedX(getRandomSpeed());
 			balls.get(i).setSpeedY(-3);

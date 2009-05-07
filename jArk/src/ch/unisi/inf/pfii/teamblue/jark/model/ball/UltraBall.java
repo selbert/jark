@@ -14,7 +14,6 @@ public final class UltraBall extends Ball {
 
 	public UltraBall(final Vaus vaus, final Level level) {
 		super(vaus,level);
-		// TODO Auto-generated constructor stub
 	}
 	@Override
 	public Ball copy() {

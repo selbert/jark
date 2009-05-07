@@ -11,7 +11,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Player;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.BoxBall;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.DefaultBall;
-import ch.unisi.inf.pfii.teamblue.jark.model.ball.ExplosiveBall;
+import ch.unisi.inf.pfii.teamblue.jark.model.ball.ExplosionBall;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.FastBall;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.RubberBall;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.SlowBall;
@@ -97,7 +97,7 @@ public class MainTest extends TestCase implements Constants {
 		testBall.move();
 		assertTrue(testBall instanceof Ball);
 		assertTrue(testBall.toString().equals("boxBall"));
-		testBall = new ExplosiveBall(vaus, level);
+		testBall = new ExplosionBall(vaus, level);
 		testBall.setX(50);
 		testBall.setY(401);
 		testBall.setSpeedY(-5);

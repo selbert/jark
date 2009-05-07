@@ -13,7 +13,10 @@ public class ImagesReference {
 		//bricks
 		images.put("defaultBrick", setImage("images/bricks/defaultBrick.png"));
 		images.put("persistentBrick", setImage("images/bricks/persistentBrick.png"));
+		images.put("resistentBrick1", setImage("images/bricks/resistentBrick1.png"));
 		images.put("resistentBrick2", setImage("images/bricks/resistentBrick2.png"));
+		images.put("veryResistentBrick1", setImage("images/bricks/veryResistentBrick1.png"));
+		images.put("veryResistentBrick2", setImage("images/bricks/veryResistentBrick2.png"));
 		images.put("veryResistentBrick3", setImage("images/bricks/veryResistentBrick3.png"));
 		//vauses
 		images.put("defaultVaus", setImage("images/vauses/defaultVaus.png"));
@@ -21,6 +24,13 @@ public class ImagesReference {
 		images.put("shortVaus", setImage("images/vauses/shortVaus.png"));
 		//balls
 		images.put("defaultBall", setImage("images/balls/defaultBall.png"));
+		images.put("boxBall", setImage("images/balls/defaultBall.png"));
+		images.put("explosionBall", setImage("images/balls/explosionBall.png"));
+		images.put("fastBall", setImage("images/balls/defaultBall.png"));
+		images.put("rubberBall", setImage("images/balls/rubberBall.png"));
+		images.put("slowBall", setImage("images/balls/defaultBall.png"));
+		images.put("stickyBall", setImage("images/balls/defaultBall.png"));
+		images.put("ultraBall", setImage("images/balls/ultraBall.png"));
 		//bonuses (+)
 		images.put("bonus_addlife", setImage("images/bonuses/bonus_addlife.png"));
 		images.put("bonus_box", setImage("images/bonuses/bonus_box.png"));

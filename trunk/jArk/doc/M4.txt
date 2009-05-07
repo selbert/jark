@@ -1,4 +1,13 @@
-Issues:
+Issues: .jar not working O_o
+
+TODO:	we have to finish implementing some bonus
+		add some listener
+		add player support
+		add ending event
+		finish the gui
+		...
+
+Solved Issues:
 - The view has to know the Model, and not the inverse. 
   We had to refactor the project. At this moment Model and View are completely divided.
 - The different images of each element (bonus, vaus, ball and brick) were inside the element, 

@@ -1,6 +1,9 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.bonus;
 
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
+import ch.unisi.inf.pfii.teamblue.jark.model.vaus.LaserVaus;
+import ch.unisi.inf.pfii.teamblue.jark.model.vaus.LongVaus;
+import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
 /**
  * Laser equipped Vaus
@@ -18,7 +21,8 @@ public final class LaserVausBonus extends Bonus {
 	}
 	@Override
 	public void apply(final Game game) {
-		//TODO
+		final Vaus newVaus = new LaserVaus(game.getVaus().getX());
+		game.setVaus(newVaus);
 	}
 	
 }

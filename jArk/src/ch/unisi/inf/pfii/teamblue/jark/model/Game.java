@@ -44,7 +44,7 @@ public final class Game implements Constants {
 		vaus = new DefaultVaus(GAME_WIDTH / 2 - VAUS_WIDTH / 2);
 		player = new Player("pippo", 3);
 		
-		setLevel(new Level(100, freeBonuses, vaus));
+		setLevel(new Level(10, freeBonuses, vaus));
 		addVausListener(level);
 		
 		//starting balls
@@ -72,6 +72,9 @@ public final class Game implements Constants {
 	}
 	public final Vaus getVaus() {
 		return vaus;
+	}
+	public Level getLevel() {
+		return level;
 	}
 	
 	//setters
@@ -167,6 +170,8 @@ public final class Game implements Constants {
 			li.setVaus(vaus);
 		}
 	}
+
+	
 
 	
 }

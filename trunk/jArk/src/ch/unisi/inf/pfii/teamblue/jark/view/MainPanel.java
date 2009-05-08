@@ -19,10 +19,10 @@ public final class MainPanel extends JPanel {
 	private final InfoPanel infoPanel;
 	private final InteractionPanel interactionPanel;
 
-	public MainPanel(final Game game) {
+	public MainPanel(final Game game, final int x, final int y) {
 		setLayout(new BorderLayout(6, 6));
 
-		gamePanel = new GamePanel(game);
+		gamePanel = new GamePanel(game, x, y);
 		infoPanel = new InfoPanel(game);
 
 		interactionPanel = new InteractionPanel(gamePanel, game);

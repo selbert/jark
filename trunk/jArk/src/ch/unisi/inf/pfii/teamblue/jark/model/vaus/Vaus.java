@@ -15,7 +15,9 @@ import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 public abstract class Vaus implements Constants {
 	private int posX;
 	private int moveX;
-
+	private int moveLeft;
+	private int moveRight;
+	
 	public Vaus(final int posX) {
 		this.posX = posX;
 	}
@@ -39,21 +41,25 @@ public abstract class Vaus implements Constants {
 	 * Move the Vaus of a specified deltaX
 	 * @param deltaX
 	 */
-	public void move(final int deltaX) {
-		if (deltaX <= 5) {
-			posX = 5;
-		} else if (deltaX + getWidth() + 5 >= GAME_WIDTH) {
-			posX = GAME_WIDTH - getWidth() - 5;
-		} else {
-			posX = deltaX;
-		}
+//	public void move(final int deltaX) {
+//		if (deltaX <= 5) {
+//			posX = 5;
+//		} else if (deltaX + getWidth() + 5 >= GAME_WIDTH) {
+//			posX = GAME_WIDTH - getWidth() - 5;
+//		} else {
+//			posX = deltaX;
+//		}
+//	}
+	
+	public void move(final int delta) {
+		posX += delta;
 	}
 	
 	/**
 	 * Move the Vaus based on the moveX field
 	 */
 	public void move() {
-		posX += moveX;
+		posX += moveRight * VAUS_SPEED - moveLeft * VAUS_SPEED;
 		if (posX <= 5) {
 			posX = 5;
 		}
@@ -63,14 +69,16 @@ public abstract class Vaus implements Constants {
 	}
 
 	public final void moveLeft() {
-		moveX = -1*VAUS_SPEED;
+		moveLeft = 1;
 	}
 	public final void moveRight() {
-		moveX = VAUS_SPEED;
+		moveRight = 1;
 	}
 
-	public void stop() {
-		moveX = 0;
+	public void stopLeft() {
+		moveLeft = 0;
 	}
-	
+	public void stopRight() {
+		moveRight = 0;
+	}
 }

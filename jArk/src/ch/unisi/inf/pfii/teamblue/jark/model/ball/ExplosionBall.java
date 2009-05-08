@@ -34,11 +34,11 @@ public final class ExplosionBall extends Ball {
 		}
 		
 		if (newY < FIELD_HEIGHT) { 
-			if (bounceY(newY)){
+			if (!level.persistentBrickHasBallInside(x,y) && bounceY(newY)){
 				newY = y;
 			}
 			
-			if (bounceX(newX)){
+			if (!level.persistentBrickHasBallInside(x,y) && bounceX(newX)){
 				newX = x;
 			}
 		}

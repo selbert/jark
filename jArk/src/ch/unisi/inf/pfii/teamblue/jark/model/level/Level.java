@@ -13,6 +13,7 @@ import ch.unisi.inf.pfii.teamblue.jark.implementation.VausListener;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonuses;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.Brick;
+import ch.unisi.inf.pfii.teamblue.jark.model.brick.PersistentBrick;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
 /**
@@ -158,6 +159,24 @@ public final class Level implements Constants, VausListener {
 		try {
 			final int[] pos = Utils.getFieldPosition((int)x,(int)y);
 			if (bricks[pos[1]][pos[0]] != null) {
+				return true;
+			}
+			return false;
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return false;
+		}
+	}
+	
+	public final boolean persistentBrickHasBallInside(final float x, final float y) {
+		try {
+			final int[] pos = Utils.getFieldPosition((int)x,(int)y);
+			final int[] pos1 = Utils.getFieldPosition((int)(x + (2*BALL_RADIUS)),(int)y);
+			final int[] pos2 = Utils.getFieldPosition((int)x,(int)(y + (2*BALL_RADIUS)));
+			final int[] pos3 = Utils.getFieldPosition((int)(x + (2*BALL_RADIUS)),(int)(y + (2*BALL_RADIUS)));
+			if ((bricks[pos[1]][pos[0]] != null && bricks[pos[1]][pos[0]] instanceof PersistentBrick) 
+					|| (bricks[pos1[1]][pos1[0]] != null && bricks[pos1[1]][pos1[0]] instanceof PersistentBrick)
+					|| (bricks[pos2[1]][pos2[0]] != null && bricks[pos2[1]][pos2[0]] instanceof PersistentBrick)
+					|| (bricks[pos3[1]][pos3[0]] != null && bricks[pos3[1]][pos3[0]] instanceof PersistentBrick)){
 				return true;
 			}
 			return false;

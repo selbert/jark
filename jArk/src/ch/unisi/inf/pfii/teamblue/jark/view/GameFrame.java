@@ -32,7 +32,7 @@ public final class GameFrame extends JFrame {
 		((JPanel) getContentPane()).setBorder(new EmptyBorder(6, 6, 6, 6));
 
 		makeMenu();
-		mainPanel = new MainPanel(game);
+		mainPanel = new MainPanel(game, getX(), getY());
 		add(mainPanel);
 
 		// pack the frame together

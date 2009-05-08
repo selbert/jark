@@ -168,7 +168,8 @@ public final class Level implements Constants, VausListener {
 	}
 	
 	public final boolean persistentBrickHasBallInside(final float x, final float y) {
-		try {
+		return false;
+	/*	try {
 			final int[] pos = Utils.getFieldPosition((int)x,(int)y);
 			final int[] pos1 = Utils.getFieldPosition((int)(x + (2*BALL_RADIUS)),(int)y);
 			final int[] pos2 = Utils.getFieldPosition((int)x,(int)(y + (2*BALL_RADIUS)));
@@ -182,7 +183,7 @@ public final class Level implements Constants, VausListener {
 			return false;
 		} catch (ArrayIndexOutOfBoundsException e) {
 			return false;
-		}
+		}*/
 	}
 	
 	/**

@@ -1,5 +1,12 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
 
+import java.util.ArrayList;
+
+import ch.unisi.inf.pfii.teamblue.jark.model.Game;
+import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
+import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
+import ch.unisi.inf.pfii.teamblue.jark.model.vaus.bullet.RifleBullet;
+
 /**
  * The Vaus with laser
  * 
@@ -17,6 +24,13 @@ public final class LaserVaus extends Vaus {
 	public final String toString() {
 		return "laserVaus";
 	}
-	//TODO all
+	
+	@Override
+	public final void shoot(Game game) {
+		RifleBullet newBullet = new RifleBullet(this, game.getLevel());
+		newBullet.setX(posX);
+		newBullet.setSpeedY(-5);
+		game.addBall(newBullet);
+	}
 	
 }

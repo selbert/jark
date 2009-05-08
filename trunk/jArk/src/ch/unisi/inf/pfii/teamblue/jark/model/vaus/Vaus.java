@@ -1,6 +1,11 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
 
+import java.util.ArrayList;
+
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
+import ch.unisi.inf.pfii.teamblue.jark.model.Game;
+import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
+import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 
 /**
  * 
@@ -13,7 +18,7 @@ import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
  */
 
 public abstract class Vaus implements Constants {
-	private int posX;
+	protected int posX;
 	private int moveX;
 	private int moveLeft;
 	private int moveRight;
@@ -81,4 +86,8 @@ public abstract class Vaus implements Constants {
 	public void stopRight() {
 		moveRight = 0;
 	}
+	public void shoot(Game game) {
+		return;
+	}
+	
 }

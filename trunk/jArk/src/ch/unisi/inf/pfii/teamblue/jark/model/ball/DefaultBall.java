@@ -11,7 +11,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
  *
  */
 
-public final class DefaultBall extends Ball {
+public class DefaultBall extends Ball {
 
 	public DefaultBall(final Vaus vaus, final Level level) {
 		super(vaus,level);
@@ -24,7 +24,7 @@ public final class DefaultBall extends Ball {
 		return returnBall;
 	}
 	@Override
-	public final void move() {
+	public void move() {
 		super.move(1);
 	}
 	@Override

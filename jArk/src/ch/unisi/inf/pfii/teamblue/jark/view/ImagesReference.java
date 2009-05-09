@@ -32,9 +32,12 @@ public final class ImagesReference {
 		images.put("defaultVaus", setImage("images/vauses/defaultVaus.png"));
 		images.put("longVaus", setImage("images/vauses/longVaus.png"));
 		images.put("shortVaus", setImage("images/vauses/shortVaus.png"));
-		images.put("laserVaus", setImage("images/vauses/defaultVaus.png"));
-		images.put("doubleLaserVaus", setImage("images/vauses/defaultVaus.png"));
-		images.put("missileVaus", setImage("images/vauses/defaultVaus.png"));
+		images.put("rifleVaus", setImage("images/vauses/defaultVaus.png"));
+		images.put("doubleRifleVaus", setImage("images/vauses/defaultVaus.png"));
+		images.put("rocketLauncherVaus", setImage("images/vauses/defaultVaus.png"));
+		//ammunition
+		images.put("rocket", setImage("images/rocket.png"));
+		images.put("bullet", setImage("images/bullet.png"));
 		//balls
 		images.put("defaultBall", setImage("images/balls/defaultBall.png"));
 		images.put("boxBall", setImage("images/balls/defaultBall.png"));

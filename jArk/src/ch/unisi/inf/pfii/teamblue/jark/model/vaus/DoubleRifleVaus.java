@@ -1,7 +1,7 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
 
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
-import ch.unisi.inf.pfii.teamblue.jark.model.vaus.bullet.RifleBullet;
+import ch.unisi.inf.pfii.teamblue.jark.model.vaus.ammunitions.Bullet;
 
 
 /**
@@ -12,21 +12,28 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.bullet.RifleBullet;
  *
  */
 
-public final class DoubleLaserVaus extends Vaus {
-	
+public final class DoubleRifleVaus extends Vaus {
+	private long lastBulletShoot;
+	private final static long doubleRifleDelay = 100;
 	private boolean lastShotLeft;
 
-	public DoubleLaserVaus(final int x) {
+	public DoubleRifleVaus(final int x) {
 		super(x);
-		lastShotLeft = false;
 	}
 	@Override
 	public final String toString() {
-		return "doubleLaserVaus";
+		return "doubleRifleVaus";
 	}
 	@Override
 	public final void shoot(Game game) {
-		RifleBullet newBullet = new RifleBullet(this, game.getLevel());
+		if (lastBulletShoot+doubleRifleDelay <= System.currentTimeMillis()) {
+			lastBulletShoot = System.currentTimeMillis();
+			shootBullet(game);
+		}
+	}
+	
+	private final void shootBullet(Game game) {
+		Bullet newBullet = new Bullet(this, game.getLevel());
 		if (lastShotLeft) {
 			newBullet.setX(posX+getWidth() - (2*BALL_RADIUS));
 		} else {

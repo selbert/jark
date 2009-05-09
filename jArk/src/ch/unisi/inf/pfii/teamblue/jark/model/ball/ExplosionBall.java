@@ -94,7 +94,7 @@ public class ExplosionBall extends Ball {
 		level.removeBrick(x, y + BRICK_HEIGHT);
 	}
 	@Override
-	public final String toString() {
+	public String toString() {
 		return "explosionBall";
 	}
 }

@@ -188,13 +188,13 @@ public final class GamePanel extends JComponent implements Constants, VausListen
 		for (Ball ball : balls) {
 			final int x = (int) ball.getX();
 			final int y = (int) ball.getY();
-			g2d.drawImage(ir.getImage(ball.toString()), x, y, BALL_RADIUS * 2, BALL_RADIUS * 2, this);
+			g2d.drawImage(ir.getImage(ball.toString()), x, y, this);
 		}
 		
 		for (Ball ball : bullets) {
 			final int x = (int) ball.getX();
 			final int y = (int) ball.getY();
-			g2d.drawImage(ir.getImage(ball.toString()), x, y, BALL_RADIUS * 2, BALL_RADIUS * 2, this);
+			g2d.drawImage(ir.getImage(ball.toString()), x, y, this);
 		}
 
 		g2d.drawImage(ir.getImage(vaus.toString()), vaus.getX(), VAUS_Y, vaus.getWidth(), VAUS_HEIGHT, this);

@@ -58,6 +58,7 @@ public final class GamePanel extends JComponent implements Constants, VausListen
 	
 	public GamePanel(final Game game, final int x, final int y) {
 		
+		
 		KeyListener keyListener = new KeyListener() {
 			public final void keyPressed(KeyEvent ev) {
 				final int keyCode = ev.getKeyCode();

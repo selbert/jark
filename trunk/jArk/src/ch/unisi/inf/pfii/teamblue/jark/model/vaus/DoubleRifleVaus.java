@@ -14,7 +14,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.ammunitions.Bullet;
 
 public final class DoubleRifleVaus extends Vaus {
 	private long lastBulletShoot;
-	private final static long doubleRifleDelay = 100;
+	private final static long doubleRifleDelay = 50;
 	private boolean lastShotLeft;
 
 	public DoubleRifleVaus(final int x) {

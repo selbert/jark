@@ -41,6 +41,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
 public final class GamePanel extends JComponent implements Constants, VausListener {
 	private final Timer timer;
+	
 	private final ImagesReference ir;
 
 	private final Brick[][] bricks;
@@ -50,6 +51,7 @@ public final class GamePanel extends JComponent implements Constants, VausListen
 
 	private boolean drawBox;
 	private boolean running;
+	private boolean firstTimeRun;
 
 	private final Cursor transparentCursor;
 	
@@ -159,6 +161,7 @@ public final class GamePanel extends JComponent implements Constants, VausListen
 		final Image image = Toolkit.getDefaultToolkit().createImage(new MemoryImageSource(16, 16, pixels, 0, 16));
 	    transparentCursor = Toolkit.getDefaultToolkit().createCustomCursor(image, new Point(0, 0), "invisibleCursor");
 	    
+	    firstTimeRun = true;
 	}
 
 	@Override
@@ -193,7 +196,7 @@ public final class GamePanel extends JComponent implements Constants, VausListen
 			g2d.fillRect(0, VAUS_Y + VAUS_HEIGHT + 1, GAME_WIDTH, 3);
 		}
 		
-		if (!running) {
+		if (!running && !firstTimeRun) {
 			g2d.drawImage(ir.getImage("pause"), 200, 180, this);
 		}
 		
@@ -204,6 +207,7 @@ public final class GamePanel extends JComponent implements Constants, VausListen
 	 */
 	public final void play() {
 		if (!running) {
+			firstTimeRun = false;
 			running = true;
 			timer.start();
 			setCursor(transparentCursor);

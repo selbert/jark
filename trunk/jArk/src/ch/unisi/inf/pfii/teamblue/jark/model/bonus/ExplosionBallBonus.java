@@ -22,6 +22,7 @@ public final class ExplosionBallBonus extends Bonus {
 	}
 	@Override
 	public final void apply(final Game game) {
+		super.apply(game);
 		final ArrayList<Ball> balls = game.getBalls();
 		final int numberOfBalls = balls.size();
 		

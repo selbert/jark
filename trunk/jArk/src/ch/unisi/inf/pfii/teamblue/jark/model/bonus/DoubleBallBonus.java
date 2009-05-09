@@ -21,6 +21,7 @@ public final class DoubleBallBonus extends Bonus {
 	}
 	@Override
 	public final void apply(final Game game) {
+		super.apply(game);
 		ArrayList<Ball> balls = game.getBalls();
 		int numberOfBalls = balls.size();
 		

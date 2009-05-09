@@ -7,7 +7,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 
+import ch.unisi.inf.pfii.teamblue.jark.implementation.BonusListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
+import ch.unisi.inf.pfii.teamblue.jark.implementation.LevelListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Utils;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.VausListener;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
@@ -29,6 +31,7 @@ public final class Level implements Constants, VausListener {
 	
 	private final Brick[][] bricks;
 	private final ArrayList<Bonus> freeBonuses;
+	private final ArrayList<LevelListener> listeners;
 	
 	private Vaus vaus;
 	
@@ -44,6 +47,7 @@ public final class Level implements Constants, VausListener {
 			bonusDistString = getDistributionString();
 		}
 		this.freeBonuses = freeBonuses;
+		listeners = new ArrayList<LevelListener>();
 		this.vaus = vaus;
 		rnd = new Random();
 		createTestFieldLevel();
@@ -206,7 +210,7 @@ public final class Level implements Constants, VausListener {
 						bonus.setY(a[1]);
 						bonus.setVaus(vaus);
 						freeBonuses.add(bonus); 
-						bonus.fireBonusReleased();
+						fireBonusReleased(bonus);
 					}
 					bricks[pos[1]][pos[0]] = null;
 				} else if (lives > 1) {
@@ -218,5 +222,18 @@ public final class Level implements Constants, VausListener {
 		}
 	}
 	
+    public void addLevelListener(final LevelListener li) {
+        listeners.add(li);
+    }
+
+    public void removeLevelListener(final LevelListener li) {
+        listeners.remove(li);
+    }
+
+	public void fireBonusReleased(Bonus bonus) {
+		for (final LevelListener li : listeners) {
+	         li.bonusReleased(bonus);
+	    }
+	}
 }
 

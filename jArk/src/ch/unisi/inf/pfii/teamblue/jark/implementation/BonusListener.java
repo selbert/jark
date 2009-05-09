@@ -11,6 +11,5 @@ import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
  */
 
 public interface BonusListener {
-	public void bonusReleased(Bonus bonus);
 	public void bonusTaken(Bonus bonus);
 }

@@ -40,12 +40,12 @@ public final class FalseBallsBonus extends Bonus {
 			game.replaceBall(oldBall, newBall);
 			
 			for (int j = 0; j < 5; j++) {
-				final Ball newBall1 = oldBall.copy();
+				final Ball newBall1 = newBall.copy();
 				
-				newBall1.setSpeedX(-1 * oldBall.getSpeedX());
-				newBall1.setSpeedY(oldBall.getSpeedY());
-				newBall1.setBoxEnabled(oldBall.getBoxEnabled());
-				newBall1.setSpeedMod(oldBall.getSpeedMod());
+				newBall1.setSpeedX(-1 * newBall.getSpeedX());
+				newBall1.setSpeedY(newBall.getSpeedY());
+				newBall1.setBoxEnabled(newBall.getBoxEnabled());
+				newBall1.setSpeedMod(newBall.getSpeedMod());
 				
 				game.addBall(newBall1);
 			}

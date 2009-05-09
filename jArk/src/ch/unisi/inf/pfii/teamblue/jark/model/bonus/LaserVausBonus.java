@@ -21,6 +21,7 @@ public final class LaserVausBonus extends Bonus {
 	}
 	@Override
 	public void apply(final Game game) {
+		super.apply(game);
 		final Vaus newVaus = new RifleVaus(game.getVaus().getX());
 		game.setVaus(newVaus);
 	}

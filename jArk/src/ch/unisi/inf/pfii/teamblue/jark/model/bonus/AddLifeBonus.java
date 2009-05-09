@@ -18,6 +18,7 @@ public final class AddLifeBonus extends Bonus {
 	}
 	@Override
 	public final void apply(final Game game) {
+		super.apply(game);
 		game.getPlayer().incrementLives();
 	}
 	

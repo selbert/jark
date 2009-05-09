@@ -21,6 +21,7 @@ public final class FastBallBonus extends Bonus {
 	}
 	@Override
 	public void apply(final Game game) {
+		super.apply(game);
 		final ArrayList<Ball> balls = game.getBalls();
 		final int numberOfBalls = balls.size();
 		

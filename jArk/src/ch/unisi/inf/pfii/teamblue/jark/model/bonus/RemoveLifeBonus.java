@@ -18,6 +18,7 @@ public final class RemoveLifeBonus extends Bonus {
 	}
 	@Override
 	public void apply(final Game game) {
+		super.apply(game);
 		//TODO
 	}
 	

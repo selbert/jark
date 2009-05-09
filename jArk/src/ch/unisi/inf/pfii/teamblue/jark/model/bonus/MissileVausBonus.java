@@ -21,6 +21,7 @@ public final class MissileVausBonus extends Bonus {
 	}
 	@Override
 	public void apply(final Game game) {
+		super.apply(game);
 		final Vaus newVaus = new RocketLauncherVaus(game.getVaus().getX());
 		game.setVaus(newVaus);
 	}

@@ -23,7 +23,9 @@ import javax.swing.JComponent;
 import javax.swing.Timer;
 import javax.swing.event.MouseInputAdapter;
 
+import ch.unisi.inf.pfii.teamblue.jark.implementation.BonusListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
+import ch.unisi.inf.pfii.teamblue.jark.implementation.LevelListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.VausListener;
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
@@ -57,33 +59,48 @@ public final class GamePanel extends JComponent implements Constants, VausListen
 	private final Cursor transparentCursor;
 	
 	public GamePanel(final Game game, final int x, final int y) {
-		
+
+		game.getLevel().addLevelListener(new LevelListener() {
+			public void bonusReleased(Bonus bonus) {
+				bonus.addBonusListener(new BonusListener() {
+					public void bonusTaken(Bonus bonus) {
+						System.out.println("Got: "+bonus.toString());
+						if (bonus.toString().equals("bonus_box")) {
+							drawBox = true;
+						}
+					}
+				});
+			}
+		});
+
 		
 		KeyListener keyListener = new KeyListener() {
 			public final void keyPressed(KeyEvent ev) {
-				final int keyCode = ev.getKeyCode();
-				if (keyCode == KeyEvent.VK_LEFT) {
+				switch (ev.getKeyCode()) {
+				case KeyEvent.VK_LEFT: 
 					vaus.moveLeft();
-				}
-				if (keyCode == KeyEvent.VK_RIGHT) {
+					break;
+				case KeyEvent.VK_RIGHT:
 					vaus.moveRight();
-				}
-				if (keyCode == KeyEvent.VK_ESCAPE) {
+					break;
+				case KeyEvent.VK_ESCAPE:
 					play();
 					repaint();
-				}
-				if (keyCode == KeyEvent.VK_SPACE) {
+					break;
+				case KeyEvent.VK_SPACE:
 					vaus.shoot(game);
+					break;
 				}
 			}
 
 			public final void keyReleased(KeyEvent ev) {
-				final int keyCode = ev.getKeyCode();
-				if (keyCode == KeyEvent.VK_LEFT) {
+				switch (ev.getKeyCode()) {
+				case KeyEvent.VK_LEFT:
 					vaus.stopLeft();
-				}
-				if (keyCode == KeyEvent.VK_RIGHT) {
+					break;
+				case KeyEvent.VK_RIGHT:
 					vaus.stopRight();
+					break;
 				}
 			}
 

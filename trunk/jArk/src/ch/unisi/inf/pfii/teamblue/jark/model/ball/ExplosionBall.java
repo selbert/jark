@@ -11,7 +11,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
  *
  */
 
-public final class ExplosionBall extends Ball {
+public class ExplosionBall extends Ball {
 
 	public ExplosionBall(final Vaus vaus, final Level level) {
 		super(vaus,level);
@@ -24,43 +24,8 @@ public final class ExplosionBall extends Ball {
 		return returnBall;
 	}
 	@Override
-	public final void move() {
-		float newX = x+speedX;
-		float newY = y+speedY;
-		
-		if (newY >= GAME_HEIGHT) {
-			dead = true; //remove ball
-			return;
-		}
-		
-		if (newY < FIELD_HEIGHT) { 
-			if (!level.persistentBrickHasBallInside(x,y) && bounceY(newY)){
-				newY = y;
-			}
-			
-			if (!level.persistentBrickHasBallInside(x,y) && bounceX(newX)){
-				newX = x;
-			}
-		}
-		
-		if (newX + (BALL_RADIUS*2) >= GAME_WIDTH) {
-			speedX = -speedX;
-			newX = GAME_WIDTH - (BALL_RADIUS*2);
-		}
-		if (newX < 0) {
-			speedX = -speedX;
-			newX = 0;
-		}
-		if (newY < 0) {
-			speedY = -speedY;
-			newY = 0;
-		}
-		
-		if (bounceVaus(newX, newY)) {
-			newY =  VAUS_Y-1 - (BALL_RADIUS*2);
-		}
-		x = newX;
-		y = newY;
+	public void move() {
+		super.move(1);
 	}
 	@Override
 	protected final boolean bounceX(final float newX) {
@@ -92,7 +57,7 @@ public final class ExplosionBall extends Ball {
 		return false;
 	}
 	@Override
-	protected final boolean bounceY(final float newY) {
+	protected boolean bounceY(final float newY) {
 		if (level.brickHasBallInside(x, newY)) {
 			speedY = -speedY;
 			if (level.brickHasBallInside(x + (2*BALL_RADIUS), newY)) {
@@ -121,7 +86,7 @@ public final class ExplosionBall extends Ball {
 		return false;
 	}
 	//the bricks to destroy
-	private final void explosionDestroy(final float x, final float y) {
+	protected final void explosionDestroy(final float x, final float y) {
 		level.removeBrick(x, y);
 		level.removeBrick(x - BRICK_WIDTH, y);
 		level.removeBrick(x + BRICK_WIDTH, y);

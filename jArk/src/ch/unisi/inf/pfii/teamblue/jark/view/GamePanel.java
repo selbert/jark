@@ -70,6 +70,9 @@ public final class GamePanel extends JComponent implements Constants, VausListen
 					play();
 					repaint();
 				}
+				if (keyCode == KeyEvent.VK_SPACE) {
+					vaus.shoot(game);
+				}
 			}
 
 			public final void keyReleased(KeyEvent ev) {
@@ -123,11 +126,6 @@ public final class GamePanel extends JComponent implements Constants, VausListen
 				if (running) {
 					setCursor(transparentCursor);
 				}
-			}
-
-			@Override
-			public void mouseExited(MouseEvent ev) {
-				super.mouseExited(ev);
 			}
 		};
 

@@ -24,8 +24,8 @@ public class RifleBullet extends DefaultBall {
 		}
 		
 		if (newY < 0) {
-			speedY = -speedY;
-			newY = 0;
+			dead = true; //remove ball
+			return;
 		}
 		
 		y = newY;
@@ -66,4 +66,5 @@ public class RifleBullet extends DefaultBall {
 		}
 		return false;
 	}
+
 }

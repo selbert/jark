@@ -24,10 +24,6 @@ public class ExplosionBall extends Ball {
 		return returnBall;
 	}
 	@Override
-	public void move() {
-		super.move(1);
-	}
-	@Override
 	protected final boolean bounceX(final float newX) {
 		if (level.brickHasBallInside(newX, y)) {
 			speedX = -speedX;

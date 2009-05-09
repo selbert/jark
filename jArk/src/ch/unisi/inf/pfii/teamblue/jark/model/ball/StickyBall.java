@@ -24,10 +24,6 @@ public final class StickyBall extends Ball {
 		return returnBall;
 	}
 	@Override
-	public final void move() {
-		super.move(1);
-	}
-	@Override
 	public final String toString() {
 		return "stickyBall";
 	}

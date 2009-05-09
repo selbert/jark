@@ -25,8 +25,13 @@ public final class RubberBall extends Ball {
 	}
 	@Override
 	public final void move() {
-		float newX = x+speedX;
-		float newY = y+speedY;
+		float newX = x+(speedX * speedModifier);
+		float newY = y+(speedY * speedModifier);
+		
+		if (boxEnabled && newY + (2*BALL_RADIUS) >= VAUS_Y + VAUS_HEIGHT + 1) {
+			speedY = -speedY;
+			return;
+		}
 
 		if (newY >= GAME_HEIGHT) {
 			dead = true; //remove ball

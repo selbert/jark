@@ -206,6 +206,7 @@ public final class Level implements Constants, VausListener {
 						bonus.setY(a[1]);
 						bonus.setVaus(vaus);
 						freeBonuses.add(bonus); 
+						bonus.fireBonusReleased();
 					}
 					bricks[pos[1]][pos[0]] = null;
 				} else if (lives > 1) {

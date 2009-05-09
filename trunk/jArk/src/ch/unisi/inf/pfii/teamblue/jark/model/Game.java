@@ -47,7 +47,6 @@ public final class Game implements Constants {
 		player = new Player("pippo", 3);
 		
 		setLevel(new Level(100, freeBonuses, vaus));
-		addVausListener(level);
 		
 		//starting balls
 		for (int i = 0; i < 1; i++) {

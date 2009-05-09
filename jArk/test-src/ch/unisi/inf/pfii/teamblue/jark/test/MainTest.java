@@ -1,4 +1,4 @@
-package test;
+package ch.unisi.inf.pfii.teamblue.jark.test;
 import java.util.ArrayList;
 import java.util.Arrays;
 

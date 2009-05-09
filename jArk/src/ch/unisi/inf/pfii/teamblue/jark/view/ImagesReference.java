@@ -62,6 +62,8 @@ public final class ImagesReference {
 		images.put("neutral_resetstatus", setImage("images/bonuses/neutral_resetstatus.png"));
 		images.put("neutral_slowball", setImage("images/bonuses/neutral_slowball.png"));
 		images.put("neutral_stickyball", setImage("images/bonuses/neutral_stickyball.png"));
+		//others
+		images.put("pause", setImage("images/pause.png"));
 	}
 	
 	private final Image setImage(final String path) {

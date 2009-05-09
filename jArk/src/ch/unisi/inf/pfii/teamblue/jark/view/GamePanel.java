@@ -66,6 +66,7 @@ public final class GamePanel extends JComponent implements Constants, VausListen
 				}
 				if (keyCode == KeyEvent.VK_ESCAPE) {
 					play();
+					repaint();
 				}
 			}
 
@@ -157,6 +158,7 @@ public final class GamePanel extends JComponent implements Constants, VausListen
 		final int[] pixels = new int[16 * 16];
 		final Image image = Toolkit.getDefaultToolkit().createImage(new MemoryImageSource(16, 16, pixels, 0, 16));
 	    transparentCursor = Toolkit.getDefaultToolkit().createCustomCursor(image, new Point(0, 0), "invisibleCursor");
+	    
 	}
 
 	@Override
@@ -190,6 +192,11 @@ public final class GamePanel extends JComponent implements Constants, VausListen
 		if (drawBox) {
 			g2d.fillRect(0, VAUS_Y + VAUS_HEIGHT + 1, GAME_WIDTH, 3);
 		}
+		
+		if (!running) {
+			g2d.drawImage(ir.getImage("pause"), 200, 180, this);
+		}
+		
 	}
 
 	/**

@@ -19,7 +19,6 @@ import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 
 public abstract class Vaus implements Constants {
 	protected int posX;
-	private int moveX;
 	private int moveLeft;
 	private int moveRight;
 	
@@ -43,19 +42,9 @@ public abstract class Vaus implements Constants {
 	}
 	
 	/**
-	 * Move the Vaus of a specified deltaX
+	 * Move the Vaus of a specified delta
 	 * @param deltaX
 	 */
-//	public void move(final int deltaX) {
-//		if (deltaX <= 5) {
-//			posX = 5;
-//		} else if (deltaX + getWidth() + 5 >= GAME_WIDTH) {
-//			posX = GAME_WIDTH - getWidth() - 5;
-//		} else {
-//			posX = deltaX;
-//		}
-//	}
-	
 	public void move(final int delta) {
 		posX += delta;
 	}

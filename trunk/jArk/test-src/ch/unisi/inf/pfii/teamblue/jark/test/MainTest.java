@@ -42,10 +42,10 @@ import ch.unisi.inf.pfii.teamblue.jark.model.brick.ResistentBrick;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.VeryResistentBrick;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.DefaultVaus;
-import ch.unisi.inf.pfii.teamblue.jark.model.vaus.DoubleLaserVaus;
-import ch.unisi.inf.pfii.teamblue.jark.model.vaus.LaserVaus;
+import ch.unisi.inf.pfii.teamblue.jark.model.vaus.DoubleRifleVaus;
+import ch.unisi.inf.pfii.teamblue.jark.model.vaus.RifleVaus;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.LongVaus;
-import ch.unisi.inf.pfii.teamblue.jark.model.vaus.MissileVaus;
+import ch.unisi.inf.pfii.teamblue.jark.model.vaus.RocketLauncherVaus;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.ShortVaus;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
@@ -191,11 +191,11 @@ public class MainTest extends TestCase implements Constants {
 		assertTrue(vaus.toString().equals("defaultVaus"));
 		vaus.setX(5);
 		assertTrue(vaus.getX() == 5);
-		vaus = new LaserVaus(0);
+		vaus = new RifleVaus(0);
 		assertTrue(vaus.toString().equals("laserVaus"));
-		vaus = new DoubleLaserVaus(0);
+		vaus = new DoubleRifleVaus(0);
 		assertTrue(vaus.toString().equals("doubleLaserVaus"));
-		vaus = new MissileVaus(0);
+		vaus = new RocketLauncherVaus(0);
 		assertTrue(vaus.toString().equals("missileVaus"));
 		vaus = new LongVaus(0);
 		assertTrue(vaus.toString().equals("longVaus"));

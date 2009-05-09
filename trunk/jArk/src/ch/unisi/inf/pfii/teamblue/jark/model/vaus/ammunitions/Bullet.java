@@ -1,11 +1,11 @@
-package ch.unisi.inf.pfii.teamblue.jark.model.vaus.bullet;
+package ch.unisi.inf.pfii.teamblue.jark.model.vaus.ammunitions;
 
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.DefaultBall;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
-public class RifleBullet extends DefaultBall {
-	public RifleBullet(Vaus vaus, Level level) {
+public class Bullet extends DefaultBall {
+	public Bullet(Vaus vaus, Level level) {
 		super(vaus, level);
 	}
 
@@ -66,5 +66,8 @@ public class RifleBullet extends DefaultBall {
 		}
 		return false;
 	}
-
+	@Override
+	public final String toString() {
+		return "bullet";
+	}
 }

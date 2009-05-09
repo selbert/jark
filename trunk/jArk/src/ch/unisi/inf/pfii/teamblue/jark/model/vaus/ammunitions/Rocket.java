@@ -1,12 +1,11 @@
-package ch.unisi.inf.pfii.teamblue.jark.model.vaus.bullet;
+package ch.unisi.inf.pfii.teamblue.jark.model.vaus.ammunitions;
 
-import ch.unisi.inf.pfii.teamblue.jark.model.ball.DefaultBall;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.ExplosionBall;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
-public class MissileBullet extends ExplosionBall {
-		public MissileBullet(Vaus vaus, Level level) {
+public class Rocket extends ExplosionBall {
+		public Rocket(Vaus vaus, Level level) {
 			super(vaus, level);
 		}
 
@@ -14,7 +13,7 @@ public class MissileBullet extends ExplosionBall {
 			float newY = y+speedY;
 			
 			if (newY >= GAME_HEIGHT) {
-				dead = true; //remove ball
+				dead = true;
 				return;
 			}
 			
@@ -25,7 +24,7 @@ public class MissileBullet extends ExplosionBall {
 			}
 			
 			if (newY < 0) {
-				dead = true; //remove ball
+				dead = true;
 				return;
 			}
 			
@@ -67,5 +66,9 @@ public class MissileBullet extends ExplosionBall {
 			}
 			return false;
 		}
-
+		
+		@Override
+		public final String toString() {
+			return "rocket";
+		}
 }

@@ -26,18 +26,26 @@ public final class FalseBallsBonus extends Bonus {
 		final int numberOfBalls = balls.size();
 		
 		for (int i = 0; i < numberOfBalls;i++) {
-			final Ball newBall = new RubberBall(balls.get(i).getVaus(), balls.get(i).getLevel());
-			newBall.setSpeedX(balls.get(i).getSpeedX());
-			newBall.setSpeedY(balls.get(i).getSpeedY());
-			newBall.setX(balls.get(i).getX());
-			newBall.setY(balls.get(i).getY());
+			final Ball oldBall = balls.get(i);
+			final Ball newBall = new RubberBall(oldBall.getVaus(), oldBall.getLevel());
 			
-			game.replaceBall(balls.get(i), newBall);
+			newBall.setSpeedX(oldBall.getSpeedX());
+			newBall.setSpeedY(oldBall.getSpeedY());
+			newBall.setX(oldBall.getX());
+			newBall.setY(oldBall.getY());
+			newBall.setBoxEnabled(oldBall.getBoxEnabled());
+			newBall.setSpeedMod(oldBall.getSpeedMod());
+			
+			game.replaceBall(oldBall, newBall);
 			
 			for (int j = 0; j < 5; j++) {
-				final Ball newBall1 = balls.get(i).copy();
-				newBall1.setSpeedX(-1 * balls.get(i).getSpeedX());
-				newBall1.setSpeedY(balls.get(i).getSpeedY());
+				final Ball newBall1 = oldBall.copy();
+				
+				newBall1.setSpeedX(-1 * oldBall.getSpeedX());
+				newBall1.setSpeedY(oldBall.getSpeedY());
+				newBall1.setBoxEnabled(oldBall.getBoxEnabled());
+				newBall1.setSpeedMod(oldBall.getSpeedMod());
+				
 				game.addBall(newBall1);
 			}
 		}

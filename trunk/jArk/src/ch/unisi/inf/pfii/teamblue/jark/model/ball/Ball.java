@@ -20,7 +20,8 @@ public abstract class Ball implements Constants, VausListener {
 	protected float speedY;
 	protected Vaus vaus;
 	protected Level level;
-	
+	protected float speedModifier;
+	protected boolean boxEnabled;
 	protected boolean dead;
 	
 	public Ball(final Vaus vaus, final Level level) {
@@ -30,17 +31,17 @@ public abstract class Ball implements Constants, VausListener {
 		y = (VAUS_Y - 2*BALL_RADIUS);
 		speedX = 0;
 		speedY = 0;
+		speedModifier = 1;
 	}
 	
-	public abstract void move();
 	public abstract String toString();
 	public abstract Ball copy();
 	
 	//setters
-	public void setY(final float y) {
+	public final void setY(final float y) {
 		this.y = y;
 	}
-	public void setX(final float x) {
+	public final void setX(final float x) {
 		this.x = x;
 	}
 	public final void setSpeedX(final float speedX) {
@@ -49,8 +50,14 @@ public abstract class Ball implements Constants, VausListener {
 	public final void setSpeedY(final float speedY) {
 		this.speedY = speedY;
 	}
-	public void setVaus(Vaus vaus) {
+	public final void setVaus(Vaus vaus) {
 		this.vaus = vaus;
+	}
+	public final void setBoxEnabled(Boolean enabled) {
+		boxEnabled = enabled;
+	}
+	public final void setSpeedMod(final float speedModifier) {
+		this.speedModifier = speedModifier;
 	}
 	
 	//getters
@@ -75,14 +82,24 @@ public abstract class Ball implements Constants, VausListener {
 	public final float getSpeedY() {
 		return speedY;
 	}
+	public final float getSpeedMod() {
+		return speedModifier;
+	}
+	public final boolean getBoxEnabled() {
+		return boxEnabled;
+	}
 	
 	/** 
 	 * Moves a ball
 	 */
-	public void move(final float speedMod) {
-		float newX = x+(speedX * speedMod);
-		float newY = y+(speedY * speedMod);
+	public void move() {
+		float newX = x+(speedX * speedModifier);
+		float newY = y+(speedY * speedModifier);
 		
+		if (boxEnabled && newY + (2*BALL_RADIUS) >= VAUS_Y + VAUS_HEIGHT + 1) {
+			speedY = -speedY;
+			return;
+		}
 		if (newY >= GAME_HEIGHT) {
 			dead = true; //remove ball
 			return;

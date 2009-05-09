@@ -24,10 +24,6 @@ public class DefaultBall extends Ball {
 		return returnBall;
 	}
 	@Override
-	public void move() {
-		super.move(1);
-	}
-	@Override
 	public String toString() {
 		return "defaultBall";
 	}

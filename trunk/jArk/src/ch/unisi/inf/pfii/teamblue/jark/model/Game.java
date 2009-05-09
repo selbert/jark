@@ -200,11 +200,6 @@ public final class Game implements Constants {
 			li.setVaus(vaus);
 		}
 	}
-
-	
-
-	
-
 	
 }
 

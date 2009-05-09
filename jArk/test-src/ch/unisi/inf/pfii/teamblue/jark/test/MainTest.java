@@ -49,16 +49,6 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
 public class MainTest extends TestCase implements Constants {
 	
-	/*
-	 * This test is just for showing that we are sure the method to create a 
-	 * level from a file works(visual/running test)
-	 */
-	
-/*	public void testMain() {
-		String[] a = new String[0];
-		Main.main(a);
-	}*/
-	
 	public void testGameAndPlayerCreation() {
 		Game g = new Game();
 		Player p = new Player("pippo", 2);

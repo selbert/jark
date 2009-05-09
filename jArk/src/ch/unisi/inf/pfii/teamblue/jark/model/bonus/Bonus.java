@@ -1,5 +1,8 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.bonus;
 
+import java.util.ArrayList;
+
+import ch.unisi.inf.pfii.teamblue.jark.implementation.BonusListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.VausListener;
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
@@ -20,15 +23,20 @@ public abstract class Bonus implements Constants, VausListener {
 	private boolean taken;
 	private boolean dead;
 	
+	private final ArrayList<BonusListener> listeners;
+	
 	public Bonus() {
 		x = 0;
 		y = 0;
 		vaus = null;
+		listeners = new ArrayList<BonusListener>();
 	}
 	
 	@Override
 	public abstract String toString();
-	public abstract void apply(final Game game);
+	public void apply(final Game game) {
+		fireBonusTaken();
+	}
 	
 	//getters
 	public final int getX() {
@@ -79,4 +87,17 @@ public abstract class Bonus implements Constants, VausListener {
 		}
 	}
 
+    public void addBonusListener(final BonusListener li) {
+        listeners.add(li);
+    }
+
+    public void removeBonusListener(final BonusListener li) {
+        listeners.remove(li);
+    }
+    
+    protected void fireBonusTaken() {
+        for (final BonusListener li : listeners) {
+            li.bonusTaken(this);
+        }
+    }
 }

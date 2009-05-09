@@ -28,7 +28,7 @@ public final class LaserVaus extends Vaus {
 	@Override
 	public final void shoot(Game game) {
 		RifleBullet newBullet = new RifleBullet(this, game.getLevel());
-		newBullet.setX(posX);
+		newBullet.setX(posX+getWidth()/2); //TODO se this right
 		newBullet.setSpeedY(-5);
 		game.addBall(newBullet);
 	}

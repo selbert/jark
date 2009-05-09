@@ -32,6 +32,7 @@ public final class ImagesReference {
 		images.put("defaultVaus", setImage("images/vauses/defaultVaus.png"));
 		images.put("longVaus", setImage("images/vauses/longVaus.png"));
 		images.put("shortVaus", setImage("images/vauses/shortVaus.png"));
+		images.put("laserVaus", setImage("images/vauses/defaultVaus.png"));
 		//balls
 		images.put("defaultBall", setImage("images/balls/defaultBall.png"));
 		images.put("boxBall", setImage("images/balls/defaultBall.png"));

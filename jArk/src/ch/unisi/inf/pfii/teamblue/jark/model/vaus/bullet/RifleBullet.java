@@ -9,7 +9,7 @@ public class RifleBullet extends DefaultBall {
 		super(vaus, level);
 	}
 
-	public void move() {
+	public final void move() {
 		float newY = y+speedY;
 		
 		if (newY >= GAME_HEIGHT) {
@@ -36,7 +36,7 @@ public class RifleBullet extends DefaultBall {
 	 * @param newY
 	 * @return
 	 */
-	protected boolean bounceY(final float newY) {
+	protected final boolean bounceY(final float newY) {
 		if (level.brickHasBallInside(x, newY)) {
 			if (level.brickHasBallInside(x + (2*BALL_RADIUS), newY)) {
 				dead = true;

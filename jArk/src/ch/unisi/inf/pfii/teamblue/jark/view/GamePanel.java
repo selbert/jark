@@ -47,6 +47,7 @@ public final class GamePanel extends JComponent implements Constants, VausListen
 	private final Brick[][] bricks;
 	private final ArrayList<Ball> balls;
 	private final ArrayList<Bonus> bonuses;
+	private final ArrayList<Ball> bullets;
 	private Vaus vaus;
 
 	private boolean drawBox;
@@ -133,6 +134,7 @@ public final class GamePanel extends JComponent implements Constants, VausListen
 			public void actionPerformed(final ActionEvent ev) {
 				game.moveBalls();
 				game.moveBonuses();
+				game.moveBullets();
 				game.getVaus().move();
 				repaint();
 			}
@@ -151,6 +153,7 @@ public final class GamePanel extends JComponent implements Constants, VausListen
 		ir = new ImagesReference();
 		bricks = game.getBricks();
 		balls = game.getBalls();
+		bullets = game.getBullets();
 		bonuses = game.getBonuses();
 		vaus = game.getVaus();
 
@@ -183,6 +186,12 @@ public final class GamePanel extends JComponent implements Constants, VausListen
 		}
 
 		for (Ball ball : balls) {
+			final int x = (int) ball.getX();
+			final int y = (int) ball.getY();
+			g2d.drawImage(ir.getImage(ball.toString()), x, y, BALL_RADIUS * 2, BALL_RADIUS * 2, this);
+		}
+		
+		for (Ball ball : bullets) {
 			final int x = (int) ball.getX();
 			final int y = (int) ball.getY();
 			g2d.drawImage(ir.getImage(ball.toString()), x, y, BALL_RADIUS * 2, BALL_RADIUS * 2, this);

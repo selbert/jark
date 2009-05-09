@@ -24,6 +24,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 public final class Game implements Constants {
 
 	private final ArrayList<Ball> balls;
+	private final ArrayList<Ball> bullets;
 	private final ArrayList<Bonus> freeBonuses;
 	
 	private final ArrayList<VausListener> vausListeners;
@@ -40,6 +41,7 @@ public final class Game implements Constants {
 		//init
 		vausListeners = new ArrayList<VausListener>();
 		balls = new ArrayList<Ball>();
+		bullets = new ArrayList<Ball>();
 		freeBonuses = new ArrayList<Bonus>();
 		vaus = new DefaultVaus(GAME_WIDTH / 2 - VAUS_WIDTH / 2);
 		player = new Player("pippo", 3);
@@ -76,6 +78,9 @@ public final class Game implements Constants {
 	public Level getLevel() {
 		return level;
 	}
+	public ArrayList<Ball> getBullets() {
+		return bullets;
+	}
 	
 	//setters
 	private final void setLevel(final Level level) {
@@ -104,6 +109,17 @@ public final class Game implements Constants {
 		balls.remove(ball);
 		removeVausListener(ball);
 	}
+	/**
+	 * Add a bullet to the game
+	 * @param bullet
+	 */
+	public final void addBullet(final Ball bullet) {
+		bullets.add(bullet);
+	}
+	private void removeBullet(final Ball bullet) {
+		bullets.remove(bullet);
+		removeVausListener(bullet);
+	}
 	
 	/**
 	 * Move all the balls in the game
@@ -114,6 +130,20 @@ public final class Game implements Constants {
 				this.removeBall(balls.get(i));
 			} else {
 				balls.get(i).move();
+				i++;
+			}
+		}
+	}
+	
+	/**
+	 * Move all the bullets in the game
+	 */
+	public final void moveBullets() {
+		for (int i = 0 ; i < bullets.size();) {
+			if (bullets.get(i).isDead()) {
+				this.removeBullet(bullets.get(i));
+			} else {
+				bullets.get(i).move();
 				i++;
 			}
 		}
@@ -170,6 +200,8 @@ public final class Game implements Constants {
 			li.setVaus(vaus);
 		}
 	}
+
+	
 
 	
 

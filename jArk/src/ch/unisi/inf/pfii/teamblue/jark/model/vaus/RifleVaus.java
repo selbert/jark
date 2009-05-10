@@ -23,8 +23,15 @@ public final class RifleVaus extends Vaus {
 		super(x);
 	}
 	@Override
-	public final String toString() {
-		return "rifleVaus";
+	public String toString() {
+		switch(vausWidth) {
+			case LONGVAUS_WIDTH:
+				return "longVaus";
+			case SHORTVAUS_WIDTH:
+				return "shortVaus";
+			default:
+				return "defaultVaus";
+		}
 	}
 	
 	@Override

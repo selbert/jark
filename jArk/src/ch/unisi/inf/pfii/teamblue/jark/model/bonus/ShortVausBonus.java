@@ -1,8 +1,6 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.bonus;
 
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
-import ch.unisi.inf.pfii.teamblue.jark.model.vaus.ShortVaus;
-import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
 /**
  * Changes the size of the Vaus
@@ -20,8 +18,7 @@ public final class ShortVausBonus extends Bonus {
 	}
 	@Override
 	public void apply(final Game game) {
+		game.getVaus().setWidth(SHORTVAUS_WIDTH);
 		super.apply(game);
-		final Vaus newVaus = new ShortVaus(game.getVaus().getX());
-		game.setVaus(newVaus);
 	}
 }

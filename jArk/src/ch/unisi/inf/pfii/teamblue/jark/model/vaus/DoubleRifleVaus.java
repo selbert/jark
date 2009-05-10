@@ -21,8 +21,15 @@ public final class DoubleRifleVaus extends Vaus {
 		super(x);
 	}
 	@Override
-	public final String toString() {
-		return "doubleRifleVaus";
+	public String toString() {
+		switch(vausWidth) {
+			case LONGVAUS_WIDTH:
+				return "longVaus";
+			case SHORTVAUS_WIDTH:
+				return "shortVaus";
+			default:
+				return "defaultVaus";
+		}
 	}
 	@Override
 	public final void shoot(Game game) {

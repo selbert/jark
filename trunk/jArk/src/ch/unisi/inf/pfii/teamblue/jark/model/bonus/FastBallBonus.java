@@ -30,4 +30,14 @@ public final class FastBallBonus extends Bonus {
 		}
 	}
 	
+	@Override
+	public final void remove(final Game game) {
+		final ArrayList<Ball> balls = game.getBalls();
+		final int numberOfBalls = balls.size();
+		
+		for (int i = 0; i < numberOfBalls; i++) {
+			balls.get(i).setSpeedMod(1);
+		}
+	}
+	
 }

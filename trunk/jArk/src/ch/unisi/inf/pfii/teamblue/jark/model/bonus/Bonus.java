@@ -106,4 +106,8 @@ public abstract class Bonus implements Constants, VausListener {
 	         li.bonusTaken(this);
 	    }
 	}
+
+	public void remove(Game game) {
+		return;
+	}
 }

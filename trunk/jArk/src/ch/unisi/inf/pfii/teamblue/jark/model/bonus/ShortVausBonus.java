@@ -21,4 +21,8 @@ public final class ShortVausBonus extends Bonus {
 		game.getVaus().setWidth(SHORTVAUS_WIDTH);
 		super.apply(game);
 	}
+	@Override
+	public final void remove(final Game game) {
+		game.getVaus().setWidth(VAUS_WIDTH);
+	}
 }

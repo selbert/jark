@@ -56,6 +56,10 @@ public final class GamePanel extends JComponent implements Constants, VausListen
 	private boolean running;
 	private boolean firstTimeRun;
 
+	private String textToDraw;
+	private long lastBonusTakenTime;
+	private final static long bonusMessageDelay = 1000;
+	
 	private final Cursor transparentCursor;
 	
 	public GamePanel(final Game game, final int x, final int y) {
@@ -64,7 +68,9 @@ public final class GamePanel extends JComponent implements Constants, VausListen
 			public void bonusReleased(Bonus bonus) {
 				bonus.addBonusListener(new BonusListener() {
 					public void bonusTaken(Bonus bonus) {
+						lastBonusTakenTime = System.currentTimeMillis();
 						System.out.println("Got: "+bonus.toString());
+						textToDraw = bonus.toString();
 						if (bonus.toString().equals("bonus_box")) {
 							drawBox = true;
 						}
@@ -72,7 +78,6 @@ public final class GamePanel extends JComponent implements Constants, VausListen
 				});
 			}
 		});
-
 		
 		KeyListener keyListener = new KeyListener() {
 			public final void keyPressed(KeyEvent ev) {
@@ -225,6 +230,11 @@ public final class GamePanel extends JComponent implements Constants, VausListen
 			g2d.drawImage(ir.getImage("pause"), 200, 180, this);
 		}
 		
+		if (textToDraw != null && lastBonusTakenTime+bonusMessageDelay >= System.currentTimeMillis()) {
+			g2d.drawString(textToDraw, 650, 560);
+		} else {
+			textToDraw = null;
+		}
 	}
 
 	/**

@@ -31,5 +31,13 @@ public final class TheBoxBonus extends Bonus {
 		
 		//TODO draw line
 	}
-	
+	@Override
+	public final void remove(final Game game) {
+		final ArrayList<Ball> balls = game.getBalls();
+		final int numberOfBalls = balls.size();
+		
+		for (int i = 0; i < numberOfBalls; i++) {
+			balls.get(i).setBoxEnabled(false);
+		}
+	}
 }

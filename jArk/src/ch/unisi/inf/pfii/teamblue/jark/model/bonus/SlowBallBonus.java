@@ -29,5 +29,14 @@ public final class SlowBallBonus extends Bonus {
 			balls.get(i).setSpeedMod((float) 0.5);
 		}
 	}
+	@Override
+	public final void remove(final Game game) {
+		final ArrayList<Ball> balls = game.getBalls();
+		final int numberOfBalls = balls.size();
+		
+		for (int i = 0; i < numberOfBalls; i++) {
+			balls.get(i).setSpeedMod(1);
+		}
+	}
 	
 }

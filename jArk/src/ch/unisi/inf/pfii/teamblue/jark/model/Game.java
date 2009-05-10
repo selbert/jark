@@ -1,9 +1,13 @@
 package ch.unisi.inf.pfii.teamblue.jark.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
+import ch.unisi.inf.pfii.teamblue.jark.implementation.BonusListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
+import ch.unisi.inf.pfii.teamblue.jark.implementation.LevelListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.VausListener;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.DefaultBall;
@@ -26,6 +30,7 @@ public final class Game implements Constants {
 	private final ArrayList<Ball> balls;
 	private final ArrayList<Ball> bullets;
 	private final ArrayList<Bonus> freeBonuses;
+	private final HashMap<Bonus, Long> takenBonuses;
 	
 	private final ArrayList<VausListener> vausListeners;
 
@@ -43,6 +48,7 @@ public final class Game implements Constants {
 		balls = new ArrayList<Ball>();
 		bullets = new ArrayList<Ball>();
 		freeBonuses = new ArrayList<Bonus>();
+		takenBonuses = new HashMap<Bonus, Long>();
 		vaus = new DefaultVaus(GAME_WIDTH / 2 - VAUS_WIDTH / 2);
 		player = new Player("pippo", 3);
 		
@@ -84,6 +90,15 @@ public final class Game implements Constants {
 	//setters
 	private final void setLevel(final Level level) {
 		this.level = level;
+		level.addLevelListener(new LevelListener() {
+			public void bonusReleased(Bonus bonus) {
+				bonus.addBonusListener(new BonusListener() {
+					public void bonusTaken(Bonus bonus) {
+						takenBonuses.put(bonus, System.currentTimeMillis());
+					}
+				});
+			}
+		});
 		addVausListener(level);
 	}
 	public final void setVaus(final Vaus vaus) {

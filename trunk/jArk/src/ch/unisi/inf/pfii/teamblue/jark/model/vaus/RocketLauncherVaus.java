@@ -2,7 +2,6 @@ package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
-import ch.unisi.inf.pfii.teamblue.jark.model.vaus.ammunitions.Bullet;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.ammunitions.Rocket;
 
 

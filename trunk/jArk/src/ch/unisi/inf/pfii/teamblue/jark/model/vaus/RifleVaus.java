@@ -1,10 +1,6 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
 
-import java.util.ArrayList;
-
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
-import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
-import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.ammunitions.Bullet;
 
 /**

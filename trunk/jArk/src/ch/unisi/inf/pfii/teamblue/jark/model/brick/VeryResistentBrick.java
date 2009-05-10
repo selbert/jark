@@ -13,7 +13,7 @@ public final class VeryResistentBrick extends Brick {
 
 	public VeryResistentBrick() {
 		setLives(3);
-		setPoints(5);
+		setPoints(7);
 	}
 	@Override
 	public final String toString() {

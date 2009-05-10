@@ -25,14 +25,14 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Game;
  */
 
 @SuppressWarnings("serial")
-public final class InfoPanel extends JPanel {
+public final class InfoPanel2 extends JPanel {
 	
 	private JLabel lives;
 	private JLabel level;
 	private JLabel score;
 	
-	public InfoPanel(Game game) {
-		setLayout(new GridLayout(4,1));
+	public InfoPanel2(Game game) {
+		setLayout(new GridLayout(1,5));
 		
 		game.getPlayer().addPlayerListener(new PlayerListener() {
 			public void modifiedLives(int l) {
@@ -43,16 +43,15 @@ public final class InfoPanel extends JPanel {
 				score.setText("Score: "+s);
 			}
 		});
-		
-		JLabel title = new JLabel("Informations", JLabel.CENTER);
-		title.setForeground(Color.BLUE);
-		add(title);
-		level = new JLabel("Level: "+"0");
+		add(new JLabel(""));
+		add(new JLabel("j0k3r"));
+		level = new JLabel("Level: "+"Test");
 		add(level);
 		lives = new JLabel("Lives: "+game.getPlayer().getLives());
 		add(lives);
 		score = new JLabel("Score: "+game.getPlayer().getScore());
 		add(score);
+		add(new JLabel("Time: 00:32:12"));
 	}
 	
 }

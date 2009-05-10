@@ -7,7 +7,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 
-import ch.unisi.inf.pfii.teamblue.jark.implementation.BonusListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.LevelListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Utils;

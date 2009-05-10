@@ -1,7 +1,6 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.bonus;
 
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
-import ch.unisi.inf.pfii.teamblue.jark.model.vaus.RifleVaus;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.RocketLauncherVaus;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 

@@ -20,7 +20,6 @@ import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
-import javax.swing.JProgressBar;
 import javax.swing.Timer;
 import javax.swing.event.MouseInputAdapter;
 
@@ -63,7 +62,7 @@ public final class GamePanel extends JComponent implements Constants, VausListen
 	
 	private final Cursor transparentCursor;
 	
-	public GamePanel(final Game game, final int x, final int y) {
+	public GamePanel(final Game game) {
 
 		game.getLevel().addLevelListener(new LevelListener() {
 			public void bonusReleased(Bonus bonus) {

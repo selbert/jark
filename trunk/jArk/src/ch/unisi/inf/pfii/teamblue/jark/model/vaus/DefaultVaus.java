@@ -15,7 +15,14 @@ public final class DefaultVaus extends Vaus {
 	}
 	@Override
 	public String toString() {
-		return "defaultVaus";
+		switch(vausWidth) {
+			case LONGVAUS_WIDTH:
+				return "longVaus";
+			case SHORTVAUS_WIDTH:
+				return "shortVaus";
+			default:
+				return "defaultVaus";
+		}
 	}
 
 }

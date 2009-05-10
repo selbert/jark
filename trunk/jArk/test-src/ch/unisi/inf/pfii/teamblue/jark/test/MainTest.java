@@ -40,10 +40,8 @@ import ch.unisi.inf.pfii.teamblue.jark.model.brick.VeryResistentBrick;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.DefaultVaus;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.DoubleRifleVaus;
-import ch.unisi.inf.pfii.teamblue.jark.model.vaus.LongVaus;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.RifleVaus;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.RocketLauncherVaus;
-import ch.unisi.inf.pfii.teamblue.jark.model.vaus.ShortVaus;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
 
@@ -159,10 +157,6 @@ public class MainTest extends TestCase implements Constants {
 		assertTrue(vaus.toString().equals("doubleLaserVaus"));
 		vaus = new RocketLauncherVaus(0);
 		assertTrue(vaus.toString().equals("missileVaus"));
-		vaus = new LongVaus(0);
-		assertTrue(vaus.toString().equals("longVaus"));
-		vaus = new ShortVaus(0);
-		assertTrue(vaus.toString().equals("shortVaus"));
 	}
 
 	public void testBallMove() {

@@ -23,6 +23,7 @@ public final class DoubleLaserVausBonus extends Bonus {
 	public void apply(final Game game) {
 		super.apply(game);
 		final Vaus newVaus = new DoubleRifleVaus(game.getVaus().getX());
+		newVaus.setWidth(game.getVaus().getWidth());
 		game.setVaus(newVaus);
 	}
 	

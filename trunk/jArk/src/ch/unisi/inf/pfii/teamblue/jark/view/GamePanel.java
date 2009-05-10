@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
+import javax.swing.JProgressBar;
 import javax.swing.Timer;
 import javax.swing.event.MouseInputAdapter;
 
@@ -155,11 +156,7 @@ public final class GamePanel extends JComponent implements Constants, VausListen
 
 		ActionListener li = new ActionListener() {
 			public void actionPerformed(final ActionEvent ev) {
-				game.moveBalls();
-				game.moveBonuses();
-				game.moveBullets();
-				game.checkTakenBonuses();
-				game.getVaus().move();
+				game.tick();
 				repaint();
 			}
 		};

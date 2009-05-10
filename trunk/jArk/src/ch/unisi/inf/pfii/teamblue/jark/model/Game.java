@@ -106,6 +106,18 @@ public final class Game implements Constants {
 		fireVausChanged();
 	}
 	
+	
+	/**
+	 * Actions to do each tick of the game
+	 */
+	public final void tick() {
+		moveBalls();
+		moveBonuses();
+		moveBullets();
+		checkTakenBonuses();
+		vaus.move();
+	}
+	
 	/**
 	 * Add a ball to the game
 	 * @param ball

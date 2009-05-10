@@ -14,7 +14,10 @@ import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
  */
 
 public final class DoubleBallBonus extends Bonus {
-
+	
+	public DoubleBallBonus() {
+		super.setLife(0);
+	}
 	@Override
 	public final String toString() {
 		return "bonus_doubleball";

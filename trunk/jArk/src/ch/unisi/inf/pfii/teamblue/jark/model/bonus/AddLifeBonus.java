@@ -12,6 +12,9 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 
 public final class AddLifeBonus extends Bonus {
 	
+	public AddLifeBonus() {
+		super.setLife(0);
+	}
 	@Override
 	public final String toString() {
 		return "bonus_addlife";

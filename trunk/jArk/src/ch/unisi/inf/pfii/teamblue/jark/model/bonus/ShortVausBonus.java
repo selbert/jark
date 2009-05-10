@@ -11,7 +11,9 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Game;
  */
 
 public final class ShortVausBonus extends Bonus {
-	
+	public ShortVausBonus() {
+		super.setLife(-1);
+	}
 	@Override
 	public String toString() {
 		return "malus_shortvaus";

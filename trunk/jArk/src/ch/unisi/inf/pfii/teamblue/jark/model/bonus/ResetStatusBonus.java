@@ -42,5 +42,10 @@ public final class ResetStatusBonus extends Bonus {
 		final Vaus newVaus = new DefaultVaus(game.getVaus().getX());
 		game.setVaus(newVaus); 
 	}
+	@Override
+	public final void remove(final Game game) {
+		game.removeTakenBonuses();
+	}
+	
 	
 }

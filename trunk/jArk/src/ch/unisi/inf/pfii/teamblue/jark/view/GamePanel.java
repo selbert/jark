@@ -158,6 +158,7 @@ public final class GamePanel extends JComponent implements Constants, VausListen
 				game.moveBalls();
 				game.moveBonuses();
 				game.moveBullets();
+				game.checkTakenBonuses();
 				game.getVaus().move();
 				repaint();
 			}

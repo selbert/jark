@@ -49,6 +49,11 @@ public final class Player {
 		this.score = score;
 	}
 
+	public void incrementScore(final int score) {
+		this.score += score;
+		fireModifiedScore();
+	}
+	
 	public int getScore() {
 		return score;
 	}
@@ -64,6 +69,11 @@ public final class Player {
 	public void fireModifiedLives() {
 		for (final PlayerListener li : listeners) {
 	         li.modifiedLives(lives);
+	    }
+	}
+	public void fireModifiedScore() {
+		for (final PlayerListener li : listeners) {
+	         li.modifiedScore(score);
 	    }
 	}
 }

@@ -200,6 +200,7 @@ public final class Level implements Constants, VausListener {
 			final Brick brick = bricks[pos[1]][pos[0]];
 			
 			if (brick != null)  {
+				fireBrickHit(brick);
 				final int lives = brick.getLives();
 				if (lives == 1) {
 					final Bonus bonus = bricks[pos[1]][pos[0]].getBonus();
@@ -232,6 +233,12 @@ public final class Level implements Constants, VausListener {
 	public void fireBonusReleased(Bonus bonus) {
 		for (final LevelListener li : listeners) {
 	         li.bonusReleased(bonus);
+	    }
+	}
+	
+	public void fireBrickHit(Brick brick) {
+		for (final LevelListener li : listeners) {
+	         li.brickHit(brick);
 	    }
 	}
 }

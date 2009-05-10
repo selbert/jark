@@ -77,6 +77,11 @@ public final class GamePanel extends JComponent implements Constants, VausListen
 					}
 				});
 			}
+
+			public void brickHit(Brick brick) {
+				// TODO Auto-generated method stub
+				
+			}
 		});
 		
 		KeyListener keyListener = new KeyListener() {

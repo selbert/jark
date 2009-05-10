@@ -11,7 +11,9 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Game;
  */
 
 public final class RemoveLifeBonus extends Bonus {
-	
+	public RemoveLifeBonus() {
+		super.setLife(0);
+	}
 	@Override
 	public String toString() {
 		return "malus_removelife";

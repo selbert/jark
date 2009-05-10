@@ -2,8 +2,8 @@ package ch.unisi.inf.pfii.teamblue.jark.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.BonusListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
@@ -177,6 +177,29 @@ public final class Game implements Constants {
 				freeBonuses.get(i).move();
 				i++;
 			}
+		}
+	}
+	
+	/**
+	 * Check taken bonuses for expiration
+	 */
+	public final void checkTakenBonuses() {
+		Set<Bonus> taken = takenBonuses.keySet();
+		for (Bonus bonus : taken) {
+			if (bonus.getLife() != -1 && takenBonuses.get(bonus) + bonus.getLife() < System.currentTimeMillis()) {
+				bonus.remove(this);
+				takenBonuses.remove(bonus);
+			}
+		}
+	}
+	/**
+	 * remove all taken bonuses
+	 */
+	public final void removeTakenBonuses() {
+		Set<Bonus> taken = takenBonuses.keySet();
+		for (Bonus bonus : taken) {
+			bonus.remove(this);
+			takenBonuses.remove(bonus);
 		}
 	}
 	

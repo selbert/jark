@@ -22,6 +22,7 @@ public abstract class Bonus implements Constants, VausListener {
 	private Vaus vaus;
 	private boolean taken;
 	private boolean dead;
+	private int lifeInMill;
 	
 	private final ArrayList<BonusListener> listeners;
 	
@@ -30,6 +31,7 @@ public abstract class Bonus implements Constants, VausListener {
 		y = 0;
 		vaus = null;
 		listeners = new ArrayList<BonusListener>();
+		lifeInMill = 30000;
 	}
 	
 	@Override
@@ -51,6 +53,10 @@ public abstract class Bonus implements Constants, VausListener {
 	public final boolean isTaken() {
 		return taken;
 	}
+	public int getLife() {
+		return lifeInMill;
+		
+	}
 	
 	//setters
 	public final void setX(final int x) {
@@ -61,6 +67,9 @@ public abstract class Bonus implements Constants, VausListener {
 	}
 	public final void setVaus(final Vaus vaus) {
 		this.vaus = vaus;
+	}
+	public final void setLife(int life) {
+		lifeInMill = life;
 	}
 	
 	/**

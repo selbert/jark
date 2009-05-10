@@ -108,7 +108,7 @@ public final class Game implements Constants {
 	
 	
 	/**
-	 * Actions to do each tick of the game
+	 * Actions to do at each tick of the game
 	 */
 	public final void tick() {
 		moveBalls();

@@ -1,11 +1,19 @@
 package ch.unisi.inf.pfii.teamblue.jark.view;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 
-import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
 
+import ch.unisi.inf.pfii.teamblue.jark.implementation.PlayerListener;
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 
 /**
@@ -16,19 +24,25 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Game;
  * 
  */
 
+@SuppressWarnings("serial")
 public final class InfoPanel extends JPanel {
-	private final JLabel lblLives;
+	
+	private JLabel lives;
 	
 	public InfoPanel(Game game) {
-		setBorder(BorderFactory.createLineBorder(Color.black));
-
-		JLabel label = new JLabel("Lives:");
-		add(label);
-		lblLives = new JLabel("");
-		add(lblLives);
+		setLayout(new GridLayout(3,1));
+		
+		game.getPlayer().addPlayerListener(new PlayerListener() {
+			public void modifiedLives(int l) {
+				lives.setText("Lives: "+l);
+			}
+		});
+		
+		JLabel title = new JLabel("Informations", JLabel.CENTER);
+		title.setForeground(Color.BLUE);
+		add(title);
+		lives = new JLabel("Lives: "+game.getPlayer().getLives());
+		add(lives);
 	}
 	
-	public final void setLives(int lives) {
-		lblLives.setText(lives+"");
-	}
 }

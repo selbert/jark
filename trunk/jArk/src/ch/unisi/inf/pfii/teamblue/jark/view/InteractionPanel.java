@@ -1,13 +1,9 @@
 package ch.unisi.inf.pfii.teamblue.jark.view;
 
-import java.awt.AWTException;
-import java.awt.Color;
 import java.awt.GridLayout;
-import java.awt.Robot;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -21,20 +17,14 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Game;
  * 
  */
 
+@SuppressWarnings("serial")
 public final class InteractionPanel extends JPanel {
 
 	private final JButton startButton;
 	private final JButton stopButton;
 
-	private final GamePanel gamePanel;
-	private final Game game;
-
 	public InteractionPanel(final GamePanel gamePanel, final Game game) {
-		this.gamePanel = gamePanel;
-		this.game = game;
-
-		setBorder(BorderFactory.createLineBorder(Color.black));
-		setLayout(new GridLayout(10, 1));
+		setLayout(new GridLayout(2, 1));
 
 		// first button
 		startButton = new JButton("Add Ball");

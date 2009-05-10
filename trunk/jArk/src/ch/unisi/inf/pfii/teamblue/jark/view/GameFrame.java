@@ -21,6 +21,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Game;
  * 
  */
 
+@SuppressWarnings("serial")
 public final class GameFrame extends JFrame {
 	private final MainPanel mainPanel;
 
@@ -32,7 +33,7 @@ public final class GameFrame extends JFrame {
 		((JPanel) getContentPane()).setBorder(new EmptyBorder(6, 6, 6, 6));
 
 		makeMenu();
-		mainPanel = new MainPanel(game, getX(), getY());
+		mainPanel = new MainPanel(game);
 		add(mainPanel);
 
 		// pack the frame together

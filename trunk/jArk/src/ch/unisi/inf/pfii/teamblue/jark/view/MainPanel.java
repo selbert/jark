@@ -16,20 +16,22 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 
 public final class MainPanel extends JPanel {
 	private final GamePanel gamePanel;
-	private final InfoPanel infoPanel;
-	private final InteractionPanel interactionPanel;
+	//private final InfoPanel infoPanel;
+	//private final InteractionPanel interactionPanel;
+	private final WestPanel westPanel;
 
-	public MainPanel(final Game game, final int x, final int y) {
+	public MainPanel(final Game game) {
 		setLayout(new BorderLayout(6, 6));
 
-		gamePanel = new GamePanel(game, x, y);
-		infoPanel = new InfoPanel(game);
-
-		interactionPanel = new InteractionPanel(gamePanel, game);
+		gamePanel = new GamePanel(game);
+//		infoPanel = new InfoPanel(game);
+		westPanel = new WestPanel(gamePanel, game);
+		
+//		interactionPanel = new InteractionPanel(gamePanel, game);
 
 		add(gamePanel, BorderLayout.CENTER);
-		add(infoPanel, BorderLayout.NORTH);
-		add(interactionPanel, BorderLayout.WEST);
+		//add(infoPanel, BorderLayout.NORTH);
+		add(westPanel, BorderLayout.WEST);
 	}
 
 }

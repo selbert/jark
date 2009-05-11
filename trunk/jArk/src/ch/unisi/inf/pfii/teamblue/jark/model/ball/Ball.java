@@ -107,19 +107,15 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 			return;
 		}
 		
-		if (newY < FIELD_HEIGHT) { 
+		if (newY < FIELD_HEIGHT && !level.persistentBrickHasBallInside(x,y)) { 
 			boolean bounceX = bounceX(newX);
 			boolean bounceY = bounceY(newY);
-			if (bounceY || bounceX) {
-				if (!level.persistentBrickHasBallInside(x,y) & bounceY) {
-					speedY = -speedY;
-					newY = y;
-				}
-			
-				if (!level.persistentBrickHasBallInside(x,y) & bounceX) {
-					speedX = -speedX;
-					newX = x;
-				}
+			if (bounceY) {
+				speedY = -speedY;
+				newY = y;
+			} else if (bounceX) {
+				speedX = -speedX;
+				newX = x;
 			} else if (bounceDiag(newX, newY)) {
 				speedY = -speedY;
 				newY = y;

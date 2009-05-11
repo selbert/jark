@@ -21,6 +21,7 @@ public final class RubberBall extends Ball {
 		Ball returnBall = new RubberBall(vaus, level);
 		returnBall.setX(x);
 		returnBall.setY(y);
+		returnBall.setSpeedMod(speedModifier);
 		return returnBall;
 	}
 	@Override
@@ -39,18 +40,23 @@ public final class RubberBall extends Ball {
 			return;
 		}
 		
-		if (newY < FIELD_HEIGHT) { 
-			if (!level.persistentBrickHasBallInside(x,y) & bounceY(newY)){
+		if (newY < FIELD_HEIGHT && !level.persistentBrickHasBallInside(x,y)) { 
+			boolean bounceX = bounceX(newX);
+			boolean bounceY = bounceY(newY);
+			if (bounceY) {
 				speedY = -speedY;
 				newY = y;
-			}
-			
-			if (!level.persistentBrickHasBallInside(x,y) & bounceX(newX)){
+			} else if (bounceX) {
+				speedX = -speedX;
+				newX = x;
+			} else if (bounceDiag(newX, newY)) {
+				speedY = -speedY;
+				newY = y;
 				speedX = -speedX;
 				newX = x;
 			}
 		}
-		
+
 		if (newX + (BALL_RADIUS*2) >= GAME_WIDTH) {
 			speedX = -speedX;
 			newX = GAME_WIDTH - (BALL_RADIUS*2);
@@ -90,6 +96,18 @@ public final class RubberBall extends Ball {
 		} 
 		return false;
 
+	}
+	
+	@Override
+	protected boolean bounceDiag(final float newX, final float newY) {
+		if (level.brickHasBallInside(newX, newY)
+				|| level.brickHasBallInside(newX, newY + (2*BALL_RADIUS))
+				|| level.brickHasBallInside(newX + (2*BALL_RADIUS), newY)
+				|| level.brickHasBallInside(newX + (2*BALL_RADIUS), newY + (2*BALL_RADIUS))) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	@Override
 	public final String toString() {

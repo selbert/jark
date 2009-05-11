@@ -21,6 +21,7 @@ public class ExplosionBall extends Ball {
 		Ball returnBall = new ExplosionBall(vaus, level);
 		returnBall.setX(x);
 		returnBall.setY(y);
+		returnBall.setSpeedMod(speedModifier);
 		return returnBall;
 	}
 	//the bricks to destroy

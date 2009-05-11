@@ -28,6 +28,7 @@ public final class Level implements Constants, VausListener {
 	private final Random rnd;
 	private String bonusDistString;
 	
+	private final String name;
 	private final Brick[][] bricks;
 	private final ArrayList<Bonus> freeBonuses;
 	private final ArrayList<LevelListener> listeners;
@@ -51,7 +52,9 @@ public final class Level implements Constants, VausListener {
 		rnd = new Random();
 		createTestFieldLevel();
 		//createLevel(0);
+		name = "test";
 		addBonus(numOfBonus);
+		//TODO name num of bonus, .. all in the level file!
 	}
 	
 	//getters and setters

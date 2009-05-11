@@ -1,8 +1,13 @@
 package ch.unisi.inf.pfii.teamblue.jark.view;
 
 import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.image.FilteredImageSource;
+import java.awt.image.ImageFilter;
+import java.awt.image.RGBImageFilter;
 import java.util.HashMap;
 
+import javax.swing.GrayFilter;
 import javax.swing.ImageIcon;
 
 /**
@@ -16,10 +21,10 @@ import javax.swing.ImageIcon;
  */
 
 public final class ImagesReference {
-	private final HashMap<String, Image> images;
+	private static HashMap<String, ImageIcon> images;
 	
 	public ImagesReference() {
-		images = new HashMap<String, Image>();
+		images = new HashMap<String, ImageIcon>();
 		//bricks
 		images.put("defaultBrick", setImage("images/bricks/defaultBrick.png"));
 		images.put("persistentBrick", setImage("images/bricks/persistentBrick2.png"));
@@ -28,6 +33,7 @@ public final class ImagesReference {
 		images.put("veryResistentBrick1", setImage("images/bricks/veryResistentBrick1.png"));
 		images.put("veryResistentBrick2", setImage("images/bricks/veryResistentBrick2.png"));
 		images.put("veryResistentBrick3", setImage("images/bricks/veryResistentBrick3.png"));
+		images.put("editorBrick", setImage("images/bricks/editorBrick.png"));
 		//vauses
 		images.put("defaultVaus", setImage("images/vauses/defaultVaus.png"));
 		images.put("longVaus", setImage("images/vauses/longVaus.png"));
@@ -72,11 +78,48 @@ public final class ImagesReference {
 		images.put("pause", setImage("images/pause.png"));
 	}
 	
-	private final Image setImage(final String path) {
-		return new ImageIcon(getClass().getResource(path)).getImage();
+	private final ImageIcon setImage(final String path) {
+		return new ImageIcon(getClass().getResource(path));
 	}
 	
-	public final Image getImage(final String stringImage) {
+	public static final HashMap<String, ImageIcon> getIcons() {
+		return images;
+	}
+	
+	public static final Image getImage(final String stringImage) {
+		return images.get(stringImage).getImage();
+	}
+	
+	public static final ImageIcon getIcon(final String stringImage) {
 		return images.get(stringImage);
+	}
+	
+	public static final ImageIcon getHighlightedIcon(ImageIcon icon) {
+		Image image = icon.getImage();
+		ImageFilter ifua = new RGBImageFilter() {
+			@Override
+			public int filterRGB(int x, int y, int rgb) {
+				int brightness = 60;
+
+				int r = (rgb >> 16) & 0xff;
+				int g = (rgb >> 8) & 0xff;
+				int b = (rgb >> 0) & 0xff;
+
+				r += (brightness * r) / 100;
+				g += (brightness * g) / 100;
+				b += (brightness * b) / 100;
+
+				r = Math.min(Math.max(0, r), 255);
+				g = Math.min(Math.max(0, g), 255);
+				b = Math.min(Math.max(0, b), 255);
+
+				return (rgb & 0xff000000) | (r << 16) | (g << 8) | (b << 0);
+			}
+		};
+		
+		GrayFilter ifu = new GrayFilter(true, 10);
+		FilteredImageSource filteredImage = new FilteredImageSource(image.getSource(), ifua);
+		Image newImage = Toolkit.getDefaultToolkit().createImage(filteredImage);
+	    return new ImageIcon(newImage);
 	}
 }

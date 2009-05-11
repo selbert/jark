@@ -27,14 +27,16 @@ import ch.unisi.inf.pfii.teamblue.jark.view.ImagesReference;
 public final class FieldPanel extends JComponent implements Constants {
 	private int brickX;
 	private int brickY;
-	private boolean noBrick;
+	private boolean paintingAllowed;
 	private ButtonGroup group;
 	private ButtonModel selected;
 	private final String[][] brickField;
+	private final String[][] bonusField;
 	
 	public FieldPanel(final ButtonGroup group) {
 		this.group = group;
 		brickField = new String[FIELD_ROWS][FIELD_COLUMNS];
+		bonusField = new String[FIELD_ROWS][FIELD_COLUMNS];
 		
 		//setBorder(BorderFactory.createLineBorder(Color.black));
 		setPreferredSize(new Dimension(799, 401));
@@ -53,30 +55,38 @@ public final class FieldPanel extends JComponent implements Constants {
 			@Override
 			public void mousePressed(MouseEvent ev) {
 				if (selected != null) {
-					brickField[brickY][brickX] = getBrickText();
-					printField();
+					if (selected.getActionCommand().contains("Brick")) {
+						brickField[brickY][brickX] = getBrickText();
+						bonusField[brickY][brickX] = null;
+					} else if (brickField[brickY][brickX] != null) {
+						bonusField[brickY][brickX] = getBrickText();
+					}
 				}
+			}
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				super.mouseReleased(e);
+				printField(brickField);
+				printField(bonusField);
 			}
 			
 			@Override
 			public void mouseDragged(MouseEvent ev) {
 				super.mouseDragged(ev);
-				int[] pos = Utils.getFieldPosition(ev.getX(), ev.getY());
-				brickX = pos[0];
-				brickY = pos[1];
-				brickField[brickY][brickX] = getBrickText();
-				repaint();
+				mouseMoved(ev);
+				mousePressed(ev);
 			}
 			
 			@Override
 			public void mouseEntered(MouseEvent ev) {
 				super.mouseEntered(ev);
-				noBrick = false;
+				paintingAllowed = true;
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
 				super.mouseExited(e);
-				noBrick = true;
+				paintingAllowed = false;
 				repaint();
 			}
 			
@@ -95,14 +105,15 @@ public final class FieldPanel extends JComponent implements Constants {
 		}
 	}
 	
-	private void printField() {
-		for(final String[] i : brickField) {
+	private void printField(String[][] field) {
+		for(final String[] i : field) {
 			String line ="";
 			for (final String j : i) {
 				line += j+" ";
 			}
 			System.out.println(line);
 		}
+		System.out.println( );
 	}
 	
 	@Override
@@ -123,14 +134,18 @@ public final class FieldPanel extends JComponent implements Constants {
 		for (int i = 0; i<FIELD_ROWS; i++) {
 			for (int j=0; j<FIELD_COLUMNS; j++) {
 				String brick = brickField[i][j];
+				String bonus = bonusField[i][j];
 				if (brick != null) {
 					g2d.drawImage(ImagesReference.getImage(brick), BRICK_WIDTH*j, BRICK_HEIGHT*i,this);
+					if (bonus != null) {
+						g2d.drawImage(ImagesReference.getImage(bonus), BRICK_WIDTH*j, BRICK_HEIGHT*i, 34, 15, this);
+					}
 				}
 			}
 		}
 		
 		selected = group.getSelection();
-		if (selected != null && !noBrick) {
+		if (selected != null && paintingAllowed) {
 			g2d.drawImage(ImagesReference.getImage(selected.getActionCommand()), BRICK_WIDTH*brickX, BRICK_HEIGHT*brickY, this);
 		}
 	}

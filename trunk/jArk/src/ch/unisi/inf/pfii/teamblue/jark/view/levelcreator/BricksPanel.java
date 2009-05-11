@@ -54,7 +54,7 @@ public final class BricksPanel extends JPanel {
 			button.setSelectedIcon(him);
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					//button.setIcon(ImagesReference.getHighlightedIcon(ImagesReference.getIcon("persistentBrick")));
+					//TODO
 				}
 			});
 			button.setHorizontalAlignment(SwingConstants.CENTER);

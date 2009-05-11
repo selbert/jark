@@ -10,7 +10,7 @@ import java.util.Random;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.LevelListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Utils;
-import ch.unisi.inf.pfii.teamblue.jark.implementation.VausListener;
+import ch.unisi.inf.pfii.teamblue.jark.implementation.VausSetListener;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonuses;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.Brick;
@@ -24,7 +24,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
  * @version $LastChangedDate$
  * 
  */
-public final class Level implements Constants, VausListener {
+public final class Level implements Constants, VausSetListener {
 	private final Random rnd;
 	private String bonusDistString;
 	

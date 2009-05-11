@@ -1,6 +1,10 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
+import ch.unisi.inf.pfii.teamblue.jark.implementation.VausListener;
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 
 /**
@@ -18,10 +22,12 @@ public abstract class Vaus implements Constants {
 	private int moveLeft;
 	private int moveRight;
 	protected int vausWidth;
+	private ArrayList<VausListener> vausListenerList;
 	
 	public Vaus(final int posX) {
 		this.posX = posX;
 		vausWidth = VAUS_WIDTH;
+		vausListenerList = new ArrayList<VausListener>();
 	}
 	
 	@Override
@@ -29,8 +35,16 @@ public abstract class Vaus implements Constants {
 	
 	//getters and setters
 	public void setX(final int posX) {
+		fireVausMoved(this.posX - posX);
 		this.posX = posX;
+		
 	}
+	private void fireVausMoved(int i) {
+		for (VausListener li : vausListenerList) {
+			li.vausMoved(i);
+		}
+	}
+
 	public int getX() {
 		return posX;
 	}
@@ -46,7 +60,7 @@ public abstract class Vaus implements Constants {
 	 * @param deltaX
 	 */
 	public void move(final int delta) {
-		posX += delta;
+		setX(posX + delta);
 	}
 	
 	/**
@@ -55,10 +69,10 @@ public abstract class Vaus implements Constants {
 	public void move() {
 		posX += moveRight * VAUS_SPEED - moveLeft * VAUS_SPEED;
 		if (posX <= 5) {
-			posX = 5;
+			setX(5);
 		}
 		if (posX + getWidth() + 5 >= GAME_WIDTH) {
-			posX = GAME_WIDTH - getWidth() - 5;
+			setX(GAME_WIDTH - getWidth() - 5);
 		}
 	}
 
@@ -77,6 +91,14 @@ public abstract class Vaus implements Constants {
 	}
 	public void shoot(Game game) {
 		return;
+	}
+
+	public void addVausListener(VausListener li) {
+		vausListenerList.add(li);
+	}
+
+	public void removeVausListener(VausListener li) {
+		vausListenerList.remove(li);
 	}
 	
 }

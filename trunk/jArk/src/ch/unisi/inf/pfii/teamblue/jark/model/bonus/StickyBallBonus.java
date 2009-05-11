@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.DefaultBall;
+import ch.unisi.inf.pfii.teamblue.jark.model.ball.StickyBall;
+import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
 /**
  * The balls sticks to the Vaus
@@ -24,8 +26,26 @@ public final class StickyBallBonus extends BallBonus {
 		return "neutral_stickyball";
 	}
 	@Override
-	public void apply(final Game game) {
-		//TODO
+	public final void apply(final Game game) {
+		final ArrayList<Ball> balls = game.getBalls();
+		final int numberOfBalls = balls.size();
+
+		for (int i = 0; i < numberOfBalls; i++) {
+			final Ball oldBall = balls.get(i);
+			final Ball newBall = new StickyBall(oldBall.getVaus(), oldBall.getLevel());
+
+			newBall.setSpeedX(oldBall.getSpeedX());
+			newBall.setSpeedY(oldBall.getSpeedY());
+			newBall.setX(oldBall.getX());
+			newBall.setY(oldBall.getY());
+			newBall.setBoxEnabled(oldBall.getBoxEnabled());
+			newBall.setSpeedMod(oldBall.getSpeedMod());
+
+			Vaus vaus = game.getVaus();
+			vaus.addVausListener(newBall);
+			
+			game.replaceBall(oldBall, newBall);
+		}
 	}
 	@Override
 	public final void remove(final Game game) {
@@ -42,6 +62,9 @@ public final class StickyBallBonus extends BallBonus {
 			newBall.setY(oldBall.getY());
 			newBall.setBoxEnabled(oldBall.getBoxEnabled());
 			newBall.setSpeedMod(oldBall.getSpeedMod());
+			
+			Vaus vaus = game.getVaus();
+			vaus.removeVausListener(oldBall);
 			
 			game.replaceBall(oldBall, newBall);
 		}

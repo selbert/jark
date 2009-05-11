@@ -8,7 +8,7 @@ import java.util.Set;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.BonusListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.LevelListener;
-import ch.unisi.inf.pfii.teamblue.jark.implementation.VausListener;
+import ch.unisi.inf.pfii.teamblue.jark.implementation.VausSetListener;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.DefaultBall;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.BallBonus;
@@ -34,7 +34,7 @@ public final class Game implements Constants {
 	private final ArrayList<Bonus> freeBonuses;
 	private final ArrayList<Bonus> takenBonuses;
 	
-	private final ArrayList<VausListener> vausListeners;
+	private final ArrayList<VausSetListener> vausListeners;
 
 	private final Random rnd;
 	
@@ -46,7 +46,7 @@ public final class Game implements Constants {
 		rnd = new Random();
 		
 		//init
-		vausListeners = new ArrayList<VausListener>();
+		vausListeners = new ArrayList<VausSetListener>();
 		balls = new ArrayList<Ball>();
 		bullets = new ArrayList<Ball>();
 		freeBonuses = new ArrayList<Bonus>();
@@ -266,14 +266,14 @@ public final class Game implements Constants {
 	}
 	
 	//vaus listeners
-	public final void addVausListener(final VausListener li) {
+	public final void addVausListener(final VausSetListener li) {
 		vausListeners.add(li);
 	}
-	public final void removeVausListener(final VausListener li) {
+	public final void removeVausListener(final VausSetListener li) {
 		vausListeners.remove(li);
 	}
 	private final void fireVausChanged() {
-		for (VausListener li : vausListeners) {
+		for (VausSetListener li : vausListeners) {
 			li.setVaus(vaus);
 		}
 	}

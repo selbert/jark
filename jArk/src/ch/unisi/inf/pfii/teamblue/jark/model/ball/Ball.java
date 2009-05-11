@@ -2,6 +2,7 @@ package ch.unisi.inf.pfii.teamblue.jark.model.ball;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.VausListener;
+import ch.unisi.inf.pfii.teamblue.jark.implementation.VausSetListener;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
@@ -13,7 +14,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
  * 
  */
 
-public abstract class Ball implements Constants, VausListener {
+public abstract class Ball implements Constants, VausSetListener, VausListener {
 	protected float x;
 	protected float y;
 	protected float speedX;
@@ -236,6 +237,9 @@ public abstract class Ball implements Constants, VausListener {
 	
 	protected void destroyBrick(final float x, final float y) {
 		level.removeBrick(x, y);
+	}
+	
+	public void vausMoved(int delta) {
 	}
 	
 	/**

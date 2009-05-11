@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.BonusListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
-import ch.unisi.inf.pfii.teamblue.jark.implementation.VausListener;
+import ch.unisi.inf.pfii.teamblue.jark.implementation.VausSetListener;
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
@@ -16,7 +16,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
  * 
  */
 
-public abstract class Bonus implements Constants, VausListener {
+public abstract class Bonus implements Constants, VausSetListener {
 	private int x;
 	private int y;
 	private Vaus vaus;

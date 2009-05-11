@@ -26,7 +26,7 @@ import javax.swing.event.MouseInputAdapter;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.BonusListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.LevelListener;
-import ch.unisi.inf.pfii.teamblue.jark.implementation.VausListener;
+import ch.unisi.inf.pfii.teamblue.jark.implementation.VausSetListener;
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
@@ -41,7 +41,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
  * 
  */
 
-public final class GamePanel extends JComponent implements Constants, VausListener {
+public final class GamePanel extends JComponent implements Constants, VausSetListener {
 	private final Timer timer;
 	
 	private final ImagesReference ir;

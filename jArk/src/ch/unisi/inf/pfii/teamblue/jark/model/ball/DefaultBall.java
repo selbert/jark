@@ -21,6 +21,7 @@ public class DefaultBall extends Ball {
 		Ball returnBall = new DefaultBall(vaus, level);
 		returnBall.setX(x);
 		returnBall.setY(y);
+		returnBall.setSpeedMod(speedModifier);
 		return returnBall;
 	}
 	@Override

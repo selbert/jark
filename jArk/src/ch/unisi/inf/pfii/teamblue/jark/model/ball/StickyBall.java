@@ -24,6 +24,7 @@ public final class StickyBall extends Ball {
 		Ball returnBall = new StickyBall(vaus, level);
 		returnBall.setX(x);
 		returnBall.setY(y);
+		returnBall.setSpeedMod(speedModifier);
 		return returnBall;
 	}
 	@Override

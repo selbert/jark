@@ -22,6 +22,7 @@ public final class UltraBall extends Ball {
 		Ball returnBall = new UltraBall(vaus, level);
 		returnBall.setX(x);
 		returnBall.setY(y);
+		returnBall.setSpeedMod(speedModifier);
 		return returnBall;
 	}
 	@Override

@@ -18,7 +18,7 @@ public final class ResistentBrick extends Brick {
 	public final String toString() {
 		final int i = getLives();
 		if (i == 2) {
-			return "resistentBrick2";
+			return "resistentBrick";
 		} else {
 			return "resistentBrick1";
 		}

@@ -45,7 +45,7 @@ public final class BricksPanel extends JPanel {
 		JLabel bricks = new JLabel("Bricks", JLabel.CENTER);
 		add(bricks);
 		
-		final String[] str = new String[] { "defaultBrick", "resistentBrick2", "veryResistentBrick3", "persistentBrick", "editorBrick"  };
+		final String[] str = new String[] { "defaultBrick", "resistentBrick", "veryResistentBrick", "persistentBrick", "removeBrick"  };
 	
 		for (int i = 0; i<str.length; i++) {
 			final ImageIcon im = ImagesReference.getIcon(str[i]);

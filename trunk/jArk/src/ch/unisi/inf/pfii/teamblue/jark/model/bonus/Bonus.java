@@ -119,4 +119,8 @@ public abstract class Bonus implements Constants, VausListener {
 		return;
 	}
 
+	public void decrementLife() {
+		lifeInMill -= TICKS_PER_SECOND;
+	}
+
 }

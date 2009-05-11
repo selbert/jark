@@ -32,7 +32,7 @@ public final class Game implements Constants {
 	private final ArrayList<Ball> balls;
 	private final ArrayList<Ball> bullets;
 	private final ArrayList<Bonus> freeBonuses;
-	private final HashMap<Bonus, Long> takenBonuses;
+	private final ArrayList<Bonus> takenBonuses;
 	
 	private final ArrayList<VausListener> vausListeners;
 
@@ -50,7 +50,7 @@ public final class Game implements Constants {
 		balls = new ArrayList<Ball>();
 		bullets = new ArrayList<Ball>();
 		freeBonuses = new ArrayList<Bonus>();
-		takenBonuses = new HashMap<Bonus, Long>();
+		takenBonuses = new ArrayList<Bonus>();
 		vaus = new DefaultVaus(GAME_WIDTH / 2 - VAUS_WIDTH / 2);
 		player = new Player("pippo", 3);
 		
@@ -155,24 +155,21 @@ public final class Game implements Constants {
 	}
 	
 	private void addBonus(Bonus bonus, long currentTimeMillis) {
-		Set<Bonus> taken = takenBonuses.keySet();
-		for (Bonus b : taken) {
+		for (int i = 0 ; i < takenBonuses.size(); i++) {
+			Bonus b = takenBonuses.get(i);
 			if (((b instanceof BallBonus && bonus instanceof BallBonus)
 					|| (b instanceof VausBonus && bonus instanceof VausBonus))
 					&& (b.getBonusClass() == bonus.getBonusClass())) {
-				takenBonuses.remove(b);
 				freeBonuses.remove(bonus);
 				bonus.apply(this);
-				if (bonus.getLife() != 0) {
-					takenBonuses.put(bonus , currentTimeMillis);
-				}
+				takenBonuses.set(i, b);
 				return;
 			}
 		}
 		bonus.apply(this);
 		freeBonuses.remove(bonus);
 		if (bonus.getLife() != 0) {
-			takenBonuses.put(bonus , currentTimeMillis);
+			takenBonuses.add(bonus);
 		}
 	}
 	/**
@@ -210,7 +207,7 @@ public final class Game implements Constants {
 		for (int i = 0 ; i < freeBonuses.size();) {
 			Bonus bonus = freeBonuses.get(i);
 			if (bonus.isDead()) {
-				freeBonuses.remove(bonus);
+				freeBonuses.remove(i);
 			} else {
 				bonus.move();
 				i++;
@@ -222,22 +219,27 @@ public final class Game implements Constants {
 	 * Check taken bonuses for expiration
 	 */
 	public final void checkTakenBonuses() {
-		Set<Bonus> taken = takenBonuses.keySet();
-		for (Bonus bonus : taken) {
-			if (bonus.getLife() != -1 && takenBonuses.get(bonus) + bonus.getLife() < System.currentTimeMillis()) {
-				bonus.remove(this);
-				takenBonuses.remove(bonus);
+		for (int i = 0 ; i < takenBonuses.size();) {
+			Bonus bonus = takenBonuses.get(i);
+			
+			if (bonus.getLife() < Integer.MAX_VALUE) {
+				bonus.decrementLife();
+				if (bonus.getLife() < 0) {
+					bonus.remove(this);
+					takenBonuses.remove(i);
+					continue;
+				}
 			}
+			i++;
 		}
 	}
 	/**
 	 * remove all taken bonuses
 	 */
 	public final void removeTakenBonuses() {
-		Set<Bonus> taken = takenBonuses.keySet();
-		for (Bonus bonus : taken) {
-			bonus.remove(this);
-			takenBonuses.remove(bonus);
+		for (;0 < takenBonuses.size();) {
+			takenBonuses.get(0).remove(this);
+			takenBonuses.remove(0);
 		}
 	}
 	
@@ -277,10 +279,8 @@ public final class Game implements Constants {
 	}
 	
 	public final void printBonuses() {
-		Set<Bonus> taken = takenBonuses.keySet();
-		
-		for (Bonus b : taken) {
-			System.out.println(b.toString());
+		for (int i = 0; i < takenBonuses.size() ; i++) {
+			System.out.println(takenBonuses.get(i).toString());
 		}
 		System.out.println("---");
 	}

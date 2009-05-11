@@ -13,7 +13,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 public final class ShortVausBonus extends VausBonus {
 	public ShortVausBonus() {
 		super(1);
-		super.setLife(-1);
+		super.setLife(Integer.MAX_VALUE);
 	}
 	@Override
 	public String toString() {

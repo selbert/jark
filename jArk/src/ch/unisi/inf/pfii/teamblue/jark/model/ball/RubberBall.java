@@ -39,11 +39,13 @@ public final class RubberBall extends Ball {
 		}
 		
 		if (newY < FIELD_HEIGHT) { 
-			if (!level.persistentBrickHasBallInside(x,y) && bounceY(newY)){
+			if (!level.persistentBrickHasBallInside(x,y) & bounceY(newY)){
+				speedY = -speedY;
 				newY = y;
 			}
 			
-			if (!level.persistentBrickHasBallInside(x,y) && bounceX(newX)){
+			if (!level.persistentBrickHasBallInside(x,y) & bounceX(newX)){
+				speedX = -speedX;
 				newX = x;
 			}
 		}
@@ -73,7 +75,6 @@ public final class RubberBall extends Ball {
 			|| (level.brickHasBallInside(newX, y + (2*BALL_RADIUS)))
 			|| (level.brickHasBallInside(newX + (2*BALL_RADIUS), y))
 			|| (level.brickHasBallInside(newX + (2*BALL_RADIUS), y + (2*BALL_RADIUS)))) {
-			speedX = -speedX;
 			return true;
 		}
 		return false;
@@ -84,7 +85,6 @@ public final class RubberBall extends Ball {
 			|| (level.brickHasBallInside(x + (2*BALL_RADIUS), newY))
 			|| (level.brickHasBallInside(x, newY + (2*BALL_RADIUS)))
 			|| (level.brickHasBallInside(x + (2*BALL_RADIUS), newY + (2*BALL_RADIUS)))){
-			speedY = -speedY;
 			return true;
 		} 
 		return false;

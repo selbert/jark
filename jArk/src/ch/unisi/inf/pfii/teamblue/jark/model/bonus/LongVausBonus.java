@@ -10,8 +10,9 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Game;
  *
  */
 
-public final class LongVausBonus extends Bonus {
+public final class LongVausBonus extends VausBonus {
 	public LongVausBonus() {
+		super(1);
 		super.setLife(-1);
 	}
 	@Override
@@ -21,7 +22,6 @@ public final class LongVausBonus extends Bonus {
 	@Override
 	public void apply(final Game game) {
 		game.getVaus().setWidth(LONGVAUS_WIDTH);
-		super.apply(game);
 	}
 	@Override
 	public final void remove(final Game game) {

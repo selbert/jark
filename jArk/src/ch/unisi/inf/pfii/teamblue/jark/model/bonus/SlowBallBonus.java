@@ -13,15 +13,17 @@ import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
  *
  */
 
-public final class SlowBallBonus extends Bonus {
+public final class SlowBallBonus extends BallBonus {
 	
+	public SlowBallBonus() {
+		super(1);
+	}
 	@Override
 	public String toString() {
 		return "neutral_slowball";
 	}
 	@Override
 	public void apply(final Game game) {
-		super.apply(game);
 		final ArrayList<Ball> balls = game.getBalls();
 		final int numberOfBalls = balls.size();
 		

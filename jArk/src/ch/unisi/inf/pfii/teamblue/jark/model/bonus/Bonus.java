@@ -20,24 +20,24 @@ public abstract class Bonus implements Constants, VausListener {
 	private int x;
 	private int y;
 	private Vaus vaus;
-	private boolean taken;
 	private boolean dead;
 	private int lifeInMill;
+	private final int bonusClass;
 	
 	private final ArrayList<BonusListener> listeners;
 	
-	public Bonus() {
+	public Bonus(final int bonusClass) {
 		x = 0;
 		y = 0;
 		vaus = null;
 		listeners = new ArrayList<BonusListener>();
 		lifeInMill = 30000;
+		this.bonusClass = bonusClass;
 	}
 	
 	@Override
 	public abstract String toString();
 	public void apply(final Game game) {
-		fireBonusTaken();
 	}
 	
 	//getters
@@ -50,12 +50,11 @@ public abstract class Bonus implements Constants, VausListener {
 	public final boolean isDead() {
 		return dead;
 	}
-	public final boolean isTaken() {
-		return taken;
-	}
 	public int getLife() {
 		return lifeInMill;
-		
+	}
+	public int getBonusClass() {
+		return bonusClass;
 	}
 	
 	//setters
@@ -86,7 +85,7 @@ public abstract class Bonus implements Constants, VausListener {
 				&& y + BRICK_HEIGHT < VAUS_Y + BRICK_HEIGHT
 				&& x + BRICK_WIDTH >= vaus.getX()
 				&& x <= vaus.getX() + vaus.getWidth()) {
-			taken = true;
+			fireBonusTaken();
 		}
 	}
 	
@@ -119,4 +118,5 @@ public abstract class Bonus implements Constants, VausListener {
 	public void remove(Game game) {
 		return;
 	}
+
 }

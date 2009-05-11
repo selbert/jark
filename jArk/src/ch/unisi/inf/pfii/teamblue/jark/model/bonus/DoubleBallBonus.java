@@ -13,9 +13,10 @@ import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
  *
  */
 
-public final class DoubleBallBonus extends Bonus {
+public final class DoubleBallBonus extends BallBonus {
 	
 	public DoubleBallBonus() {
+		super(0);
 		super.setLife(0);
 	}
 	@Override
@@ -24,7 +25,6 @@ public final class DoubleBallBonus extends Bonus {
 	}
 	@Override
 	public final void apply(final Game game) {
-		super.apply(game);
 		ArrayList<Ball> balls = game.getBalls();
 		int numberOfBalls = balls.size();
 		

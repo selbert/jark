@@ -11,7 +11,9 @@ import ch.unisi.inf.pfii.teamblue.jark.implementation.LevelListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.VausListener;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.DefaultBall;
+import ch.unisi.inf.pfii.teamblue.jark.model.bonus.BallBonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
+import ch.unisi.inf.pfii.teamblue.jark.model.bonus.VausBonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.Brick;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.DefaultVaus;
@@ -94,7 +96,8 @@ public final class Game implements Constants {
 			public void bonusReleased(Bonus bonus) {
 				bonus.addBonusListener(new BonusListener() {
 					public void bonusTaken(Bonus bonus) {
-						takenBonuses.put(bonus, System.currentTimeMillis());
+						addBonus(bonus, System.currentTimeMillis());
+						bonus.removeBonusListener(this);
 					}
 				});
 			}
@@ -151,6 +154,27 @@ public final class Game implements Constants {
 		removeVausListener(bullet);
 	}
 	
+	private void addBonus(Bonus bonus, long currentTimeMillis) {
+		Set<Bonus> taken = takenBonuses.keySet();
+		for (Bonus b : taken) {
+			if (((b instanceof BallBonus && bonus instanceof BallBonus)
+					|| (b instanceof VausBonus && bonus instanceof VausBonus))
+					&& (b.getBonusClass() == bonus.getBonusClass())) {
+				takenBonuses.remove(b);
+				freeBonuses.remove(bonus);
+				bonus.apply(this);
+				if (bonus.getLife() != 0) {
+					takenBonuses.put(bonus , currentTimeMillis);
+				}
+				return;
+			}
+		}
+		bonus.apply(this);
+		freeBonuses.remove(bonus);
+		if (bonus.getLife() != 0) {
+			takenBonuses.put(bonus , currentTimeMillis);
+		}
+	}
 	/**
 	 * Move all the balls in the game
 	 */
@@ -184,13 +208,11 @@ public final class Game implements Constants {
 	 */
 	public final void moveBonuses() {
 		for (int i = 0 ; i < freeBonuses.size();) {
-			if (freeBonuses.get(i).isDead()) {
-				freeBonuses.remove(freeBonuses.get(i));
-			} else if (freeBonuses.get(i).isTaken()) {
-				freeBonuses.get(i).apply(this);
-				freeBonuses.remove(freeBonuses.get(i));
+			Bonus bonus = freeBonuses.get(i);
+			if (bonus.isDead()) {
+				freeBonuses.remove(bonus);
 			} else {
-				freeBonuses.get(i).move();
+				bonus.move();
 				i++;
 			}
 		}
@@ -252,6 +274,15 @@ public final class Game implements Constants {
 		for (VausListener li : vausListeners) {
 			li.setVaus(vaus);
 		}
+	}
+	
+	public final void printBonuses() {
+		Set<Bonus> taken = takenBonuses.keySet();
+		
+		for (Bonus b : taken) {
+			System.out.println(b.toString());
+		}
+		System.out.println("---");
 	}
 	
 }

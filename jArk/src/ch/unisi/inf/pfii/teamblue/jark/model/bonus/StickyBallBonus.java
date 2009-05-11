@@ -14,15 +14,17 @@ import ch.unisi.inf.pfii.teamblue.jark.model.ball.DefaultBall;
  *
  */
 
-public final class StickyBallBonus extends Bonus {
-	
+public final class StickyBallBonus extends BallBonus {
+
+	public StickyBallBonus() {
+		super(2);
+	}
 	@Override
 	public String toString() {
 		return "neutral_stickyball";
 	}
 	@Override
 	public void apply(final Game game) {
-		super.apply(game);
 		//TODO
 	}
 	@Override

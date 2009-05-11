@@ -106,11 +106,22 @@ public abstract class Ball implements Constants, VausListener {
 		}
 		
 		if (newY < FIELD_HEIGHT) { 
-			if (!level.persistentBrickHasBallInside(x,y) && bounceY(newY)) {
-				newY = y;
-			}
+			boolean bounceX = bounceX(newX);
+			boolean bounceY = bounceY(newY);
+			if (bounceY || bounceX) {
+				if (!level.persistentBrickHasBallInside(x,y) & bounceY) {
+					speedY = -speedY;
+					newY = y;
+				}
 			
-			if (!level.persistentBrickHasBallInside(x,y) && bounceX(newX)) {
+				if (!level.persistentBrickHasBallInside(x,y) & bounceX) {
+					speedX = -speedX;
+					newX = x;
+				}
+			} else if (bounceDiag(newX, newY)) {
+				speedY = -speedY;
+				newY = y;
+				speedX = -speedX;
 				newX = x;
 			}
 		}
@@ -157,31 +168,39 @@ public abstract class Ball implements Constants, VausListener {
 	 */
 	protected boolean bounceX(final float newX) {
 		if (level.brickHasBallInside(newX, y)) {
-			speedX = -speedX;
 			if(level.brickHasBallInside(newX, y + (2*BALL_RADIUS))) {
 				level.removeBrick(newX, y + BALL_RADIUS);
 			} else {
-				level.removeBrick(newX, y);
+				destroyBrick(newX, y);
 			}
 			return true;
 		} else if (level.brickHasBallInside(newX, y + (2*BALL_RADIUS))) {
-			speedX = -speedX;
-			level.removeBrick(newX, y + (2*BALL_RADIUS));
+			destroyBrick(newX, y + (2*BALL_RADIUS));
 			return true;
 		} else if (level.brickHasBallInside(newX + (2*BALL_RADIUS), y)) {
-			speedX = -speedX;
 			if (level.brickHasBallInside(newX + (2*BALL_RADIUS), y + (2*BALL_RADIUS))) {
-				level.removeBrick(newX + (2*BALL_RADIUS), y + BALL_RADIUS);
+				destroyBrick(newX + (2*BALL_RADIUS), y + BALL_RADIUS);
 			} else {
-				level.removeBrick(newX + (2*BALL_RADIUS), y);
+				destroyBrick(newX + (2*BALL_RADIUS), y);
 			}
 			return true;
 		} else if (level.brickHasBallInside(newX + (2*BALL_RADIUS), y + (2*BALL_RADIUS))) {
-			speedX = -speedX;
-			level.removeBrick(newX + (2*BALL_RADIUS), y + (2*BALL_RADIUS));
+			destroyBrick(newX + (2*BALL_RADIUS), y + (2*BALL_RADIUS));
 			return true;
 		} 
 		return false;
+	}
+	
+	protected boolean bounceDiag(final float newX, final float newY) {
+		if (level.brickHasBallInside(newX, newY)
+				|| level.brickHasBallInside(newX, newY + (2*BALL_RADIUS))
+				|| level.brickHasBallInside(newX + (2*BALL_RADIUS), newY)
+				|| level.brickHasBallInside(newX + (2*BALL_RADIUS), newY + (2*BALL_RADIUS))) {
+			destroyBrick(newX, newY);
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	/**
@@ -191,31 +210,31 @@ public abstract class Ball implements Constants, VausListener {
 	 */
 	protected boolean bounceY(final float newY) {
 		if (level.brickHasBallInside(x, newY)) {
-			speedY = -speedY;
 			if (level.brickHasBallInside(x + (2*BALL_RADIUS), newY)) {
-				level.removeBrick(x + BALL_RADIUS, newY);
+				destroyBrick(x + BALL_RADIUS, newY);
 			} else {
-				level.removeBrick(x, newY);
+				destroyBrick(x, newY);
 			}
 			return true;
 		} else if (level.brickHasBallInside(x + (2*BALL_RADIUS), newY)) {
-			speedY = -speedY;
-			level.removeBrick(x + (2*BALL_RADIUS), newY);
+			destroyBrick(x + (2*BALL_RADIUS), newY);
 			return true;
 		} else if (level.brickHasBallInside(x, newY + (2*BALL_RADIUS))) {
-			speedY = -speedY;
 			if (level.brickHasBallInside(x + (2*BALL_RADIUS), newY + (2*BALL_RADIUS))) {
-				level.removeBrick(x + BALL_RADIUS, newY + (2*BALL_RADIUS));
+				destroyBrick(x + BALL_RADIUS, newY + (2*BALL_RADIUS));
 			} else {
-				level.removeBrick(x, newY + (2*BALL_RADIUS));
+				destroyBrick(x, newY + (2*BALL_RADIUS));
 			}
 			return true;
 		} else if (level.brickHasBallInside(x + (2*BALL_RADIUS), newY + (2*BALL_RADIUS))) {
-			speedY = -speedY;
-			level.removeBrick(x + (2*BALL_RADIUS), newY + (2*BALL_RADIUS));
+			destroyBrick(x + (2*BALL_RADIUS), newY + (2*BALL_RADIUS));
 			return true;
 		}
 		return false;
+	}
+	
+	protected void destroyBrick(final float x, final float y) {
+		level.removeBrick(x, y);
 	}
 	
 	/**

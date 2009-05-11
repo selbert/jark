@@ -23,66 +23,8 @@ public class ExplosionBall extends Ball {
 		returnBall.setY(y);
 		return returnBall;
 	}
-	@Override
-	protected final boolean bounceX(final float newX) {
-		if (level.brickHasBallInside(newX, y)) {
-			speedX = -speedX;
-			if(level.brickHasBallInside(newX, y + (2*BALL_RADIUS))) {
-				explosionDestroy(newX, y + BALL_RADIUS);
-			} else {
-				explosionDestroy(newX, y);
-			}
-			return true;
-		} else if (level.brickHasBallInside(newX, y + (2*BALL_RADIUS))) {
-			speedX = -speedX;
-			explosionDestroy(newX, y + (2*BALL_RADIUS));
-			return true;
-		} else if (level.brickHasBallInside(newX + (2*BALL_RADIUS), y)) {
-			speedX = -speedX;
-			if (level.brickHasBallInside(newX + (2*BALL_RADIUS), y + (2*BALL_RADIUS))) {
-				explosionDestroy(newX + (2*BALL_RADIUS), y + BALL_RADIUS);
-			} else {
-				explosionDestroy(newX + (2*BALL_RADIUS), y);
-			}
-			return true;
-		} else if (level.brickHasBallInside(newX + (2*BALL_RADIUS), y + (2*BALL_RADIUS))) {
-			speedX = -speedX;
-			explosionDestroy(newX + (2*BALL_RADIUS), y + (2*BALL_RADIUS));
-			return true;
-		} 
-		return false;
-	}
-	@Override
-	protected boolean bounceY(final float newY) {
-		if (level.brickHasBallInside(x, newY)) {
-			speedY = -speedY;
-			if (level.brickHasBallInside(x + (2*BALL_RADIUS), newY)) {
-				explosionDestroy(x + BALL_RADIUS, newY);
-			} else {
-				explosionDestroy(x, newY);
-			}
-			return true;
-		} else if (level.brickHasBallInside(x + (2*BALL_RADIUS), newY)) {
-			speedY = -speedY;
-			explosionDestroy(x + (2*BALL_RADIUS), newY);
-			return true;
-		} else if (level.brickHasBallInside(x, newY + (2*BALL_RADIUS))) {
-			speedY = -speedY;
-			if (level.brickHasBallInside(x + (2*BALL_RADIUS), newY + (2*BALL_RADIUS))) {
-				explosionDestroy(x + BALL_RADIUS, newY + (2*BALL_RADIUS));
-			} else {
-				explosionDestroy(x, newY + (2*BALL_RADIUS));
-			}
-			return true;
-		} else if (level.brickHasBallInside(x + (2*BALL_RADIUS), newY + (2*BALL_RADIUS))) {
-			speedY = -speedY;
-			explosionDestroy(x + (2*BALL_RADIUS), newY + (2*BALL_RADIUS));
-			return true;
-		}
-		return false;
-	}
 	//the bricks to destroy
-	protected final void explosionDestroy(final float x, final float y) {
+	protected final void destroyBrick(final float x, final float y) {
 		level.removeBrick(x, y);
 		level.removeBrick(x - BRICK_WIDTH, y);
 		level.removeBrick(x + BRICK_WIDTH, y);

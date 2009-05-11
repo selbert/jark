@@ -15,15 +15,17 @@ import ch.unisi.inf.pfii.teamblue.jark.model.ball.UltraBall;
  *
  */
 
-public final class UltraBallBonus extends Bonus {
-	
+public final class UltraBallBonus extends BallBonus {
+
+	public UltraBallBonus() {
+		super(2);
+	}
 	@Override
 	public String toString() {
 		return "bonus_ultraball";
 	}
 	@Override
 	public void apply(final Game game) {
-		super.apply(game);
 		final ArrayList<Ball> balls = game.getBalls();
 		final int numberOfBalls = balls.size();
 		

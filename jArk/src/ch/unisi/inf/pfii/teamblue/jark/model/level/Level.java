@@ -129,7 +129,7 @@ public final class Level implements Constants, VausListener {
 	private final void createTestFieldLevel() {
 		for (int row = 4; row<FIELD_ROWS; row++) {
 			for (int col = 0; col<FIELD_COLUMNS; col++) {
-				bricks[row][col] = Utils.intToBrick(rnd.nextInt(10));
+				bricks[row][col] = Utils.intToBrick(rnd.nextInt(9)+1);
 			}
 		}
 	}

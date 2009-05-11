@@ -29,11 +29,11 @@ public final class ImagesReference {
 		images.put("defaultBrick", setImage("images/bricks/defaultBrick.png"));
 		images.put("persistentBrick", setImage("images/bricks/persistentBrick2.png"));
 		images.put("resistentBrick1", setImage("images/bricks/resistentBrick1.png"));
-		images.put("resistentBrick2", setImage("images/bricks/resistentBrick2.png"));
+		images.put("resistentBrick", setImage("images/bricks/resistentBrick2.png"));
 		images.put("veryResistentBrick1", setImage("images/bricks/veryResistentBrick1.png"));
 		images.put("veryResistentBrick2", setImage("images/bricks/veryResistentBrick2.png"));
-		images.put("veryResistentBrick3", setImage("images/bricks/veryResistentBrick3.png"));
-		images.put("editorBrick", setImage("images/bricks/editorBrick.png"));
+		images.put("veryResistentBrick", setImage("images/bricks/veryResistentBrick3.png"));
+		images.put("removeBrick", setImage("images/bricks/editorBrick.png"));
 		//vauses
 		images.put("defaultVaus", setImage("images/vauses/defaultVaus.png"));
 		images.put("longVaus", setImage("images/vauses/longVaus.png"));

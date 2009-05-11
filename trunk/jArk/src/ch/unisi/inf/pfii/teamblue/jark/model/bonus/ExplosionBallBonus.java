@@ -15,15 +15,16 @@ import ch.unisi.inf.pfii.teamblue.jark.model.ball.ExplosionBall;
  *
  */
 
-public final class ExplosionBallBonus extends Bonus {
-	
+public final class ExplosionBallBonus extends BallBonus {
+	public ExplosionBallBonus() {
+		super(2);
+	}
 	@Override
 	public final String toString() {
 		return "bonus_explosionball";
 	}
 	@Override
 	public final void apply(final Game game) {
-		super.apply(game);
 		final ArrayList<Ball> balls = game.getBalls();
 		final int numberOfBalls = balls.size();
 		

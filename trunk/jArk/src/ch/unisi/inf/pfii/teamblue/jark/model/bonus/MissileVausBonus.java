@@ -13,15 +13,17 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
  *
  */
 
-public final class MissileVausBonus extends Bonus {
+public final class MissileVausBonus extends VausBonus {
 	
+	public MissileVausBonus() {
+		super(2);
+	}
 	@Override
 	public String toString() {
 		return "bonus_missilevaus";
 	}
 	@Override
 	public void apply(final Game game) {
-		super.apply(game);
 		final Vaus newVaus = new RocketLauncherVaus(game.getVaus().getX());
 		newVaus.setWidth(game.getVaus().getWidth());
 		game.setVaus(newVaus);

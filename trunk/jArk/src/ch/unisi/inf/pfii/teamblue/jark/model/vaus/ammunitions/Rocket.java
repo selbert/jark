@@ -40,28 +40,28 @@ public class Rocket extends ExplosionBall {
 			if (level.brickHasBallInside(x, newY)) {
 				if (level.brickHasBallInside(x + (2*BALL_RADIUS), newY)) {
 					dead = true;
-					explosionDestroy(x + BALL_RADIUS, newY);
+					destroyBrick(x + BALL_RADIUS, newY);
 				} else {
 					dead = true;
-					explosionDestroy(x, newY);
+					destroyBrick(x, newY);
 				}
 				return true;
 			} else if (level.brickHasBallInside(x + (2*BALL_RADIUS), newY)) {
 				dead = true;
-				explosionDestroy(x + (2*BALL_RADIUS), newY);
+				destroyBrick(x + (2*BALL_RADIUS), newY);
 				return true;
 			} else if (level.brickHasBallInside(x, newY + (2*BALL_RADIUS))) {
 				if (level.brickHasBallInside(x + (2*BALL_RADIUS), newY + (2*BALL_RADIUS))) {
 					dead = true;
-					explosionDestroy(x + BALL_RADIUS, newY + (2*BALL_RADIUS));
+					destroyBrick(x + BALL_RADIUS, newY + (2*BALL_RADIUS));
 				} else {
 					dead = true;
-					explosionDestroy(x, newY + (2*BALL_RADIUS));
+					destroyBrick(x, newY + (2*BALL_RADIUS));
 				}
 				return true;
 			} else if (level.brickHasBallInside(x + (2*BALL_RADIUS), newY + (2*BALL_RADIUS))) {
 				dead = true;
-				explosionDestroy(x + (2*BALL_RADIUS), newY + (2*BALL_RADIUS));
+				destroyBrick(x + (2*BALL_RADIUS), newY + (2*BALL_RADIUS));
 				return true;
 			}
 			return false;

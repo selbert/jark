@@ -13,15 +13,17 @@ import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
  *
  */
 
-public final class TheBoxBonus extends Bonus {
-	
+public final class TheBoxBonus extends BallBonus {
+
+	public TheBoxBonus() {
+		super(3);
+	}
 	@Override
 	public String toString() {
 		return "bonus_box";
 	}
 	@Override
 	public void apply(final Game game) {
-		super.apply(game);
 		final ArrayList<Ball> balls = game.getBalls();
 		final int numberOfBalls = balls.size();
 		

@@ -10,9 +10,10 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Game;
  *
  */
 
-public final class AddLifeBonus extends Bonus {
+public final class AddLifeBonus extends PlayerBonus {
 	
 	public AddLifeBonus() {
+		super(0);
 		super.setLife(0);
 	}
 	@Override
@@ -21,7 +22,6 @@ public final class AddLifeBonus extends Bonus {
 	}
 	@Override
 	public final void apply(final Game game) {
-		super.apply(game);
 		game.getPlayer().incrementLives();
 	}
 	

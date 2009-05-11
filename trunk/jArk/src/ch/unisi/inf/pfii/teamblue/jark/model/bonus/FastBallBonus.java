@@ -13,15 +13,17 @@ import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
  *
  */
 
-public final class FastBallBonus extends Bonus {
+public final class FastBallBonus extends BallBonus {
 	
+	public FastBallBonus() {
+		super(1);
+	}
 	@Override
 	public final String toString() {
 		return "neutral_fastball";
 	}
 	@Override
 	public void apply(final Game game) {
-		super.apply(game);
 		final ArrayList<Ball> balls = game.getBalls();
 		final int numberOfBalls = balls.size();
 		

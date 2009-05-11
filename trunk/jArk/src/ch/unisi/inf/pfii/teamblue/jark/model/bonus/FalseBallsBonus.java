@@ -15,7 +15,11 @@ import ch.unisi.inf.pfii.teamblue.jark.model.ball.RubberBall;
  *
  */
 
-public final class FalseBallsBonus extends Bonus {
+public final class FalseBallsBonus extends BallBonus {
+	
+	public FalseBallsBonus() {
+		super(0);
+	}
 	
 	@Override
 	public final String toString() {
@@ -23,7 +27,6 @@ public final class FalseBallsBonus extends Bonus {
 	}
 	@Override
 	public final void apply(final Game game) {
-		super.apply(game);
 		final ArrayList<Ball> balls = game.getBalls();
 		final int numberOfBalls = balls.size();
 		

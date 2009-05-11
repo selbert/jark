@@ -13,15 +13,17 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
  *
  */
 
-public final class DoubleLaserVausBonus extends Bonus {
+public final class DoubleLaserVausBonus extends VausBonus {
 	
+	public DoubleLaserVausBonus() {
+		super(2);
+	}
 	@Override
 	public final String toString() {
 		return "bonus_doublelaservaus";
 	}
 	@Override
 	public final void apply(final Game game) {
-		super.apply(game);
 		final Vaus newVaus = new DoubleRifleVaus(game.getVaus().getX());
 		newVaus.setWidth(game.getVaus().getWidth());
 		game.setVaus(newVaus);

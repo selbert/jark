@@ -72,48 +72,7 @@ public final class UltraBall extends Ball {
 		}
 		return false;
 	}
-	@Override
-	protected final boolean bounceX(final float newX) {
-		if (level.brickHasBallInside(newX, y)) {
-			if(level.brickHasBallInside(newX, y + (2*BALL_RADIUS))) {
-				level.removeBrick(newX, y + BALL_RADIUS);
-			} else {
-				level.removeBrick(newX, y);
-			}
-		} else if (level.brickHasBallInside(newX, y + (2*BALL_RADIUS))) {
-			level.removeBrick(newX, y + (2*BALL_RADIUS));
-		} else if (level.brickHasBallInside(newX + (2*BALL_RADIUS), y)) {
-			if (level.brickHasBallInside(newX + (2*BALL_RADIUS), y + (2*BALL_RADIUS))) {
-				level.removeBrick(newX + (2*BALL_RADIUS), y + BALL_RADIUS);
-			} else {
-				level.removeBrick(newX + (2*BALL_RADIUS), y);
-			}
-		} else if (level.brickHasBallInside(newX + (2*BALL_RADIUS), y + (2*BALL_RADIUS))) {
-			level.removeBrick(newX + (2*BALL_RADIUS), y + (2*BALL_RADIUS));
-		}
-		return true;
-	}
-	@Override
-	protected final boolean bounceY(final float newY) {
-		if (level.brickHasBallInside(x, newY)) {
-			if (level.brickHasBallInside(x + (2*BALL_RADIUS), newY)) {
-				level.removeBrick(x + BALL_RADIUS, newY);
-			} else {
-				level.removeBrick(x, newY);
-			}
-		} else if (level.brickHasBallInside(x + (2*BALL_RADIUS), newY)) {
-			level.removeBrick(x + (2*BALL_RADIUS), newY);
-		} else if (level.brickHasBallInside(x, newY + (2*BALL_RADIUS))) {
-			if (level.brickHasBallInside(x + (2*BALL_RADIUS), newY + (2*BALL_RADIUS))) {
-				level.removeBrick(x + BALL_RADIUS, newY + (2*BALL_RADIUS));
-			} else {
-				level.removeBrick(x, newY + (2*BALL_RADIUS));
-			}
-		} else if (level.brickHasBallInside(x + (2*BALL_RADIUS), newY + (2*BALL_RADIUS))) {
-			level.removeBrick(x + (2*BALL_RADIUS), newY + (2*BALL_RADIUS));
-		}
-		return true;
-	}
+	
 	@Override
 	public final String toString() {
 		return "ultraBall";

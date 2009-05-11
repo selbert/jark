@@ -61,8 +61,11 @@ public final class GamePanel extends JComponent implements Constants, VausListen
 	private final static long bonusMessageDelay = 1000;
 	
 	private final Cursor transparentCursor;
+	private final Game game;
 	
 	public GamePanel(final Game game) {
+		
+		this.game = game;
 
 		game.getLevel().addLevelListener(new LevelListener() {
 			public void bonusReleased(Bonus bonus) {
@@ -268,6 +271,10 @@ public final class GamePanel extends JComponent implements Constants, VausListen
 
 	public final void removeBoxLine() {
 		drawBox = false;
+	}
+	
+	public final void printBonuses() {
+		game.printBonuses();
 	}
 
 }

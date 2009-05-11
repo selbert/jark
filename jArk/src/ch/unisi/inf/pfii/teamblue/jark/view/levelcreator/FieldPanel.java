@@ -27,6 +27,7 @@ import ch.unisi.inf.pfii.teamblue.jark.view.ImagesReference;
 public final class FieldPanel extends JComponent implements Constants {
 	private int brickX;
 	private int brickY;
+	private boolean noBrick;
 	private ButtonGroup group;
 	private ButtonModel selected;
 	private final String[][] brickField;
@@ -56,11 +57,29 @@ public final class FieldPanel extends JComponent implements Constants {
 					printField();
 				}
 			}
-
+			
+			@Override
+			public void mouseDragged(MouseEvent ev) {
+				super.mouseDragged(ev);
+				int[] pos = Utils.getFieldPosition(ev.getX(), ev.getY());
+				brickX = pos[0];
+				brickY = pos[1];
+				brickField[brickY][brickX] = getBrickText();
+				repaint();
+			}
+			
 			@Override
 			public void mouseEntered(MouseEvent ev) {
 				super.mouseEntered(ev);
+				noBrick = false;
 			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				super.mouseExited(e);
+				noBrick = true;
+				repaint();
+			}
+			
 		};
 		
 		addMouseListener(mouseListener);
@@ -90,12 +109,14 @@ public final class FieldPanel extends JComponent implements Constants {
 	public final void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
-
+		
+		g2d.setColor(Color.BLACK);
+		g2d.fillRect(0,0,getWidth(),getHeight());
 		for (int j = 0; j < FIELD_ROWS; j++) {
 			//g2d.drawLine(0, j * (BRICK_HEIGHT-1), getWidth(), j * (BRICK_HEIGHT-1));
 			for (int i = 0; i < FIELD_COLUMNS; i++) {
 				//g2d.drawLine((BRICK_WIDTH-1) * i, 0, (BRICK_WIDTH-1)*i, getHeight());
-				g2d.drawImage(ImagesReference.getImage("removeBrick"), BRICK_WIDTH*i, BRICK_HEIGHT*j,this);
+				g2d.drawImage(ImagesReference.getImage("editorBrick"), BRICK_WIDTH*i, BRICK_HEIGHT*j,this);
 			}
 		}
 		
@@ -109,7 +130,7 @@ public final class FieldPanel extends JComponent implements Constants {
 		}
 		
 		selected = group.getSelection();
-		if (selected != null) {
+		if (selected != null && !noBrick) {
 			g2d.drawImage(ImagesReference.getImage(selected.getActionCommand()), BRICK_WIDTH*brickX, BRICK_HEIGHT*brickY, this);
 		}
 	}

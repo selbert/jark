@@ -21,12 +21,12 @@ import ch.unisi.inf.pfii.teamblue.jark.model.bonus.DoubleLaserVausBonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.ExplosionBallBonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.FalseBallsBonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.FastBallBonus;
+import ch.unisi.inf.pfii.teamblue.jark.model.bonus.GhostBallBonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.LaserVausBonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.LongVausBonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.MissileVausBonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.RemoveLifeBonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.ResetStatusBonus;
-import ch.unisi.inf.pfii.teamblue.jark.model.bonus.RubberBallBonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.ShortVausBonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.SlowBallBonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.StickyBallBonus;
@@ -38,6 +38,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.brick.PersistentBrick;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.ResistentBrick;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.VeryResistentBrick;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
+import ch.unisi.inf.pfii.teamblue.jark.model.level.LevelManager;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.DefaultVaus;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.DoubleRifleVaus;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.RifleVaus;
@@ -48,7 +49,8 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 public class MainTest extends TestCase implements Constants {
 	
 	public void testGameAndPlayerCreation() {
-		Game g = new Game();
+		LevelManager lm = new LevelManager();
+		Game g = new Game(false, lm);
 		Player p = new Player("pippo", 2);
 		p.setLives(3);
 		assertTrue(p.getLives() == 3);
@@ -116,8 +118,8 @@ public class MainTest extends TestCase implements Constants {
 		assertTrue(bonus.toString().equals("bonus_missilevaus"));
 		bonus = new ResetStatusBonus();
 		assertTrue(bonus.toString().equals("neutral_resetstatus"));
-		bonus = new RubberBallBonus();
-		assertTrue(bonus.toString().equals("malus_rubberball"));
+		bonus = new GhostBallBonus();
+		assertTrue(bonus.toString().equals("malus_ghostball"));
 		bonus = new RemoveLifeBonus();
 		assertTrue(bonus.toString().equals("malus_removelife"));
 		bonus = new ShortVausBonus();
@@ -141,9 +143,9 @@ public class MainTest extends TestCase implements Constants {
 		brick = new PersistentBrick();
 		assertTrue(brick.toString().equals("persistentBrick"));
 		brick = new ResistentBrick();
-		assertTrue(brick.toString().equals("resistentBrick2"));
+		assertTrue(brick.toString().equals("resistentBrick"));
 		brick = new VeryResistentBrick();
-		assertTrue(brick.toString().equals("veryResistentBrick3"));
+		assertTrue(brick.toString().equals("veryResistentBrick"));
 	}
 	
 	public void testVausCreation() {
@@ -152,11 +154,11 @@ public class MainTest extends TestCase implements Constants {
 		vaus.setX(5);
 		assertTrue(vaus.getX() == 5);
 		vaus = new RifleVaus(0);
-		assertTrue(vaus.toString().equals("laserVaus"));
+		assertTrue(vaus.toString().equals("rifleVaus"));
 		vaus = new DoubleRifleVaus(0);
-		assertTrue(vaus.toString().equals("doubleLaserVaus"));
+		assertTrue(vaus.toString().equals("doubleRifleVaus"));
 		vaus = new RocketLauncherVaus(0);
-		assertTrue(vaus.toString().equals("missileVaus"));
+		assertTrue(vaus.toString().equals("rocketlauncherVaus"));
 	}
 
 	public void testBallMove() {

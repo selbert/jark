@@ -120,7 +120,7 @@ public final class FieldPanel extends JComponent implements Constants {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
 		
-		g2d.setColor(Color.BLACK);
+		g2d.setColor(Color.WHITE);
 		g2d.fillRect(0,0,getWidth(),getHeight());
 		for (int j = 0; j < FIELD_ROWS; j++) {
 			//g2d.drawLine(0, j * (BRICK_HEIGHT-1), getWidth(), j * (BRICK_HEIGHT-1));

@@ -1,9 +1,12 @@
-package ch.unisi.inf.pfii.teamblue.jark.view;
+package ch.unisi.inf.pfii.teamblue.jark.view.levelcreator;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -13,6 +16,8 @@ import javax.swing.border.EmptyBorder;
 
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.LevelManager;
+import ch.unisi.inf.pfii.teamblue.jark.view.GameFrame;
+import ch.unisi.inf.pfii.teamblue.jark.view.ImagesReference;
 
 /**
  * The main frame of the game
@@ -23,20 +28,28 @@ import ch.unisi.inf.pfii.teamblue.jark.model.level.LevelManager;
  */
 
 @SuppressWarnings("serial")
-public final class GameFrame extends JFrame {
-	private final MainPanel mainPanel;
-
-	public GameFrame(final Game game) {
-		setTitle("[ jArk ] [ an Arkanoid implementation ]");
+public final class EditorFrame extends JFrame {
+	private final CenterPanel centerPanel;
+	private final WestPanel westPanel;
+	private final ButtonGroup group;
+	
+	public EditorFrame(LevelManager levelManager) {
+		setTitle("[ jArk ] [ Level Creator ]");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		setBackground(Color.LIGHT_GRAY);
 		((JPanel) getContentPane()).setBorder(new EmptyBorder(6, 6, 6, 6));
+		setLayout(new BorderLayout(6, 6));
 
 		makeMenu();
-		mainPanel = new MainPanel(game);
-		add(mainPanel);
-
+		
+		group = new ButtonGroup();
+		centerPanel = new CenterPanel(levelManager, group);
+		westPanel = new WestPanel(levelManager, group);
+	
+		add(centerPanel, BorderLayout.CENTER);
+		add(westPanel, BorderLayout.WEST);
+	
 		// pack the frame together
 		pack();
 		// center
@@ -45,6 +58,7 @@ public final class GameFrame extends JFrame {
 		setVisible(true);
 	}
 
+	
 	/**
 	 * Create the Menu
 	 */

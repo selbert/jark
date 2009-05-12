@@ -1,4 +1,4 @@
-package ch.unisi.inf.pfii.teamblue.jark.view.levelcreator;
+package ch.unisi.inf.pfii.teamblue.jark.view.main;
 
 import java.awt.AWTException;
 import java.awt.BorderLayout;
@@ -35,7 +35,6 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.Brick;
-import ch.unisi.inf.pfii.teamblue.jark.model.level.LevelManager;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 import ch.unisi.inf.pfii.teamblue.jark.view.ImagesReference;
 
@@ -48,16 +47,10 @@ import ch.unisi.inf.pfii.teamblue.jark.view.ImagesReference;
  */
 
 public final class CenterPanel extends JComponent implements Constants {
-	
-	
-	public CenterPanel(final LevelManager levelManager, final ButtonGroup group) {
-		//setBorder(BorderFactory.createLineBorder(Color.black));
-		setLayout(new BorderLayout(0,6));
-		FieldPanel fp = new FieldPanel(levelManager, group);
-		add(fp, BorderLayout.NORTH);
-		BonusPanel bp = new BonusPanel(fp, group);
-		add(bp, BorderLayout.CENTER);
+
+	public CenterPanel() {
+		setBorder(BorderFactory.createLineBorder(Color.black));
+		
 	}
-
-
+	
 }

@@ -102,7 +102,6 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 					play();
 					image = new BufferedImage(798, 600, BufferedImage.TYPE_BYTE_GRAY);
 					paintComponent( image.createGraphics() );
-
 					repaint();
 					break;
 				case KeyEvent.VK_SPACE:

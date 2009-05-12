@@ -41,6 +41,16 @@ public final class Level implements Constants, VausSetListener {
 	 * @param numOfBonus total bonuses at disposition
 	 * @param freeBonuses ArrayList of bonus dropping to the vaus 
 	 */
+	
+	public Level(final Brick[][] brickField, final ArrayList<Bonus> freeBonuses, final Vaus vaus) {
+		rnd = new Random();
+		listeners = new ArrayList<LevelListener>();
+		this.name = "asd";
+		this.vaus = vaus;
+		this.freeBonuses = freeBonuses;
+		bricks = brickField;
+	}
+	
 	public Level(final int numOfBonus, final ArrayList<Bonus> freeBonuses, final Vaus vaus) {
 		bricks = new Brick[FIELD_ROWS][FIELD_COLUMNS];
 		if (bonusDistString == null) {
@@ -53,7 +63,7 @@ public final class Level implements Constants, VausSetListener {
 		createTestFieldLevel();
 		//createLevel(0);
 		name = "test";
-		addBonus(numOfBonus);
+		addRandomBonus(numOfBonus);
 		//TODO name num of bonus, .. all in the level file!
 	}
 	
@@ -138,7 +148,7 @@ public final class Level implements Constants, VausSetListener {
 	 * Add bonuses to random bricks
 	 * @param numOfBonus
 	 */
-	private final void addBonus(final int numOfBonus) {
+	private final void addRandomBonus(final int numOfBonus) {
 		final ArrayList<Brick> listOfBricks = new ArrayList<Brick>();
 		
 		for(Brick[] rowOfBricks : bricks) {

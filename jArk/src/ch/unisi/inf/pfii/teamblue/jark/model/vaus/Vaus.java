@@ -28,7 +28,7 @@ public abstract class Vaus implements Constants {
 		vausWidth = VAUS_WIDTH;
 		vausListenerList = new ArrayList<VausListener>();
 	}
-	
+
 	@Override
 	public abstract String toString();
 	

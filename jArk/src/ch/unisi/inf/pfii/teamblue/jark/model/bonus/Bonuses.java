@@ -89,7 +89,7 @@ public enum Bonuses {
 	 * @param bonusName
 	 */
 	
-	public final static Bonus stingToBonus(final String bonusName) {
+	public final static Bonus stringToBonus(final String bonusName) {
 		for (Bonuses b : Bonuses.values()) {
 			if (b.bonusName.equals(bonusName)) {
 				try {

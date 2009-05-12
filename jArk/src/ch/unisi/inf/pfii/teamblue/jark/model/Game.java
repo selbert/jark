@@ -14,6 +14,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.VausBonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.Brick;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
+import ch.unisi.inf.pfii.teamblue.jark.model.level.LevelManager;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.DefaultVaus;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
@@ -40,10 +41,10 @@ public final class Game implements Constants {
 	private Player player;
 	private Level level;
 	
-	public Game() {
-		rnd = new Random();
-		
+	public Game(final boolean isTest, final LevelManager levelManager) {
+
 		//init
+		rnd = new Random();
 		vausListeners = new ArrayList<VausSetListener>();
 		balls = new ArrayList<Ball>();
 		bullets = new ArrayList<Ball>();
@@ -52,7 +53,12 @@ public final class Game implements Constants {
 		vaus = new DefaultVaus(GAME_WIDTH / 2 - VAUS_WIDTH / 2);
 		player = new Player("pippo", 3);
 		
-		setLevel(new Level(100, freeBonuses, vaus));
+		if (!isTest) {
+			setLevel(new Level(100, freeBonuses, vaus));
+		} else {
+			final Brick[][] field = levelManager.fieldFromArrays();
+			setLevel(new Level(field, freeBonuses, vaus));
+		}
 		
 		//starting balls
 		for (int i = 0; i < 1; i++) {

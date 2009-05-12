@@ -284,6 +284,12 @@ public final class Game implements Constants {
 		}
 		System.out.println("---");
 	}
+
+	public void releaseBalls() {
+		for (Ball b : balls) {
+			b.release();
+		}
+	}
 	
 }
 

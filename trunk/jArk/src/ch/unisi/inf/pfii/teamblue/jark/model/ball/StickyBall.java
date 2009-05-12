@@ -14,6 +14,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 public final class StickyBall extends Ball {
 
 	private boolean sticked;
+	private float vausRelPos;
 	
 	public StickyBall(final Vaus vaus, final Level level) {
 		super(vaus,level);
@@ -34,6 +35,7 @@ public final class StickyBall extends Ball {
 	@Override
 	protected boolean bounceVaus(final float newX, final float newY) {
 		if (!sticked && newY + (BALL_RADIUS*2) > VAUS_Y-1 && newY + (BALL_RADIUS*2) < VAUS_Y+(BALL_RADIUS*2) && newX + (BALL_RADIUS*2) >= vaus.getX() && newX <= vaus.getX() + vaus.getWidth()) {
+			vausRelPos = getX() - vaus.getX();
 			sticked = true;
 			speedY = 0;
 			speedX = 0;
@@ -42,9 +44,16 @@ public final class StickyBall extends Ball {
 		return false;
 	}
 	
-	public final void vausMoved(final int delta) {
+	public final void vausMoved(final int newX) {
 		if (sticked) {
-			setX(x - delta);
+			setX(vausRelPos + newX);
+		}
+	}
+	public void release() {
+		if (sticked) {
+			sticked = !sticked;
+			setSpeedX(((getX() + BALL_RADIUS) - (vaus.getX() + (vaus.getWidth() / 2))) / (vaus.getWidth() / 10));
+			setSpeedY(-3);
 		}
 	}
 	

@@ -245,4 +245,7 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 	public final String toStringTest() {
 		return x + " " + y + " " + speedX + " " + speedY;
 	}
+
+	public void release() {
+	}
 }

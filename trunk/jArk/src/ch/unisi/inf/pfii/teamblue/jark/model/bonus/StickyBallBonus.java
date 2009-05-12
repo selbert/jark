@@ -55,7 +55,7 @@ public final class StickyBallBonus extends BallBonus {
 		for (int i = 0; i < numberOfBalls; i++) {
 			final Ball oldBall = balls.get(i);
 			final Ball newBall = new DefaultBall(oldBall.getVaus(), oldBall.getLevel());
-			
+			oldBall.release();
 			newBall.setSpeedX(oldBall.getSpeedX());
 			newBall.setSpeedY(oldBall.getSpeedY());
 			newBall.setX(oldBall.getX());

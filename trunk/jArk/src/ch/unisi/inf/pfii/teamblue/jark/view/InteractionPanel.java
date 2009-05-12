@@ -22,18 +22,9 @@ public final class InteractionPanel extends JPanel {
 
 	private final JButton startButton;
 	private final JButton stopButton;
-	private final JButton asdButton;
 
 	public InteractionPanel(final GamePanel gamePanel, final Game game) {
 		setLayout(new GridLayout(2, 1));
-
-		// another button
-		asdButton = new JButton("print");
-		asdButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				gamePanel.printBonuses();
-			}
-		});
 		
 		// first button
 		startButton = new JButton("Add Ball");
@@ -56,7 +47,6 @@ public final class InteractionPanel extends JPanel {
 
 		add(startButton);
 		add(stopButton);
-		add(asdButton);
 	}
 
 }

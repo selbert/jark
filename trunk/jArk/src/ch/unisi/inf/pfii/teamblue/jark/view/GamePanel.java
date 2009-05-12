@@ -102,6 +102,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 					break;
 				case KeyEvent.VK_SPACE:
 					vaus.shoot(game);
+					game.releaseBalls();
 					break;
 				}
 			}
@@ -202,7 +203,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 			for (int i = 0; i < bricks[j].length; i++) {
 				final Brick brick = bricks[j][i];
 				if (brick != null) {
-					g2d.drawImage(ir.getImage(brick.toString()), BRICK_WIDTH * i, j * BRICK_HEIGHT, this);
+					g2d.drawImage(ImagesReference.getImage(brick.toString()), BRICK_WIDTH * i, j * BRICK_HEIGHT, this);
 				}
 			}
 		}
@@ -210,29 +211,31 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 		for (Bonus bonus : bonuses) {
 			final int x = bonus.getX();
 			final int y = bonus.getY();
-			g2d.drawImage(ir.getImage(bonus.toString()), x, y, this);
+			g2d.drawImage(ImagesReference.getImage(bonus.toString()), x, y, this);
 		}
 
 		for (Ball ball : balls) {
 			final int x = (int) ball.getX();
 			final int y = (int) ball.getY();
-			g2d.drawImage(ir.getImage(ball.toString()), x, y, this);
+			g2d.drawImage(ImagesReference.getImage(ball.toString()), x, y, this);
 		}
 		
 		for (Ball ball : bullets) {
 			final int x = (int) ball.getX();
 			final int y = (int) ball.getY();
-			g2d.drawImage(ir.getImage(ball.toString()), x, y, this);
+			g2d.drawImage(ImagesReference.getImage(ball.toString()), x, y, this);
 		}
 
-		g2d.drawImage(ir.getImage(vaus.toString()), vaus.getX(), VAUS_Y, vaus.getWidth(), VAUS_HEIGHT, this);
+		g2d.drawImage(ImagesReference.getImage(vaus.toString()), vaus.getX(), VAUS_Y, vaus.getWidth(), VAUS_HEIGHT, this);
 
 		if (drawBox) {
 			g2d.fillRect(0, VAUS_Y + VAUS_HEIGHT + 1, GAME_WIDTH, 3);
 		}
 		
 		if (!running && !firstTimeRun) {
-			g2d.drawImage(ir.getImage("pause"), 200, 180, this);
+			g2d.setColor(new Color(0,0,0,100));
+			g2d.fillRect(0, 0, getWidth(), getHeight());
+			g2d.drawImage(ImagesReference.getImage("pause"), 200, 180, this);
 		}
 		
 		if (textToDraw != null && lastBonusTakenTime+bonusMessageDelay >= System.currentTimeMillis()) {

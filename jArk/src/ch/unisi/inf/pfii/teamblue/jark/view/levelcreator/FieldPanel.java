@@ -10,6 +10,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
 import javax.swing.JComponent;
+import javax.swing.border.EtchedBorder;
 import javax.swing.event.MouseInputAdapter;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
@@ -39,8 +40,10 @@ public final class FieldPanel extends JComponent implements Constants {
 		brickField = levelManager.getBrickField();
 		bonusField = levelManager.getBonusField();
 		
-		setPreferredSize(new Dimension(798, 400));
+		setBounds(1,1,798, 400);
+		//setPreferredSize(new Dimension(798, 400));
 		setFocusable(true);
+		//setBorder(new EtchedBorder());
 		
 		MouseInputAdapter mouseListener = new MouseInputAdapter() {
 			@Override
@@ -121,7 +124,7 @@ public final class FieldPanel extends JComponent implements Constants {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
 		
-		g2d.setColor(Color.BLACK);
+		g2d.setColor(new Color(0xb0c4de));
 		g2d.fillRect(0,0,getWidth(),getHeight());
 		for (int j = 0; j < FIELD_ROWS; j++) {
 			for (int i = 0; i < FIELD_COLUMNS; i++) {

@@ -53,10 +53,15 @@ public final class CenterPanel extends JComponent implements Constants {
 	public CenterPanel(final LevelManager levelManager, final ButtonGroup group) {
 		//setBorder(BorderFactory.createLineBorder(Color.black));
 		setLayout(new BorderLayout(0,6));
+		JPanel borderPanel = new JPanel();
+		borderPanel.setLayout(null);
+		borderPanel.setPreferredSize(new Dimension(800,402));
+		borderPanel.setBackground(Color.BLACK);
 		FieldPanel fp = new FieldPanel(levelManager, group);
-		add(fp, BorderLayout.NORTH);
+		borderPanel.add(fp);
 		BonusPanel bp = new BonusPanel(fp, group);
 		add(bp, BorderLayout.CENTER);
+		add(borderPanel, BorderLayout.NORTH);
 	}
 
 

@@ -23,23 +23,32 @@ import ch.unisi.inf.pfii.teamblue.jark.view.game.GameFrame;
 @SuppressWarnings("serial")
 public final class InteractionPanel extends JPanel {
 
-	private final JButton startButton;
-	private final JButton stopButton;
-
+	private final JButton saveButton;
+	private final JButton loadButton;
+	private final JButton testButton;
+	
 	public InteractionPanel(final LevelManager levelManager) {
-		setLayout(new GridLayout(2, 1));
+		setLayout(new GridLayout(3, 1));
 
 		// first button
-		startButton = new JButton("Save");
-		startButton.addActionListener(new ActionListener() {
+		saveButton = new JButton("Save");
+		saveButton.addActionListener(new ActionListener() {
+			public void actionPerformed(final ActionEvent e) {
+
+			}
+		});
+		
+		// first button
+		loadButton = new JButton("Load");
+		loadButton.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
 
 			}
 		});
 
 		// another button
-		stopButton = new JButton("Test");
-		stopButton.addActionListener(new ActionListener() {
+		testButton = new JButton("Test");
+		testButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				final Game game = new Game(true, levelManager);
 				EventQueue.invokeLater(new Runnable() {
@@ -50,8 +59,9 @@ public final class InteractionPanel extends JPanel {
 			}
 		});
 
-		add(startButton);
-		add(stopButton);
+		add(testButton);
+		add(saveButton);
+		add(loadButton);
 	}
 
 }

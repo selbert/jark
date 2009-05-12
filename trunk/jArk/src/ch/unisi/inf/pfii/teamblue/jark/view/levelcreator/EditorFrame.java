@@ -16,8 +16,8 @@ import javax.swing.border.EmptyBorder;
 
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.LevelManager;
-import ch.unisi.inf.pfii.teamblue.jark.view.GameFrame;
 import ch.unisi.inf.pfii.teamblue.jark.view.ImagesReference;
+import ch.unisi.inf.pfii.teamblue.jark.view.game.GameFrame;
 
 /**
  * The main frame of the game

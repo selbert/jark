@@ -1,4 +1,4 @@
-package ch.unisi.inf.pfii.teamblue.jark.view;
+package ch.unisi.inf.pfii.teamblue.jark.view.game;
 
 import java.awt.AWTException;
 import java.awt.Color;
@@ -33,6 +33,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.Brick;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
+import ch.unisi.inf.pfii.teamblue.jark.view.ImagesReference;
 
 /**
  * The game panel, it should show the bricks the balls and the vaus

@@ -32,7 +32,7 @@ public final class ImagesReference {
 		images.put("resistentBrick", setImage("images/bricks/resistentBrick2.png"));
 		images.put("veryResistentBrick1", setImage("images/bricks/veryResistentBrick1.png"));
 		images.put("veryResistentBrick2", setImage("images/bricks/veryResistentBrick2.png"));
-		images.put("veryResistentBrick", setImage("images/bricks/veryResistentBricka.png"));
+		images.put("veryResistentBrick", setImage("images/bricks/veryResistentBrick3.png"));
 		images.put("editorBrick", setImage("images/bricks/editorBrick.png"));
 		images.put("removeBrick", setImage("images/bricks/removeBrick.png"));
 		//vauses
@@ -54,7 +54,7 @@ public final class ImagesReference {
 		images.put("slowBall", setImage("images/balls/defaultBall.png"));
 		images.put("stickyBall", setImage("images/balls/defaultBall.png"));
 		images.put("ultraBall", setImage("images/balls/ultraBall.png"));
-		images.put("ghostBall", setImage("images/balls/ghostBall.png"));
+		images.put("ghostBall", setImage("images/balls/defaultBall.png"));
 		//bonuses (+)
 		images.put("bonus_addlife", setImage("images/bonuses/bonus_addlife.png"));
 		images.put("bonus_box", setImage("images/bonuses/bonus_box.png"));
@@ -69,7 +69,6 @@ public final class ImagesReference {
 		images.put("malus_falseball", setImage("images/bonuses/malus_falseball.png"));
 		images.put("malus_ghostball", setImage("images/bonuses/malus_ghostball.png"));
 		images.put("malus_removelife", setImage("images/bonuses/malus_removelife.png"));
-		images.put("malus_rubberball", setImage("images/bonuses/malus_rubberball.png"));
 		images.put("malus_shortvaus", setImage("images/bonuses/malus_shortvaus.png"));
 		//bonuses (=)
 		images.put("neutral_fastball", setImage("images/bonuses/neutral_fastball.png"));

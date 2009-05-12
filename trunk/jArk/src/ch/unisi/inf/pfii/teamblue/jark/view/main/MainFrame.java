@@ -1,12 +1,12 @@
-package ch.unisi.inf.pfii.teamblue.jark.view.levelcreator;
+package ch.unisi.inf.pfii.teamblue.jark.view.main;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -14,8 +14,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import ch.unisi.inf.pfii.teamblue.jark.model.Game;
-import ch.unisi.inf.pfii.teamblue.jark.view.GameFrame;
+import ch.unisi.inf.pfii.teamblue.jark.model.level.LevelManager;
 import ch.unisi.inf.pfii.teamblue.jark.view.ImagesReference;
 
 /**
@@ -27,28 +26,31 @@ import ch.unisi.inf.pfii.teamblue.jark.view.ImagesReference;
  */
 
 @SuppressWarnings("serial")
-public final class CreatorFrame extends JFrame {
+public final class MainFrame extends JFrame {
 	private final CenterPanel centerPanel;
-	private final WestPanel westPanel;
-	private final ButtonGroup group;
+	private final InteractionPanel interactionPanel;
+	private final LevelManager levelManager;
+	private final ImagesReference imagesReference;
 	
-	public CreatorFrame() {
-		setTitle("[ jArk ] [ Level Creator ]");
+	public MainFrame() {
+		setTitle("[ jArk ] [ Arkanoid/BreakOut ]");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
+		setPreferredSize(new Dimension(800,600));
 		setBackground(Color.LIGHT_GRAY);
 		((JPanel) getContentPane()).setBorder(new EmptyBorder(6, 6, 6, 6));
 		setLayout(new BorderLayout(6, 6));
+		
+		levelManager = new LevelManager();
+		imagesReference = new ImagesReference();
 
 		makeMenu();
 		
-		group = new ButtonGroup();
-		centerPanel = new CenterPanel(group);
-		westPanel = new WestPanel(centerPanel, group);
-	
+		centerPanel = new CenterPanel();
 		add(centerPanel, BorderLayout.CENTER);
-		add(westPanel, BorderLayout.WEST);
-	
+		interactionPanel = new InteractionPanel(centerPanel, levelManager);
+		add(interactionPanel, BorderLayout.SOUTH);
+		
 		// pack the frame together
 		pack();
 		// center
@@ -56,18 +58,6 @@ public final class CreatorFrame extends JFrame {
 		// and show it
 		setVisible(true);
 	}
-
-	public static void main(String[] args) {
-		final Game game = new Game();
-		
-		EventQueue.invokeLater(new Runnable() {
-		    public void run() {
-		    	new ImagesReference();
-		    	new CreatorFrame();
-		    }
-		});		
-	}
-
 	
 	/**
 	 * Create the Menu

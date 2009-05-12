@@ -14,6 +14,7 @@ import javax.swing.event.MouseInputAdapter;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Utils;
+import ch.unisi.inf.pfii.teamblue.jark.model.level.LevelManager;
 import ch.unisi.inf.pfii.teamblue.jark.view.ImagesReference;
 
 /**
@@ -33,12 +34,11 @@ public final class FieldPanel extends JComponent implements Constants {
 	private final String[][] brickField;
 	private final String[][] bonusField;
 	
-	public FieldPanel(final ButtonGroup group) {
+	public FieldPanel(final LevelManager levelManager, final ButtonGroup group) {
 		this.group = group;
-		brickField = new String[FIELD_ROWS][FIELD_COLUMNS];
-		bonusField = new String[FIELD_ROWS][FIELD_COLUMNS];
+		brickField = levelManager.getBrickField();
+		bonusField = levelManager.getBonusField();
 		
-	//	setBorder(BorderFactory.createLineBorder(Color.black, 5));
 		setPreferredSize(new Dimension(798, 400));
 		setFocusable(true);
 		
@@ -67,8 +67,8 @@ public final class FieldPanel extends JComponent implements Constants {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				super.mouseReleased(e);
-				printField(brickField);
-				printField(bonusField);
+				//printField(brickField);
+				//printField(bonusField);
 			}
 			
 			@Override
@@ -136,7 +136,7 @@ public final class FieldPanel extends JComponent implements Constants {
 				if (brick != null) {
 					g2d.drawImage(ImagesReference.getImage(brick), BRICK_WIDTH*j, BRICK_HEIGHT*i,this);
 					if (bonus != null) {
-						g2d.drawImage(ImagesReference.getImage(bonus), BRICK_WIDTH*j, BRICK_HEIGHT*i, 34, 15, this);
+						g2d.drawImage(ImagesReference.getImage(bonus), BRICK_WIDTH*j+4, BRICK_HEIGHT*i+4, 34, 15, this);
 					}
 				}
 			}

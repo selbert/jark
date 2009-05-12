@@ -41,10 +41,8 @@ public final class FieldPanel extends JComponent implements Constants {
 		bonusField = levelManager.getBonusField();
 		
 		setBounds(1,1,798, 400);
-		//setPreferredSize(new Dimension(798, 400));
 		setFocusable(true);
-		//setBorder(new EtchedBorder());
-		
+
 		MouseInputAdapter mouseListener = new MouseInputAdapter() {
 			@Override
 			public void mouseMoved(MouseEvent ev) {
@@ -64,14 +62,13 @@ public final class FieldPanel extends JComponent implements Constants {
 					} else if (brickField[brickY][brickX] != null && !brickField[brickY][brickX].contains("persistent")) {
 						bonusField[brickY][brickX] = getBrickText();
 					}
+					repaint();
 				}
 			}
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				super.mouseReleased(e);
-				//printField(brickField);
-				//printField(bonusField);
 			}
 			
 			@Override
@@ -108,16 +105,6 @@ public final class FieldPanel extends JComponent implements Constants {
 		}
 	}
 	
-	private void printField(String[][] field) {
-		for(final String[] i : field) {
-			String line ="";
-			for (final String j : i) {
-				line += j+" ";
-			}
-			System.out.println(line);
-		}
-		System.out.println( );
-	}
 	
 	@Override
 	public final void paintComponent(Graphics g) {

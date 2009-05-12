@@ -24,14 +24,18 @@ public final class LaserVausBonus extends VausBonus {
 	}
 	@Override
 	public void apply(final Game game) {
-		final Vaus newVaus = new RifleVaus(game.getVaus().getX());
-		newVaus.setWidth(game.getVaus().getWidth());
+		Vaus vaus = game.getVaus();
+		final Vaus newVaus = new RifleVaus(vaus.getX());
+		newVaus.setWidth(vaus.getWidth());
+		newVaus.setVausListenerLsit(vaus.getVausListenerLsit());
 		game.setVaus(newVaus);
 	}
 	@Override
 	public final void remove(final Game game) {
-		final Vaus newVaus = new DefaultVaus(game.getVaus().getX());
-		newVaus.setWidth(game.getVaus().getWidth());
+		Vaus vaus = game.getVaus();
+		final Vaus newVaus = new DefaultVaus(vaus.getX());
+		newVaus.setWidth(vaus.getWidth());
+		newVaus.setVausListenerLsit(vaus.getVausListenerLsit());
 		game.setVaus(newVaus);
 	}
 	

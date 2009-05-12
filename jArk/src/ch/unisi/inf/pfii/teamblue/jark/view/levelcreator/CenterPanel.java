@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JComponent;
+import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.event.MouseInputAdapter;
 
@@ -50,7 +52,6 @@ public final class CenterPanel extends JComponent implements Constants {
 	public CenterPanel(final ButtonGroup group) {
 		//setBorder(BorderFactory.createLineBorder(Color.black));
 		setLayout(new BorderLayout(0,6));
-		
 		FieldPanel fp = new FieldPanel(group);
 		add(fp, BorderLayout.NORTH);
 		BonusPanel bp = new BonusPanel(fp, group);

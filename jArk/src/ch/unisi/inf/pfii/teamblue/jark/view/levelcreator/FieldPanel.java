@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
 import javax.swing.JComponent;
@@ -37,8 +38,8 @@ public final class FieldPanel extends JComponent implements Constants {
 		brickField = new String[FIELD_ROWS][FIELD_COLUMNS];
 		bonusField = new String[FIELD_ROWS][FIELD_COLUMNS];
 		
-		//setBorder(BorderFactory.createLineBorder(Color.black));
-		setPreferredSize(new Dimension(799, 401));
+	//	setBorder(BorderFactory.createLineBorder(Color.black, 5));
+		setPreferredSize(new Dimension(798, 400));
 		setFocusable(true);
 		
 		MouseInputAdapter mouseListener = new MouseInputAdapter() {
@@ -120,16 +121,14 @@ public final class FieldPanel extends JComponent implements Constants {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
 		
-		g2d.setColor(Color.WHITE);
+		g2d.setColor(Color.BLACK);
 		g2d.fillRect(0,0,getWidth(),getHeight());
 		for (int j = 0; j < FIELD_ROWS; j++) {
-			//g2d.drawLine(0, j * (BRICK_HEIGHT-1), getWidth(), j * (BRICK_HEIGHT-1));
 			for (int i = 0; i < FIELD_COLUMNS; i++) {
-				//g2d.drawLine((BRICK_WIDTH-1) * i, 0, (BRICK_WIDTH-1)*i, getHeight());
 				g2d.drawImage(ImagesReference.getImage("editorBrick"), BRICK_WIDTH*i, BRICK_HEIGHT*j,this);
 			}
 		}
-		
+
 		for (int i = 0; i<FIELD_ROWS; i++) {
 			for (int j=0; j<FIELD_COLUMNS; j++) {
 				String brick = brickField[i][j];

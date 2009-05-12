@@ -167,7 +167,7 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 	protected boolean bounceX(final float newX) {
 		if (level.brickHasBallInside(newX, y)) {
 			if(level.brickHasBallInside(newX, y + (2*BALL_RADIUS))) {
-				level.removeBrick(newX, y + BALL_RADIUS);
+				destroyBrick(newX, y + BALL_RADIUS);
 			} else {
 				destroyBrick(newX, y);
 			}

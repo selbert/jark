@@ -54,6 +54,7 @@ public final class ImagesReference {
 		images.put("slowBall", setImage("images/balls/defaultBall.png"));
 		images.put("stickyBall", setImage("images/balls/defaultBall.png"));
 		images.put("ultraBall", setImage("images/balls/ultraBall.png"));
+		images.put("ghostBall", setImage("images/balls/ghostBall.png"));
 		//bonuses (+)
 		images.put("bonus_addlife", setImage("images/bonuses/bonus_addlife.png"));
 		images.put("bonus_box", setImage("images/bonuses/bonus_box.png"));

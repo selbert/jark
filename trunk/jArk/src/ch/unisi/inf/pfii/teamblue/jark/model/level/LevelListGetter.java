@@ -10,7 +10,6 @@ public class LevelListGetter {
 		levelDirectory = new File(filePath.getPath());
 		if (levelDirectory.isDirectory()) {
 			File[] levelFiles = levelDirectory.listFiles();
-			System.out.println(levelFiles.length);
 			String[] levels =  new String[levelFiles.length];
 			for (int i = 0; i < levelFiles.length; i++) {
 				levels[i] = levelFiles[i].getName();

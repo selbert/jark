@@ -64,15 +64,6 @@ public final class GhostBall extends Ball {
 		x = newX;
 		y = newY;
 	}
-	@Override
-	protected final boolean bounceVaus(final float newX, final float newY) {
-		if (newY + (BALL_RADIUS*2) > VAUS_Y-1 && newY + (BALL_RADIUS*2) < VAUS_Y+(BALL_RADIUS*2) && newX + (BALL_RADIUS*2) >= vaus.getX() && newX <= vaus.getX() + vaus.getWidth()) {
-			speedY = -speedY;
-			speedX = ((newX + BALL_RADIUS) - (vaus.getX() + (vaus.getWidth() / 2))) / (vaus.getWidth() / 10);
-			return true;
-		}
-		return false;
-	}
 	
 	@Override
 	protected void destroyBrick(final float x, final float y) {

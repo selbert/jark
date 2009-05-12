@@ -6,19 +6,25 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Robot;
 import java.awt.Toolkit;
+import java.awt.Transparency;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.awt.image.MemoryImageSource;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
+import javax.swing.GrayFilter;
 import javax.swing.JComponent;
 import javax.swing.Timer;
 import javax.swing.event.MouseInputAdapter;
@@ -63,10 +69,11 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 	private final Cursor transparentCursor;
 	private final Game game;
 	
+	private BufferedImage img;
+	
 	public GamePanel(final Game game) {
-		
 		this.game = game;
-
+		
 		game.getLevel().addLevelListener(new LevelListener() {
 			public void bonusReleased(Bonus bonus) {
 				bonus.addBonusListener(new BonusListener() {
@@ -99,6 +106,12 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 				case KeyEvent.VK_ESCAPE:
 					play();
 					repaint();
+					GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+					GraphicsDevice gs = ge.getDefaultScreenDevice();
+					GraphicsConfiguration gc = gs.getDefaultConfiguration();
+					img = gc.createCompatibleImage(798, 600, Transparency.TRANSLUCENT);
+					grayImage();
+					
 					break;
 				case KeyEvent.VK_SPACE:
 					vaus.shoot(game);
@@ -117,7 +130,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 					break;
 				}
 			}
-
+			
 			public final void keyTyped(KeyEvent ev) {
 			}
 		};
@@ -193,6 +206,19 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 	    
 	    firstTimeRun = true;
 	}
+	
+	private void grayImage() {
+		 int height = img.getHeight();
+	        int width = img.getWidth();
+	        for(int y = 0; y < height; y++) {
+	            for(int x = 0; x < width; x++) {
+	                Color pixel = new Color(img.getRGB(x, y));
+	                int brightness = (pixel.getRed() + pixel.getBlue() + pixel.getGreen()) / 3;
+	                img.setRGB(x, y, new Color(brightness,brightness,brightness).getRGB());
+	            }
+	        }
+	        
+	}
 
 	@Override
 	public final void paintComponent(Graphics g) {
@@ -233,8 +259,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 		}
 		
 		if (!running && !firstTimeRun) {
-			g2d.setColor(new Color(0,0,0,100));
-			g2d.fillRect(0, 0, getWidth(), getHeight());
+			g2d.drawImage(img, null, 0, 0);
 			g2d.drawImage(ImagesReference.getImage("pause"), 200, 180, this);
 		}
 		
@@ -243,6 +268,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 		} else {
 			textToDraw = null;
 		}
+		
 	}
 
 	/**

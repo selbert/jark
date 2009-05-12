@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 
-import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
 import javax.swing.JComponent;
@@ -58,7 +57,7 @@ public final class FieldPanel extends JComponent implements Constants {
 					if (selected.getActionCommand().contains("Brick")) {
 						brickField[brickY][brickX] = getBrickText();
 						bonusField[brickY][brickX] = null;
-					} else if (brickField[brickY][brickX] != null) {
+					} else if (brickField[brickY][brickX] != null && !brickField[brickY][brickX].contains("persistent")) {
 						bonusField[brickY][brickX] = getBrickText();
 					}
 				}

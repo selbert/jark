@@ -1,7 +1,6 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.vaus;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.VausListener;
@@ -35,7 +34,7 @@ public abstract class Vaus implements Constants {
 	
 	//getters and setters
 	public void setX(final int posX) {
-		fireVausMoved(this.posX - posX);
+		fireVausMoved(posX);
 		this.posX = posX;
 		
 	}

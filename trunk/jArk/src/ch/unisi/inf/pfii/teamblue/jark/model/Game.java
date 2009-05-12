@@ -160,7 +160,7 @@ public final class Game implements Constants {
 					&& (b.getBonusClass() == bonus.getBonusClass())) {
 				freeBonuses.remove(bonus);
 				bonus.apply(this);
-				takenBonuses.set(i, b);
+				takenBonuses.set(i, bonus);
 				return;
 			}
 		}

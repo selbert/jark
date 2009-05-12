@@ -19,10 +19,8 @@ public class ExplosionBall extends Ball {
 	@Override
 	public final Ball copy() {
 		Ball returnBall = new ExplosionBall(vaus, level);
-		returnBall.setX(x);
-		returnBall.setY(y);
-		returnBall.setSpeedMod(speedModifier);
-		return returnBall;
+		
+		return transferBall(returnBall);
 	}
 	//the bricks to destroy
 	protected final void destroyBrick(final float x, final float y) {

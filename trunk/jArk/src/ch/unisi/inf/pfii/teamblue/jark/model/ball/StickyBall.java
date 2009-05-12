@@ -23,10 +23,19 @@ public final class StickyBall extends Ball {
 	@Override
 	public final Ball copy() {
 		Ball returnBall = new StickyBall(vaus, level);
-		returnBall.setX(x);
-		returnBall.setY(y);
-		returnBall.setSpeedMod(speedModifier);
-		return returnBall;
+		returnBall.setSticky(getSticky());
+		returnBall.setVausRelPos(vausRelPos);
+		vaus.addVausListener(returnBall);
+		return transferBall(returnBall);
+	}
+	public void setSticky(boolean setting) {
+		sticked = setting;
+	}
+	public void setVausRelPos(float vausRelPos) {
+		this.vausRelPos = vausRelPos;
+	}
+	private boolean getSticky() {
+		return sticked;
 	}
 	@Override
 	public final String toString() {

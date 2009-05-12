@@ -248,4 +248,18 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 
 	public void release() {
 	}
+
+	public void setSticky(boolean sticky) {
+	}
+
+	public void setVausRelPos(float vausRelPos) {
+	}
+	
+	protected Ball transferBall(final Ball returnBall) {
+		returnBall.setX(x);
+		returnBall.setY(y);
+		returnBall.setSpeedMod(speedModifier);
+		returnBall.setBoxEnabled(getBoxEnabled());
+		return returnBall;
+	}
 }

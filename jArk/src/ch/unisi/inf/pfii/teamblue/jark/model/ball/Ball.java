@@ -190,11 +190,17 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 	}
 	
 	protected boolean bounceDiag(final float newX, final float newY) {
-		if (level.brickHasBallInside(newX, newY)
-				|| level.brickHasBallInside(newX, newY + (2*BALL_RADIUS))
-				|| level.brickHasBallInside(newX + (2*BALL_RADIUS), newY)
-				|| level.brickHasBallInside(newX + (2*BALL_RADIUS), newY + (2*BALL_RADIUS))) {
+		if (level.brickHasBallInside(newX, newY)) {
 			destroyBrick(newX, newY);
+			return true;
+		} else if (level.brickHasBallInside(newX, newY + (2*BALL_RADIUS))) {
+			destroyBrick(newX, newY + (2*BALL_RADIUS));
+			return true;
+		} else if (level.brickHasBallInside(newX + (2*BALL_RADIUS), newY)) {
+			destroyBrick(newX + (2*BALL_RADIUS), newY);
+			return true;
+		} else if (level.brickHasBallInside(newX + (2*BALL_RADIUS), newY + (2*BALL_RADIUS))) {
+			destroyBrick(newX + (2*BALL_RADIUS), newY + (2*BALL_RADIUS));
 			return true;
 		} else {
 			return false;

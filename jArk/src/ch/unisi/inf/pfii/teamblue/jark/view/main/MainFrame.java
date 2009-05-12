@@ -6,7 +6,9 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -14,6 +16,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import ch.unisi.inf.pfii.teamblue.jark.model.level.LevelListGetter;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.LevelManager;
 import ch.unisi.inf.pfii.teamblue.jark.view.ImagesReference;
 
@@ -46,7 +49,12 @@ public final class MainFrame extends JFrame {
 
 		makeMenu();
 		
+		String[] levels = LevelListGetter.getLevels();
+		
+		JComboBox levelList = new JComboBox(levels);
+		
 		centerPanel = new CenterPanel();
+		add(levelList, BorderLayout.NORTH);
 		add(centerPanel, BorderLayout.CENTER);
 		interactionPanel = new InteractionPanel(centerPanel, levelManager);
 		add(interactionPanel, BorderLayout.SOUTH);

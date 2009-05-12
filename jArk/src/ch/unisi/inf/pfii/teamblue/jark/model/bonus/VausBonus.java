@@ -1,5 +1,7 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.bonus;
 
+import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
+
 public abstract class VausBonus extends Bonus {
 
 	public VausBonus(int bonusClass) {
@@ -8,8 +10,12 @@ public abstract class VausBonus extends Bonus {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return null;
+	}
+	protected final Vaus translateVaus(final Vaus vaus, final Vaus newVaus) {
+		newVaus.setWidth(vaus.getWidth());
+		newVaus.setVausListenerLsit(vaus.getVausListenerLsit());
+		return newVaus;
 	}
 
 }

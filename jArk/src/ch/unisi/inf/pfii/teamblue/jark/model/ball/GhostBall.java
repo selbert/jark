@@ -21,10 +21,8 @@ public final class GhostBall extends Ball {
 	@Override
 	public final Ball copy() {
 		Ball returnBall = new UltraBall(vaus, level);
-		returnBall.setX(x);
-		returnBall.setY(y);
-		returnBall.setSpeedMod(speedModifier);
-		return returnBall;
+		
+		return transferBall(returnBall);
 	}
 	@Override
 	public final void move() {

@@ -34,14 +34,7 @@ public final class GhostBallBonus extends BallBonus {
 			final Ball oldBall = balls.get(i);
 			final Ball newBall = new GhostBall(oldBall.getVaus(), oldBall.getLevel());
 			
-			newBall.setSpeedX(oldBall.getSpeedX());
-			newBall.setSpeedY(oldBall.getSpeedY());
-			newBall.setX(oldBall.getX());
-			newBall.setY(oldBall.getY());
-			newBall.setBoxEnabled(oldBall.getBoxEnabled());
-			newBall.setSpeedMod(oldBall.getSpeedMod());
-			
-			game.replaceBall(oldBall, newBall);
+			game.replaceBall(oldBall, translateBall(oldBall, newBall));
 		}
 	}
 	@Override
@@ -53,14 +46,7 @@ public final class GhostBallBonus extends BallBonus {
 			final Ball oldBall = balls.get(i);
 			final Ball newBall = new DefaultBall(oldBall.getVaus(), oldBall.getLevel());
 			
-			newBall.setSpeedX(oldBall.getSpeedX());
-			newBall.setSpeedY(oldBall.getSpeedY());
-			newBall.setX(oldBall.getX());
-			newBall.setY(oldBall.getY());
-			newBall.setBoxEnabled(oldBall.getBoxEnabled());
-			newBall.setSpeedMod(oldBall.getSpeedMod());
-			
-			game.replaceBall(oldBall, newBall);
+			game.replaceBall(oldBall, translateBall(oldBall, newBall));
 		}
 	}
 	

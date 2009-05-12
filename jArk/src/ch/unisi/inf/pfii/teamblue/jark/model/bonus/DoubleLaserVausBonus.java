@@ -26,18 +26,15 @@ public final class DoubleLaserVausBonus extends VausBonus {
 	public final void apply(final Game game) {
 		Vaus vaus = game.getVaus();
 		final Vaus newVaus = new DoubleRifleVaus(vaus.getX());
-		newVaus.setWidth(vaus.getWidth());
-		newVaus.setVausListenerLsit(vaus.getVausListenerLsit());
-		game.setVaus(newVaus);
+		
+		game.setVaus(translateVaus(vaus, newVaus));
 	}
 	
 	@Override
 	public final void remove(final Game game) {
 		Vaus vaus = game.getVaus();
 		final Vaus newVaus = new DefaultVaus(vaus.getX());
-		newVaus.setWidth(vaus.getWidth());
-		newVaus.setVausListenerLsit(vaus.getVausListenerLsit());
-		game.setVaus(newVaus);
+		game.setVaus(translateVaus(vaus, newVaus));
 	}
 	
 }

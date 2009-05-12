@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.LevelManager;
-import ch.unisi.inf.pfii.teamblue.jark.view.GameFrame;
+import ch.unisi.inf.pfii.teamblue.jark.view.game.GameFrame;
 import ch.unisi.inf.pfii.teamblue.jark.view.levelcreator.EditorFrame;
 
 /**

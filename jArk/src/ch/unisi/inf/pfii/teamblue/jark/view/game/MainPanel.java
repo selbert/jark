@@ -1,4 +1,4 @@
-package ch.unisi.inf.pfii.teamblue.jark.view;
+package ch.unisi.inf.pfii.teamblue.jark.view.game;
 
 import java.awt.BorderLayout;
 

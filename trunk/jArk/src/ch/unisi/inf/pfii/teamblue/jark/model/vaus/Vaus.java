@@ -100,4 +100,12 @@ public abstract class Vaus implements Constants {
 		vausListenerList.remove(li);
 	}
 	
+	public void setVausListenerLsit(ArrayList<VausListener> listenerList) {
+		vausListenerList = listenerList;
+	}
+	
+	public ArrayList<VausListener> getVausListenerLsit() {
+		return vausListenerList;
+	}
+	
 }

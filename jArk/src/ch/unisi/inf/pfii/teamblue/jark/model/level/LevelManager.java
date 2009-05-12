@@ -1,10 +1,16 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.level;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Utils;
@@ -19,22 +25,41 @@ import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonuses;
 public class LevelManager implements Constants {
 	private String[][] brickField;
 	private String[][] bonusField;
+	private String levelName;
 	
 	public LevelManager() {
 		brickField = new String[FIELD_ROWS][FIELD_COLUMNS];
 		bonusField = new String[FIELD_ROWS][FIELD_COLUMNS];
 	}
 	
-	public void LevelFromFile(String filepath) {
-		final ArrayList<String> lines = new ArrayList<String>();
-		
+	public void readLevelFromFile(String filepath) {
 		try{
-			final URL filePath = getClass().getResource(filepath);
-			final InputStreamReader streamReader = new InputStreamReader(filePath.openStream());
-			final BufferedReader myInput = new BufferedReader(streamReader);
+			final BufferedReader myInput = new BufferedReader(new FileReader(filepath));
 
+			levelName = myInput.readLine();
+			myInput.readLine();
+			
 			for (int i = 0; i < FIELD_ROWS; i++) {
-				lines.add(myInput.readLine());
+				String[] tmp = myInput.readLine().split(" ");
+				for (int j = 0; j<FIELD_COLUMNS; j++) {
+					if (!tmp[j].equals("null")) {
+						brickField[i][j] = tmp[j];
+					} else {
+						brickField[i][j] = null;
+					}
+				}
+			}
+			
+			myInput.readLine();
+			for (int i = 0; i < FIELD_ROWS; i++) {
+				String[] tmp = myInput.readLine().split(" ");
+				for (int j = 0; j<FIELD_COLUMNS; j++) {
+					if (!tmp[j].equals("null")) {
+						bonusField[i][j] = tmp[j];
+					} else {
+						bonusField[i][j] = null;
+					}
+				}
 			}
 			
 			
@@ -74,6 +99,18 @@ public class LevelManager implements Constants {
 		return null; 
 	}
 
+	
+	private String fieldToString(String[][] field) {
+		String line ="";
+		for(final String[] i : field) {
+			for (final String j : i) {
+				line += j+" ";
+			}
+			line += "\n";
+		}
+		return line;
+	}
+	
 	public String[][] getBrickField() {
 		return brickField;
 	}
@@ -87,5 +124,25 @@ public class LevelManager implements Constants {
 	
 	public String[][] getBonusField() {
 		return bonusField;
+	}
+
+	public void writeLevelToFile(String name) {
+		final File file = new File(name+".jark");
+		try {
+			if (file.createNewFile()) {
+				FileWriter fstream = new FileWriter(file);
+				BufferedWriter out = new BufferedWriter(fstream);
+				out.write(name);
+				out.write("\n\n");
+				out.write(fieldToString(brickField));
+				out.write("\n");
+				out.write(fieldToString(bonusField));
+				out.close();
+			} else {
+				JOptionPane.showMessageDialog(null, "File \""+name+"\" already exist, choose a different name.");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

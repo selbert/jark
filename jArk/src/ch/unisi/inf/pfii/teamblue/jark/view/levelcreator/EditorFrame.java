@@ -45,7 +45,7 @@ public final class EditorFrame extends JFrame {
 		
 		group = new ButtonGroup();
 		centerPanel = new CenterPanel(levelManager, group);
-		westPanel = new WestPanel(levelManager, group);
+		westPanel = new WestPanel(centerPanel, levelManager, group);
 	
 		add(centerPanel, BorderLayout.CENTER);
 		add(westPanel, BorderLayout.WEST);

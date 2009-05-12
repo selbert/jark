@@ -32,10 +32,8 @@ import ch.unisi.inf.pfii.teamblue.jark.view.ImagesReference;
 public final class MainFrame extends JFrame {
 	private final CenterPanel centerPanel;
 	private final InteractionPanel interactionPanel;
-	private final LevelManager levelManager;
-	private final ImagesReference imagesReference;
 	
-	public MainFrame() {
+	public MainFrame(final LevelManager levelManager, final ImagesReference imagesReference) {
 		setTitle("[ jArk ] [ Arkanoid/BreakOut ]");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -43,9 +41,6 @@ public final class MainFrame extends JFrame {
 		setBackground(Color.LIGHT_GRAY);
 		((JPanel) getContentPane()).setBorder(new EmptyBorder(6, 6, 6, 6));
 		setLayout(new BorderLayout(6, 6));
-		
-		levelManager = new LevelManager();
-		imagesReference = new ImagesReference();
 
 		makeMenu();
 		

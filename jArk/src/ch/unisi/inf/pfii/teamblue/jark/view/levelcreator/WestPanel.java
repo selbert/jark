@@ -16,13 +16,13 @@ public class WestPanel extends JPanel {
 	private final BricksPanel bricksPanel;
 	private final InteractionPanel interactionPanel;
 
-	public WestPanel(LevelManager levelManager, ButtonGroup group) {
+	public WestPanel(CenterPanel centerPanel, LevelManager levelManager, ButtonGroup group) {
 		setLayout(new BorderLayout());
 		//setBorder(BorderFactory.createLineBorder(Color.black));
 		setBorder(new EtchedBorder());
 		
 		bricksPanel = new BricksPanel(group);
-		interactionPanel = new InteractionPanel(levelManager);	
+		interactionPanel = new InteractionPanel(centerPanel, levelManager);	
 		
 		add(bricksPanel, BorderLayout.NORTH);
 		add(interactionPanel, BorderLayout.SOUTH);

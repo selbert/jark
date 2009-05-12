@@ -6,14 +6,10 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Robot;
 import java.awt.Toolkit;
-import java.awt.Transparency;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -24,7 +20,6 @@ import java.awt.image.MemoryImageSource;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
-import javax.swing.GrayFilter;
 import javax.swing.JComponent;
 import javax.swing.Timer;
 import javax.swing.event.MouseInputAdapter;
@@ -69,7 +64,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 	private final Cursor transparentCursor;
 	private final Game game;
 	
-	private BufferedImage img;
+	private BufferedImage image;
 	
 	public GamePanel(final Game game) {
 		this.game = game;
@@ -105,13 +100,10 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 					break;
 				case KeyEvent.VK_ESCAPE:
 					play();
+					image = new BufferedImage(798, 600, BufferedImage.TYPE_BYTE_GRAY);
+					paintComponent( image.createGraphics() );
+
 					repaint();
-					GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-					GraphicsDevice gs = ge.getDefaultScreenDevice();
-					GraphicsConfiguration gc = gs.getDefaultConfiguration();
-					img = gc.createCompatibleImage(798, 600, Transparency.TRANSLUCENT);
-					grayImage();
-					
 					break;
 				case KeyEvent.VK_SPACE:
 					vaus.shoot(game);
@@ -205,19 +197,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 	    transparentCursor = Toolkit.getDefaultToolkit().createCustomCursor(image, new Point(0, 0), "invisibleCursor");
 	    
 	    firstTimeRun = true;
-	}
-	
-	private void grayImage() {
-		 int height = img.getHeight();
-	        int width = img.getWidth();
-	        for(int y = 0; y < height; y++) {
-	            for(int x = 0; x < width; x++) {
-	                Color pixel = new Color(img.getRGB(x, y));
-	                int brightness = (pixel.getRed() + pixel.getBlue() + pixel.getGreen()) / 3;
-	                img.setRGB(x, y, new Color(brightness,brightness,brightness).getRGB());
-	            }
-	        }
-	        
+	    
 	}
 
 	@Override
@@ -225,6 +205,9 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
 
+		g2d.setColor(new Color(0xb0c4de));
+		g2d.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+		
 		for (int j = 0; j < bricks.length; j++) {
 			for (int i = 0; i < bricks[j].length; i++) {
 				final Brick brick = bricks[j][i];
@@ -252,6 +235,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 			g2d.drawImage(ImagesReference.getImage(ball.toString()), x, y, this);
 		}
 
+		
 		g2d.drawImage(ImagesReference.getImage(vaus.toString()), vaus.getX(), VAUS_Y, vaus.getWidth(), VAUS_HEIGHT, this);
 
 		if (drawBox) {
@@ -259,7 +243,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 		}
 		
 		if (!running && !firstTimeRun) {
-			g2d.drawImage(img, null, 0, 0);
+			g2d.drawImage(image, 0,0, null);
 			g2d.drawImage(ImagesReference.getImage("pause"), 200, 180, this);
 		}
 		

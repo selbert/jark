@@ -32,7 +32,7 @@ public final class ImagesReference {
 		images.put("resistentBrick", setImage("images/bricks/resistentBrick2.png"));
 		images.put("veryResistentBrick1", setImage("images/bricks/veryResistentBrick1.png"));
 		images.put("veryResistentBrick2", setImage("images/bricks/veryResistentBrick2.png"));
-		images.put("veryResistentBrick", setImage("images/bricks/veryResistentBrick3.png"));
+		images.put("veryResistentBrick", setImage("images/bricks/veryResistentBricka.png"));
 		images.put("editorBrick", setImage("images/bricks/editorBrick.png"));
 		images.put("removeBrick", setImage("images/bricks/removeBrick.png"));
 		//vauses

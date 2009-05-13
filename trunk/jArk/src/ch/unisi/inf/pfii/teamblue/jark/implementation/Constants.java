@@ -42,6 +42,6 @@ public interface Constants {
 	int ULTRA_BALL = 10000;
 	//vaus shooting speed delay (ms)
 	int DOUBLE_RIFLE_DELAY = 100; 
-	int RIFLE_DELAY = 100;
+	int RIFLE_DELAY = 150;
 	int CANNON_DELAY = 500;
 }

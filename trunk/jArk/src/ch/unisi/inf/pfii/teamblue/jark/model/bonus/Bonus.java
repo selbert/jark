@@ -108,6 +108,11 @@ public abstract class Bonus implements Constants, VausSetListener {
             li.bonusTaken(this);
         }
     }
+    protected void fireLifeDecreased() {
+        for (final BonusListener li : listeners) {
+            li.lifeDecreased(this);
+        }
+    }
 
 	public void remove(Game game) {
 		return;
@@ -115,6 +120,7 @@ public abstract class Bonus implements Constants, VausSetListener {
 
 	public void decrementLife() {
 		lifeInMill -= TICKS_PER_SECOND;
+		fireLifeDecreased();
 	}
 
 }

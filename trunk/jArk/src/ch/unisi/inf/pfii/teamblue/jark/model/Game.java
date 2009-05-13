@@ -5,6 +5,7 @@ import java.util.Random;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.BonusListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
+import ch.unisi.inf.pfii.teamblue.jark.implementation.GameListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.LevelListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.VausSetListener;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
@@ -34,6 +35,7 @@ public final class Game implements Constants {
 	private final ArrayList<Bonus> takenBonuses;
 	
 	private final ArrayList<VausSetListener> vausListeners;
+	private final ArrayList<GameListener> gameListeners;
 
 	private final Random rnd;
 	
@@ -46,6 +48,7 @@ public final class Game implements Constants {
 		//init
 		rnd = new Random();
 		vausListeners = new ArrayList<VausSetListener>();
+		gameListeners = new ArrayList<GameListener>();
 		balls = new ArrayList<Ball>();
 		bullets = new ArrayList<Ball>();
 		freeBonuses = new ArrayList<Bonus>();
@@ -74,6 +77,9 @@ public final class Game implements Constants {
 	public final ArrayList<Bonus> getBonuses() {
 		return freeBonuses;
 	}
+	public final ArrayList<Bonus> getTakenBonuses() {
+		return takenBonuses;
+	}
 	public final ArrayList<Ball> getBalls() {
 		return balls;
 	}
@@ -100,7 +106,10 @@ public final class Game implements Constants {
 			public void bonusReleased(Bonus bonus) {
 				final BonusListener bl = new BonusListener() {
 					public void bonusTaken(Bonus bonus) {
-						addBonus(bonus, System.currentTimeMillis());
+			//			fireBonusAdded(bonus);                 CONCURRENT MODIFICATION!!!
+						addBonus(bonus);
+					}
+					public void lifeDecreased(Bonus bonus) {
 					}
 				};
 				bonus.addBonusListener(bl);	
@@ -157,7 +166,7 @@ public final class Game implements Constants {
 		removeVausListener(bullet);
 	}
 	
-	private void addBonus(Bonus bonus, long currentTimeMillis) {
+	private void addBonus(Bonus bonus) {
 		for (int i = 0 ; i < takenBonuses.size(); i++) {
 			Bonus b = takenBonuses.get(i);
 			if (((b instanceof BallBonus && bonus instanceof BallBonus)
@@ -166,6 +175,7 @@ public final class Game implements Constants {
 				freeBonuses.remove(bonus);
 				bonus.apply(this);
 				takenBonuses.set(i, bonus);
+				
 				return;
 			}
 		}
@@ -278,6 +288,18 @@ public final class Game implements Constants {
 	private final void fireVausChanged() {
 		for (VausSetListener li : vausListeners) {
 			li.setVaus(vaus);
+		}
+	}
+	//game listeners
+	public final void addGameListener(final GameListener li) {
+		gameListeners.add(li);
+	}
+	public final void removeGameListener(final GameListener li) {
+		gameListeners.remove(li);
+	}
+	private final void fireBonusAdded(Bonus bonus) {
+		for (GameListener li : gameListeners) {
+			li.addedBonus(bonus);
 		}
 	}
 	

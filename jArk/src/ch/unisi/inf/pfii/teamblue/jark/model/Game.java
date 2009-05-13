@@ -106,7 +106,7 @@ public final class Game implements Constants {
 			public void bonusReleased(Bonus bonus) {
 				final BonusListener bl = new BonusListener() {
 					public void bonusTaken(Bonus bonus) {
-			//			fireBonusAdded(bonus);                 CONCURRENT MODIFICATION!!!
+	//					fireBonusAdded(bonus);    CONCURRENT MODIFICATION!!!!!!!!!!!
 						addBonus(bonus);
 					}
 					public void lifeDecreased(Bonus bonus) {

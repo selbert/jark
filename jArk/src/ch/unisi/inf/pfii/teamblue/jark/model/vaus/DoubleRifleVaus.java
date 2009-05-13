@@ -14,7 +14,6 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.ammunitions.Bullet;
 
 public final class DoubleRifleVaus extends Vaus {
 	private long lastBulletShoot;
-	private final static long doubleRifleDelay = 50;
 	private boolean lastShotLeft;
 
 	public DoubleRifleVaus(final int x) {
@@ -33,7 +32,7 @@ public final class DoubleRifleVaus extends Vaus {
 	}
 	@Override
 	public final void shoot(Game game) {
-		if (lastBulletShoot+doubleRifleDelay <= System.currentTimeMillis()) {
+		if (lastBulletShoot+ (long)DOUBLE_RIFLE_DELAY <= System.currentTimeMillis()) {
 			lastBulletShoot = System.currentTimeMillis();
 			shootBullet(game);
 		}

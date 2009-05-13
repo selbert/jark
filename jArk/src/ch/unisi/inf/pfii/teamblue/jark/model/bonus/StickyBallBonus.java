@@ -20,6 +20,7 @@ public final class StickyBallBonus extends BallBonus {
 
 	public StickyBallBonus() {
 		super(2);
+		super.setLife(STICKY_BALL);
 	}
 	@Override
 	public String toString() {

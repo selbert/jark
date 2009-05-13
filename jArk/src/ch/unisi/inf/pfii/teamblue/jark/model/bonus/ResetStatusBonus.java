@@ -21,7 +21,7 @@ public final class ResetStatusBonus extends PlayerBonus {
 	
 	public ResetStatusBonus() {
 		super(0);
-		super.setLife(0);
+		super.setLife(INSTANTANEOUS);
 	}
 	@Override
 	public String toString() {

@@ -22,7 +22,6 @@ public abstract class BallBonus extends Bonus {
 		newBall.setBoxEnabled(oldBall.getBoxEnabled());
 		newBall.setSpeedMod(oldBall.getSpeedMod());
 		return newBall;
-
 	}
 
 }

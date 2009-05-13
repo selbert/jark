@@ -26,4 +26,22 @@ public interface Constants {
 	int FIELD_ROWS = 16;
 	int BRICK_WIDTH = 57;
 	int BRICK_HEIGHT = 25;
+	//bonus lives (ms)
+	int INSTANTANEOUS = 0;
+	int PERSISTENT = Integer.MAX_VALUE;
+	int DOUBLE_RIFLE_VAUS = 10000;
+	int EXPLOSION_BALL = 20000;
+	int FALSE_BALLS = 15000;
+	int FAST_BALL = 20000;
+	int GHOST_BALL = 20000;
+	int RIFLE_VAUS = 15000;
+	int CANNON_VAUS = 20000;
+	int SLOW_BALL = 20000;
+	int STICKY_BALL = 20000;
+	int THE_BOX = 20000;
+	int ULTRA_BALL = 10000;
+	//vaus shooting speed delay (ms)
+	int DOUBLE_RIFLE_DELAY = 100; 
+	int RIFLE_DELAY = 100;
+	int CANNON_DELAY = 500;
 }

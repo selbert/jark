@@ -13,7 +13,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 public final class LongVausBonus extends VausBonus {
 	public LongVausBonus() {
 		super(1);
-		super.setLife(Integer.MAX_VALUE);
+		super.setLife(PERSISTENT);
 	}
 	@Override
 	public String toString() {

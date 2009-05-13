@@ -17,6 +17,7 @@ public final class FastBallBonus extends BallBonus {
 	
 	public FastBallBonus() {
 		super(1);
+		super.setLife(FAST_BALL);
 	}
 	@Override
 	public final String toString() {

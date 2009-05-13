@@ -17,6 +17,7 @@ public final class MissileVausBonus extends VausBonus {
 	
 	public MissileVausBonus() {
 		super(2);
+		super.setLife(CANNON_VAUS);
 	}
 	@Override
 	public String toString() {

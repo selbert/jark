@@ -17,7 +17,7 @@ public final class DoubleBallBonus extends BallBonus {
 	
 	public DoubleBallBonus() {
 		super(0);
-		super.setLife(0);
+		super.setLife(INSTANTANEOUS);
 	}
 	@Override
 	public final String toString() {

@@ -14,7 +14,7 @@ public final class AddLifeBonus extends PlayerBonus {
 	
 	public AddLifeBonus() {
 		super(0);
-		super.setLife(0);
+		super.setLife(INSTANTANEOUS);
 	}
 	@Override
 	public final String toString() {

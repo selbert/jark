@@ -14,7 +14,6 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.ammunitions.Rocket;
  */
 
 public final class RocketLauncherVaus extends Vaus implements Constants {
-	private final static long rocketsDelay = 500;
 	private long lastRocketSent;
 	
 	public RocketLauncherVaus(final int x) {
@@ -33,7 +32,7 @@ public final class RocketLauncherVaus extends Vaus implements Constants {
 	}
 	@Override
 	public final void shoot(Game game) {
-		if (lastRocketSent+rocketsDelay <= System.currentTimeMillis()) {
+		if (lastRocketSent+CANNON_DELAY <= System.currentTimeMillis()) {
 			lastRocketSent = System.currentTimeMillis();
 			shootRocket(game);
 		} 

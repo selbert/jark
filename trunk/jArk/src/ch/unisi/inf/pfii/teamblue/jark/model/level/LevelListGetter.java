@@ -7,7 +7,8 @@ public class LevelListGetter {
 	public static String[] getLevels() {
 		File levelDirectory;
 		final URL filePath = LevelListGetter.class.getResource("levels/");
-		levelDirectory = new File(filePath.getPath());
+		String path = filePath.getPath().replaceAll("%20", " ");
+		levelDirectory = new File(path);
 		if (levelDirectory.isDirectory()) {
 			File[] levelFiles = levelDirectory.listFiles();
 			String[] levels =  new String[levelFiles.length];

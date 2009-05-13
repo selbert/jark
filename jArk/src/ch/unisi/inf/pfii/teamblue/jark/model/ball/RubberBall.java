@@ -1,5 +1,7 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.ball;
 
+import ch.unisi.inf.pfii.teamblue.jark.implementation.Utils;
+import ch.unisi.inf.pfii.teamblue.jark.model.brick.PersistentBrick;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
@@ -38,7 +40,7 @@ public final class RubberBall extends Ball {
 			return;
 		}
 		
-		if (newY < FIELD_HEIGHT && !level.persistentBrickHasBallInside(x,y)) { 
+		if (newY < FIELD_HEIGHT && !brickHasBallInside(x,y)) { 
 			boolean bounceX = bounceX(newX);
 			boolean bounceY = bounceY(newY);
 			if (bounceY) {
@@ -95,6 +97,13 @@ public final class RubberBall extends Ball {
 		return false;
 
 	}
+	
+	public final boolean brickHasBallInside(final float x, final float y) {
+		return (level.brickHasBallInside(x,y) 
+				|| level.brickHasBallInside((x + (2*BALL_RADIUS)),y)
+				|| level.brickHasBallInside(x,(y + (2*BALL_RADIUS)))
+				|| level.brickHasBallInside((x + (2*BALL_RADIUS)),(y + (2*BALL_RADIUS))));
+		}
 	
 	@Override
 	protected boolean bounceDiag(final float newX, final float newY) {

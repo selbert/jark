@@ -72,6 +72,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 		
 		game.getLevel().addLevelListener(new LevelListener() {
 			public void bonusReleased(Bonus bonus) {
+				System.out.println("BONUS RELEASED");
 				bonus.addBonusListener(new BonusListener() {
 					public void bonusTaken(Bonus bonus) {
 						lastBonusTakenTime = System.currentTimeMillis();
@@ -85,8 +86,6 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 			}
 
 			public void brickHit(Brick brick) {
-				// TODO Auto-generated method stub
-				
 			}
 		});
 		

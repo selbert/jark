@@ -72,11 +72,9 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 		
 		game.getLevel().addLevelListener(new LevelListener() {
 			public void bonusReleased(Bonus bonus) {
-				System.out.println("BONUS RELEASED");
 				bonus.addBonusListener(new BonusListener() {
 					public void bonusTaken(Bonus bonus) {
 						lastBonusTakenTime = System.currentTimeMillis();
-						System.out.println("Got: "+bonus.toString());
 						textToDraw = bonus.toString();
 						if (bonus.toString().equals("bonus_box")) {
 							drawBox = true;

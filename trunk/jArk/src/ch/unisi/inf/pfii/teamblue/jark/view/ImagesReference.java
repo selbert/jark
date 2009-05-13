@@ -5,6 +5,7 @@ import java.awt.Toolkit;
 import java.awt.image.FilteredImageSource;
 import java.awt.image.ImageFilter;
 import java.awt.image.RGBImageFilter;
+import java.io.File;
 import java.util.HashMap;
 
 import javax.swing.GrayFilter;
@@ -16,7 +17,7 @@ import javax.swing.ImageIcon;
  * (so that there is only one object for each image)
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
- * @version $LastChangedDate: 2009-05-12 20:55:16 +0200 (Tue, 12 May 2009) $
+ * @version $LastChangedDate$
  * 
  */
 
@@ -54,7 +55,7 @@ public final class ImagesReference {
 		images.put("slowBall", setImage("images/balls/defaultBall.png"));
 		images.put("stickyBall", setImage("images/balls/defaultBall.png"));
 		images.put("ultraBall", setImage("images/balls/ultraBall.png"));
-		images.put("ghostBall", setImage("images/balls/defaultBall.png"));
+		images.put("ghostBall", setImage("images/balls/ghostBall.png"));
 		//bonuses (+)
 		images.put("bonus_addlife", setImage("images/bonuses/bonus_addlife.png"));
 		images.put("bonus_box", setImage("images/bonuses/bonus_box.png"));
@@ -80,7 +81,7 @@ public final class ImagesReference {
 	}
 	
 	private final ImageIcon setImage(final String path) {
-		return new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource(path)));
+		return new ImageIcon(getClass().getResource("/ch/unisi/inf/pfii/teamblue/jark/view/"+path));
 	}
 	
 	public static final HashMap<String, ImageIcon> getIcons() {

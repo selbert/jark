@@ -30,8 +30,6 @@ public final class TheBoxBonus extends BallBonus {
 		for (int i = 0; i < numberOfBalls; i++) {
 			balls.get(i).setBoxEnabled(true);
 		}
-		
-		//TODO draw line
 	}
 	@Override
 	public final void remove(final Game game) {

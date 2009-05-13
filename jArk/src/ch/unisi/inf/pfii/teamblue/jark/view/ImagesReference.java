@@ -16,7 +16,7 @@ import javax.swing.ImageIcon;
  * (so that there is only one object for each image)
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
- * @version $LastChangedDate$
+ * @version $LastChangedDate: 2009-05-12 20:55:16 +0200 (Tue, 12 May 2009) $
  * 
  */
 
@@ -80,7 +80,7 @@ public final class ImagesReference {
 	}
 	
 	private final ImageIcon setImage(final String path) {
-		return new ImageIcon(getClass().getResource(path));
+		return new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource(path)));
 	}
 	
 	public static final HashMap<String, ImageIcon> getIcons() {

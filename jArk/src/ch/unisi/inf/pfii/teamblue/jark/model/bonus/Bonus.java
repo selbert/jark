@@ -109,12 +109,6 @@ public abstract class Bonus implements Constants, VausSetListener {
         }
     }
 
-	public void fireBonusReleased() {
-		for (final BonusListener li : listeners) {
-	         li.bonusTaken(this);
-	    }
-	}
-
 	public void remove(Game game) {
 		return;
 	}

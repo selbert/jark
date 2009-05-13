@@ -51,9 +51,9 @@ public final class InteractionPanel extends JPanel {
 		loadButton.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
 				JFileChooser fc = new JFileChooser();
-				fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 				FileFilter f1 = new FileFilter() {
 
+					@Override
 					public boolean accept(File file) {
 						if (file.isDirectory() || file.getName().toLowerCase().endsWith(".jark")) {
 							return true;

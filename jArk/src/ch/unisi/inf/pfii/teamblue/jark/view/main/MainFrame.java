@@ -3,10 +3,12 @@ package ch.unisi.inf.pfii.teamblue.jark.view.main;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Enumeration;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -16,7 +18,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import ch.unisi.inf.pfii.teamblue.jark.model.level.LevelListGetter;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.LevelManager;
 import ch.unisi.inf.pfii.teamblue.jark.view.ImagesReference;
 
@@ -44,7 +45,29 @@ public final class MainFrame extends JFrame {
 
 		makeMenu();
 		
-		String[] levels = LevelListGetter.getLevels();
+		ArrayList<String> levelsArray = new ArrayList<String>();
+		String[] levels = null;
+		try {
+			Enumeration<URL> fileUrlList = MainFrame.class.getClassLoader().getResources("ch/unisi/inf/pfii/teamblue/jark/model/level/");
+			System.out.println(fileUrlList.hasMoreElements());
+			while (fileUrlList.hasMoreElements()) {
+				URL current = fileUrlList.nextElement();
+				System.out.println(current.getFile());
+				levelsArray.add(current.getFile());
+			}
+			
+			
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		if (levelsArray.size() > 0) {
+			levels = new String[levelsArray.size()];
+			levelsArray.toArray(levels);
+		} else {
+			levels = new String[0];
+		}
+		
 		
 		JComboBox levelList = new JComboBox(levels);
 		

@@ -34,8 +34,10 @@ public final class FieldPanel extends JComponent implements Constants {
 	private ButtonModel selected;
 	private final String[][] brickField;
 	private final String[][] bonusField;
+	private boolean saved;
 	
 	public FieldPanel(final LevelManager levelManager, final ButtonGroup group) {
+		saved = true;
 		this.group = group;
 		brickField = levelManager.getBrickField();
 		bonusField = levelManager.getBonusField();
@@ -56,6 +58,7 @@ public final class FieldPanel extends JComponent implements Constants {
 			@Override
 			public void mousePressed(MouseEvent ev) {
 				if (selected != null) {
+					saved = false;
 					if (selected.getActionCommand().contains("Brick")) {
 						brickField[brickY][brickX] = getBrickText();
 						bonusField[brickY][brickX] = null;
@@ -136,6 +139,13 @@ public final class FieldPanel extends JComponent implements Constants {
 		if (selected != null && paintingAllowed) {
 			g2d.drawImage(ImagesReference.getImage(selected.getActionCommand()), BRICK_WIDTH*brickX, BRICK_HEIGHT*brickY, this);
 		}
+	}
+
+	public void setSaved(final boolean saved) {
+		this.saved = saved;
+	}
+	public Boolean hasBeenSaved() {
+		return saved;
 	}
 
 }

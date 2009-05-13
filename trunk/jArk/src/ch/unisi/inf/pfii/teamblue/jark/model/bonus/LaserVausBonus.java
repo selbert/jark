@@ -17,6 +17,7 @@ public final class LaserVausBonus extends VausBonus {
 	
 	public LaserVausBonus() {
 		super(2);
+		super.setLife(RIFLE_VAUS);
 	}
 	@Override
 	public final String toString() {

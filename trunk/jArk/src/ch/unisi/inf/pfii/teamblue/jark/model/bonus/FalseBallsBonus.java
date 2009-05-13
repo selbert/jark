@@ -19,6 +19,7 @@ public final class FalseBallsBonus extends BallBonus {
 	
 	public FalseBallsBonus() {
 		super(0);
+		super.setLife(FALSE_BALLS);
 	}
 	
 	@Override

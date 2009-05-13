@@ -14,7 +14,7 @@ public final class RemoveLifeBonus extends PlayerBonus {
 	
 	public RemoveLifeBonus() {
 		super(0);
-		super.setLife(0);
+		super.setLife(INSTANTANEOUS);
 	}
 	@Override
 	public String toString() {

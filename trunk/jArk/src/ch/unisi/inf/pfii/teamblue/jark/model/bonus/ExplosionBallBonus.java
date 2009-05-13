@@ -18,6 +18,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.ball.ExplosionBall;
 public final class ExplosionBallBonus extends BallBonus {
 	public ExplosionBallBonus() {
 		super(2);
+		super.setLife(EXPLOSION_BALL);
 	}
 	@Override
 	public final String toString() {

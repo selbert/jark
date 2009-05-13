@@ -20,6 +20,7 @@ public final class GhostBallBonus extends BallBonus {
 
 	public GhostBallBonus() {
 		super(2);
+		super.setLife(GHOST_BALL);
 	}
 	@Override
 	public String toString() {

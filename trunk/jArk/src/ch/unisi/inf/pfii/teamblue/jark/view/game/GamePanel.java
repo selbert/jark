@@ -57,7 +57,8 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 	private boolean drawBox;
 	private boolean running;
 	private boolean firstTimeRun;
-
+	private boolean vausIsShooting;
+	
 	private String textToDraw;
 	private long lastBonusTakenTime;
 	private final static long bonusMessageDelay = 1000;
@@ -103,7 +104,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 					repaint();
 					break;
 				case KeyEvent.VK_SPACE:
-					vaus.shoot(game);
+					vausIsShooting = true;
 					game.releaseBalls();
 					break;
 				}
@@ -116,6 +117,9 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 					break;
 				case KeyEvent.VK_RIGHT:
 					vaus.stopRight();
+					break;
+				case KeyEvent.VK_SPACE:
+					vausIsShooting = false;
 					break;
 				}
 			}
@@ -167,6 +171,9 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 		ActionListener li = new ActionListener() {
 			public void actionPerformed(final ActionEvent ev) {
 				game.tick();
+				if (vausIsShooting) { 
+					vaus.shoot(game);
+				}
 				repaint();
 			}
 		};

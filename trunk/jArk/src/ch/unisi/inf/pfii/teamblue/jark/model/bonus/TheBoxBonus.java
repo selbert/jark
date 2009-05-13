@@ -17,6 +17,7 @@ public final class TheBoxBonus extends BallBonus {
 
 	public TheBoxBonus() {
 		super(3);
+		super.setLife(THE_BOX);
 	}
 	@Override
 	public String toString() {

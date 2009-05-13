@@ -19,7 +19,6 @@ public class ExplosionBall extends Ball {
 	@Override
 	public final Ball copy() {
 		Ball returnBall = new ExplosionBall(vaus, level);
-		
 		return transferBall(returnBall);
 	}
 	//the bricks to destroy

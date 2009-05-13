@@ -19,6 +19,7 @@ public final class UltraBallBonus extends BallBonus {
 
 	public UltraBallBonus() {
 		super(2);
+		super.setLife(ULTRA_BALL);
 	}
 	@Override
 	public String toString() {

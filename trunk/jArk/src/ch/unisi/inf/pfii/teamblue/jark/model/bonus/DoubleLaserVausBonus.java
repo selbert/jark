@@ -17,6 +17,7 @@ public final class DoubleLaserVausBonus extends VausBonus {
 	
 	public DoubleLaserVausBonus() {
 		super(2);
+		super.setLife(DOUBLE_RIFLE_VAUS);
 	}
 	@Override
 	public final String toString() {

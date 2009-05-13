@@ -42,7 +42,7 @@ public final class FieldPanel extends JComponent implements Constants {
 		brickField = levelManager.getBrickField();
 		bonusField = levelManager.getBonusField();
 		
-		setBounds(1,1,798, 400);
+		setBounds(1,1,FIELD_WIDTH, FIELD_HEIGHT);
 		setFocusable(true);
 
 		MouseInputAdapter mouseListener = new MouseInputAdapter() {
@@ -77,8 +77,10 @@ public final class FieldPanel extends JComponent implements Constants {
 			@Override
 			public void mouseDragged(MouseEvent ev) {
 				super.mouseDragged(ev);
-				mouseMoved(ev);
-				mousePressed(ev);
+				if (paintingAllowed) {
+					mouseMoved(ev);
+					mousePressed(ev);
+				}
 			}
 			
 			@Override

@@ -13,10 +13,10 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.ammunitions.Rocket;
  *
  */
 
-public final class RocketLauncherVaus extends Vaus implements Constants {
-	private long lastRocketSent;
+public final class CannonVaus extends Vaus implements Constants {
+	private long lastBallSent;
 	
-	public RocketLauncherVaus(final int x) {
+	public CannonVaus(final int x) {
 		super(x);
 	}
 	@Override
@@ -32,12 +32,12 @@ public final class RocketLauncherVaus extends Vaus implements Constants {
 	}
 	@Override
 	public final void shoot(Game game) {
-		if (lastRocketSent+CANNON_DELAY <= System.currentTimeMillis()) {
-			lastRocketSent = System.currentTimeMillis();
-			shootRocket(game);
+		if (lastBallSent+CANNON_DELAY <= System.currentTimeMillis()) {
+			lastBallSent = System.currentTimeMillis();
+			shootBall(game);
 		} 
 	}
-	private final void shootRocket(Game game) {
+	private final void shootBall(Game game) {
 		Rocket newRocket = new Rocket(this, game.getLevel());
 		newRocket.setX(posX-BALL_RADIUS+getWidth()/2);
 		newRocket.setSpeedY(-3);

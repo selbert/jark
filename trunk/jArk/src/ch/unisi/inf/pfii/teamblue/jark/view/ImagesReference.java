@@ -60,11 +60,11 @@ public final class ImagesReference {
 		images.put("bonus_addlife", setImage("images/bonuses/bonus_addlife.png"));
 		images.put("bonus_box", setImage("images/bonuses/bonus_box.png"));
 		images.put("bonus_doubleball", setImage("images/bonuses/bonus_doubleball.png"));
-		images.put("bonus_doublelaservaus", setImage("images/bonuses/bonus_doublelaservaus.png"));
+		images.put("bonus_doubleriflevaus", setImage("images/bonuses/bonus_doublelaservaus.png"));
 		images.put("bonus_explosionball", setImage("images/bonuses/bonus_explosionball.png"));
-		images.put("bonus_laservaus", setImage("images/bonuses/bonus_laservaus.png"));
+		images.put("bonus_riflevaus", setImage("images/bonuses/bonus_laservaus.png"));
 		images.put("bonus_longvaus", setImage("images/bonuses/bonus_longvaus.png"));
-		images.put("bonus_missilevaus", setImage("images/bonuses/bonus_missilevaus.png"));
+		images.put("bonus_cannonvaus", setImage("images/bonuses/bonus_missilevaus.png"));
 		images.put("bonus_ultraball", setImage("images/bonuses/bonus_ultraball.png"));
 		//bonuses (-)
 		images.put("malus_falseball", setImage("images/bonuses/malus_falseball.png"));
@@ -118,8 +118,6 @@ public final class ImagesReference {
 				return (rgb & 0xff000000) | (r << 16) | (g << 8) | (b << 0);
 			}
 		};
-		
-		GrayFilter ifu = new GrayFilter(true, 10);
 		FilteredImageSource filteredImage = new FilteredImageSource(image.getSource(), ifua);
 		Image newImage = Toolkit.getDefaultToolkit().createImage(filteredImage);
 	    return new ImageIcon(newImage);

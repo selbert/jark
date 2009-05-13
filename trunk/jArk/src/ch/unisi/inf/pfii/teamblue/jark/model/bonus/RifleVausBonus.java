@@ -13,15 +13,15 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
  *
  */
 
-public final class LaserVausBonus extends VausBonus {
+public final class RifleVausBonus extends VausBonus {
 	
-	public LaserVausBonus() {
+	public RifleVausBonus() {
 		super(2);
 		super.setLife(RIFLE_VAUS);
 	}
 	@Override
 	public final String toString() {
-		return "bonus_laservaus";
+		return "bonus_riflevaus";
 	}
 	@Override
 	public void apply(final Game game) {

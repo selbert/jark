@@ -55,10 +55,7 @@ public final class MainFrame extends JFrame {
 				System.out.println(current.getFile());
 				levelsArray.add(current.getFile());
 			}
-			
-			
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		if (levelsArray.size() > 0) {

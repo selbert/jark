@@ -48,7 +48,7 @@ public final class MainFrame extends JFrame {
 		ArrayList<String> levelsArray = new ArrayList<String>();
 		String[] levels = null;
 		try {
-			Enumeration<URL> fileUrlList = MainFrame.class.getClassLoader().getResources("ch/unisi/inf/pfii/teamblue/jark/model/level/");
+			Enumeration<URL> fileUrlList = MainFrame.class.getClassLoader().getResources("/ch/unisi/inf/pfii/teamblue/jark/model/level/levels/");
 			System.out.println(fileUrlList.hasMoreElements());
 			while (fileUrlList.hasMoreElements()) {
 				URL current = fileUrlList.nextElement();

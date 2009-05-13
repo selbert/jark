@@ -101,7 +101,6 @@ public final class Game implements Constants {
 				final BonusListener bl = new BonusListener() {
 					public void bonusTaken(Bonus bonus) {
 						addBonus(bonus, System.currentTimeMillis());
-						bonus.removeBonusListener(this);
 					}
 				};
 				bonus.addBonusListener(bl);	

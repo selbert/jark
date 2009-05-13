@@ -145,4 +145,9 @@ public class LevelManager implements Constants {
 			e.printStackTrace();
 		}
 	}
+	
+	public void reset() {
+		brickField = new String[FIELD_ROWS][FIELD_COLUMNS];
+		bonusField = new String[FIELD_ROWS][FIELD_COLUMNS];
+	}
 }

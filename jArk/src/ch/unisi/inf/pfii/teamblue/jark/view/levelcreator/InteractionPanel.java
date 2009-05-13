@@ -42,6 +42,7 @@ public final class InteractionPanel extends JPanel {
 				final String name = JOptionPane.showInputDialog("Level name:");
 				if (name != null) {
 					levelManager.writeLevelToFile(name);
+					centerPanel.getFieldPanel().setSaved(true);
 				}
 			}
 		});
@@ -51,8 +52,7 @@ public final class InteractionPanel extends JPanel {
 		loadButton.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
 				JFileChooser fc = new JFileChooser();
-				FileFilter f1 = new FileFilter() {
-
+				fc.setFileFilter(new FileFilter() {
 					@Override
 					public boolean accept(File file) {
 						if (file.isDirectory() || file.getName().toLowerCase().endsWith(".jark")) {
@@ -60,22 +60,20 @@ public final class InteractionPanel extends JPanel {
 						}
 						return false;
 					}
-
 					@Override
 					public String getDescription() {
 						return "jArk: level files";
 					}
-					
-				};
-				fc.setFileFilter(f1);
-				
+				});
+
 				int returnVal = fc.showOpenDialog(null);
-				
-				if (returnVal == JFileChooser.APPROVE_OPTION) {
+
+				if (returnVal == JFileChooser.APPROVE_OPTION && (centerPanel.getFieldPanel().hasBeenSaved() || 
+						JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(null, "The level has not been saved, all changes will be lost.\nLoad a new level anyway ?", "Load?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE))) {
+					centerPanel.getFieldPanel().setSaved(true);
 					levelManager.readLevelFromFile(fc.getSelectedFile().getAbsolutePath());
 					centerPanel.getFieldPanel().repaint();
 				}
-				
 			}
 		});
 

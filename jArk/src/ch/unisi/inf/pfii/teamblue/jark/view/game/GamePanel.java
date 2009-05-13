@@ -98,7 +98,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 					break;
 				case KeyEvent.VK_ESCAPE:
 					play();
-					image = new BufferedImage(798, 600, BufferedImage.TYPE_BYTE_GRAY);
+					image = new BufferedImage(GAME_WIDTH, GAME_HEIGHT, BufferedImage.TYPE_BYTE_GRAY);
 					paintComponent( image.createGraphics() );
 					repaint();
 					break;
@@ -173,7 +173,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 		timer = new Timer(TICKS_PER_SECOND, li);
 
 		setBorder(BorderFactory.createLineBorder(Color.black));
-		setPreferredSize(new Dimension(798, 600));
+		setPreferredSize(new Dimension(GAME_WIDTH, GAME_HEIGHT));
 		setFocusable(true);
 		addKeyListener(keyListener);
 		addMouseListener(mouseListener);

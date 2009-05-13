@@ -2,33 +2,35 @@ package ch.unisi.inf.pfii.teamblue.jark.model.bonus;
 
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.DefaultVaus;
-import ch.unisi.inf.pfii.teamblue.jark.model.vaus.RocketLauncherVaus;
+import ch.unisi.inf.pfii.teamblue.jark.model.vaus.DoubleRifleVaus;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
 /**
- * The vaus gets able to launch missiles
+ * Changes the vaus in a double laser equipped vaus
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
  * @version $LastChangedDate$
  *
  */
 
-public final class MissileVausBonus extends VausBonus {
+public final class DoubleRifleVausBonus extends VausBonus {
 	
-	public MissileVausBonus() {
+	public DoubleRifleVausBonus() {
 		super(2);
-		super.setLife(CANNON_VAUS);
+		super.setLife(DOUBLE_RIFLE_VAUS);
 	}
 	@Override
-	public String toString() {
-		return "bonus_missilevaus";
+	public final String toString() {
+		return "bonus_doubleriflevaus";
 	}
 	@Override
-	public void apply(final Game game) {
+	public final void apply(final Game game) {
 		Vaus vaus = game.getVaus();
-		final Vaus newVaus = new RocketLauncherVaus(vaus.getX());
+		final Vaus newVaus = new DoubleRifleVaus(vaus.getX());
+		
 		game.setVaus(translateVaus(vaus, newVaus));
 	}
+	
 	@Override
 	public final void remove(final Game game) {
 		Vaus vaus = game.getVaus();

@@ -116,6 +116,7 @@ public final class Game implements Constants {
 			}
 
 			public void brickHit(Brick brick) {
+				 player.incrementScore(brick.getPoints());
 			}
 		});
 		addVausListener(level);

@@ -81,6 +81,9 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 							drawBox = true;
 						}
 					}
+
+					public void lifeDecreased(Bonus bonus) {
+					}
 				});
 			}
 

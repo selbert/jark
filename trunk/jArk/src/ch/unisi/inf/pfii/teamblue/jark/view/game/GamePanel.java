@@ -78,6 +78,9 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 			public void levelChanged(Level level) {
 				GamePanel.this.level = level;
 			}
+
+			public void bonusErase() {
+			}
 			
 		});
 		

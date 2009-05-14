@@ -23,6 +23,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.ResetStatusBonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.VausBonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.Brick;
+import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 import ch.unisi.inf.pfii.teamblue.jark.view.ImagesReference;
 
 /**
@@ -43,17 +44,23 @@ public final class BonusPanel extends JPanel implements Constants {
 		
 		labels = new HashMap<Bonus, JLabel>();
 		
+		game.addGameListener(new GameListener() {
+
+			public void bonusErase() {
+				removeAll();
+				repaint();
+				labels.clear();
+			}
+
+			public void levelChanged(Level level) {
+			}
+		});
+		
 		game.getLevel().addLevelListener(new LevelListener() {
 			public void bonusReleased(Bonus bonus) {
 				bonus.addBonusListener(new BonusListener() {
 					public void bonusTaken(Bonus bonus) {
 						int lifeSpan = bonus.getLife();
-						
-						if (bonus instanceof ResetStatusBonus) {
-							removeAll();
-							repaint();
-							labels.clear();
-						}
 						
 						if (lifeSpan > 0 && lifeSpan < PERSISTENT) {
 							Set<Bonus> set = labels.keySet();

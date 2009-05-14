@@ -13,4 +13,5 @@ import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 
 public interface GameListener {
 	public void levelChanged(Level level);
+	public void bonusErase();
 }

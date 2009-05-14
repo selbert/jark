@@ -106,7 +106,6 @@ public final class Game implements Constants {
 			public void bonusReleased(Bonus bonus) {
 				final BonusListener bl = new BonusListener() {
 					public void bonusTaken(Bonus bonus) {
-	//					fireBonusAdded(bonus);    CONCURRENT MODIFICATION!!!!!!!!!!!
 						addBonus(bonus);
 					}
 					public void lifeDecreased(Bonus bonus) {
@@ -136,6 +135,9 @@ public final class Game implements Constants {
 		moveBullets();
 		checkTakenBonuses();
 		vaus.move();
+		if (takenBonuses.size() > 0) {
+			fireBonusLifeDecreased();
+		}
 	}
 	
 	/**
@@ -298,9 +300,9 @@ public final class Game implements Constants {
 	public final void removeGameListener(final GameListener li) {
 		gameListeners.remove(li);
 	}
-	private final void fireBonusAdded(Bonus bonus) {
+	private final void fireBonusLifeDecreased() {
 		for (GameListener li : gameListeners) {
-			li.addedBonus(bonus);
+			li.bonusLifeDecreased();
 		}
 	}
 	

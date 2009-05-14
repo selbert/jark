@@ -273,6 +273,7 @@ public final class Game implements Constants {
 			takenBonuses.get(0).remove(this);
 			takenBonuses.remove(0);
 		}
+		fireBonusErase();
 	}
 	
 	/**
@@ -322,6 +323,11 @@ public final class Game implements Constants {
 			li.levelChanged(level);
 		}
 	}
+	private final void fireBonusErase() {
+		for (GameListener li : gameListeners) {
+			li.bonusErase();
+		}
+	}
 
 	public void releaseBalls() {
 		for (Ball b : balls) {
@@ -346,10 +352,11 @@ public final class Game implements Constants {
 		if (balls.size() == 0) {
 			player.decrementLives();
 			started = false;
+			balls.clear();
+			removeTakenBonuses();
+			freeBonuses.clear();
 			Ball newBall = new StartBall(vaus, level);
 			vaus.addVausListener(newBall);
-			freeBonuses.clear();
-			removeTakenBonuses();
 			balls.add(newBall);
 		}
 	}

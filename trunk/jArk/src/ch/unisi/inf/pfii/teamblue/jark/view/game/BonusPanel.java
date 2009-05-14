@@ -57,10 +57,14 @@ public final class BonusPanel extends JPanel implements Constants {
 			}
 
 			public void levelChanged(Level level) {
+				setLevelListener(level);
 			}
 		});
 		
-		game.getLevel().addLevelListener(new LevelListener() {
+		setLevelListener(game.getLevel());
+	}
+	private final void setLevelListener(Level level) {
+		level.addLevelListener(new LevelListener() {
 			public void bonusReleased(Bonus bonus) {
 				bonus.addBonusListener(new BonusListener() {
 					public void bonusTaken(Bonus bonus) {

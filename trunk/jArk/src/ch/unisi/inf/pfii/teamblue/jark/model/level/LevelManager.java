@@ -6,21 +6,17 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
-import ch.unisi.inf.pfii.teamblue.jark.implementation.Utils;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
+import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonuses;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.Brick;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.DefaultBrick;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.PersistentBrick;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.ResistentBrick;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.VeryResistentBrick;
-import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonuses;
 
 public class LevelManager implements Constants {
 	private String[][] brickField;
@@ -36,7 +32,7 @@ public class LevelManager implements Constants {
 		try{
 			final BufferedReader myInput = new BufferedReader(new FileReader(filepath));
 
-			levelName = myInput.readLine();
+			setLevelName(myInput.readLine());
 			myInput.readLine();
 			
 			for (int i = 0; i < FIELD_ROWS; i++) {
@@ -149,5 +145,13 @@ public class LevelManager implements Constants {
 	public void reset() {
 		brickField = new String[FIELD_ROWS][FIELD_COLUMNS];
 		bonusField = new String[FIELD_ROWS][FIELD_COLUMNS];
+	}
+
+	public void setLevelName(String levelName) {
+		this.levelName = levelName;
+	}
+
+	public String getLevelName() {
+		return levelName;
 	}
 }

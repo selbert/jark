@@ -65,7 +65,8 @@ public final class Game implements Constants {
 			setLevel(new Level(100, freeBonuses, vaus));
 		} else {
 			final Brick[][] field = levelManager.fieldFromArrays();
-			setLevel(new Level(field, freeBonuses, vaus));
+			final String levelName = levelManager.getLevelName();
+			setLevel(new Level(levelName, field, freeBonuses, vaus));
 		}
 		
 		//starting balls

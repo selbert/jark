@@ -18,7 +18,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.ball.RubberBall;
 public final class FalseBallsBonus extends BallBonus {
 	
 	public FalseBallsBonus() {
-		super(0);
+		super(2);
 		super.setLife(FALSE_BALLS);
 	}
 	

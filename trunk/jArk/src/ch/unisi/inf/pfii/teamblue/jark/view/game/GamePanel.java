@@ -255,6 +255,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 		}
 		
 		if (textToDraw != null && lastBonusTakenTime+bonusMessageDelay >= System.currentTimeMillis()) {
+			g2d.setColor(Color.BLACK);
 			g2d.drawString(textToDraw, 650, 560);
 		} else {
 			textToDraw = null;

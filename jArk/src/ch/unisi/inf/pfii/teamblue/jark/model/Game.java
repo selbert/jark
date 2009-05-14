@@ -364,19 +364,22 @@ public final class Game implements Constants {
 	public boolean checkGameOver() {
 		if (level.isCleared()) {
 			started = false;
+			balls.clear();
+			bullets.clear();
+			freeBonuses.clear();
+			removeTakenBonuses();
+			setVaus(new DefaultVaus(GAME_WIDTH / 2 - VAUS_WIDTH / 2));
 			setLevel(new Level(100, freeBonuses, vaus));
 			Ball newBall = new StartBall(vaus, level);
 			vaus.addVausListener(newBall);
-			balls.clear();
-			freeBonuses.clear();
-			removeTakenBonuses();
-			balls.add(newBall);
+			addBall(newBall);
 			return false;
 		}
 		if (player.getLives() <= 0) {
 			System.out.println("GAME OVER");
 			started = false;
 			balls.clear();
+			bullets.clear();
 			freeBonuses.clear();
 			removeTakenBonuses();
 			return true;

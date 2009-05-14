@@ -66,17 +66,15 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 	private final static long bonusMessageDelay = 1000;
 	
 	private final Cursor transparentCursor;
-	private final Game game;
 	
 	private BufferedImage image;
 	
 	public GamePanel(final Game game) {
-		this.game = game;
 		
 		game.addGameListener(new GameListener() {
 
 			public void levelChanged(Level level) {
-				GamePanel.this.level = level;
+				setLevel(level);
 			}
 
 			public void bonusErase() {
@@ -85,28 +83,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 			
 		});
 		
-		game.getLevel().addLevelListener(new LevelListener() {
-			public void bonusReleased(Bonus bonus) {
-				bonus.addBonusListener(new BonusListener() {
-					public void bonusTaken(Bonus bonus) {
-						lastBonusTakenTime = System.currentTimeMillis();
-						textToDraw = bonus.toString();
-						if (bonus.toString().equals("bonus_box")) {
-							drawBox = true;
-						}
-					}
-
-					public void lifeDecreased(Bonus bonus) {
-						if (bonus.getLife() == 0 && bonus.toString().equals("bonus_box")) {
-							drawBox = false;
-						}
-					}
-				});
-			}
-
-			public void brickHit(Brick brick) {
-			}
-		});
+		setLevel(game.getLevel());
 		
 		KeyListener keyListener = new KeyListener() {
 			public final void keyPressed(KeyEvent ev) {
@@ -225,6 +202,32 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 	    
 	    firstTimeRun = true;
 	    
+	}
+	
+	private final void setLevel(Level level) {
+		this.level = level;
+		level.addLevelListener(new LevelListener() {
+			public void bonusReleased(Bonus bonus) {
+				bonus.addBonusListener(new BonusListener() {
+					public void bonusTaken(Bonus bonus) {
+						lastBonusTakenTime = System.currentTimeMillis();
+						textToDraw = bonus.toString();
+						if (bonus.toString().equals("bonus_box")) {
+							drawBox = true;
+						}
+					}
+
+					public void lifeDecreased(Bonus bonus) {
+						if (bonus.getLife() == 0 && bonus.toString().equals("bonus_box")) {
+							drawBox = false;
+						}
+					}
+				});
+			}
+
+			public void brickHit(Brick brick) {
+			}
+		});
 	}
 
 	@Override

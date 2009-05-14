@@ -5,8 +5,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
 /**
- * This ball is so powerful it destroys everything it touches, except for the persistent bricks.
- * If the contact with the brick is long enough, it destroys also resistent bricks.
+ * This ball does nothing
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
  * @version $LastChangedDate: 2009-05-11 23:23:13 +0200 (Mon, 11 May 2009) $

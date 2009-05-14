@@ -11,5 +11,5 @@ import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
  */
 
 public interface GameListener {
-	public void addedBonus(Bonus bonus);
+	public void bonusLifeDecreased();
 }

@@ -28,9 +28,11 @@ public final class StickyBall extends Ball {
 		vaus.addVausListener(returnBall);
 		return transferBall(returnBall);
 	}
+	@Override
 	public void setSticky(boolean setting) {
 		sticked = setting;
 	}
+	@Override
 	public void setVausRelPos(float vausRelPos) {
 		this.vausRelPos = vausRelPos;
 	}
@@ -53,11 +55,13 @@ public final class StickyBall extends Ball {
 		return false;
 	}
 	
+	@Override
 	public final void vausMoved(final int newX) {
 		if (sticked) {
 			setX(vausRelPos + newX);
 		}
 	}
+	@Override
 	public void release() {
 		if (sticked) {
 			sticked = !sticked;

@@ -1,31 +1,15 @@
 package ch.unisi.inf.pfii.teamblue.jark.view.levelcreator;
 
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
-import javax.swing.border.Border;
-import javax.swing.border.EtchedBorder;
-
-import ch.unisi.inf.pfii.teamblue.jark.implementation.PlayerListener;
-import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.view.ImagesReference;
 
 /**
@@ -42,7 +26,7 @@ public final class BricksPanel extends JPanel {
 	public BricksPanel(ButtonGroup group) {
 		setLayout(new GridLayout(0,1));
 		
-		JLabel bricks = new JLabel("Bricks", JLabel.CENTER);
+		JLabel bricks = new JLabel("Bricks", SwingConstants.CENTER);
 		add(bricks);
 		
 		final String[] str = new String[] { "defaultBrick", "resistentBrick", "veryResistentBrick", "persistentBrick", "removeBrick"  };

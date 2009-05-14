@@ -6,7 +6,6 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.DefaultBall;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.StickyBall;
-import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
 /**
  * The balls sticks to the Vaus

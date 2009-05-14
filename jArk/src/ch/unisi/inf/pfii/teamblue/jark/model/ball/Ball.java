@@ -36,6 +36,7 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 		speedModifier = 1;
 	}
 	
+	@Override
 	public abstract String toString();
 	public abstract Ball copy();
 	

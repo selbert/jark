@@ -32,7 +32,7 @@ public final class DoubleRifleVaus extends Vaus {
 	}
 	@Override
 	public final void shoot(Game game) {
-		if (lastBulletShoot+ (long)DOUBLE_RIFLE_DELAY <= System.currentTimeMillis()) {
+		if (lastBulletShoot+ DOUBLE_RIFLE_DELAY <= System.currentTimeMillis()) {
 			lastBulletShoot = System.currentTimeMillis();
 			shootBullet(game);
 		}

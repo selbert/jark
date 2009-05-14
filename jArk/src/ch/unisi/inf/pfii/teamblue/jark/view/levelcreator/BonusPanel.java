@@ -1,34 +1,20 @@
 package ch.unisi.inf.pfii.teamblue.jark.view.levelcreator;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Set;
 
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
-import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 
-import ch.unisi.inf.pfii.teamblue.jark.implementation.PlayerListener;
-import ch.unisi.inf.pfii.teamblue.jark.model.Game;
-import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
 import ch.unisi.inf.pfii.teamblue.jark.view.ImagesReference;
 
 /**
@@ -48,7 +34,7 @@ public final class BonusPanel extends JPanel {
 		
 		JPanel bonus = new JPanel();
 		bonus.setLayout(new BoxLayout(bonus,BoxLayout.X_AXIS));
-			JLabel bonusLabel = new JLabel(" Bonus:  ", JLabel.CENTER);
+			JLabel bonusLabel = new JLabel(" Bonus:  ", SwingConstants.CENTER);
 			JPanel bonusButtons = new JPanel();
 				bonusButtons.setLayout(new FlowLayout(FlowLayout.LEFT));
 			bonus.add(bonusLabel);
@@ -57,7 +43,7 @@ public final class BonusPanel extends JPanel {
 		
 		JPanel malus = new JPanel();
 		malus.setLayout(new BoxLayout(malus,BoxLayout.X_AXIS));
-			JLabel malusLabel = new JLabel(" Malus:  ", JLabel.CENTER);
+			JLabel malusLabel = new JLabel(" Malus:  ", SwingConstants.CENTER);
 			JPanel malusButtons = new JPanel();
 				malusButtons.setLayout(new FlowLayout(FlowLayout.LEFT));
 			malus.add(malusLabel);
@@ -66,7 +52,7 @@ public final class BonusPanel extends JPanel {
 		
 		JPanel neutral = new JPanel();
 		neutral.setLayout(new BoxLayout(neutral,BoxLayout.X_AXIS));
-			JLabel neutralLabel = new JLabel(" Neutral:", JLabel.CENTER);
+			JLabel neutralLabel = new JLabel(" Neutral:", SwingConstants.CENTER);
 			JPanel neutralButtons = new JPanel();
 				neutralButtons.setLayout(new FlowLayout(FlowLayout.LEFT));
 			neutral.add(neutralLabel);

@@ -22,6 +22,7 @@ public class ExplosionBall extends Ball {
 		return transferBall(returnBall);
 	}
 	//the bricks to destroy
+	@Override
 	protected final void destroyBrick(final float x, final float y) {
 		level.removeBrick(x, y);
 		level.removeBrick(x - BRICK_WIDTH, y);

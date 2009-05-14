@@ -1,12 +1,6 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.bonus;
 
-import java.util.ArrayList;
-
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
-import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
-import ch.unisi.inf.pfii.teamblue.jark.model.ball.DefaultBall;
-import ch.unisi.inf.pfii.teamblue.jark.model.vaus.DefaultVaus;
-import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
 
 /**

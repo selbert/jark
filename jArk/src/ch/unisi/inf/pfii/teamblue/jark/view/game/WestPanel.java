@@ -26,6 +26,7 @@ public class WestPanel extends JPanel implements Constants {
 		add(interactionPanel, BorderLayout.SOUTH);
 	}
 	
+	@Override
 	public final void paintComponent(Graphics g) {
 		
 	}

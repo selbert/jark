@@ -9,6 +9,7 @@ public class Bullet extends DefaultBall {
 		super(vaus, level);
 	}
 
+	@Override
 	public final void move() {
 		float newY = y+speedY;
 		
@@ -36,6 +37,7 @@ public class Bullet extends DefaultBall {
 	 * @param newY
 	 * @return
 	 */
+	@Override
 	protected final boolean bounceY(final float newY) {
 		if (level.brickHasBallInside(x, newY)) {
 			if (level.brickHasBallInside(x + (2*BALL_RADIUS), newY)) {

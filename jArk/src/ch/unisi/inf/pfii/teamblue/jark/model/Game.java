@@ -9,7 +9,6 @@ import ch.unisi.inf.pfii.teamblue.jark.implementation.GameListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.LevelListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.VausSetListener;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
-import ch.unisi.inf.pfii.teamblue.jark.model.ball.DefaultBall;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.StartBall;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.BallBonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;

@@ -1,6 +1,5 @@
 package ch.unisi.inf.pfii.teamblue.jark.view.game;
 
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

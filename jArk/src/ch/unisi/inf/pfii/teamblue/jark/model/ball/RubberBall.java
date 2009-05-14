@@ -1,7 +1,5 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.ball;
 
-import ch.unisi.inf.pfii.teamblue.jark.implementation.Utils;
-import ch.unisi.inf.pfii.teamblue.jark.model.brick.PersistentBrick;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 

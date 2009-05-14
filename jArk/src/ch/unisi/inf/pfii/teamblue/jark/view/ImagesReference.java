@@ -5,10 +5,8 @@ import java.awt.Toolkit;
 import java.awt.image.FilteredImageSource;
 import java.awt.image.ImageFilter;
 import java.awt.image.RGBImageFilter;
-import java.io.File;
 import java.util.HashMap;
 
-import javax.swing.GrayFilter;
 import javax.swing.ImageIcon;
 
 /**

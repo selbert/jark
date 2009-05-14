@@ -1,22 +1,13 @@
 package ch.unisi.inf.pfii.teamblue.jark.view.game;
 
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
@@ -27,7 +18,6 @@ import ch.unisi.inf.pfii.teamblue.jark.implementation.LevelListener;
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.BallBonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
-import ch.unisi.inf.pfii.teamblue.jark.model.bonus.ResetStatusBonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.VausBonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.Brick;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;

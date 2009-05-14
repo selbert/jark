@@ -22,7 +22,7 @@ public class StartBall extends Ball {
 		return "startBall";
 	}
 	public void start(Game game) {
-		setSpeedX(((getX() + BALL_RADIUS) - (vaus.getX() + (vaus.getWidth() / 2))) / (vaus.getWidth() / 10));
+		setSpeedX(0);
 		setSpeedY(-3);
 		Ball newBall = new DefaultBall(vaus, level);
 		newBall.setBoxEnabled(getBoxEnabled());

@@ -1,0 +1,16 @@
+Done:
+- lots of bugfixes
+- Level Editor (with save/load/test capabilities)
+- refactoring (listeners)
+- GUI (general)
+- implemented all bonuses
+- implemented bonus life span in the game frame
+- implemented general info (lives, points, ..)
+- game over/next level (random at the moment)/replace ball after loosing life
+
+Problems encountered (solved): 
+- find a "good" way to implement the editor 
+- display taken bonuses and their duration on main screen
+
+Problems: 
+- code duplication (ie. bonus strings)

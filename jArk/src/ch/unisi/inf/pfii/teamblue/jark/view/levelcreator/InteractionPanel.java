@@ -81,6 +81,7 @@ public final class InteractionPanel extends JPanel {
 		testButton = new JButton("Test");
 		testButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				levelManager.setLevelName("Test Level");
 				final Game game = new Game(true, levelManager);
 				EventQueue.invokeLater(new Runnable() {
 				    public void run() {

@@ -99,7 +99,7 @@ public final class ImagesReference {
 	
 	public static final ImageIcon getHighlightedIcon(ImageIcon icon) {
 		Image image = icon.getImage();
-		ImageFilter ifua = new RGBImageFilter() {
+		ImageFilter filter = new RGBImageFilter() {
 			@Override
 			public int filterRGB(int x, int y, int rgb) {
 				int brightness = 60;
@@ -119,7 +119,7 @@ public final class ImagesReference {
 				return (rgb & 0xff000000) | (r << 16) | (g << 8) | (b << 0);
 			}
 		};
-		FilteredImageSource filteredImage = new FilteredImageSource(image.getSource(), ifua);
+		FilteredImageSource filteredImage = new FilteredImageSource(image.getSource(), filter);
 		Image newImage = Toolkit.getDefaultToolkit().createImage(filteredImage);
 	    return new ImageIcon(newImage);
 	}

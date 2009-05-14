@@ -111,11 +111,11 @@ public class MainTest extends TestCase implements Constants {
 		bonus = new FastBallBonus();
 		assertTrue(bonus.toString().equals("neutral_fastball"));
 		bonus = new RifleVausBonus();
-		assertTrue(bonus.toString().equals("bonus_laservaus"));
+		assertTrue(bonus.toString().equals("bonus_riflevaus"));
 		bonus = new LongVausBonus();
 		assertTrue(bonus.toString().equals("bonus_longvaus"));
 		bonus = new CannonVausBonus();
-		assertTrue(bonus.toString().equals("bonus_missilevaus"));
+		assertTrue(bonus.toString().equals("bonus_cannonvaus"));
 		bonus = new ResetStatusBonus();
 		assertTrue(bonus.toString().equals("neutral_resetstatus"));
 		bonus = new GhostBallBonus();
@@ -133,7 +133,7 @@ public class MainTest extends TestCase implements Constants {
 		bonus = new UltraBallBonus();
 		assertTrue(bonus.toString().equals("bonus_ultraball"));
 		bonus = new DoubleRifleVausBonus();
-		assertTrue(bonus.toString().equals("bonus_doublelaservaus"));
+		assertTrue(bonus.toString().equals("bonus_doubleriflevaus"));
 		
 	}
 	
@@ -153,12 +153,6 @@ public class MainTest extends TestCase implements Constants {
 		assertTrue(vaus.toString().equals("defaultVaus"));
 		vaus.setX(5);
 		assertTrue(vaus.getX() == 5);
-		vaus = new RifleVaus(0);
-		assertTrue(vaus.toString().equals("rifleVaus"));
-		vaus = new DoubleRifleVaus(0);
-		assertTrue(vaus.toString().equals("doubleRifleVaus"));
-		vaus = new CannonVaus(0);
-		assertTrue(vaus.toString().equals("rocketlauncherVaus"));
 	}
 
 	public void testBallMove() {

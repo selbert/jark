@@ -80,6 +80,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 			}
 
 			public void bonusErase() {
+				drawBox = false;
 			}
 			
 		});
@@ -96,6 +97,9 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 					}
 
 					public void lifeDecreased(Bonus bonus) {
+						if (bonus.getLife() == 0 && bonus.toString().equals("bonus_box")) {
+							drawBox = false;
+						}
 					}
 				});
 			}
@@ -261,15 +265,6 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 
 		
 		g2d.drawImage(ImagesReference.getImage(vaus.toString()), vaus.getX(), VAUS_Y, vaus.getWidth(), VAUS_HEIGHT, this);
-
-		if (drawBox) {
-			g2d.fillRect(0, VAUS_Y + VAUS_HEIGHT + 1, GAME_WIDTH, 3);
-		}
-		
-		if (!running && !firstTimeRun) {
-			g2d.drawImage(image, 0,0, null);
-			g2d.drawImage(ImagesReference.getImage("pause"), 200, 180, this);
-		}
 		
 		if (textToDraw != null && lastBonusTakenTime+bonusMessageDelay >= System.currentTimeMillis()) {
 			g2d.setColor(Color.BLACK);
@@ -278,6 +273,15 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 			textToDraw = null;
 		}
 		
+		if (drawBox) {
+			g2d.setColor(Color.ORANGE);
+			g2d.fillRect(0, VAUS_Y + VAUS_HEIGHT + 1, GAME_WIDTH, 3);
+		}
+		
+		if (!running && !firstTimeRun) {
+			g2d.drawImage(image, 0,0, null);
+			g2d.drawImage(ImagesReference.getImage("pause"), 200, 180, this);
+		}
 	}
 
 	/**

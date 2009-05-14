@@ -1,5 +1,6 @@
 package ch.unisi.inf.pfii.teamblue.jark.view.game;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,6 +26,7 @@ public final class InteractionPanel extends JPanel {
 
 	public InteractionPanel(final GamePanel gamePanel, final Game game) {
 		setLayout(new GridLayout(2, 1));
+	
 		
 		// first button
 		startButton = new JButton("Add Ball");

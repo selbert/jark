@@ -1,5 +1,7 @@
 package ch.unisi.inf.pfii.teamblue.jark.view.game;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -7,11 +9,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JToolBar;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.BonusListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
@@ -39,17 +46,24 @@ public final class BonusPanel extends JPanel implements Constants {
 	private final HashMap<Bonus, JLabel> labels;
 	
 	public BonusPanel(final Game game) {
-		setPreferredSize(new Dimension(120,200));
+		setBorder(BorderFactory.createLineBorder(Color.black));
 		setLayout(new BoxLayout(BonusPanel.this, BoxLayout.Y_AXIS));
-		
 		labels = new HashMap<Bonus, JLabel>();
+	
+		final JLabel title = new JLabel("Active Bonuses");
+		title.setForeground(Color.BLUE);
+		title.setBorder(new EmptyBorder(6,0,0,0));
+		title.setAlignmentX(CENTER_ALIGNMENT);
+		add(title);
+		
 		
 		game.addGameListener(new GameListener() {
-
 			public void bonusErase() {
 				removeAll();
-				repaint();
 				labels.clear();
+				revalidate();
+				repaint();
+				add(title);
 			}
 
 			public void levelChanged(Level level) {
@@ -69,29 +83,43 @@ public final class BonusPanel extends JPanel implements Constants {
 										|| (b instanceof VausBonus && bonus instanceof VausBonus))
 										&& (b.getBonusClass() == bonus.getBonusClass())) {
 									remove(labels.get(b));
+									revalidate();
 									repaint();
 								}
 							}		
 							JLabel bonusLabel = new JLabel();
 							bonusLabel.setIcon(ImagesReference.getIcon(bonus.toString()));
-							bonusLabel.setText(""+bonus.getLife()/1000);
+							bonusLabel.setText(getBonusLifeString(bonus.getLife()));
+							bonusLabel.setAlignmentX(CENTER_ALIGNMENT);
+							bonusLabel.setHorizontalTextPosition(SwingConstants.RIGHT);
+							bonusLabel.setBorder(new EmptyBorder(10,0,0,0));
 							add(bonusLabel);
+							revalidate();
 							labels.put(bonus, bonusLabel);
 						}
 					}
+					
 					public void lifeDecreased(Bonus bonus) {
 						int lifeSpan = bonus.getLife();
 						if (lifeSpan > 0 && lifeSpan < PERSISTENT) {
-							labels.get(bonus).setText(""+lifeSpan/1000);
+							labels.get(bonus).setText(getBonusLifeString(lifeSpan));
 						} else {
 							remove(labels.get(bonus));
 							labels.remove(bonus);
+							revalidate();
+							repaint();
 						}
+					}
+					
+					private final String getBonusLifeString(final int life) {
+						final int secs = life/1000;
+						return (secs < 10) ? "0"+secs : ""+secs;
 					}
 				});
 			}
 			public void brickHit(Brick brick) {	
 			}
 		});
+
 	}
 }

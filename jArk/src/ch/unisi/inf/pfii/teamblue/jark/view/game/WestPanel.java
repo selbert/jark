@@ -41,10 +41,12 @@ public class WestPanel extends JPanel {
 				bonusList.removeAll();
 				for(int i = 0; i < takenBonuses.size(); i++) {
 					final Bonus b = takenBonuses.get(i);
-					final ImageIcon im = ImagesReference.getIcon(b.toString());
-					JRadioButton button = new JRadioButton(im);
-					bonusList.add(button, BorderLayout.EAST);
-					bonusList.add(new JLabel(" "+(int)(b.getLife()/1000)), BorderLayout.WEST);
+					if (b.getLife() < Integer.MAX_VALUE) {
+						final ImageIcon im = ImagesReference.getIcon(b.toString());
+						JRadioButton button = new JRadioButton(im);
+						bonusList.add(button, BorderLayout.EAST);
+						bonusList.add(new JLabel(" "+(int)(b.getLife()/1000)), BorderLayout.WEST);
+					}
 				}
 				String[] bonusesLifes = new String[takenBonuses.size()];
 				for (int i = 0; i < bonusesLifes.length; i++) {

@@ -10,7 +10,9 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Player;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.DefaultBall;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.ExplosionBall;
+import ch.unisi.inf.pfii.teamblue.jark.model.ball.GhostBall;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.RubberBall;
+import ch.unisi.inf.pfii.teamblue.jark.model.ball.StartBall;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.StickyBall;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.UltraBall;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.AddLifeBonus;
@@ -44,9 +46,15 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.DoubleRifleVaus;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.RifleVaus;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.CannonVaus;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
+import ch.unisi.inf.pfii.teamblue.jark.model.vaus.ammunitions.Bullet;
 
 
 public class MainTest extends TestCase implements Constants {
+	
+	public void testUtils() {
+		assertTrue((Utils.getPixelPosition(12, 10)[0] + " " + Utils.getPixelPosition(12, 10)[1]).equals("684 250"));
+		assertTrue((Utils.getPixelPosition(-1, -1)[0] + " " + Utils.getPixelPosition(-1, 10)[1]).equals("-57 250"));
+	}
 	
 	public void testGameAndPlayerCreation() {
 		LevelManager lm = new LevelManager();
@@ -56,12 +64,39 @@ public class MainTest extends TestCase implements Constants {
 		assertTrue(p.getLives() == 3);
 		p.setScore(100);
 		assertTrue(p.getScore() == 100);
+		p.incrementScore(100);
+		assertTrue(p.getScore() == 200);
 		assertTrue(p.getName().equals("pippo"));
 		p.incrementLives();
 		assertTrue(p.getLives() == 4);
 		assertTrue(true);
+		p.decrementLives();
+		assertTrue(p.getLives() == 3);
 		DefaultBall ball = new DefaultBall(g.getVaus() , g.getBalls().get(0).getLevel() );
 		g.addBall(ball);
+		
+		Vaus vaus = new DefaultVaus(200);
+		g.setVaus(vaus);
+		
+		assertSame(g.getVaus(), vaus);
+		
+		g.tick();
+		
+		Ball oldBall = new DefaultBall(g.getVaus(), g.getLevel());
+		Ball newBall = new DefaultBall(g.getVaus(), g.getLevel());
+		
+		g.getBalls().clear();
+		g.addBall(oldBall);
+		g.replaceBall(oldBall, newBall);
+		assertSame(g.getBalls().get(0), newBall);
+		
+		
+		Ball bullet = new Bullet(g.getVaus(), g.getLevel());
+
+		g.getBullets().clear();
+		g.addBullet(bullet);
+		
+		assertSame(g.getBullets().get(0), bullet);
 		
 	}
 	
@@ -72,6 +107,9 @@ public class MainTest extends TestCase implements Constants {
 		Ball testBall = new DefaultBall(vaus, level);
 		assertTrue(testBall instanceof Ball);
 		assertTrue(testBall.toString().equals("defaultBall"));
+		Ball ballCopy;
+		ballCopy = testBall.copy();
+		assertNotSame(testBall, ballCopy);
 		testBall = new ExplosionBall(vaus, level);
 		testBall.setX(50);
 		testBall.setY(401);
@@ -79,6 +117,8 @@ public class MainTest extends TestCase implements Constants {
 		testBall.move();
 		assertTrue(testBall instanceof Ball);
 		assertTrue(testBall.toString().equals("explosionBall"));
+		ballCopy = testBall.copy();
+		assertNotSame(testBall, ballCopy);
 		testBall = new RubberBall(vaus, level);
 		testBall.setX(50);
 		testBall.setY(401);
@@ -86,9 +126,22 @@ public class MainTest extends TestCase implements Constants {
 		testBall.move();
 		assertTrue(testBall instanceof Ball);
 		assertTrue(testBall.toString().equals("rubberBall"));
+		ballCopy = testBall.copy();
+		assertNotSame(testBall, ballCopy);
+		testBall = new StartBall(vaus, level);
+		testBall.setX(50);
+		testBall.setY(401);
+		testBall.setSpeedY(-5);
+		testBall.move();
+		assertTrue(testBall instanceof Ball);
+		assertTrue(testBall.toString().equals("startBall"));
+		ballCopy = testBall.copy();
+		assertNotSame(testBall, ballCopy);
 		testBall = new StickyBall(vaus, level);
 		assertTrue(testBall instanceof Ball);
 		assertTrue(testBall.toString().equals("stickyBall"));
+		ballCopy = testBall.copy();
+		assertNotSame(testBall, ballCopy);
 		testBall = new UltraBall(vaus, level);
 		testBall.setX(50);
 		testBall.setY(401);
@@ -96,44 +149,126 @@ public class MainTest extends TestCase implements Constants {
 		testBall.move();
 		assertTrue(testBall instanceof Ball);
 		assertTrue(testBall.toString().equals("ultraBall"));
+		ballCopy = testBall.copy();
+		assertNotSame(testBall, ballCopy);
+		testBall = new GhostBall(vaus, level);
+		testBall.setX(50);
+		testBall.setY(401);
+		testBall.setSpeedY(-5);
+		testBall.move();
+		assertTrue(testBall instanceof Ball);
+		assertTrue(testBall.toString().equals("ghostBall"));
+		ballCopy = testBall.copy();
+		assertNotSame(testBall, ballCopy);
 		
 	}
 	
 	public void testBonusCreation() {
+		LevelManager lm = new LevelManager();
+		Game g = new Game(false, lm);
+		Ball b = new DefaultBall(g.getVaus(),g.getLevel());
+		g.addBall(b);
 		Bonus bonus = new AddLifeBonus();
 		assertTrue(bonus.toString().equals("bonus_addlife"));
+		int i = g.getPlayerLives();
+		bonus.apply(g);
+		assertEquals(i, g.getPlayerLives() - 1);
 		bonus = new DoubleBallBonus();
 		assertTrue(bonus.toString().equals("bonus_doubleball"));
+		bonus.apply(g);
+		assertEquals(g.getBalls().size() , 4);
 		bonus = new ExplosionBallBonus();
 		assertTrue(bonus.toString().equals("bonus_explosionball"));
+		bonus.apply(g);
+		assertTrue(g.getBalls().get(0) instanceof ExplosionBall);
+		bonus.remove(g);
+		assertTrue(g.getBalls().get(0) instanceof DefaultBall);
 		bonus = new FalseBallsBonus();
 		assertTrue(bonus.toString().equals("malus_falseball"));
+		bonus.apply(g);
+		bonus.remove(g);
+		assertEquals(g.getBalls().size(), 24);
 		bonus = new FastBallBonus();
 		assertTrue(bonus.toString().equals("neutral_fastball"));
+		bonus.apply(g);
+		assertTrue(g.getBalls().get(0).getSpeedMod() == 1.5f);
+		bonus.remove(g);
+		assertTrue(g.getBalls().get(0).getSpeedMod() == 1.0f);
 		bonus = new RifleVausBonus();
 		assertTrue(bonus.toString().equals("bonus_riflevaus"));
+		i = bonus.getY();
+		bonus.move();
+		assertTrue(bonus.getY() == i + BONUS_SPEED);
+		bonus.apply(g);
+		assertTrue(g.getVaus() instanceof RifleVaus);
+		bonus.remove(g);
+		assertTrue(g.getVaus() instanceof DefaultVaus);
 		bonus = new LongVausBonus();
 		assertTrue(bonus.toString().equals("bonus_longvaus"));
+		i = bonus.getLife();
+		bonus.decrementLife();
+		assertTrue(bonus.getLife() == i - TICKS_PER_SECOND);
+		bonus.apply(g);
+		assertTrue(g.getVaus().getWidth() == LONGVAUS_WIDTH);
+		bonus.remove(g);
+		assertTrue(g.getVaus().getWidth() == VAUS_WIDTH);
 		bonus = new CannonVausBonus();
 		assertTrue(bonus.toString().equals("bonus_cannonvaus"));
+		bonus.apply(g);
+		assertTrue(g.getVaus() instanceof CannonVaus);
+		bonus.remove(g);
+		assertTrue(g.getVaus() instanceof DefaultVaus);
 		bonus = new ResetStatusBonus();
 		assertTrue(bonus.toString().equals("neutral_resetstatus"));
+		bonus.apply(g);
 		bonus = new GhostBallBonus();
 		assertTrue(bonus.toString().equals("malus_ghostball"));
+		bonus.apply(g);
+		assertTrue(g.getBalls().get(0) instanceof GhostBall);
+		bonus.remove(g);
+		assertTrue(g.getBalls().get(0) instanceof DefaultBall);
 		bonus = new RemoveLifeBonus();
 		assertTrue(bonus.toString().equals("malus_removelife"));
+		i = g.getPlayerLives();
+		bonus.apply(g);
+		assertEquals(i , g.getPlayerLives() + 1);
 		bonus = new ShortVausBonus();
 		assertTrue(bonus.toString().equals("malus_shortvaus"));
+		bonus.apply(g);
+		assertTrue(g.getVaus().getWidth() == SHORTVAUS_WIDTH);
+		bonus.remove(g);
+		assertTrue(g.getVaus().getWidth() == VAUS_WIDTH);
 		bonus = new SlowBallBonus();
 		assertTrue(bonus.toString().equals("neutral_slowball"));
+		bonus.apply(g);
+		assertTrue(g.getBalls().get(0).getSpeedMod() == 0.5f);
+		bonus.remove(g);
+		assertTrue(g.getBalls().get(0).getSpeedMod() == 1.0f);
 		bonus = new StickyBallBonus();
 		assertTrue(bonus.toString().equals("neutral_stickyball"));
+		bonus.apply(g);
+		assertTrue(g.getBalls().get(0) instanceof StickyBall);
+		bonus.remove(g);
+		assertTrue(g.getBalls().get(0) instanceof DefaultBall);
 		bonus = new TheBoxBonus();
 		assertTrue(bonus.toString().equals("bonus_box"));
+		bonus.apply(g);
+		assertTrue(g.getBalls().get(0).getBoxEnabled());
+		bonus.remove(g);
+		assertFalse(g.getBalls().get(0).getBoxEnabled());
+		assertTrue(g.getBalls().get(0).getSpeedMod() == 1.0f);
 		bonus = new UltraBallBonus();
 		assertTrue(bonus.toString().equals("bonus_ultraball"));
+		bonus.apply(g);
+		assertTrue(g.getBalls().get(0) instanceof UltraBall);
+		bonus.remove(g);
+		assertTrue(g.getBalls().get(0) instanceof DefaultBall);
 		bonus = new DoubleRifleVausBonus();
 		assertTrue(bonus.toString().equals("bonus_doubleriflevaus"));
+		bonus.apply(g);
+		assertTrue(g.getVaus() instanceof DoubleRifleVaus);
+		bonus.remove(g);
+		assertTrue(g.getVaus() instanceof DefaultVaus);
 		
 	}
 	
@@ -149,10 +284,27 @@ public class MainTest extends TestCase implements Constants {
 	}
 	
 	public void testVausCreation() {
+		LevelManager lm = new LevelManager();
+		Game g = new Game(false, lm);
 		Vaus vaus = new DefaultVaus(0);
 		assertTrue(vaus.toString().equals("defaultVaus"));
 		vaus.setX(5);
 		assertTrue(vaus.getX() == 5);
+		vaus = new RifleVaus(0);
+		assertTrue(vaus.toString().equals("defaultVaus"));
+		vaus.shoot(g);
+		assertTrue(g.getBullets().size() == 1);
+		vaus = new DoubleRifleVaus(0);
+		assertTrue(vaus.toString().equals("defaultVaus"));
+		vaus.shoot(g);
+		assertTrue(g.getBullets().size() == 2);
+		vaus = new CannonVaus(0);
+		assertTrue(vaus.toString().equals("defaultVaus"));
+		vaus.shoot(g);
+		assertTrue(g.getBullets().size() == 3);
+		while ( g.getBullets().size() > 0) {
+			g.moveBullets();
+		}
 	}
 
 	public void testBallMove() {

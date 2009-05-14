@@ -6,7 +6,6 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.DefaultBall;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.GhostBall;
-import ch.unisi.inf.pfii.teamblue.jark.model.ball.UltraBall;
 
 /**
  * Changes the balls into ultra balls

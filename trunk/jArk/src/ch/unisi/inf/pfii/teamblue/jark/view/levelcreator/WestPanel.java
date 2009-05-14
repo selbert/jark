@@ -1,14 +1,10 @@
 package ch.unisi.inf.pfii.teamblue.jark.view.levelcreator;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-
-import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 
-import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.LevelManager;
 
 @SuppressWarnings("serial")

@@ -2,19 +2,13 @@ package ch.unisi.inf.pfii.teamblue.jark.view.game;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
-import javax.swing.border.Border;
-import javax.swing.border.EtchedBorder;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.PlayerListener;
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
@@ -48,7 +42,7 @@ public final class InfoPanel extends JPanel {
 			}
 		});
 		
-		JToolBar tool = new JToolBar(JToolBar.VERTICAL);
+		JToolBar tool = new JToolBar(SwingConstants.VERTICAL);
 		tool.setFloatable(false);
 		
 		tool.addSeparator(new Dimension(0,5));

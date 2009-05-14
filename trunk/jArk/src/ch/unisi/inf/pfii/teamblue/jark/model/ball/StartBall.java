@@ -21,6 +21,7 @@ public class StartBall extends Ball {
 	public String toString() {
 		return "startBall";
 	}
+	@Override
 	public void start(Game game) {
 		setSpeedX(0);
 		setSpeedY(-3);
@@ -33,6 +34,7 @@ public class StartBall extends Ball {
 		newBall.setY(getY());
 		game.replaceBall(this, newBall);
 	}
+	@Override
 	public final void vausMoved(final int newX) {
 		setX((VAUS_WIDTH/2 - BALL_RADIUS) + newX);
 	}

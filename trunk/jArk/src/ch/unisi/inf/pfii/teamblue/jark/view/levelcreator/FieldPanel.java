@@ -1,16 +1,13 @@
 package ch.unisi.inf.pfii.teamblue.jark.view.levelcreator;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 
-import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
 import javax.swing.JComponent;
-import javax.swing.border.EtchedBorder;
 import javax.swing.event.MouseInputAdapter;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;

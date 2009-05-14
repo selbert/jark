@@ -9,10 +9,10 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
-import ch.unisi.inf.pfii.teamblue.jark.model.level.LevelManager;
 
 /**
  * The main frame of the game
@@ -28,7 +28,7 @@ public final class GameFrame extends JFrame {
 
 	public GameFrame(final Game game) {
 		setTitle("[ jArk ] [ an Arkanoid implementation ]");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		setBackground(Color.LIGHT_GRAY);
 		((JPanel) getContentPane()).setBorder(new EmptyBorder(6, 6, 6, 6));

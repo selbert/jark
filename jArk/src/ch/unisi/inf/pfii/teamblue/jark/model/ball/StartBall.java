@@ -4,6 +4,14 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
+/**
+ * Initial ball
+ * 
+ * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
+ * @version $LastChangedDate: 2009-05-14 23:50:11 +0200 (Thu, 14 May 2009) $
+ *
+ */
+
 public class StartBall extends Ball {
 
 	

@@ -26,12 +26,14 @@ import javax.swing.event.MouseInputAdapter;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.BonusListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
+import ch.unisi.inf.pfii.teamblue.jark.implementation.GameListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.LevelListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.VausSetListener;
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.Brick;
+import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 import ch.unisi.inf.pfii.teamblue.jark.view.ImagesReference;
 
@@ -48,7 +50,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 	
 	private final ImagesReference ir;
 
-	private final Brick[][] bricks;
+	private Level level;
 	private final ArrayList<Ball> balls;
 	private final ArrayList<Bonus> bonuses;
 	private final ArrayList<Ball> bullets;
@@ -70,6 +72,14 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 	
 	public GamePanel(final Game game) {
 		this.game = game;
+		
+		game.addGameListener(new GameListener() {
+
+			public void levelChanged(Level level) {
+				GamePanel.this.level = level;
+			}
+			
+		});
 		
 		game.getLevel().addLevelListener(new LevelListener() {
 			public void bonusReleased(Bonus bonus) {
@@ -154,6 +164,9 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 
 			@Override
 			public void mousePressed(MouseEvent ev) {
+				if (!game.isStarted()) {
+					game.startGame();
+				}
 				super.mousePressed(ev);
 			}
 
@@ -192,7 +205,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 		game.addVausListener(this);
 
 		ir = new ImagesReference();
-		bricks = game.getBricks();
+		level = game.getLevel();
 		balls = game.getBalls();
 		bullets = game.getBullets();
 		bonuses = game.getBonuses();
@@ -214,6 +227,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 
 		g2d.setColor(new Color(0xb0c4de));
 		g2d.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+		final Brick[][] bricks = level.getBricks();
 		
 		for (int j = 0; j < bricks.length; j++) {
 			for (int i = 0; i < bricks[j].length; i++) {
@@ -292,10 +306,6 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 
 	public final void removeBoxLine() {
 		drawBox = false;
-	}
-	
-	public final void printBonuses() {
-		game.printBonuses();
 	}
 
 }

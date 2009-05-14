@@ -254,5 +254,16 @@ public final class Level implements Constants, VausSetListener {
 	         li.brickHit(brick);
 	    }
 	}
+	
+	public boolean isCleared() {
+		boolean accumulator = true;
+		for (int i = 0; (i < bricks.length) && accumulator; i++) {
+			for (int j = 0; (j < bricks[i].length) && accumulator; j++) {
+
+				accumulator = ((bricks[i][j] == null) || (bricks[i][j] instanceof PersistentBrick));
+			}
+		}
+		return accumulator;
+	}
 }
 

@@ -49,7 +49,6 @@ public final class MainFrame extends JFrame {
 		String[] levels = null;
 		try {
 			Enumeration<URL> fileUrlList = MainFrame.class.getClassLoader().getResources("/ch/unisi/inf/pfii/teamblue/jark/model/level/levels/");
-			System.out.println(fileUrlList.hasMoreElements());
 			while (fileUrlList.hasMoreElements()) {
 				URL current = fileUrlList.nextElement();
 				System.out.println(current.getFile());

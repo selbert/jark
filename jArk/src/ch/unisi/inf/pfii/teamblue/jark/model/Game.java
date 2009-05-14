@@ -10,6 +10,7 @@ import ch.unisi.inf.pfii.teamblue.jark.implementation.LevelListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.VausSetListener;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.DefaultBall;
+import ch.unisi.inf.pfii.teamblue.jark.model.ball.StartBall;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.BallBonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.VausBonus;
@@ -42,6 +43,8 @@ public final class Game implements Constants {
 	private Vaus vaus;
 	private Player player;
 	private Level level;
+	private boolean started;
+	private boolean gameOver;
 	
 	public Game(final boolean isTest, final LevelManager levelManager) {
 
@@ -55,6 +58,8 @@ public final class Game implements Constants {
 		takenBonuses = new ArrayList<Bonus>();
 		vaus = new DefaultVaus(GAME_WIDTH / 2 - VAUS_WIDTH / 2);
 		player = new Player("pippo", 3);
+		started = false;
+		gameOver = false;
 		
 		if (!isTest) {
 			setLevel(new Level(100, freeBonuses, vaus));
@@ -98,10 +103,18 @@ public final class Game implements Constants {
 	public ArrayList<Ball> getBullets() {
 		return bullets;
 	}
+	public boolean isStarted() {
+		return started;
+	}
 	
 	//setters
+	public void setStarted(boolean started) {
+		this.started = started;
+	}
+
 	private final void setLevel(final Level level) {
 		this.level = level;
+		fireLevelChanged();
 		level.addLevelListener(new LevelListener() {
 			public void bonusReleased(Bonus bonus) {
 				final BonusListener bl = new BonusListener() {
@@ -130,12 +143,17 @@ public final class Game implements Constants {
 	 * Actions to do at each tick of the game
 	 */
 	public final void tick() {
-		moveBalls();
-		moveBonuses();
-		moveBullets();
-		checkTakenBonuses();
-		vaus.move();
-		fireBonusLifeDecreased();
+		if (!gameOver) {
+			if (started) {
+				moveBalls();
+			}
+			moveBullets();
+			moveBonuses();
+			checkBallsInGame();
+			checkTakenBonuses();
+			vaus.move();
+			gameOver = checkGameOver();
+		}
 	}
 	
 	/**
@@ -273,9 +291,10 @@ public final class Game implements Constants {
 	 * Add a ball at random x speed to the game
 	 */
 	public final void addRandomBall() {
-		Ball newBall = new DefaultBall(vaus, level);
+		Ball newBall = new StartBall(vaus, level);
 		newBall.setSpeedX(getRandomSpeed());
 		newBall.setSpeedY(-3);
+		vaus.addVausListener(newBall);
 		addBall(newBall);
 	}
 	
@@ -298,17 +317,10 @@ public final class Game implements Constants {
 	public final void removeGameListener(final GameListener li) {
 		gameListeners.remove(li);
 	}
-	private final void fireBonusLifeDecreased() {
+	private final void fireLevelChanged() {
 		for (GameListener li : gameListeners) {
-			li.bonusLifeDecreased();
+			li.levelChanged(level);
 		}
-	}
-	
-	public final void printBonuses() {
-		for (int i = 0; i < takenBonuses.size() ; i++) {
-			System.out.println(takenBonuses.get(i).toString());
-		}
-		System.out.println("---");
 	}
 
 	public void releaseBalls() {
@@ -316,6 +328,53 @@ public final class Game implements Constants {
 			b.release();
 		}
 	}
+
+	/**
+	 * Start the game
+	 */
+	public void startGame() {
+		started = true;
+		for (Ball b : balls) {
+			b.start(this);
+		}
+	}
 	
+	/**
+	 * Check if there are balls in game, if none remove life and restart ball
+	 */
+	public void checkBallsInGame() {
+		if (balls.size() == 0) {
+			player.decrementLives();
+			started = false;
+			Ball newBall = new StartBall(vaus, level);
+			vaus.addVausListener(newBall);
+			freeBonuses.clear();
+			removeTakenBonuses();
+			balls.add(newBall);
+		}
+	}
+	
+	public boolean checkGameOver() {
+		if (level.isCleared()) {
+			started = false;
+			setLevel(new Level(100, freeBonuses, vaus));
+			Ball newBall = new StartBall(vaus, level);
+			vaus.addVausListener(newBall);
+			balls.clear();
+			freeBonuses.clear();
+			removeTakenBonuses();
+			balls.add(newBall);
+			return false;
+		}
+		if (player.getLives() <= 0) {
+			System.out.println("GAME OVER");
+			started = false;
+			balls.clear();
+			freeBonuses.clear();
+			removeTakenBonuses();
+			return true;
+		}
+		return false;
+	}
 }
 

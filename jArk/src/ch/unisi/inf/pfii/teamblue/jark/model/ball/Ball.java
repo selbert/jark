@@ -3,6 +3,7 @@ package ch.unisi.inf.pfii.teamblue.jark.model.ball;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.VausListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.VausSetListener;
+import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
@@ -267,5 +268,8 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 		returnBall.setSpeedMod(speedModifier);
 		returnBall.setBoxEnabled(getBoxEnabled());
 		return returnBall;
+	}
+
+	public void start(Game game) {
 	}
 }

@@ -1,6 +1,7 @@
 package ch.unisi.inf.pfii.teamblue.jark.implementation;
 
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
+import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 
 /**
  * Listen to game
@@ -11,5 +12,5 @@ import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
  */
 
 public interface GameListener {
-	public void bonusLifeDecreased();
+	public void levelChanged(Level level);
 }

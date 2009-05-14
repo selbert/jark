@@ -135,9 +135,7 @@ public final class Game implements Constants {
 		moveBullets();
 		checkTakenBonuses();
 		vaus.move();
-		if (takenBonuses.size() > 0) {
-			fireBonusLifeDecreased();
-		}
+		fireBonusLifeDecreased();
 	}
 	
 	/**
@@ -240,7 +238,7 @@ public final class Game implements Constants {
 			
 			if (bonus.getLife() < Integer.MAX_VALUE) {
 				bonus.decrementLife();
-				if (bonus.getLife() < 0) {
+				if (bonus.getLife() <= 0) {
 					bonus.remove(this);
 					takenBonuses.remove(i);
 					continue;

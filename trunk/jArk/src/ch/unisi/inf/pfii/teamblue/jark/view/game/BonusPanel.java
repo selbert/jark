@@ -21,7 +21,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.VausBonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.Brick;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
-import ch.unisi.inf.pfii.teamblue.jark.view.ImagesReference;
+import ch.unisi.inf.pfii.teamblue.jark.view.ImagesRepository;
 
 /**
  * The bonus panel displays the active bonuses with their life span
@@ -82,7 +82,7 @@ public final class BonusPanel extends JPanel implements Constants {
 								}
 							}		
 							JLabel bonusLabel = new JLabel();
-							bonusLabel.setIcon(ImagesReference.getIcon(bonus.toString()));
+							bonusLabel.setIcon(ImagesRepository.getIcon(bonus.toString()));
 							bonusLabel.setText(getBonusLifeString(bonus.getLife()));
 							bonusLabel.setAlignmentX(CENTER_ALIGNMENT);
 							bonusLabel.setHorizontalTextPosition(SwingConstants.RIGHT);

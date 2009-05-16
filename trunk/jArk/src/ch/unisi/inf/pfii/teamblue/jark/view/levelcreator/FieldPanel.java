@@ -13,7 +13,7 @@ import javax.swing.event.MouseInputAdapter;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Utils;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.LevelManager;
-import ch.unisi.inf.pfii.teamblue.jark.view.ImagesReference;
+import ch.unisi.inf.pfii.teamblue.jark.view.ImagesRepository;
 
 /**
  * The game panel, it should show the bricks the balls and the vaus
@@ -117,7 +117,7 @@ public final class FieldPanel extends JComponent implements Constants {
 		g2d.fillRect(0,0,getWidth(),getHeight());
 		for (int j = 0; j < FIELD_ROWS; j++) {
 			for (int i = 0; i < FIELD_COLUMNS; i++) {
-				g2d.drawImage(ImagesReference.getImage("editorBrick"), BRICK_WIDTH*i, BRICK_HEIGHT*j,this);
+				g2d.drawImage(ImagesRepository.getImage("editorBrick"), BRICK_WIDTH*i, BRICK_HEIGHT*j,this);
 			}
 		}
 
@@ -126,9 +126,9 @@ public final class FieldPanel extends JComponent implements Constants {
 				String brick = brickField[i][j];
 				String bonus = bonusField[i][j];
 				if (brick != null) {
-					g2d.drawImage(ImagesReference.getImage(brick), BRICK_WIDTH*j, BRICK_HEIGHT*i,this);
+					g2d.drawImage(ImagesRepository.getImage(brick), BRICK_WIDTH*j, BRICK_HEIGHT*i,this);
 					if (bonus != null) {
-						g2d.drawImage(ImagesReference.getImage(bonus), BRICK_WIDTH*j+4, BRICK_HEIGHT*i+4, 34, 15, this);
+						g2d.drawImage(ImagesRepository.getImage(bonus), BRICK_WIDTH*j+4, BRICK_HEIGHT*i+4, 34, 15, this);
 					}
 				}
 			}
@@ -136,7 +136,7 @@ public final class FieldPanel extends JComponent implements Constants {
 		
 		selected = group.getSelection();
 		if (selected != null && paintingAllowed) {
-			g2d.drawImage(ImagesReference.getImage(selected.getActionCommand()), BRICK_WIDTH*brickX, BRICK_HEIGHT*brickY, this);
+			g2d.drawImage(ImagesRepository.getImage(selected.getActionCommand()), BRICK_WIDTH*brickX, BRICK_HEIGHT*brickY, this);
 		}
 	}
 

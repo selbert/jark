@@ -15,7 +15,7 @@ import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 
-import ch.unisi.inf.pfii.teamblue.jark.view.ImagesReference;
+import ch.unisi.inf.pfii.teamblue.jark.view.ImagesRepository;
 
 /**
  * The info panel gives the player informations (score, lives, ..)
@@ -59,11 +59,11 @@ public final class BonusPanel extends JPanel {
 			neutral.add(neutralButtons);
 		add(neutral);
 		
-		Set<String> iconString = ImagesReference.getIcons().keySet();
+		Set<String> iconString = ImagesRepository.getIcons().keySet();
 		for (String s : iconString) {
 			if (s.indexOf("bonus_") != -1 || s.indexOf("malus_") != -1 || s.indexOf("neutral_") != -1) {
-				final ImageIcon im = ImagesReference.getIcon(s);
-				final ImageIcon him = ImagesReference.getHighlightedIcon(im);
+				final ImageIcon im = ImagesRepository.getIcon(s);
+				final ImageIcon him = ImagesRepository.getHighlightedIcon(im);
 				 JRadioButton button = new JRadioButton(im);
 				button.setSelectedIcon(him);
 				button.setHorizontalAlignment(SwingConstants.CENTER);

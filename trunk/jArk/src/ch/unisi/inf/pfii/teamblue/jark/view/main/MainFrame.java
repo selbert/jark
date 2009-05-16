@@ -25,7 +25,7 @@ import javax.swing.border.EtchedBorder;
 
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.LevelManager;
-import ch.unisi.inf.pfii.teamblue.jark.view.ImagesReference;
+import ch.unisi.inf.pfii.teamblue.jark.view.ImagesRepository;
 import ch.unisi.inf.pfii.teamblue.jark.view.game.GameFrame;
 import ch.unisi.inf.pfii.teamblue.jark.view.levelcreator.EditorFrame;
 
@@ -35,7 +35,7 @@ public final class MainFrame extends JFrame {
 	private final JPanel cardPanel;
 	private String selectedButton;
 	
-	public MainFrame(final LevelManager levelManager, final ImagesReference imagesReference) {
+	public MainFrame(final LevelManager levelManager, final ImagesRepository imagesReference) {
 		setTitle("[ jArk ] [ Arkanoid/BreakOut ]");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setResizable(false);

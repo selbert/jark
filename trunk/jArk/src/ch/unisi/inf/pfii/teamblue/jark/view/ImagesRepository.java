@@ -19,10 +19,10 @@ import javax.swing.ImageIcon;
  * 
  */
 
-public final class ImagesReference {
+public final class ImagesRepository {
 	private static HashMap<String, ImageIcon> images;
 	
-	public ImagesReference() {
+	public ImagesRepository() {
 		images = new HashMap<String, ImageIcon>();
 		//bricks
 		images.put("defaultBrick", setImage("images/bricks/defaultBrick.png"));

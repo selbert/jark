@@ -10,7 +10,7 @@ public class StringEncrypt {
 		int j = code;
 		
 		for (int i = 0; i < array.length; i++) {
-			array[i] = (char)(array[i] + ((i + j) % 10));
+			array[i] = (char)(array[i] - ((i + j) % 30));
 		}
 		
 		encryptedString = new String(array);
@@ -26,7 +26,7 @@ public class StringEncrypt {
 		int j = code;
 		
 		for (int i = 0; i < array.length; i++) {
-			array[i] = (char)(array[i] - ((i + j) % 10));
+			array[i] = (char)(array[i] + ((i + j) % 100));
 		}
 		
 		dencryptedString = new String(array);

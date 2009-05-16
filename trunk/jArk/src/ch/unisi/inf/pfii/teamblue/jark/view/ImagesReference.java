@@ -77,6 +77,7 @@ public final class ImagesReference {
 		images.put("neutral_stickyball", setImage("images/bonuses/neutral_stickyball.png"));
 		//others
 		images.put("pause", setImage("images/pause.png"));
+		images.put("title", setImage("images/title.png"));
 	}
 	
 	private final ImageIcon setImage(final String path) {
@@ -121,4 +122,6 @@ public final class ImagesReference {
 		Image newImage = Toolkit.getDefaultToolkit().createImage(filteredImage);
 	    return new ImageIcon(newImage);
 	}
+	
+	
 }

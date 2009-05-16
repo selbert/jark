@@ -9,9 +9,8 @@ public abstract class VausBonus extends Bonus {
 	}
 
 	@Override
-	public String toString() {
-		return null;
-	}
+	public abstract String toString();
+	
 	protected final Vaus translateVaus(final Vaus vaus, final Vaus newVaus) {
 		newVaus.setWidth(vaus.getWidth());
 		newVaus.setVausListenerLsit(vaus.getVausListenerLsit());

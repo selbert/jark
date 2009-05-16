@@ -9,10 +9,8 @@ public abstract class BallBonus extends Bonus {
 	}
 
 	@Override
-	public String toString() {
-		return "";
-	}
-
+	public abstract String toString();
+	
 	protected final Ball translateBall(final Ball oldBall, final Ball newBall) {
 		oldBall.release();
 		newBall.setSpeedX(oldBall.getSpeedX());

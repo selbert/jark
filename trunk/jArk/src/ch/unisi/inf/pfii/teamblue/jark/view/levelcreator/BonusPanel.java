@@ -66,11 +66,6 @@ public final class BonusPanel extends JPanel {
 				final ImageIcon him = ImagesReference.getHighlightedIcon(im);
 				 JRadioButton button = new JRadioButton(im);
 				button.setSelectedIcon(him);
-				button.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-//TODOs
-					}
-				});
 				button.setHorizontalAlignment(SwingConstants.CENTER);
 				button.setVerticalAlignment(SwingConstants.CENTER);
 				button.setActionCommand(s);

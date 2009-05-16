@@ -29,6 +29,7 @@ import ch.unisi.inf.pfii.teamblue.jark.view.ImagesRepository;
 import ch.unisi.inf.pfii.teamblue.jark.view.game.GameFrame;
 import ch.unisi.inf.pfii.teamblue.jark.view.levelcreator.EditorFrame;
 
+@SuppressWarnings("serial")
 public final class MainFrame extends JFrame {
 	
 	private final CardLayout cardLayout;
@@ -37,8 +38,10 @@ public final class MainFrame extends JFrame {
 	
 	public MainFrame(final LevelManager levelManager, final ImagesRepository imagesReference) {
 		setTitle("[ jArk ] [ Arkanoid/BreakOut ]");
+		setDefaultLookAndFeelDecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//setResizable(false);
+		setResizable(false);
+		selectedButton = "";
 		final JPanel p = new JPanel();
 		p.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		p.setLayout(new GridBagLayout());

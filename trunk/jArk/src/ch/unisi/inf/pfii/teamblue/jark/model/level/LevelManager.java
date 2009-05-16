@@ -57,8 +57,6 @@ public class LevelManager implements Constants {
 					}
 				}
 			}
-			
-			
 		} catch (IOException ex) {
 			System.out.println(ex);
 		}

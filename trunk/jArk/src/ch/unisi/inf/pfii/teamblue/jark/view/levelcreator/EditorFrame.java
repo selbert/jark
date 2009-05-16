@@ -39,6 +39,7 @@ public final class EditorFrame extends JFrame {
 		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		setResizable(false);
 		setBackground(Color.LIGHT_GRAY);
+		setDefaultLookAndFeelDecorated(true);
 		((JPanel) getContentPane()).setBorder(new EmptyBorder(6, 6, 6, 6));
 		setLayout(new BorderLayout(6, 6));
 		

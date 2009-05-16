@@ -7,6 +7,9 @@ import java.awt.Dimension;
 import javax.swing.ButtonGroup;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.plaf.TabbedPaneUI;
+import javax.swing.plaf.metal.MetalTabbedPaneUI;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.LevelManager;
@@ -28,10 +31,20 @@ public final class CenterPanel extends JComponent implements Constants {
 		borderPanel.setLayout(null);
 		borderPanel.setPreferredSize(new Dimension(800,402));
 		borderPanel.setBackground(Color.BLACK);
+		
 	    fieldPanel = new FieldPanel(levelManager, group);
 		borderPanel.add(fieldPanel);
+		
+		JTabbedPane tabbedPane = new JTabbedPane();
+		
 		BonusPanel bp = new BonusPanel(fieldPanel, group);
-		add(bp, BorderLayout.CENTER);
+		tabbedPane.addTab("Bonus", bp);
+		
+		JPanel test = new JPanel();
+		tabbedPane.addTab("Test", test);
+		
+		add(tabbedPane, BorderLayout.CENTER);
+		
 		add(borderPanel, BorderLayout.NORTH);
 	}
 

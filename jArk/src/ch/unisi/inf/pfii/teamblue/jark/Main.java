@@ -3,7 +3,7 @@ package ch.unisi.inf.pfii.teamblue.jark;
 import java.awt.EventQueue;
 
 import ch.unisi.inf.pfii.teamblue.jark.model.level.LevelManager;
-import ch.unisi.inf.pfii.teamblue.jark.view.ImagesReference;
+import ch.unisi.inf.pfii.teamblue.jark.view.ImagesRepository;
 import ch.unisi.inf.pfii.teamblue.jark.view.main.MainFrame;
 
 /**
@@ -18,11 +18,11 @@ public class Main {
 	
 	public static void main(String[] args) {
 		final LevelManager levelManager = new LevelManager();
-		final ImagesReference imagesReference = new ImagesReference();
+		final ImagesRepository imagesRepo = new ImagesRepository();
 		
 		EventQueue.invokeLater(new Runnable() {
 		    public void run() {
-		    	new MainFrame(levelManager, imagesReference);
+		    	new MainFrame(levelManager, imagesRepo);
 		    }
 		});		
 	}

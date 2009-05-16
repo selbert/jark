@@ -36,7 +36,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.Brick;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
-import ch.unisi.inf.pfii.teamblue.jark.view.ImagesReference;
+import ch.unisi.inf.pfii.teamblue.jark.view.ImagesRepository;
 
 /**
  * The game panel, it should show the bricks the balls and the vaus
@@ -48,8 +48,6 @@ import ch.unisi.inf.pfii.teamblue.jark.view.ImagesReference;
 
 public final class GamePanel extends JComponent implements Constants, VausSetListener {
 	private final Timer timer;
-	
-	private final ImagesReference ir;
 
 	private Level level;
 	private final ArrayList<Ball> balls;
@@ -190,7 +188,6 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 
 		game.addVausListener(this);
 
-		ir = new ImagesReference();
 		level = game.getLevel();
 		balls = game.getBalls();
 		bullets = game.getBullets();
@@ -256,7 +253,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 			for (int i = 0; i < bricks[j].length; i++) {
 				final Brick brick = bricks[j][i];
 				if (brick != null) {
-					g2d.drawImage(ImagesReference.getImage(brick.toString()), BRICK_WIDTH * i, j * BRICK_HEIGHT, this);
+					g2d.drawImage(ImagesRepository.getImage(brick.toString()), BRICK_WIDTH * i, j * BRICK_HEIGHT, this);
 				}
 			}
 		}
@@ -264,23 +261,23 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 		for (Bonus bonus : bonuses) {
 			final int x = bonus.getX();
 			final int y = bonus.getY();
-			g2d.drawImage(ImagesReference.getImage(bonus.toString()), x, y, this);
+			g2d.drawImage(ImagesRepository.getImage(bonus.toString()), x, y, this);
 		}
 
 		for (Ball ball : balls) {
 			final int x = (int) ball.getX();
 			final int y = (int) ball.getY();
-			g2d.drawImage(ImagesReference.getImage(ball.toString()), x, y, this);
+			g2d.drawImage(ImagesRepository.getImage(ball.toString()), x, y, this);
 		}
 		
 		for (Ball ball : bullets) {
 			final int x = (int) ball.getX();
 			final int y = (int) ball.getY();
-			g2d.drawImage(ImagesReference.getImage(ball.toString()), x, y, this);
+			g2d.drawImage(ImagesRepository.getImage(ball.toString()), x, y, this);
 		}
 
 		
-		g2d.drawImage(ImagesReference.getImage(vaus.toString()), vaus.getX(), VAUS_Y, vaus.getWidth(), VAUS_HEIGHT, this);
+		g2d.drawImage(ImagesRepository.getImage(vaus.toString()), vaus.getX(), VAUS_Y, vaus.getWidth(), VAUS_HEIGHT, this);
 		
 		if (textToDraw != null && lastBonusTakenTime+bonusMessageDelay >= System.currentTimeMillis()) {
 			g2d.setColor(Color.BLACK);
@@ -296,7 +293,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 		
 		if (!running && !firstTimeRun) {
 			g2d.drawImage(image, 0,0, null);
-			g2d.drawImage(ImagesReference.getImage("pause"), 200, 180, this);
+			g2d.drawImage(ImagesRepository.getImage("pause"), 200, 180, this);
 		}
 	}
 

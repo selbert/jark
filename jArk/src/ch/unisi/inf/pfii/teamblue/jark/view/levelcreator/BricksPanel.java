@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
-import ch.unisi.inf.pfii.teamblue.jark.view.ImagesReference;
+import ch.unisi.inf.pfii.teamblue.jark.view.ImagesRepository;
 
 /**
  * The info panel gives the player informations (score, lives, ..)
@@ -32,8 +32,8 @@ public final class BricksPanel extends JPanel {
 		final String[] str = new String[] { "defaultBrick", "resistentBrick", "veryResistentBrick", "persistentBrick", "removeBrick"  };
 	
 		for (int i = 0; i<str.length; i++) {
-			final ImageIcon im = ImagesReference.getIcon(str[i]);
-			final ImageIcon him = ImagesReference.getHighlightedIcon(im);
+			final ImageIcon im = ImagesRepository.getIcon(str[i]);
+			final ImageIcon him = ImagesRepository.getHighlightedIcon(im);
 			 JRadioButton button = new JRadioButton(im);
 			button.setSelectedIcon(him);
 			button.setHorizontalAlignment(SwingConstants.CENTER);

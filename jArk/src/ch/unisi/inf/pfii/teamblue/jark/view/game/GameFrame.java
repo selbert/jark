@@ -29,6 +29,7 @@ public final class GameFrame extends JFrame {
 	public GameFrame(final Game game) {
 		setTitle("[ jArk ] [ an Arkanoid implementation ]");
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		setDefaultLookAndFeelDecorated(true);
 		setResizable(false);
 		setBackground(Color.LIGHT_GRAY);
 		((JPanel) getContentPane()).setBorder(new EmptyBorder(6, 6, 6, 6));

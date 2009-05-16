@@ -37,8 +37,7 @@ public abstract class Bonus implements Constants, VausSetListener {
 	
 	@Override
 	public abstract String toString();
-	public void apply(final Game game) {
-	}
+	public abstract void apply(final Game game);
 	
 	//getters
 	public final int getX() {

@@ -19,7 +19,7 @@ public final class GhostBall extends Ball {
 	}
 	@Override
 	public final Ball copy() {
-		Ball returnBall = new UltraBall(vaus, level);
+		Ball returnBall = new GhostBall(vaus, level);
 		
 		return transferBall(returnBall);
 	}

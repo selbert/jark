@@ -36,11 +36,6 @@ public final class BricksPanel extends JPanel {
 			final ImageIcon him = ImagesReference.getHighlightedIcon(im);
 			 JRadioButton button = new JRadioButton(im);
 			button.setSelectedIcon(him);
-			button.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					//TODO
-				}
-			});
 			button.setHorizontalAlignment(SwingConstants.CENTER);
 			button.setActionCommand(str[i]);
 			button.setToolTipText(str[i]);

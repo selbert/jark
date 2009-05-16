@@ -7,8 +7,6 @@ public abstract class PlayerBonus extends Bonus {
 	}
 
 	@Override
-	public String toString() {
-		return "";
-	}
+	public abstract String toString();
 
 }

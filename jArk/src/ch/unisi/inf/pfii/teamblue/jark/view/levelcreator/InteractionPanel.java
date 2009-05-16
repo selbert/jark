@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.jar.JarFile;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -52,6 +53,7 @@ public final class InteractionPanel extends JPanel {
 		loadButton.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
 				JFileChooser fc = new JFileChooser();
+				fc.setCurrentDirectory(new File("./levels"));
 				fc.setFileFilter(new FileFilter() {
 					@Override
 					public boolean accept(File file) {
@@ -73,7 +75,7 @@ public final class InteractionPanel extends JPanel {
 					centerPanel.getFieldPanel().setSaved(true);
 					levelManager.readLevelFromFile(fc.getSelectedFile().getAbsolutePath());
 					centerPanel.getFieldPanel().repaint();
-				}
+				}				
 			}
 		});
 

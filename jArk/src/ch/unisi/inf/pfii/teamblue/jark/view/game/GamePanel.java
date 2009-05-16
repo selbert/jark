@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.awt.image.MemoryImageSource;
 import java.util.ArrayList;
@@ -98,6 +99,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 					play();
 					image = new BufferedImage(GAME_WIDTH, GAME_HEIGHT, BufferedImage.TYPE_BYTE_GRAY);
 					paintComponent( image.createGraphics() );
+					image = scale(image, 0.5);
 					repaint();
 					break;
 				case KeyEvent.VK_SPACE:
@@ -204,6 +206,17 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 	    
 	}
 	
+    private static BufferedImage scale(BufferedImage source, double factor) {
+        BufferedImage bi = new BufferedImage(source.getWidth(), source.getHeight(), BufferedImage.TYPE_INT_RGB);
+        Graphics2D g2d = bi.createGraphics();
+        
+        AffineTransform at = AffineTransform.getScaleInstance(factor, factor);
+        g2d.drawRenderedImage(source, at);
+        g2d.dispose();
+        return bi;
+
+    }
+    
 	private final void setLevel(Level level) {
 		this.level = level;
 		level.addLevelListener(new LevelListener() {

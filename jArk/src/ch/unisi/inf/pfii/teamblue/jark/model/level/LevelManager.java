@@ -123,7 +123,9 @@ public class LevelManager implements Constants {
 	}
 
 	public void writeLevelToFile(String name) {
-		final File file = new File(name+".jark");
+		final File dir = new File("levels");
+		dir.mkdir();
+		final File file = new File(dir+"/"+name+".jark");
 		try {
 			if (file.createNewFile()) {
 				FileWriter fstream = new FileWriter(file);

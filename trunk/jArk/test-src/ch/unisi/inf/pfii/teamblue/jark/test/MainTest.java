@@ -5,6 +5,7 @@ import java.util.Arrays;
 import junit.framework.TestCase;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Utils;
+import ch.unisi.inf.pfii.teamblue.jark.implementation.StringEncrypt;
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.Player;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
@@ -360,5 +361,9 @@ public class MainTest extends TestCase implements Constants {
 		Level level = new Level(0, freeBonuses, vaus);
 		assertFalse(level.brickHasBallInside(0f, 401f));
 		assertTrue(level.brickHasBallInside(0f, 398f));
+	}
+	
+	public void testEncryptDecrypt() {
+		assertTrue(StringEncrypt.dencrypt(StringEncrypt.encrypt("asdasdasd", 5),5).equals("asdasdasd"));
 	}
 }

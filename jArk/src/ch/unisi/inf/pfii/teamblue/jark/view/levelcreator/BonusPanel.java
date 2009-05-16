@@ -4,6 +4,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Enumeration;
 import java.util.Set;
 
 import javax.swing.BoxLayout;
@@ -59,23 +60,24 @@ public final class BonusPanel extends JPanel {
 			neutral.add(neutralButtons);
 		add(neutral);
 		
-		Set<String> iconString = ImagesRepository.getIcons().keySet();
-		for (String s : iconString) {
-			if (s.indexOf("bonus_") != -1 || s.indexOf("malus_") != -1 || s.indexOf("neutral_") != -1) {
-				final ImageIcon im = ImagesRepository.getIcon(s);
+		Enumeration<Object> keys = ImagesRepository.getKeys();
+		while (keys.hasMoreElements()) {
+			String key = (String) keys.nextElement();
+			if (key.indexOf("bonus_") != -1 || key.indexOf("malus_") != -1 || key.indexOf("neutral_") != -1) {
+				final ImageIcon im = ImagesRepository.getIcon(key);
 				final ImageIcon him = ImagesRepository.getHighlightedIcon(im);
 				 JRadioButton button = new JRadioButton(im);
 				button.setSelectedIcon(him);
 				button.setHorizontalAlignment(SwingConstants.CENTER);
 				button.setVerticalAlignment(SwingConstants.CENTER);
-				button.setActionCommand(s);
-				button.setToolTipText(s);
+				button.setActionCommand(key);
+				button.setToolTipText(key);
 				
 				group.add(button);
 				
-				if (s.indexOf("bonus_") != -1) {
+				if (key.indexOf("bonus_") != -1) {
 					bonusButtons.add(button);
-				} else if (s.indexOf("malus_") != -1) {
+				} else if (key.indexOf("malus_") != -1) {
 					malusButtons.add(button);
 				} else {
 					neutralButtons.add(button);

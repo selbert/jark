@@ -277,7 +277,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 		}
 
 		
-		g2d.drawImage(ImagesRepository.getImage(vaus.toString()), vaus.getX(), VAUS_Y, vaus.getWidth(), VAUS_HEIGHT, this);
+		g2d.drawImage(ImagesRepository.getImage(vaus.toString()), vaus.getX(), VAUS_Y, this);
 		
 		if (textToDraw != null && lastBonusTakenTime+bonusMessageDelay >= System.currentTimeMillis()) {
 			g2d.setColor(Color.BLACK);

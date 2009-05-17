@@ -31,34 +31,30 @@ public class LevelManager implements Constants {
 	public void readLevelFromFile(String filepath) {
 		try{
 			final BufferedReader myInput = new BufferedReader(new FileReader(filepath));
-
 			setLevelName(myInput.readLine());
 			myInput.readLine();
-			
-			for (int i = 0; i < FIELD_ROWS; i++) {
-				String[] tmp = myInput.readLine().split(" ");
-				for (int j = 0; j<FIELD_COLUMNS; j++) {
-					if (!tmp[j].equals("null")) {
-						brickField[i][j] = tmp[j];
-					} else {
-						brickField[i][j] = null;
-					}
-				}
-			}
-			
+			loadField(brickField, myInput);
 			myInput.readLine();
-			for (int i = 0; i < FIELD_ROWS; i++) {
-				String[] tmp = myInput.readLine().split(" ");
-				for (int j = 0; j<FIELD_COLUMNS; j++) {
-					if (!tmp[j].equals("null")) {
-						bonusField[i][j] = tmp[j];
-					} else {
-						bonusField[i][j] = null;
-					}
-				}
-			}
+			loadField(bonusField, myInput);
 		} catch (IOException ex) {
 			System.out.println(ex);
+		}
+	}
+	private final void loadField(String[][] field, BufferedReader input) {
+		for (int i = 0; i < FIELD_ROWS; i++) {
+			String[] tmp = null;
+			try {
+				tmp = input.readLine().split(" ");
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+			for (int j = 0; j<FIELD_COLUMNS; j++) {
+				if (!tmp[j].equals("null")) {
+					field[i][j] = tmp[j];
+				} else {
+					field[i][j] = null;
+				}
+			}
 		}
 	}
 	

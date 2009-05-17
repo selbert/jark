@@ -323,6 +323,16 @@ public final class Game implements Constants {
 			li.levelChanged(level);
 		}
 	}
+	private final void fireLevelCleared() {
+		for (GameListener li : gameListeners) {
+			li.levelCleared(level);
+		}
+	}
+	private final void fireGameOver() {
+		for (GameListener li : gameListeners) {
+			li.gameOver();
+		}
+	}
 	private final void fireBonusErase() {
 		for (GameListener li : gameListeners) {
 			li.bonusErase();
@@ -363,6 +373,7 @@ public final class Game implements Constants {
 	
 	public boolean checkGameOver() {
 		if (level.isCleared()) {
+			fireLevelCleared();
 			started = false;
 			balls.clear();
 			bullets.clear();
@@ -376,7 +387,7 @@ public final class Game implements Constants {
 			return false;
 		}
 		if (player.getLives() <= 0) {
-			System.out.println("GAME OVER");
+			fireGameOver();
 			started = false;
 			balls.clear();
 			bullets.clear();

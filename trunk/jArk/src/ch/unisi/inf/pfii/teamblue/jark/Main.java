@@ -27,22 +27,13 @@ public class Main {
 
 		EventQueue.invokeLater(new Runnable() {
 		    public void run() {
-				 try {
-						UIManager.setLookAndFeel(
-						            UIManager.getCrossPlatformLookAndFeelClassName());	
-					} catch (ClassNotFoundException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (InstantiationException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IllegalAccessException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (UnsupportedLookAndFeelException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+		    	MetalLookAndFeel.setCurrentTheme(new OceanTheme());            
+		        try {
+					UIManager.setLookAndFeel(new MetalLookAndFeel());
+				} catch (UnsupportedLookAndFeelException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
 		    	new MainFrame(levelManager, imagesRepo);
 		    }
 		});		

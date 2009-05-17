@@ -19,6 +19,7 @@ import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EtchedBorder;
@@ -41,7 +42,7 @@ public final class MainFrame extends JFrame {
 		setDefaultLookAndFeelDecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
-		selectedButton = "";
+		selectedButton = "arcade";
 		final JPanel p = new JPanel();
 		p.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		p.setLayout(new GridBagLayout());

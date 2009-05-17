@@ -57,12 +57,10 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 
 	private boolean drawBox;
 	private boolean running;
+	private boolean gameOver;
 	private boolean firstTimeRun;
 	private boolean vausIsShooting;
-	
-	private String textToDraw;
-	private long lastBonusTakenTime;
-	private final static long bonusMessageDelay = 1000;
+	private boolean levelCleared;
 	
 	private final Cursor transparentCursor;
 	
@@ -79,6 +77,14 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 			public void bonusErase() {
 				drawBox = false;
 			}
+
+			public void gameOver() {
+				gameOver = true;
+			}
+
+			public void levelCleared(Level level) {
+				levelCleared = true;
+			}
 			
 		});
 		
@@ -87,6 +93,11 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 		KeyListener keyListener = new KeyListener() {
 			public final void keyPressed(KeyEvent ev) {
 				switch (ev.getKeyCode()) {
+				case KeyEvent.VK_ENTER:
+					if (levelCleared) {
+						levelCleared = false;
+					}
+					return;
 				case KeyEvent.VK_LEFT: 
 					vaus.moveLeft();
 					break;
@@ -138,7 +149,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 			@Override
 			public void mouseMoved(MouseEvent ev) {
 				super.mouseMoved(ev);
-				if (running) {
+				if (running && !levelCleared) {
 					r.mouseMove((int) getLocationOnScreen().getX() + getWidth()
 							/ 2, (int) getLocationOnScreen().getY()
 							+ getHeight() / 2);
@@ -148,10 +159,10 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 
 			@Override
 			public void mousePressed(MouseEvent ev) {
-				if (!game.isStarted()) {
+				super.mousePressed(ev);
+				if (!game.isStarted() && !levelCleared) {
 					game.startGame();
 				}
-				super.mousePressed(ev);
 			}
 
 			@Override
@@ -220,8 +231,6 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 			public void bonusReleased(Bonus bonus) {
 				bonus.addBonusListener(new BonusListener() {
 					public void bonusTaken(Bonus bonus) {
-						lastBonusTakenTime = System.currentTimeMillis();
-						textToDraw = bonus.toString();
 						if (bonus.toString().equals("bonus_box")) {
 							drawBox = true;
 						}
@@ -244,7 +253,18 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 	public final void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
-
+		
+		if (gameOver) {
+			play();
+			g2d.drawString("GAME OVER YOU n00b!", 100, 100);
+			return;
+		}
+		
+		if (levelCleared) {
+			g2d.drawString("Level cleared, press [ENTER] to continue..", 100, 100);
+			return;
+		}
+		
 		g2d.setColor(new Color(0xb0c4de));
 		g2d.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 		final Brick[][] bricks = level.getBricks();
@@ -278,13 +298,6 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 
 		
 		g2d.drawImage(ImagesRepository.getImage(vaus.toString()), vaus.getX(), VAUS_Y, this);
-		
-		if (textToDraw != null && lastBonusTakenTime+bonusMessageDelay >= System.currentTimeMillis()) {
-			g2d.setColor(Color.BLACK);
-			g2d.drawString(textToDraw, 650, 560);
-		} else {
-			textToDraw = null;
-		}
 		
 		if (drawBox) {
 			g2d.setColor(Color.ORANGE);

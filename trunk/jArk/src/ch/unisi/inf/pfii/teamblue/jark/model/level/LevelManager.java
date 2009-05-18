@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -171,6 +172,20 @@ public class LevelManager implements Constants {
 		return levelName;
 	}
 
+	public final String[] getLevelsPath(final String type) {
+	    File dir = new File("levels");
+	    final String[] files = dir.list(new FilenameFilter() {
+			public boolean accept(File dir, String name) {
+				return (name.endsWith("."+type));
+			}
+	    });
+	    for (int i = 0; i<files.length; i++) {
+	    	files[i] = files[i].split(".jark")[0];
+	    }
+	    return files;
+	}
+
+
 	public void loadArcadeLevel(int arcadeLevel) {
 		Properties properties = new Properties();
 		try {
@@ -182,5 +197,4 @@ public class LevelManager implements Constants {
 		readArcadeLevelFromFile(levelPath);
 	}
 
-	
 }

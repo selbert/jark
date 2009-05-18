@@ -32,9 +32,10 @@ public final class InteractionPanel extends JPanel {
 	private final JButton saveButton;
 	private final JButton loadButton;
 	private final JButton testButton;
+	private final JButton clearButton;
 	
-	public InteractionPanel(final CenterPanel centerPanel, final LevelManager levelManager) {
-		setLayout(new GridLayout(3, 1));
+	public InteractionPanel(final CenterPanel centerPanel, final LevelManager levelManager, final FieldImage fieldImage) {
+		setLayout(new GridLayout(4, 1));
 
 		// first button
 		saveButton = new JButton("Save");
@@ -42,6 +43,7 @@ public final class InteractionPanel extends JPanel {
 			public void actionPerformed(final ActionEvent e) {
 				final String name = JOptionPane.showInputDialog("Level name:");
 				if (name != null) {
+					fieldImage.saveImage(name);
 					levelManager.writeLevelToFile(name);
 					centerPanel.getFieldPanel().setSaved(true);
 				}
@@ -93,9 +95,20 @@ public final class InteractionPanel extends JPanel {
 			}
 		});
 
+		// another button
+		clearButton = new JButton("Clear");
+		clearButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				levelManager.reset();
+				centerPanel.getFieldPanel().reset();
+				centerPanel.getFieldPanel().repaint();
+			}
+		});
+		
 		add(testButton);
 		add(saveButton);
 		add(loadButton);
+		add(clearButton);
 	}
 
 }

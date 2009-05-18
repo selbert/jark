@@ -1,6 +1,5 @@
 package ch.unisi.inf.pfii.teamblue.jark.view.main;
 
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
@@ -11,18 +10,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.border.EtchedBorder;
 
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.LevelManager;
@@ -34,12 +28,11 @@ import ch.unisi.inf.pfii.teamblue.jark.view.levelcreator.EditorFrame;
 public final class MainFrame extends JFrame {
 	
 	private final CardLayout cardLayout;
-	private final JPanel cardPanel;
+	private final CardPanel cardPanel;
 	private String selectedButton;
 	
 	public MainFrame(final LevelManager levelManager, final ImagesRepository imagesReference) {
-		setTitle("[ jArk ] [ Arkanoid/BreakOut ]");
-		setDefaultLookAndFeelDecorated(true);
+		setTitle("[ jArk ] [ an Arkanoid/Breakout clone ]");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		selectedButton = "arcade";
@@ -48,14 +41,12 @@ public final class MainFrame extends JFrame {
 		p.setLayout(new GridBagLayout());
 		final GridBagConstraints gbc = new GridBagConstraints();
 		
-		JLabel title = new JLabel("jArk", JLabel.CENTER); 
+		JLabel title = new JLabel(ImagesRepository.getIcon("testTitle"), JLabel.CENTER); 
 		gbc.gridwidth = 2;
 		gbc.ipady = 10;
 		gbc.insets = new Insets(0,0,5,0);
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		p.add(title, gbc);
-		
-		final ButtonGroup group = new ButtonGroup();
 		
 		JButton arcadeButton = new JButton("Arcade Mode");
 		arcadeButton.addActionListener(new ActionListener() {
@@ -87,7 +78,7 @@ public final class MainFrame extends JFrame {
 			public void actionPerformed(ActionEvent ev) {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
-						new EditorFrame(levelManager);
+						new EditorFrame(levelManager, true);
 					}
 				});	
 			}
@@ -96,18 +87,6 @@ public final class MainFrame extends JFrame {
 		gbc.gridy = 3;
 		gbc.gridwidth = 1;
 		p.add(levelEditorButton, gbc);
-		
-		JButton highScoresButton = new JButton("High Scores");
-		highScoresButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cardLayout.show(cardPanel, "high");
-			}	
-		});
-		gbc.gridx = 0;
-		gbc.gridy = 4;
-		gbc.gridwidth = 1;
-		p.add(highScoresButton, gbc);
-		group.add(highScoresButton);
 		
 		JButton quitButton = new JButton("Quit");
 		quitButton.addActionListener(new ActionListener() {
@@ -121,6 +100,9 @@ public final class MainFrame extends JFrame {
 		gbc.insets = new Insets(5,0,0,5);
 		p.add(quitButton, gbc);
 		
+		cardLayout = new CardLayout();
+		cardPanel = new CardPanel(cardLayout, levelManager);
+		
 		JButton playButton = new JButton("Play");
 		playButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -130,8 +112,17 @@ public final class MainFrame extends JFrame {
 						public void run() {
 							new GameFrame(game);
 						}
-					});		
+					});	
 				} 
+				if (selectedButton.equals("singleLevel")) {
+					levelManager.readLevelFromFile("levels/"+cardPanel.getSelectedLevel()+".jark");
+					final Game game = new Game(true, levelManager);
+					EventQueue.invokeLater(new Runnable() {
+						public void run() {
+							new GameFrame(game);
+						}
+					});	
+				}
 			}
 		});
 		gbc.gridx = 1;
@@ -140,9 +131,7 @@ public final class MainFrame extends JFrame {
 		gbc.insets = new Insets(5,0,0,0);
 		p.add(playButton, gbc);
 		
-        
-		cardPanel = new JPanel();
-		cardPanel.setBorder(new EtchedBorder());
+	
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.insets = new Insets(0,0,0,0);
 		gbc.gridx = 1;
@@ -153,45 +142,10 @@ public final class MainFrame extends JFrame {
 		gbc.weighty = 2;
 		gbc.weightx = 2;
 		p.add(cardPanel, gbc);
-
-		cardLayout = new CardLayout();
-		cardPanel.setLayout(cardLayout);
-		
-		
-		JPanel firstCard = new JPanel();
-		firstCard.add(new JLabel("test"));
-		cardPanel.add(firstCard, "arcade");
-		
-		JPanel levelCard = new JPanel();
-		levelCard.setLayout(new BorderLayout());
-
-//		SpinnerModel model1 = new SpinnerListModel(new String[] { "asd", "lol asd lol", "asd lol", "ciao" } );
-//		final JSpinner spinner1 = new JSpinner(model1);
-//		JFormattedTextField tf = ((JSpinner.DefaultEditor) spinner1.getEditor()).getTextField();
-//		tf.setEditable(false);
-//	
-//		JComboBox combo = new JComboBox(new String[] { "asd", "lol asd lol", "asd lol", "ciao" } );
-//		combo.setEditable(false);
-
-		JList list = new JList(new String[] { "asd", "lol asd lol", "asd lol", "ciao" });
-		list.setVisibleRowCount(3);
-		JScrollPane optionPane = new JScrollPane(list);
-
-		levelCard.add(optionPane, BorderLayout.SOUTH);
-		
-		JLabel label = new JLabel(new ImageIcon(getClass().getResource("test.png")));
-		label.setBorder(new EtchedBorder());
-		levelCard.add(label, BorderLayout.CENTER);
-		
-		cardPanel.add(levelCard, "level");
-		
-		JPanel highScoreCard = new JPanel();
-		cardPanel.add(highScoreCard, "high");
 		
 		add(p);
 		
 		makeMenu();
-		
 	
 		// pack the frame together
 		pack();
@@ -212,14 +166,41 @@ public final class MainFrame extends JFrame {
 		menubar.add(fileMenu);
 
 		// menu items: using anonymous inner classes for events
-		final JMenuItem newGameItem = new JMenuItem("New Game");
+		final JMenuItem newGameItem = new JMenuItem("Play Arcade");
 		newGameItem.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
-				startNewGame();
+				//todo
 			}
 		});
 		fileMenu.add(newGameItem);
 
+		// another item
+		final JMenuItem rndLevelItem = new JMenuItem("Random Level");
+		rndLevelItem.addActionListener(new ActionListener() {
+			public void actionPerformed(final ActionEvent e) {
+				quitApp();
+			}
+		});
+		fileMenu.add(rndLevelItem);
+
+		// another item
+		final JMenuItem editorItem = new JMenuItem("Level Editor");
+		editorItem.addActionListener(new ActionListener() {
+			public void actionPerformed(final ActionEvent e) {
+				quitApp();
+			}
+		});
+		fileMenu.add(editorItem);
+		
+		// another item
+		final JMenuItem highItem = new JMenuItem("High Score");
+		highItem.addActionListener(new ActionListener() {
+			public void actionPerformed(final ActionEvent e) {
+				quitApp();
+			}
+		});
+		fileMenu.add(highItem);
+		
 		// another item
 		final JMenuItem quitItem = new JMenuItem("Quit");
 		quitItem.addActionListener(new ActionListener() {
@@ -228,17 +209,35 @@ public final class MainFrame extends JFrame {
 			}
 		});
 		fileMenu.add(quitItem);
-
+		
+		// menu help
+		final JMenu helpMenu = new JMenu("Help");
+		menubar.add(helpMenu);
+		
+		// another item
+		final JMenuItem helpItem = new JMenuItem("Manual");
+		helpItem.addActionListener(new ActionListener() {
+			public void actionPerformed(final ActionEvent e) {
+				quitApp();
+			}
+		});
+		helpMenu.add(helpItem);
+		
+		// another item
+		final JMenuItem aboutItem = new JMenuItem("About");
+		aboutItem.addActionListener(new ActionListener() {
+			public void actionPerformed(final ActionEvent e) {
+				quitApp();
+			}
+		});
+		helpMenu.add(aboutItem);
+		
 		//set the menubar
 		setJMenuBar(menubar);
 	}
 
-	private final void startNewGame() {
-		//TODO ?
-	}
-
 	private final void quitApp() {
-		
+		System.exit(0);
 	}
 
 }

@@ -30,16 +30,14 @@ import ch.unisi.inf.pfii.teamblue.jark.model.level.LevelManager;
 @SuppressWarnings("serial")
 public final class EditorFrame extends JFrame {
 	private final CenterPanel centerPanel;
-	private final WestPanel westPanel;
 	private final ButtonGroup group;
 	private final LevelManager levelManager;
 	
-	public EditorFrame(LevelManager levelManager) {
+	public EditorFrame(final LevelManager levelManager, final boolean visible) {
 		setTitle("[ jArk ] [ Level Creator ]");
 		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		setResizable(false);
 		setBackground(Color.LIGHT_GRAY);
-		setDefaultLookAndFeelDecorated(true);
 		((JPanel) getContentPane()).setBorder(new EmptyBorder(6, 6, 6, 6));
 		setLayout(new BorderLayout(6, 6));
 		
@@ -55,17 +53,15 @@ public final class EditorFrame extends JFrame {
 		this.levelManager = levelManager;
 		group = new ButtonGroup();
 		centerPanel = new CenterPanel(levelManager, group);
-		westPanel = new WestPanel(centerPanel, levelManager, group);
 	
 		add(centerPanel, BorderLayout.CENTER);
-		add(westPanel, BorderLayout.WEST);
 	
 		// pack the frame together
 		pack();
 		// center
 		setLocationRelativeTo(null);
 		// and show it
-		setVisible(true);
+		setVisible(visible);
 	}
 
 	

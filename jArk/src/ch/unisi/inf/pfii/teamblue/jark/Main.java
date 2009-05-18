@@ -1,7 +1,9 @@
 package ch.unisi.inf.pfii.teamblue.jark;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
+import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.metal.MetalLookAndFeel;
@@ -26,15 +28,14 @@ public class Main {
 		final ImagesRepository imagesRepo = new ImagesRepository();
 
 		EventQueue.invokeLater(new Runnable() {
-		    public void run() {
-		    	MetalLookAndFeel.setCurrentTheme(new OceanTheme());            
-		        try {
+		    public void run() {            
+		    	try {
 					UIManager.setLookAndFeel(new MetalLookAndFeel());
 				} catch (UnsupportedLookAndFeelException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} 
-		    	new MainFrame(levelManager, imagesRepo);
+				JFrame.setDefaultLookAndFeelDecorated(true);
+				new MainFrame(levelManager, imagesRepo);
 		    }
 		});		
 	}

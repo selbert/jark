@@ -29,12 +29,13 @@ public final class FieldPanel extends JComponent implements Constants {
 	private boolean paintingAllowed;
 	private ButtonGroup group;
 	private ButtonModel selected;
-	private final String[][] brickField;
-	private final String[][] bonusField;
+	private String[][] brickField;
+	private String[][] bonusField;
 	private boolean saved;
-	
+	private final LevelManager levelManager;
 	public FieldPanel(final LevelManager levelManager, final ButtonGroup group) {
 		saved = true;
+		this.levelManager = levelManager;
 		this.group = group;
 		brickField = levelManager.getBrickField();
 		bonusField = levelManager.getBonusField();
@@ -145,6 +146,11 @@ public final class FieldPanel extends JComponent implements Constants {
 	}
 	public Boolean hasBeenSaved() {
 		return saved;
+	}
+	
+	public final void reset() { 
+		brickField = levelManager.getBrickField();
+		bonusField = levelManager.getBonusField();
 	}
 
 }

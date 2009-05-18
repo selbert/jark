@@ -225,7 +225,6 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
         g2d.drawRenderedImage(source, at);
         g2d.dispose();
         return bi;
-
     }
     
 	private final void setLevel(Level level) {

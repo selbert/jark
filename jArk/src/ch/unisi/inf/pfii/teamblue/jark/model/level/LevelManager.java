@@ -29,16 +29,18 @@ public class LevelManager implements Constants {
 	private String[][] brickField;
 	private String[][] bonusField;
 	private String levelName;
+	private String levelAuthor;
 	
 	public LevelManager() {
 		brickField = new String[FIELD_ROWS][FIELD_COLUMNS];
 		bonusField = new String[FIELD_ROWS][FIELD_COLUMNS];
 	}
 	
-	public void readLevelFromFile(String filepath) {
+	public final void readLevelFromFile(String filepath) {
 		try{
 			final BufferedReader myInput = new BufferedReader(new FileReader(filepath));
 			setLevelName(myInput.readLine());
+			setLevelAuthor(myInput.readLine());
 			myInput.readLine();
 			loadField(brickField, myInput);
 			myInput.readLine();
@@ -47,11 +49,17 @@ public class LevelManager implements Constants {
 			System.out.println(ex);
 		}
 	}
-	public void readArcadeLevelFromFile(String filename) {
+	
+	public final void setLevelAuthor(String levelAuthor) {
+		this.levelAuthor = levelAuthor;
+	}
+
+	public final void readArcadeLevelFromFile(String filename) {
 		try{
 			final InputStreamReader streamReader = new InputStreamReader(LevelManager.class.getResourceAsStream(filename));
 			final BufferedReader myInput = new BufferedReader(streamReader);
 			setLevelName(myInput.readLine());
+			setLevelAuthor(myInput.readLine());
 			myInput.readLine();
 			loadField(brickField, myInput);
 			myInput.readLine();
@@ -59,6 +67,18 @@ public class LevelManager implements Constants {
 		} catch (IOException ex) {
 			System.out.println(ex);
 		}
+	}
+	private final String readLevelDetails(String filename) {
+		String details = "Info not Found";
+		try{
+			final BufferedReader myInput = new BufferedReader(new FileReader(filename));
+			details = myInput.readLine();
+			details += " by ";
+			details += myInput.readLine();
+		} catch (IOException ex) {
+			System.out.println(ex);
+		}
+		return details;
 	}
 	
 	private final void loadField(String[][] field, BufferedReader input) {
@@ -172,20 +192,28 @@ public class LevelManager implements Constants {
 		return levelName;
 	}
 
-	public final String[] getLevelsPath(final String type) {
+	public final String[] getLevelsPath() {
 	    File dir = new File("levels/");
 		if (!dir.isDirectory()) { 
 			dir.mkdir();
 		}
 	    final String[] files = dir.list(new FilenameFilter() {
 			public boolean accept(File dir, String name) {
-				return (name.endsWith("."+type));
+				return (name.endsWith(".jark"));
 			}
 	    });
 	    for (int i = 0; i<files.length; i++) {
 	    	files[i] = files[i].split(".jark")[0];
 	    }
 	    return files;
+	}
+	
+	public final String[] getLevelsDetail(final String[] paths) {
+		final String[] details = new String[paths.length];
+		for (int i = 0; i<paths.length; i++) {
+			details[i] = readLevelDetails("levels/"+paths[i]+".jark");
+	    }
+		return details;
 	}
 
 

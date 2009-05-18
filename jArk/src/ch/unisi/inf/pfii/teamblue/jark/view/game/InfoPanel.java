@@ -10,8 +10,10 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
+import ch.unisi.inf.pfii.teamblue.jark.implementation.GameListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.PlayerListener;
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
+import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 
 /**
  * The info panel gives the player informations (score, lives, ..)
@@ -24,9 +26,9 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 @SuppressWarnings("serial")
 public final class InfoPanel extends JPanel {
 	
-	private JLabel lives;
-	private JLabel level;
-	private JLabel score;
+	private JLabel livesLabel;
+	private JLabel levelLabel;
+	private JLabel scoreLabel;
 	
 	public InfoPanel(Game game) {
 		setLayout(new BoxLayout(InfoPanel.this, BoxLayout.Y_AXIS));
@@ -34,11 +36,30 @@ public final class InfoPanel extends JPanel {
 		
 		game.getPlayer().addPlayerListener(new PlayerListener() {
 			public void modifiedLives(int l) {
-				lives.setText(""+l);
+				livesLabel.setText(""+l);
 			}
 
 			public void modifiedScore(int s) {
-				score.setText(""+s);
+				scoreLabel.setText(""+s);
+			}
+		});
+		
+		game.addGameListener(new GameListener() {
+
+			public void arcadeCleared() {
+			}
+
+			public void bonusErase() {
+			}
+
+			public void gameOver() {
+			}
+
+			public void levelChanged(Level level) {
+				levelLabel.setText(level.getName());
+			}
+
+			public void levelCleared(Level level) {
 			}
 		});
 		
@@ -61,9 +82,9 @@ public final class InfoPanel extends JPanel {
 		
 		tool.addSeparator(new Dimension(0,5));
 		
-		level = new JLabel(game.getLevel().getName());
-		level.setAlignmentX(CENTER_ALIGNMENT);
-		tool.add(level);
+		levelLabel = new JLabel(game.getLevel().getName());
+		levelLabel.setAlignmentX(CENTER_ALIGNMENT);
+		tool.add(levelLabel);
 		
 		tool.addSeparator();
 
@@ -74,9 +95,9 @@ public final class InfoPanel extends JPanel {
 		
 		tool.addSeparator(new Dimension(0,5));
 		
-		lives = new JLabel(""+game.getPlayer().getLives());
-		lives.setAlignmentX(CENTER_ALIGNMENT);
-		tool.add(lives);
+		livesLabel = new JLabel(""+game.getPlayer().getLives());
+		livesLabel.setAlignmentX(CENTER_ALIGNMENT);
+		tool.add(livesLabel);
 		
 		tool.addSeparator();
 
@@ -87,9 +108,9 @@ public final class InfoPanel extends JPanel {
 		
 		tool.addSeparator(new Dimension(0,5));
 		
-		score = new JLabel(""+game.getPlayer().getScore());
-		score.setAlignmentX(CENTER_ALIGNMENT);
-		tool.add(score);
+		scoreLabel = new JLabel(""+game.getPlayer().getScore());
+		scoreLabel.setAlignmentX(CENTER_ALIGNMENT);
+		tool.add(scoreLabel);
 		
 		tool.addSeparator();
 		

@@ -43,9 +43,11 @@ public final class InteractionPanel extends JPanel {
 			public void actionPerformed(final ActionEvent e) {
 				final String name = JOptionPane.showInputDialog("Level name:");
 				if (name != null) {
+					centerPanel.getFieldPanel().togglePanelForPrintScreen();
 					fieldImage.saveImage(name);
 					levelManager.writeLevelToFile(name);
 					centerPanel.getFieldPanel().setSaved(true);
+					centerPanel.getFieldPanel().togglePanelForPrintScreen();
 				}
 			}
 		});

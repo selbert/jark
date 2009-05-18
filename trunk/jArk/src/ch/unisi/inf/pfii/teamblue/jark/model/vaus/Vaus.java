@@ -66,7 +66,7 @@ public abstract class Vaus implements Constants {
 	 * Move the Vaus based on the moveX field
 	 */
 	public void move() {
-		posX += moveRight * VAUS_SPEED - moveLeft * VAUS_SPEED;
+		setX(posX + moveRight * VAUS_SPEED - moveLeft * VAUS_SPEED);
 		if (posX <= 5) {
 			setX(5);
 		}

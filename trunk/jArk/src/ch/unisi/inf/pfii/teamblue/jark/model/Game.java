@@ -65,7 +65,7 @@ public final class Game implements Constants {
 		player = new Player("pippo", 3);
 		started = false;
 		gameOver = false;
-		arcadeMode = true;
+		arcadeMode = !isTest;
 		arcadeLevel = 0;
 		this.levelManager = levelManager;
 		if (!isTest && arcadeMode) {

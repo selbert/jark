@@ -24,8 +24,11 @@ public final class UltraBall extends Ball {
 	}
 	@Override
 	public final void move() {
-		float newX = x+(speedX * speedModifier);
-		float newY = y+(speedY * speedModifier);
+		float speedHypot = sqrt(speedX*this.speedX + speedY*speedY);
+		float speedx = (speedX / speedHypot)*speed*speedModifier;
+		float speedy = (speedY / speedHypot)*speed*speedModifier;
+		float newX = x+speedx;
+		float newY = y+speedy;
 		
 		if (boxEnabled && newY + (2*BALL_RADIUS) >= VAUS_Y + VAUS_HEIGHT + 1) {
 			speedY = -speedY;

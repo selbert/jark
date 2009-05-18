@@ -23,6 +23,7 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 	protected Vaus vaus;
 	protected Level level;
 	protected float speedModifier;
+	protected float speed;
 	protected boolean boxEnabled;
 	protected boolean dead;
 	
@@ -31,8 +32,9 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 		this.level = level;
 		x = vaus.getX() + ((float)vaus.getWidth() / 2) - BALL_RADIUS;
 		y = (VAUS_Y - 2*BALL_RADIUS);
-		speedX = 0;
+		speedX = -3;
 		speedY = 0;
+		speed = 5;
 		speedModifier = 1;
 	}
 	
@@ -96,8 +98,11 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 	 * Moves a ball
 	 */
 	public void move() {
-		float newX = x+(speedX * speedModifier);
-		float newY = y+(speedY * speedModifier);
+		float speedHypot = sqrt(speedX*this.speedX + speedY*speedY);
+		float speedx = (speedX / speedHypot)*speed*speedModifier;
+		float speedy = (speedY / speedHypot)*speed*speedModifier;
+		float newX = x+speedx;
+		float newY = y+speedy;
 		
 		if (boxEnabled && newY + (2*BALL_RADIUS) >= VAUS_Y + VAUS_HEIGHT + 1) {
 			speedY = -speedY;
@@ -142,8 +147,12 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 		if (bounceVaus(newX, newY)) {
 			newY =  VAUS_Y-1 - (BALL_RADIUS*2);
 		}
-		x = newX;
-		y = newY;
+		if (!level.persistentBrickHasBallInside(newX,newY) || 
+				(level.persistentBrickHasBallInside(newX,newY) && 
+						level.persistentBrickHasBallInside(x,y))) {
+			x = newX;
+			y = newY;
+		}
 	}
 	
 	/**
@@ -160,6 +169,22 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 		}
 		return false;
 	}
+	
+	protected float sqrt(final float coef) {
+
+
+		float ans = coef / 2f; 
+		int i = 1;
+
+		while (i < 7) {
+
+			ans = ans-((ans*ans-coef)/(2f*ans));
+
+			i = i+1;   
+		}
+
+		return ans;  
+	} 
 	
 	/**
 	 * Check the intersections of the X component of the ball

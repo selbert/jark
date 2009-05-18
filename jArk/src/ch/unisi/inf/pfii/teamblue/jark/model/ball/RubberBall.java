@@ -24,8 +24,11 @@ public final class RubberBall extends Ball {
 	}
 	@Override
 	public final void move() {
-		float newX = x+(speedX * speedModifier);
-		float newY = y+(speedY * speedModifier);
+		float speedHypot = sqrt(speedX*this.speedX + speedY*speedY);
+		float speedx = (speedX / speedHypot)*speed*speedModifier;
+		float speedy = (speedY / speedHypot)*speed*speedModifier;
+		float newX = x+speedx;
+		float newY = y+speedy;
 		
 		if (boxEnabled && newY + (2*BALL_RADIUS) >= VAUS_Y + VAUS_HEIGHT + 1) {
 			speedY = -speedY;
@@ -71,8 +74,12 @@ public final class RubberBall extends Ball {
 		if (bounceVaus(newX, newY)) {
 			newY =  VAUS_Y-1 - (BALL_RADIUS*2);
 		}
-		x = newX;
-		y = newY;
+		if (!level.persistentBrickHasBallInside(newX,newY) || 
+				(level.persistentBrickHasBallInside(newX,newY) && 
+						level.persistentBrickHasBallInside(x,y))) {
+			x = newX;
+			y = newY;
+		}
 	}
 	@Override
 	protected final boolean bounceX(final float newX) {

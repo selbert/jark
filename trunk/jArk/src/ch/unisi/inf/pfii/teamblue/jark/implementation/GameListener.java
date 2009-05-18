@@ -15,4 +15,5 @@ public interface GameListener {
 	public void gameOver();
 	public void bonusErase();
 	public void levelCleared(Level level);
+	public void arcadeCleared();
 }

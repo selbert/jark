@@ -26,6 +26,7 @@ public interface Constants {
 	int FIELD_ROWS = 16;
 	int BRICK_WIDTH = 57;
 	int BRICK_HEIGHT = 25;
+	int MAX_LEVEL = 20;
 	//bonus lives (ms)
 	int INSTANTANEOUS = 0;
 	int PERSISTENT = Integer.MAX_VALUE;

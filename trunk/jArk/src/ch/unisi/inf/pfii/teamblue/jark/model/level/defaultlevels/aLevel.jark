@@ -1,0 +1,35 @@
+aLevel
+
+defaultBrick resistentBrick null null null resistentBrick null null null resistentBrick null veryResistentBrick null null 
+defaultBrick resistentBrick null null resistentBrick defaultBrick resistentBrick null null resistentBrick null veryResistentBrick null null 
+defaultBrick defaultBrick resistentBrick null null resistentBrick null null resistentBrick null veryResistentBrick null veryResistentBrick null 
+defaultBrick defaultBrick defaultBrick resistentBrick resistentBrick null resistentBrick resistentBrick null veryResistentBrick null null null veryResistentBrick 
+defaultBrick defaultBrick defaultBrick defaultBrick defaultBrick null null null resistentBrick null veryResistentBrick null veryResistentBrick null 
+null defaultBrick defaultBrick defaultBrick null null null null null resistentBrick null veryResistentBrick null null 
+defaultBrick null null null null defaultBrick defaultBrick defaultBrick defaultBrick resistentBrick null veryResistentBrick defaultBrick defaultBrick 
+null defaultBrick null null null persistentBrick defaultBrick defaultBrick defaultBrick defaultBrick persistentBrick defaultBrick defaultBrick defaultBrick 
+null resistentBrick defaultBrick defaultBrick null null persistentBrick defaultBrick defaultBrick defaultBrick null defaultBrick defaultBrick defaultBrick 
+null null defaultBrick null defaultBrick null defaultBrick persistentBrick defaultBrick defaultBrick defaultBrick defaultBrick defaultBrick persistentBrick 
+defaultBrick null resistentBrick defaultBrick defaultBrick defaultBrick null defaultBrick persistentBrick defaultBrick defaultBrick defaultBrick persistentBrick null 
+defaultBrick defaultBrick null null resistentBrick defaultBrick null defaultBrick persistentBrick defaultBrick defaultBrick defaultBrick persistentBrick null 
+resistentBrick defaultBrick defaultBrick null null null defaultBrick null defaultBrick persistentBrick defaultBrick persistentBrick null null 
+null resistentBrick defaultBrick defaultBrick null null resistentBrick defaultBrick defaultBrick null persistentBrick null null null 
+null null resistentBrick defaultBrick defaultBrick resistentBrick defaultBrick defaultBrick null null null null null null 
+null null null resistentBrick defaultBrick defaultBrick defaultBrick null null null null null null null 
+
+null null null null null null null null null null null null null null 
+null null null null neutral_slowball null null null null neutral_slowball null null null null 
+null null null null null null null null null null null null null null 
+null null null malus_falseball null null null null null null null null null malus_removelife 
+null malus_removelife null null null null null null null null null null null null 
+null null null null null null null null null null null null null null 
+null null null null null null neutral_slowball null null null null null null null 
+null null null null null null null null null null null null null null 
+null null null bonus_addlife null null null null null bonus_ultraball null null null null 
+null null bonus_riflevaus null null null null null null null null null null null 
+bonus_box null null malus_shortvaus null null null null null null null null null null 
+null null null null malus_shortvaus bonus_explosionball null null null null null null null null 
+null null neutral_fastball null null null null null null null null null null null 
+null null null null null null null bonus_longvaus null null null null null null 
+null null null bonus_longvaus null null null null null null null null null null 
+null null null null null null null null null null null null null null 

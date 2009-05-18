@@ -6,6 +6,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Properties;
 
 import javax.swing.JOptionPane;
 
@@ -17,6 +21,8 @@ import ch.unisi.inf.pfii.teamblue.jark.model.brick.DefaultBrick;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.PersistentBrick;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.ResistentBrick;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.VeryResistentBrick;
+import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
+import ch.unisi.inf.pfii.teamblue.jark.view.ImagesRepository;
 
 public class LevelManager implements Constants {
 	private String[][] brickField;
@@ -40,6 +46,20 @@ public class LevelManager implements Constants {
 			System.out.println(ex);
 		}
 	}
+	public void readArcadeLevelFromFile(String filename) {
+		try{
+			final InputStreamReader streamReader = new InputStreamReader(LevelManager.class.getResourceAsStream(filename));
+			final BufferedReader myInput = new BufferedReader(streamReader);
+			setLevelName(myInput.readLine());
+			myInput.readLine();
+			loadField(brickField, myInput);
+			myInput.readLine();
+			loadField(bonusField, myInput);
+		} catch (IOException ex) {
+			System.out.println(ex);
+		}
+	}
+	
 	private final void loadField(String[][] field, BufferedReader input) {
 		for (int i = 0; i < FIELD_ROWS; i++) {
 			String[] tmp = null;
@@ -150,4 +170,17 @@ public class LevelManager implements Constants {
 	public String getLevelName() {
 		return levelName;
 	}
+
+	public void loadArcadeLevel(int arcadeLevel) {
+		Properties properties = new Properties();
+		try {
+			properties.load(LevelManager.class.getResourceAsStream("defaultlevels/levelspath.properties"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		final String levelPath = "defaultlevels/" + properties.getProperty(arcadeLevel+"");
+		readArcadeLevelFromFile(levelPath);
+	}
+
+	
 }

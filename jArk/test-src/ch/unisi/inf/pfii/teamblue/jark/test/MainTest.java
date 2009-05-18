@@ -364,6 +364,6 @@ public class MainTest extends TestCase implements Constants {
 	}
 	
 	public void testEncryptDecrypt() {
-		assertTrue(StringEncrypt.dencrypt(StringEncrypt.encrypt("A$das dasd", 5),5).equals("A$das dasd"));
+		assertTrue(StringEncrypt.decrypt(StringEncrypt.encrypt("A$das dasd", 5),5).equals("A$das dasd"));
 	}
 }

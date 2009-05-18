@@ -7,10 +7,8 @@ public class StringEncrypt {
 		
 		char[] array = string.toCharArray();
 		
-		int j = code;
-		
 		for (int i = 0; i < array.length; i++) {
-			array[i] = (char)(array[i] - ((i + j) % 30));
+			array[i] = (char)(array[i] - ((i + code) % 30));
 		}
 		
 		encryptedString = new String(array);
@@ -18,15 +16,13 @@ public class StringEncrypt {
 		return encryptedString;
 	}
 	
-	public static final String dencrypt(final String string, final int code) {
+	public static final String decrypt(final String string, final int code) {
 		String dencryptedString;
 		
 		char[] array = string.toCharArray();
 		
-		int j = code;
-		
 		for (int i = 0; i < array.length; i++) {
-			array[i] = (char)(array[i] + ((i + j) % 100));
+			array[i] = (char)(array[i] + ((i + code) % 30));
 		}
 		
 		dencryptedString = new String(array);

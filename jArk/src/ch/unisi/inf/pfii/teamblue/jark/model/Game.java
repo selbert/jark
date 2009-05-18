@@ -39,11 +39,17 @@ public final class Game implements Constants {
 
 	private final Random rnd;
 	
+	private final LevelManager levelManager;
+	
 	private Vaus vaus;
 	private Player player;
 	private Level level;
 	private boolean started;
 	private boolean gameOver;
+	
+	private boolean arcadeMode;
+	
+	private int arcadeLevel;
 	
 	public Game(final boolean isTest, final LevelManager levelManager) {
 
@@ -59,9 +65,14 @@ public final class Game implements Constants {
 		player = new Player("pippo", 3);
 		started = false;
 		gameOver = false;
-		
-		if (!isTest) {
-			setLevel(new Level(100, freeBonuses, vaus));
+		arcadeMode = true;
+		arcadeLevel = 0;
+		this.levelManager = levelManager;
+		if (!isTest && arcadeMode) {
+			levelManager.loadArcadeLevel(arcadeLevel);
+			final Brick[][] field = levelManager.fieldFromArrays();
+			final String levelName = levelManager.getLevelName();
+			setLevel(new Level(levelName, field, freeBonuses, vaus));
 		} else {
 			final Brick[][] field = levelManager.fieldFromArrays();
 			final String levelName = levelManager.getLevelName();
@@ -111,7 +122,9 @@ public final class Game implements Constants {
 	public void setStarted(boolean started) {
 		this.started = started;
 	}
-
+	public void setArcadeMode(boolean arcade) {
+		arcadeMode = arcade;
+	}
 	private final void setLevel(final Level level) {
 		this.level = level;
 		fireLevelChanged();
@@ -338,6 +351,11 @@ public final class Game implements Constants {
 			li.bonusErase();
 		}
 	}
+	private void fireArcadeCleared() {
+		for (GameListener li : gameListeners) {
+			li.arcadeCleared();
+		}
+	}
 
 	public void releaseBalls() {
 		for (Ball b : balls) {
@@ -379,11 +397,19 @@ public final class Game implements Constants {
 			bullets.clear();
 			freeBonuses.clear();
 			removeTakenBonuses();
-			setVaus(new DefaultVaus(GAME_WIDTH / 2 - VAUS_WIDTH / 2));
-			setLevel(new Level(100, freeBonuses, vaus));
-			Ball newBall = new StartBall(vaus, level);
-			vaus.addVausListener(newBall);
-			addBall(newBall);
+			if (arcadeMode && arcadeLevel < MAX_LEVEL) {
+				arcadeLevel++;
+				setVaus(new DefaultVaus(GAME_WIDTH / 2 - VAUS_WIDTH / 2));
+				levelManager.loadArcadeLevel(arcadeLevel);
+				final Brick[][] field = levelManager.fieldFromArrays();
+				final String levelName = levelManager.getLevelName();
+				setLevel(new Level(levelName, field, freeBonuses, vaus));
+				Ball newBall = new StartBall(vaus, level);
+				vaus.addVausListener(newBall);
+				addBall(newBall);
+			} else if (arcadeLevel >= MAX_LEVEL) {
+				fireArcadeCleared();
+			}
 			return false;
 		}
 		if (player.getLives() <= 0) {
@@ -397,5 +423,7 @@ public final class Game implements Constants {
 		}
 		return false;
 	}
+
+	
 }
 

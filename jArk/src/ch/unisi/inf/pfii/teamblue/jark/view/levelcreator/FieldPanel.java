@@ -32,6 +32,8 @@ public final class FieldPanel extends JComponent implements Constants {
 	private String[][] brickField;
 	private String[][] bonusField;
 	private boolean saved;
+	private boolean isPrintScreen;
+	
 	private final LevelManager levelManager;
 	public FieldPanel(final LevelManager levelManager, final ButtonGroup group) {
 		saved = true;
@@ -128,7 +130,7 @@ public final class FieldPanel extends JComponent implements Constants {
 				String bonus = bonusField[i][j];
 				if (brick != null) {
 					g2d.drawImage(ImagesRepository.getImage(brick), BRICK_WIDTH*j, BRICK_HEIGHT*i,this);
-					if (bonus != null) {
+					if (bonus != null && !isPrintScreen) {
 						g2d.drawImage(ImagesRepository.getImage(bonus), BRICK_WIDTH*j+4, BRICK_HEIGHT*i+4, 34, 15, this);
 					}
 				}
@@ -136,7 +138,7 @@ public final class FieldPanel extends JComponent implements Constants {
 		}
 		
 		selected = group.getSelection();
-		if (selected != null && paintingAllowed) {
+		if (selected != null && paintingAllowed && !isPrintScreen) {
 			g2d.drawImage(ImagesRepository.getImage(selected.getActionCommand()), BRICK_WIDTH*brickX, BRICK_HEIGHT*brickY, this);
 		}
 	}
@@ -153,4 +155,7 @@ public final class FieldPanel extends JComponent implements Constants {
 		bonusField = levelManager.getBonusField();
 	}
 
+	public final void togglePanelForPrintScreen() {
+		isPrintScreen = (isPrintScreen) ? false : true;
+	}
 }

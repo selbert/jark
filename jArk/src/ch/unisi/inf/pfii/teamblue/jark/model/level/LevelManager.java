@@ -173,7 +173,10 @@ public class LevelManager implements Constants {
 	}
 
 	public final String[] getLevelsPath(final String type) {
-	    File dir = new File("levels");
+	    File dir = new File("levels/");
+		if (!dir.isDirectory()) { 
+			dir.mkdir();
+		}
 	    final String[] files = dir.list(new FilenameFilter() {
 			public boolean accept(File dir, String name) {
 				return (name.endsWith("."+type));

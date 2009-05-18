@@ -64,6 +64,7 @@ public final class MainFrame extends JFrame {
 		JButton singleLevelButton = new JButton("Single Level");
 		singleLevelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				cardPanel.updateLevelList();
 				selectedButton = "singleLevel";
 				cardLayout.show(cardPanel, "level");
 			}	
@@ -81,6 +82,7 @@ public final class MainFrame extends JFrame {
 						new EditorFrame(levelManager, true);
 					}
 				});	
+				cardLayout.show(cardPanel, "arcade");
 			}
 		});
 		gbc.gridx = 0;

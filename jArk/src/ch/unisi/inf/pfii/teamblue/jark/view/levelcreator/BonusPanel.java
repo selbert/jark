@@ -3,10 +3,8 @@ package ch.unisi.inf.pfii.teamblue.jark.view.levelcreator;
 import java.awt.Cursor;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Enumeration;
-import java.util.Set;
+import java.util.Properties;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -30,7 +28,7 @@ import ch.unisi.inf.pfii.teamblue.jark.view.ImagesRepository;
 @SuppressWarnings("serial")
 public final class BonusPanel extends JPanel {
 	
-	public BonusPanel(final FieldPanel fp, ButtonGroup group) {
+	public BonusPanel(final FieldPanel fp, ButtonGroup group, Properties properties) {
 		setBorder(new EtchedBorder());
 		setLayout(new GridLayout(3,1));
 
@@ -72,7 +70,7 @@ public final class BonusPanel extends JPanel {
 				button.setHorizontalAlignment(SwingConstants.CENTER);
 				button.setVerticalAlignment(SwingConstants.CENTER);
 				button.setActionCommand(key);
-				button.setToolTipText(key);
+				button.setToolTipText(properties.getProperty(key));
 				button.setCursor(new Cursor(Cursor.HAND_CURSOR));
 				
 				group.add(button);

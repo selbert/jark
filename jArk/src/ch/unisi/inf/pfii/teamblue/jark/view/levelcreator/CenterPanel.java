@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.io.IOException;
+import java.util.Properties;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JCheckBox;
@@ -16,6 +18,7 @@ import javax.swing.JTextArea;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.LevelManager;
+import ch.unisi.inf.pfii.teamblue.jark.view.ImagesRepository;
 
 /**
  * The game panel, it should show the bricks the balls and the vaus
@@ -29,8 +32,15 @@ public final class CenterPanel extends JComponent implements Constants {
 	private final FieldPanel fieldPanel;
 	private final FieldImage fieldImage;
 	private final OptionPanel optionPanel;
+	private final Properties properties = new Properties();
 	
 	public CenterPanel(final LevelManager levelManager, final ButtonGroup group) {
+		try {
+			properties.load(getClass().getResourceAsStream("desc.properties"));
+		} catch (IOException ex) {
+			System.out.println(ex);
+		}
+		
 		final GridBagLayout gbl = new GridBagLayout();
 		final GridBagConstraints gbc = new GridBagConstraints();
 		setLayout(gbl);
@@ -59,9 +69,9 @@ public final class CenterPanel extends JComponent implements Constants {
 		
 		JTabbedPane tabbedPane = new JTabbedPane();
 		
-		BricksPanel bricks = new BricksPanel(group);
+		BricksPanel bricks = new BricksPanel(group, properties);
 		tabbedPane.addTab("Bricks", bricks);
-		BonusPanel bp = new BonusPanel(fieldPanel, group);
+		BonusPanel bp = new BonusPanel(fieldPanel, group, properties);
 		tabbedPane.addTab("Bonus", bp);
 		optionPanel = new OptionPanel(tabbedPane, fieldPanel);
 		tabbedPane.addTab("Options", optionPanel);

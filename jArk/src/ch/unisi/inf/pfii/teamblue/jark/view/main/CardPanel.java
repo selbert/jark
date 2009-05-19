@@ -36,7 +36,7 @@ public class CardPanel extends JPanel {
 		this.levelManager = levelManager;
 		
 		JPanel firstCard = new JPanel();
-		firstCard.add(new JLabel("High Score"));
+		firstCard.add(new HighScorePanel());
 		add(firstCard, "arcade");
 		
 		

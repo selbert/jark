@@ -34,7 +34,7 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 		y = (VAUS_Y - 2*BALL_RADIUS);
 		speedX = -3;
 		speedY = 0;
-		speed = 5;
+		speed = BALL_SPEED;
 		speedModifier = 1;
 	}
 	
@@ -171,18 +171,13 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 	}
 	
 	protected float sqrt(final float coef) {
-
-
 		float ans = coef / 2f; 
 		int i = 1;
 
 		while (i < 7) {
-
 			ans = ans-((ans*ans-coef)/(2f*ans));
-
 			i = i+1;   
 		}
-
 		return ans;  
 	} 
 	

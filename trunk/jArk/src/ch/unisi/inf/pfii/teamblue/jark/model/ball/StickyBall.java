@@ -1,5 +1,7 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.ball;
 
+import java.awt.image.BufferedImage;
+
 import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 
@@ -55,6 +57,12 @@ public final class StickyBall extends Ball {
 		return false;
 	}
 	
+	public final void move() {
+		if (!sticked) {
+			super.move();
+		}
+	}
+	
 	@Override
 	public final void vausMoved(final int newX) {
 		if (sticked) {
@@ -69,6 +77,4 @@ public final class StickyBall extends Ball {
 			setSpeedY(-3);
 		}
 	}
-	
-	
 }

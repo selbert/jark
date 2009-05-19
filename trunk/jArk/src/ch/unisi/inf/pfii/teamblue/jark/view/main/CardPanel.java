@@ -20,12 +20,14 @@ import ch.unisi.inf.pfii.teamblue.jark.view.ImagesRepository;
 public class CardPanel extends JPanel {
 	private JLabel labelImage;
 	private final LevelManager levelManager;
+	private final JPanel firstCard;
 	private String selectedLevel;
 	private final JList list;
 	private boolean displaySelected;
 	private String[] paths;
 	private String[] levelsDetail;
 	private int selectedIndex;
+	
 	
 	public CardPanel(CardLayout cardLayout, final LevelManager levelManager) {
 		setBorder(new EtchedBorder());
@@ -35,7 +37,7 @@ public class CardPanel extends JPanel {
 		
 		this.levelManager = levelManager;
 		
-		JPanel firstCard = new JPanel();
+		firstCard = new JPanel();
 		firstCard.add(new HighScorePanel());
 		add(firstCard, "arcade");
 		
@@ -86,5 +88,9 @@ public class CardPanel extends JPanel {
 	
 	public final void setSelectedItem() {
 		list.setSelectedIndex(selectedIndex);
+	}
+	public final void updateHighScore() {
+		firstCard.removeAll();
+		firstCard.add(new HighScorePanel());
 	}
 }

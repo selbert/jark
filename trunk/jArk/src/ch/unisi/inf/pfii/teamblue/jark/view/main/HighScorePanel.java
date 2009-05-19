@@ -3,6 +3,7 @@ package ch.unisi.inf.pfii.teamblue.jark.view.main;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -19,10 +20,18 @@ import javax.swing.border.EtchedBorder;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.StringEncrypt;
 
 public class HighScorePanel extends JPanel {
+	final GridBagConstraints gbc;
 	public HighScorePanel() {
-		final File file = new File("HighScore.jahs");
+		
 		setLayout(new GridBagLayout());
-		final GridBagConstraints gbc = new GridBagConstraints();
+		gbc = new GridBagConstraints();
+		
+		paintComponent(getGraphics());
+	}
+	
+	@Override
+	public void paintComponent(Graphics g) {
+		final File file = new File("HighScore.jahs");
 		try {
 			if (!file.createNewFile()) {
 				try{

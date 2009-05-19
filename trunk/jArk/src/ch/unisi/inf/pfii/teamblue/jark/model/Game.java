@@ -1,12 +1,24 @@
 package ch.unisi.inf.pfii.teamblue.jark.model;
 
+import java.awt.Component;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
+
+import javax.swing.JOptionPane;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.BonusListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.GameListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.LevelListener;
+import ch.unisi.inf.pfii.teamblue.jark.implementation.StringEncrypt;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.VausSetListener;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.StartBall;
@@ -33,6 +45,7 @@ public final class Game implements Constants {
 	private final ArrayList<Ball> bullets;
 	private final ArrayList<Bonus> freeBonuses;
 	private final ArrayList<Bonus> takenBonuses;
+	private final HashMap<String, Integer> highScoreList;
 	
 	private final ArrayList<VausSetListener> vausListeners;
 	private final ArrayList<GameListener> gameListeners;
@@ -55,6 +68,7 @@ public final class Game implements Constants {
 
 		//init
 		rnd = new Random();
+		highScoreList = new HashMap<String, Integer>();
 		vausListeners = new ArrayList<VausSetListener>();
 		gameListeners = new ArrayList<GameListener>();
 		balls = new ArrayList<Ball>();
@@ -83,7 +97,54 @@ public final class Game implements Constants {
 		for (int i = 0; i < 1; i++) {
 			addRandomBall();
 		}
+		initializeHighScoreFile();
 		
+	}
+	
+	public void initializeHighScoreFile() {
+		final File file = new File("HighScore.jahs");
+		try {
+			if (!file.createNewFile()) {
+				try{
+					final BufferedReader myInput = new BufferedReader(new FileReader("HighScore.jahs"));
+					String readLine = myInput.readLine();
+					while(readLine != null) {
+						final char a = readLine.charAt(0); 
+						final int x = a - '0';
+						String decryptedString = StringEncrypt.decrypt(readLine.substring(1), x);
+						String name = decryptedString.split(":")[0];
+						Integer score = Integer.parseInt(decryptedString.split(":")[1]);
+						highScoreList.put(name, score);
+						readLine = myInput.readLine();
+					}
+				} catch (IOException ex) {
+					System.out.println(ex);
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public void writeHighScoreFile() {
+		final File file = new File("HighScore.jahs");
+		try {
+			file.createNewFile();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		try {
+			FileWriter fstream = new FileWriter(file);
+			BufferedWriter out = new BufferedWriter(fstream);
+			while (highScoreList.size() > 0) {
+				String name = getTopScore();
+				final int x = rnd.nextInt(10);
+				out.write(x + StringEncrypt.encrypt(name + ":" + highScoreList.get(name),x) + "\n");
+				highScoreList.remove(name);
+			}
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	//getters
@@ -377,7 +438,7 @@ public final class Game implements Constants {
 	 * Check if there are balls in game, if none remove life and restart ball
 	 */
 	public void checkBallsInGame() {
-		if (balls.size() == 0) {
+		if (balls.size() == 0 && started) {
 			player.decrementLives();
 			started = false;
 			balls.clear();
@@ -407,12 +468,12 @@ public final class Game implements Constants {
 				Ball newBall = new StartBall(vaus, level);
 				vaus.addVausListener(newBall);
 				addBall(newBall);
-			} else if (arcadeLevel >= MAX_LEVEL) {
+			} else {
 				fireArcadeCleared();
 			}
 			return false;
 		}
-		if (player.getLives() <= 0) {
+		if (player.getLives() <= 0 && !gameOver) {
 			fireGameOver();
 			started = false;
 			balls.clear();
@@ -424,6 +485,44 @@ public final class Game implements Constants {
 		return false;
 	}
 
-	
+	public int getLeastScore() {
+		if (highScoreList.size() > 0) {
+			String[] a = new String[highScoreList.size()];
+			highScoreList.keySet().toArray(a);
+			int returnValue = highScoreList.get(a[0]);
+			for (String i : a) {
+				int t = highScoreList.get(i);
+				returnValue = Math.min(returnValue, t);
+			}
+			return returnValue;
+		}
+		return 0;
+	}
+	public String getTopScore() {
+		if (highScoreList.size() > 0) {
+			String[] a = new String[highScoreList.size()];
+			highScoreList.keySet().toArray(a);
+			String returnValue = a[0];
+			for (String i : a) {
+				int s = highScoreList.get(returnValue);
+				int t = highScoreList.get(i);
+				if (t > s) {
+					returnValue = i;
+				}
+				
+			}
+			return returnValue;
+		}
+		return "";
+	}
+
+	public void addHighScore(String name) {
+		highScoreList.put(name, player.getScore());
+		writeHighScoreFile();
+	}
+
+	public HashMap<String, Integer> getHighScore() {
+		return highScoreList;
+	}
 }
 

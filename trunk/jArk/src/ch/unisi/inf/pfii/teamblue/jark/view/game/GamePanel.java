@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.event.MouseInputAdapter;
 
@@ -61,6 +62,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 	private boolean firstTimeRun;
 	private boolean vausIsShooting;
 	private boolean levelCleared;
+	private boolean gameCleared;
 	
 	private final Cursor transparentCursor;
 	
@@ -87,6 +89,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 			}
 
 			public void arcadeCleared() {
+				gameCleared = true;
 			}
 			
 		});
@@ -97,6 +100,22 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 			public final void keyPressed(KeyEvent ev) {
 				switch (ev.getKeyCode()) {
 				case KeyEvent.VK_ENTER:
+					if (gameCleared || gameOver) {
+						System.out.println(game.getLeastScore());
+						System.out.println(game.getPlayer().getScore());
+						if (game.getLeastScore() < game.getPlayer().getScore() || game.getHighScore().size() < 10) {
+							boolean correctInput = false;
+							String name = "";
+							while(!correctInput) {
+								name = JOptionPane.showInputDialog("You reached the Highscore list!\n\nInsert name:");
+								if (name != null && name.matches("[a-zA-Z_][a-zA-Z_0-9]*")) {
+									game.addHighScore(name);
+									correctInput = true;
+								}
+							}
+						}
+						getTopLevelAncestor().hide();
+					}
 					if (levelCleared) {
 						levelCleared = false;
 					}
@@ -255,6 +274,11 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 	public final void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
+
+		if (gameCleared) {
+			g2d.drawString("Game cleared, press [ENTER] to continue..", 100, 100);
+			return;
+		}
 		
 		if (gameOver) {
 			play();
@@ -266,6 +290,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 			g2d.drawString("Level cleared, press [ENTER] to continue..", 100, 100);
 			return;
 		}
+		
 		
 		g2d.setColor(new Color(0xb0c4de));
 		g2d.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);

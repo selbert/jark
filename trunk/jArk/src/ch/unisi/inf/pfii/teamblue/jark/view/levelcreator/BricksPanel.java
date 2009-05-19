@@ -24,7 +24,7 @@ import ch.unisi.inf.pfii.teamblue.jark.view.ImagesRepository;
 public final class BricksPanel extends JPanel {
 	
 	public BricksPanel(ButtonGroup group) {
-		setLayout(new GridLayout(0,1));
+		setLayout(new GridLayout(1,0));
 		
 		JLabel bricks = new JLabel("Bricks", SwingConstants.CENTER);
 		add(bricks);

@@ -165,7 +165,8 @@ public class LevelManager implements Constants {
 			if (file.createNewFile()) {
 				FileWriter fstream = new FileWriter(file);
 				BufferedWriter out = new BufferedWriter(fstream);
-				out.write(name);
+				out.write(levelName);
+				out.write(levelAuthor);
 				out.write("\n\n");
 				out.write(fieldToString(brickField));
 				out.write("\n");

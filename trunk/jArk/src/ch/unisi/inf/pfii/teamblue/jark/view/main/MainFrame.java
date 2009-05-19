@@ -117,7 +117,7 @@ public final class MainFrame extends JFrame {
 						}
 					});	
 				} 
-				if (selectedButton.equals("singleLevel")) {
+				if (selectedButton.equals("singleLevel") && cardPanel.getSelectedLevel() != null) {
 					levelManager.readLevelFromFile("levels/"+cardPanel.getSelectedLevel()+".jark");
 					final Game game = new Game(true, levelManager);
 					EventQueue.invokeLater(new Runnable() {

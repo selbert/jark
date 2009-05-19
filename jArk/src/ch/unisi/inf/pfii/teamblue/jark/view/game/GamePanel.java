@@ -101,8 +101,6 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 				switch (ev.getKeyCode()) {
 				case KeyEvent.VK_ENTER:
 					if (gameCleared || gameOver) {
-						System.out.println(game.getLeastScore());
-						System.out.println(game.getPlayer().getScore());
 						if (game.isArcade() && (game.getLeastScore() < game.getPlayer().getScore() || game.getHighScoreListScores().size() < 10)) {
 							boolean correctInput = false;
 							String name = "";

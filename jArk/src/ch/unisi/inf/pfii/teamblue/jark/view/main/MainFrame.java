@@ -53,6 +53,7 @@ public final class MainFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				selectedButton = "arcade";
 				cardLayout.show(cardPanel, "arcade");
+				cardPanel.updateHighScore();
 			}	
 		});
 		gbc.gridx = 0;

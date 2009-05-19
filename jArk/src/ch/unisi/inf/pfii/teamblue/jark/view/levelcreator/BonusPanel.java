@@ -32,7 +32,7 @@ public final class BonusPanel extends JPanel {
 	public BonusPanel(final FieldPanel fp, ButtonGroup group) {
 		setBorder(new EtchedBorder());
 		setLayout(new GridLayout(3,1));
-		
+
 		JPanel bonus = new JPanel();
 		bonus.setLayout(new BoxLayout(bonus,BoxLayout.X_AXIS));
 			JLabel bonusLabel = new JLabel(" Bonus:  ", SwingConstants.CENTER);

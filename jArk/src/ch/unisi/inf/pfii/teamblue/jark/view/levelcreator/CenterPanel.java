@@ -3,21 +3,19 @@ package ch.unisi.inf.pfii.teamblue.jark.view.levelcreator;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
 import javax.swing.JComponent;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
-import javax.swing.SwingConstants;
-import javax.swing.plaf.TabbedPaneUI;
-import javax.swing.plaf.metal.MetalTabbedPaneUI;
+import javax.swing.JTextArea;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.LevelManager;
-import ch.unisi.inf.pfii.teamblue.jark.view.ImagesRepository;
 
 /**
  * The game panel, it should show the bricks the balls and the vaus
@@ -32,52 +30,48 @@ public final class CenterPanel extends JComponent implements Constants {
 	private final FieldImage fieldImage;
 	
 	public CenterPanel(final LevelManager levelManager, final ButtonGroup group) {
-		setLayout(new BorderLayout(0,6));
+		final GridBagLayout gbl = new GridBagLayout();
+		final GridBagConstraints gbc = new GridBagConstraints();
+		setLayout(gbl);
+		
+		gbc.anchor = GridBagConstraints.CENTER;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.gridwidth = 2;
+		gbc.insets = new Insets(0,0,5,0);
+		
 		JPanel borderPanel = new JPanel();
 		borderPanel.setLayout(null);
 		borderPanel.setPreferredSize(new Dimension(800,402));
 		borderPanel.setBackground(Color.BLACK);
-		
 	    fieldPanel = new FieldPanel(levelManager, group);
 	    fieldImage = new FieldImage(fieldPanel);
 		borderPanel.add(fieldPanel);
-		add(borderPanel, BorderLayout.NORTH);
+		add(borderPanel, gbc);
 		
-		JPanel south = new JPanel();
+	
+		gbc.insets = new Insets(0,0,0,0);
+		gbc.anchor = GridBagConstraints.WEST;
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		gbc.gridwidth = 1;
+		
 		JTabbedPane tabbedPane = new JTabbedPane();
 		
-		JPanel bricks = new JPanel();
-		
-		final String[] str = new String[] { "defaultBrick", "resistentBrick", "veryResistentBrick", "persistentBrick", "removeBrick"  };
-	
-		for (int i = 0; i<str.length; i++) {
-			final ImageIcon im = ImagesRepository.getIcon(str[i]);
-			final ImageIcon him = ImagesRepository.getHighlightedIcon(im);
-			 JRadioButton button = new JRadioButton(im);
-			button.setSelectedIcon(him);
-			button.setHorizontalAlignment(SwingConstants.CENTER);
-			button.setActionCommand(str[i]);
-			button.setToolTipText(str[i]);
-			
-			group.add(button);
-			bricks.add(button);
-		}
+		BricksPanel bricks = new BricksPanel(group);
 		tabbedPane.addTab("Bricks", bricks);
-		
 		BonusPanel bp = new BonusPanel(fieldPanel, group);
 		tabbedPane.addTab("Bonus", bp);
+		OptionPanel optionPanel = new OptionPanel(tabbedPane, fieldPanel);
+		tabbedPane.addTab("Options", optionPanel);
 		
-		JPanel options = new JPanel();
-		tabbedPane.addTab("Options", options);
+		add(tabbedPane, gbc);
 		
-		south.add(tabbedPane, BorderLayout.WEST);
-		
+		gbc.anchor = GridBagConstraints.CENTER;
+		gbc.gridx = 1;
+		gbc.gridy = 1;
 		InteractionPanel test = new InteractionPanel(this, levelManager, fieldImage);
-		south.add(test, BorderLayout.EAST);
-		
-		add(south, BorderLayout.CENTER);
-		
-		
+		add(test, gbc);
 	}
 
 	public final FieldPanel getFieldPanel() {

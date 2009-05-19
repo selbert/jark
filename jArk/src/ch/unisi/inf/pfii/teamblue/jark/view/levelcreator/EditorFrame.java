@@ -37,7 +37,6 @@ public final class EditorFrame extends JFrame {
 		setTitle("[ jArk ] [ Level Creator ]");
 		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		setResizable(false);
-		setBackground(Color.LIGHT_GRAY);
 		((JPanel) getContentPane()).setBorder(new EmptyBorder(6, 6, 6, 6));
 		setLayout(new BorderLayout(6, 6));
 		levelManager.reset();

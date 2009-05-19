@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.jar.JarFile;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -35,14 +36,16 @@ public final class InteractionPanel extends JPanel {
 	private final JButton clearButton;
 	
 	public InteractionPanel(final CenterPanel centerPanel, final LevelManager levelManager, final FieldImage fieldImage) {
-		setLayout(new GridLayout(4, 1));
+		setLayout(new GridLayout(4, 1, 0, 5));
 
 		// first button
 		saveButton = new JButton("Save");
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
-				final String name = JOptionPane.showInputDialog("Level name:");
+				final String name = JOptionPane.showInputDialog("The level will be saved in the folder \"levels/\", \na \".jark\" extension will be automatically added.\n\nInput a name:");
 				if (name != null) {
+					levelManager.setLevelAuthor("Someone");
+					levelManager.setLevelName("Something");
 					centerPanel.getFieldPanel().togglePanelForPrintScreen();
 					fieldImage.saveImage(name);
 					levelManager.writeLevelToFile(name);
@@ -106,6 +109,7 @@ public final class InteractionPanel extends JPanel {
 				centerPanel.getFieldPanel().repaint();
 			}
 		});
+	
 		
 		add(testButton);
 		add(saveButton);

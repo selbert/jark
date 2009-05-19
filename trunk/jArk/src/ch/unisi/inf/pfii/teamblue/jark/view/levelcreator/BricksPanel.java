@@ -1,21 +1,16 @@
 package ch.unisi.inf.pfii.teamblue.jark.view.levelcreator;
 
-import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.Properties;
 
-import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.SwingConstants;
+
 import ch.unisi.inf.pfii.teamblue.jark.view.ImagesRepository;
 
 /**
@@ -28,13 +23,13 @@ import ch.unisi.inf.pfii.teamblue.jark.view.ImagesRepository;
 
 @SuppressWarnings("serial")
 public final class BricksPanel extends JPanel {
+	private final Properties properties;
 	
-	public BricksPanel(ButtonGroup group) {
+	public BricksPanel(ButtonGroup group, Properties properties) {
 		setLayout(new GridBagLayout());
 		final GridBagConstraints gbc = new GridBagConstraints();
+		this.properties = properties;
 		
-		final String[] str = new String[] { "defaultBrick", "resistentBrick", "veryResistentBrick", "persistentBrick", "removeBrick"  };
-
 		gbc.ipadx = 20;
 		gbc.ipady = 15;
 		gbc.gridx = 0;
@@ -72,7 +67,7 @@ public final class BricksPanel extends JPanel {
 		JRadioButton button = new JRadioButton(im);
 		button.setSelectedIcon(him);
 		button.setActionCommand(buttonString);
-		button.setToolTipText(buttonString);
+		button.setToolTipText(properties.getProperty(buttonString));
 		button.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		group.add(button);
 		panel.add(button,gbc);

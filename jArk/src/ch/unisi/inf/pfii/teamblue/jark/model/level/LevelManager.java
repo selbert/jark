@@ -30,6 +30,7 @@ public class LevelManager implements Constants {
 	private String[][] bonusField;
 	private String levelName;
 	private String levelAuthor;
+	private int randomBonusPercentage;
 	
 	public LevelManager() {
 		brickField = new String[FIELD_ROWS][FIELD_COLUMNS];
@@ -39,8 +40,10 @@ public class LevelManager implements Constants {
 	public final void readLevelFromFile(String filepath) {
 		try{
 			final BufferedReader myInput = new BufferedReader(new FileReader(filepath));
-			setLevelName(myInput.readLine());
-			setLevelAuthor(myInput.readLine());
+			final String[] infos = myInput.readLine().split(",");
+			setLevelName(infos[0]);
+			setLevelAuthor(infos[1]);
+			setRandomBonusPercentage(infos[2]);
 			myInput.readLine();
 			loadField(brickField, myInput);
 			myInput.readLine();
@@ -50,16 +53,28 @@ public class LevelManager implements Constants {
 		}
 	}
 	
+	public void setRandomBonusPercentage(String string) {
+		randomBonusPercentage = Integer.parseInt(string);
+	}
+
 	public final void setLevelAuthor(String levelAuthor) {
 		this.levelAuthor = levelAuthor;
+	}
+	public final String getLevelAuthor() {
+		return levelAuthor;
+	}
+	public final int getBonusPercentage() {
+		return randomBonusPercentage;
 	}
 
 	public final void readArcadeLevelFromFile(String filename) {
 		try{
 			final InputStreamReader streamReader = new InputStreamReader(LevelManager.class.getResourceAsStream(filename));
 			final BufferedReader myInput = new BufferedReader(streamReader);
-			setLevelName(myInput.readLine());
-			setLevelAuthor(myInput.readLine());
+			final String[] infos = myInput.readLine().split(",");
+			setLevelName(infos[0]);
+			setLevelAuthor(infos[1]);
+			setRandomBonusPercentage(infos[2]);
 			myInput.readLine();
 			loadField(brickField, myInput);
 			myInput.readLine();
@@ -72,9 +87,10 @@ public class LevelManager implements Constants {
 		String details = "Info not Found";
 		try{
 			final BufferedReader myInput = new BufferedReader(new FileReader(filename));
-			details = myInput.readLine();
+			final String[] infos = myInput.readLine().split(",");
+			details = infos[0];
 			details += " by ";
-			details += myInput.readLine();
+			details += infos[1];
 		} catch (IOException ex) {
 			System.out.println(ex);
 		}
@@ -87,7 +103,7 @@ public class LevelManager implements Constants {
 			try {
 				tmp = input.readLine().split(" ");
 			} catch (IOException ex) {
-				ex.printStackTrace();
+				System.out.println(ex);
 			}
 			for (int j = 0; j<FIELD_COLUMNS; j++) {
 				if (!tmp[j].equals("null")) {
@@ -165,8 +181,7 @@ public class LevelManager implements Constants {
 			if (file.createNewFile()) {
 				FileWriter fstream = new FileWriter(file);
 				BufferedWriter out = new BufferedWriter(fstream);
-				out.write(levelName);
-				out.write(levelAuthor);
+				out.write(levelName+","+levelAuthor+","+randomBonusPercentage);
 				out.write("\n\n");
 				out.write(fieldToString(brickField));
 				out.write("\n");
@@ -175,8 +190,8 @@ public class LevelManager implements Constants {
 			} else {
 				JOptionPane.showMessageDialog(null, "File \""+name+"\" already exist, choose a different name.");
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (IOException ex) {
+			System.out.println(ex);
 		}
 	}
 	
@@ -222,8 +237,8 @@ public class LevelManager implements Constants {
 		Properties properties = new Properties();
 		try {
 			properties.load(LevelManager.class.getResourceAsStream("defaultlevels/levelspath.properties"));
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (IOException ex) {
+			System.out.println(ex);
 		}
 		final String levelPath = "defaultlevels/" + properties.getProperty(arcadeLevel+"");
 		readArcadeLevelFromFile(levelPath);

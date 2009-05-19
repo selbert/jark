@@ -28,6 +28,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.level.LevelManager;
 public final class CenterPanel extends JComponent implements Constants {
 	private final FieldPanel fieldPanel;
 	private final FieldImage fieldImage;
+	private final OptionPanel optionPanel;
 	
 	public CenterPanel(final LevelManager levelManager, final ButtonGroup group) {
 		final GridBagLayout gbl = new GridBagLayout();
@@ -62,7 +63,7 @@ public final class CenterPanel extends JComponent implements Constants {
 		tabbedPane.addTab("Bricks", bricks);
 		BonusPanel bp = new BonusPanel(fieldPanel, group);
 		tabbedPane.addTab("Bonus", bp);
-		OptionPanel optionPanel = new OptionPanel(tabbedPane, fieldPanel);
+		optionPanel = new OptionPanel(tabbedPane, fieldPanel);
 		tabbedPane.addTab("Options", optionPanel);
 		
 		add(tabbedPane, gbc);
@@ -77,5 +78,7 @@ public final class CenterPanel extends JComponent implements Constants {
 	public final FieldPanel getFieldPanel() {
 		return fieldPanel;
 	}
-
+	public final OptionPanel getOptionPanel() {
+		return optionPanel;
+	}
 }

@@ -1,5 +1,6 @@
 package ch.unisi.inf.pfii.teamblue.jark.view.levelcreator;
 
+import java.awt.Cursor;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -72,6 +73,7 @@ public final class BonusPanel extends JPanel {
 				button.setVerticalAlignment(SwingConstants.CENTER);
 				button.setActionCommand(key);
 				button.setToolTipText(key);
+				button.setCursor(new Cursor(Cursor.HAND_CURSOR));
 				
 				group.add(button);
 				

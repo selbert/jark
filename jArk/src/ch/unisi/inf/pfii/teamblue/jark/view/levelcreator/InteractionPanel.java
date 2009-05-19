@@ -5,15 +5,12 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.util.jar.JarFile;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileFilter;
-
 
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.LevelManager;
@@ -44,13 +41,17 @@ public final class InteractionPanel extends JPanel {
 			public void actionPerformed(final ActionEvent e) {
 				final String name = JOptionPane.showInputDialog("The level will be saved in the folder \"levels/\", \na \".jark\" extension will be automatically added.\n\nInput a name:");
 				if (name != null) {
-					levelManager.setLevelAuthor("Someone");
-					levelManager.setLevelName("Something");
-					centerPanel.getFieldPanel().togglePanelForPrintScreen();
+					final FieldPanel fp = centerPanel.getFieldPanel();
+					final OptionPanel op = centerPanel.getOptionPanel();
+					levelManager.setLevelAuthor(op.getLevelAuthor());
+					levelManager.setLevelName(op.getLevelName());
+					levelManager.setRandomBonusPercentage(op.getRandomBonusNum()+"");
+					
+					fp.togglePanelForPrintScreen();
 					fieldImage.saveImage(name);
 					levelManager.writeLevelToFile(name);
-					centerPanel.getFieldPanel().setSaved(true);
-					centerPanel.getFieldPanel().togglePanelForPrintScreen();
+					fp.setSaved(true);
+					fp.togglePanelForPrintScreen();
 				}
 			}
 		});
@@ -81,6 +82,9 @@ public final class InteractionPanel extends JPanel {
 						JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(null, "The level has not been saved, all changes will be lost.\nLoad a new level anyway ?", "Load?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE))) {
 					centerPanel.getFieldPanel().setSaved(true);
 					levelManager.readLevelFromFile(fc.getSelectedFile().getAbsolutePath());
+					centerPanel.getOptionPanel().setLevelAuthor(levelManager.getLevelAuthor());
+					centerPanel.getOptionPanel().setLevelName(levelManager.getLevelName());
+					centerPanel.getOptionPanel().setRandomBonusNum(levelManager.getBonusPercentage());
 					centerPanel.getFieldPanel().repaint();
 				}				
 			}

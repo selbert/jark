@@ -1,6 +1,7 @@
 package ch.unisi.inf.pfii.teamblue.jark.view.levelcreator;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
@@ -34,10 +35,12 @@ public final class FieldPanel extends JComponent implements Constants {
 	private boolean saved;
 	private boolean isPrintScreen;
 	private boolean noBonus;
+	private boolean bricksOverride; 
 	
 	private final LevelManager levelManager;
 	public FieldPanel(final LevelManager levelManager, final ButtonGroup group) {
 		saved = true;
+		bricksOverride = true;
 		this.levelManager = levelManager;
 		this.group = group;
 		brickField = levelManager.getBrickField();
@@ -59,11 +62,15 @@ public final class FieldPanel extends JComponent implements Constants {
 			@Override
 			public void mousePressed(MouseEvent ev) {
 				if (selected != null) {
+					String tempBrickString = brickField[brickY][brickX];
+					if (tempBrickString != null && !bricksOverride && selected.getActionCommand().contains("Brick")) {
+						return;
+					}
 					saved = false;
 					if (selected.getActionCommand().contains("Brick")) {
 						brickField[brickY][brickX] = getBrickText();
 						bonusField[brickY][brickX] = null;
-					} else if (brickField[brickY][brickX] != null && !brickField[brickY][brickX].contains("persistent")) {
+					} else if (tempBrickString != null && !tempBrickString.contains("persistent")) {
 						bonusField[brickY][brickX] = getBrickText();
 					}
 					repaint();
@@ -88,6 +95,7 @@ public final class FieldPanel extends JComponent implements Constants {
 			public void mouseEntered(MouseEvent ev) {
 				super.mouseEntered(ev);
 				paintingAllowed = true;
+				setCursor(new Cursor(Cursor.HAND_CURSOR));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
@@ -163,6 +171,11 @@ public final class FieldPanel extends JComponent implements Constants {
 	}
 	
 	public final void setBonusDisplay(final boolean display) {
-		noBonus = !display;
+		this.noBonus = !display;
 	}
+
+	public final void setBricksOverride(boolean bricksOverride) {
+		this.bricksOverride = bricksOverride;
+	}
+
 }

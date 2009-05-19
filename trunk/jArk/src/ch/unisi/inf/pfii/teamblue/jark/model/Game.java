@@ -45,7 +45,9 @@ public final class Game implements Constants {
 	private final ArrayList<Ball> bullets;
 	private final ArrayList<Bonus> freeBonuses;
 	private final ArrayList<Bonus> takenBonuses;
-	private final HashMap<String, Integer> highScoreList;
+	private final ArrayList<String> highScoreListNames;
+	private final ArrayList<Integer> highScoreListScores;
+	private final ArrayList<Integer> highScoreListTimes;
 	
 	private final ArrayList<VausSetListener> vausListeners;
 	private final ArrayList<GameListener> gameListeners;
@@ -68,7 +70,9 @@ public final class Game implements Constants {
 
 		//init
 		rnd = new Random();
-		highScoreList = new HashMap<String, Integer>();
+		highScoreListNames = new ArrayList<String>();
+		highScoreListScores = new  ArrayList<Integer>();
+		highScoreListTimes = new ArrayList<Integer>();
 		vausListeners = new ArrayList<VausSetListener>();
 		gameListeners = new ArrayList<GameListener>();
 		balls = new ArrayList<Ball>();
@@ -114,7 +118,10 @@ public final class Game implements Constants {
 						String decryptedString = StringEncrypt.decrypt(readLine.substring(1), x);
 						String name = decryptedString.split(":")[0];
 						Integer score = Integer.parseInt(decryptedString.split(":")[1]);
-						highScoreList.put(name, score);
+						Integer time = Integer.parseInt(decryptedString.split(":")[2]);
+						highScoreListNames.add(name);
+						highScoreListScores.add(score);
+						highScoreListTimes.add(time);
 						readLine = myInput.readLine();
 					}
 				} catch (IOException ex) {
@@ -135,11 +142,13 @@ public final class Game implements Constants {
 		try {
 			FileWriter fstream = new FileWriter(file);
 			BufferedWriter out = new BufferedWriter(fstream);
-			while (highScoreList.size() > 0) {
-				String name = getTopScore();
+			while (highScoreListNames.size() > 0) {
+				int index = getTopScore();
 				final int x = rnd.nextInt(10);
-				out.write(x + StringEncrypt.encrypt(name + ":" + highScoreList.get(name),x) + "\n");
-				highScoreList.remove(name);
+				out.write(x + StringEncrypt.encrypt(highScoreListNames.get(index) + ":" + highScoreListScores.get(index) + ":" + highScoreListTimes.get(index),x) + "\n");
+				highScoreListNames.remove(index);
+				highScoreListScores.remove(index);
+				highScoreListTimes.remove(index);
 			}
 			out.close();
 		} catch (IOException e) {
@@ -178,6 +187,9 @@ public final class Game implements Constants {
 	public boolean isStarted() {
 		return started;
 	}
+	public boolean isArcade() {
+		return arcadeMode;
+	}
 	
 	//setters
 	public void setStarted(boolean started) {
@@ -202,7 +214,8 @@ public final class Game implements Constants {
 			}
 
 			public void brickHit(Brick brick) {
-				 player.incrementScore(brick.getPoints());
+				int score = Math.max((int)(brick.getPoints()/4), Math.min(brick.getPoints(), 2*brick.getPoints()- (int)(0.2*(int)(player.getTime()/1000))));
+				player.incrementScore(score);
 			}
 		});
 		addVausListener(level);
@@ -221,6 +234,7 @@ public final class Game implements Constants {
 			if (started) {
 				moveBalls();
 			}
+			player.incrementTime();
 			moveBullets();
 			moveBonuses();
 			checkBallsInGame();
@@ -486,43 +500,41 @@ public final class Game implements Constants {
 	}
 
 	public int getLeastScore() {
-		if (highScoreList.size() > 0) {
-			String[] a = new String[highScoreList.size()];
-			highScoreList.keySet().toArray(a);
-			int returnValue = highScoreList.get(a[0]);
-			for (String i : a) {
-				int t = highScoreList.get(i);
+		if (highScoreListScores.size() > 0) {
+			int returnValue = highScoreListScores.get(0);
+			for (int i = 0; i < highScoreListScores.size(); i++) {
+				int t = highScoreListScores.get(i);
 				returnValue = Math.min(returnValue, t);
 			}
 			return returnValue;
 		}
 		return 0;
 	}
-	public String getTopScore() {
-		if (highScoreList.size() > 0) {
-			String[] a = new String[highScoreList.size()];
-			highScoreList.keySet().toArray(a);
-			String returnValue = a[0];
-			for (String i : a) {
-				int s = highScoreList.get(returnValue);
-				int t = highScoreList.get(i);
+	public int getTopScore() {
+		if (highScoreListScores.size() > 0) {
+			int returnIndex = 0;
+			for (int i = 0; i < highScoreListScores.size(); i++) {
+				int s = highScoreListScores.get(returnIndex);
+				int t = highScoreListScores.get(i);
 				if (t > s) {
-					returnValue = i;
+					returnIndex = i;
 				}
 				
 			}
-			return returnValue;
+			return returnIndex;
 		}
-		return "";
+		return 0;
 	}
 
 	public void addHighScore(String name) {
-		highScoreList.put(name, player.getScore());
+		highScoreListNames.add(name);
+		highScoreListScores.add(player.getScore());
+		highScoreListTimes.add((int)(player.getTime()/1000));
 		writeHighScoreFile();
 	}
 
-	public HashMap<String, Integer> getHighScore() {
-		return highScoreList;
+	public ArrayList<Integer> getHighScoreListScores() {
+		return highScoreListScores;
 	}
 }
 

@@ -2,6 +2,7 @@ package ch.unisi.inf.pfii.teamblue.jark.model;
 
 import java.util.ArrayList;
 
+import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.PlayerListener;
 
 /**
@@ -11,9 +12,11 @@ import ch.unisi.inf.pfii.teamblue.jark.implementation.PlayerListener;
  * @version $LastChangedDate$
  * 
  */
-public final class Player {
+public final class Player implements Constants {
 	private final ArrayList<PlayerListener> listeners;
 	private final String name;
+	private int gameTime;
+	private int gameTimeInSeconds;
 	private int score;
 	private int lives;
 	
@@ -34,6 +37,13 @@ public final class Player {
 
 	public int getLives() {
 		return lives;
+	}
+	public void incrementTime() {
+		gameTime += TICKS_PER_SECOND;
+		if ((int)(gameTime/1000) > gameTimeInSeconds) {
+			gameTimeInSeconds = (int)(gameTime/1000);
+			fireModifiedTime();
+		}
 	}
 
 	public void incrementLives() {
@@ -58,6 +68,10 @@ public final class Player {
 		return score;
 	}
 	
+	public int getTime() {
+		return gameTime;
+	}
+	
     public void addPlayerListener(final PlayerListener li) {
         listeners.add(li);
     }
@@ -74,6 +88,11 @@ public final class Player {
 	public void fireModifiedScore() {
 		for (final PlayerListener li : listeners) {
 	         li.modifiedScore(score);
+	    }
+	}
+	public void fireModifiedTime() {
+		for (final PlayerListener li : listeners) {
+	         li.modifiedTime(gameTimeInSeconds);
 	    }
 	}
 }

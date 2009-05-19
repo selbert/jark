@@ -29,18 +29,25 @@ public final class InfoPanel extends JPanel {
 	private JLabel livesLabel;
 	private JLabel levelLabel;
 	private JLabel scoreLabel;
+	private JLabel timeLabel;
 	
 	public InfoPanel(Game game) {
 		setLayout(new BoxLayout(InfoPanel.this, BoxLayout.Y_AXIS));
 		setBorder(BorderFactory.createLineBorder(Color.black));
 		
 		game.getPlayer().addPlayerListener(new PlayerListener() {
-			public void modifiedLives(int l) {
+			public void modifiedLives(final int l) {
 				livesLabel.setText(""+l);
 			}
 
-			public void modifiedScore(int s) {
+			public void modifiedScore(final int s) {
 				scoreLabel.setText(""+s);
+			}
+			
+			public void modifiedTime(final int t) {
+				int m = (int)(t/60);
+				int s = t%60;
+				timeLabel.setText(((m<10)?"0":"") + m + ":" + ((s<10)?"0":"") + s);
 			}
 		});
 		
@@ -121,9 +128,13 @@ public final class InfoPanel extends JPanel {
 		
 		tool.addSeparator(new Dimension(0,5));
 		
-		JLabel time = new JLabel("00:32:12");
-		time.setAlignmentX(CENTER_ALIGNMENT);
-		tool.add(time);
+		timeLabel = new JLabel("");
+		int t = (int)(game.getPlayer().getTime()/1000);
+		int m = (int)(t/60);
+		int s = t%60;
+		timeLabel.setText(((m<10)?"0":"") + m + ":" + ((s<10)?"0":"") + s);
+		timeLabel.setAlignmentX(CENTER_ALIGNMENT);
+		tool.add(timeLabel);
 	
 		tool.addSeparator(new Dimension(0,10));
 		

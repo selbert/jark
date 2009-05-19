@@ -103,7 +103,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 					if (gameCleared || gameOver) {
 						System.out.println(game.getLeastScore());
 						System.out.println(game.getPlayer().getScore());
-						if (game.getLeastScore() < game.getPlayer().getScore() || game.getHighScore().size() < 10) {
+						if (game.isArcade() && (game.getLeastScore() < game.getPlayer().getScore() || game.getHighScoreListScores().size() < 10)) {
 							boolean correctInput = false;
 							String name = "";
 							while(!correctInput) {

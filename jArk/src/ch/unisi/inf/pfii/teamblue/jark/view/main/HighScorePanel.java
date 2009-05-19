@@ -33,27 +33,45 @@ public class HighScorePanel extends JPanel {
 						final char a = readLine.charAt(0); 
 						final int x = a - '0';
 						String decryptedString = StringEncrypt.decrypt(readLine.substring(1), x);
-						final String name = decryptedString.split(":")[0];
-						final Integer score = Integer.parseInt(decryptedString.split(":")[1]);
-						gbc.fill = GridBagConstraints.BOTH;
-						gbc.anchor = GridBagConstraints.WEST;
-						Insets asd = new Insets(0,0,0,50);
-						gbc.insets = asd;
-						gbc.gridx = 0;
-						gbc.gridy = y;
-						JLabel nameLabel = new JLabel(name, JLabel.LEFT);
-						nameLabel.setFont(new Font(getFont().getFamily(), Font.PLAIN, 16));
-						nameLabel.setBorder(new EtchedBorder());
-						add(nameLabel, gbc);
-						gbc.anchor = GridBagConstraints.EAST;
-						asd = new Insets(0,0,0,0);
-						gbc.insets = asd;
-						gbc.gridx = 1;
-						gbc.gridy = y++;
-						JLabel scoreLabel = new JLabel(score+"", JLabel.RIGHT);
-						scoreLabel.setFont(new Font(getFont().getFamily(), Font.PLAIN, 16));
-						scoreLabel.setBorder(new EtchedBorder());
-						add(scoreLabel, gbc);
+						try {
+							final String name = decryptedString.split(":")[0];
+							final Integer score = Integer.parseInt(decryptedString.split(":")[1]);
+							final Integer time = Integer.parseInt(decryptedString.split(":")[2]);
+
+							int m = (int)(time/60);
+							int s = time%60;
+
+							gbc.fill = GridBagConstraints.BOTH;
+							gbc.anchor = GridBagConstraints.WEST;
+							Insets asd = new Insets(0,0,0,50);
+							gbc.insets = asd;
+							gbc.gridx = 0;
+							gbc.gridy = y;
+							JLabel nameLabel = new JLabel(name, JLabel.LEFT);
+							nameLabel.setFont(new Font(getFont().getFamily(), Font.PLAIN, 16));
+							nameLabel.setBorder(new EtchedBorder());
+							add(nameLabel, gbc);
+							gbc.anchor = GridBagConstraints.CENTER;
+							asd = new Insets(0,0,0,50);
+							gbc.insets = asd;
+							gbc.gridx = 1;
+							gbc.gridy = y;
+							JLabel scoreLabel = new JLabel(score+"", JLabel.RIGHT);
+							scoreLabel.setFont(new Font(getFont().getFamily(), Font.PLAIN, 16));
+							scoreLabel.setBorder(new EtchedBorder());
+							add(scoreLabel, gbc);
+							gbc.anchor = GridBagConstraints.EAST;
+							asd = new Insets(0,0,0,0);
+							gbc.insets = asd;
+							gbc.gridx = 2;
+							gbc.gridy = y++;
+							JLabel timeLabel = new JLabel(((m<10)?"0":"") + m + ":" + ((s<10)?"0":"") + s, JLabel.RIGHT);
+							timeLabel.setFont(new Font(getFont().getFamily(), Font.PLAIN, 16));
+							timeLabel.setBorder(new EtchedBorder());
+							add(timeLabel, gbc);
+						} catch (Exception e) {
+							System.out.println("invalid highscore file format!");
+						}
 						readLine = myInput.readLine();
 					}
 				} catch (IOException ex) {

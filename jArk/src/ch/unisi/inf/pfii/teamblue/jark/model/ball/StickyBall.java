@@ -52,6 +52,7 @@ public final class StickyBall extends Ball {
 			sticked = true;
 			speedY = 0;
 			speedX = 0;
+			life = BALL_LIFE;
 			return true;
 		}
 		return false;

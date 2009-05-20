@@ -23,11 +23,11 @@ public final class DoubleRifleVaus extends Vaus {
 	public String toString() {
 		switch(vausWidth) {
 			case LONGVAUS_WIDTH:
-				return "longVaus";
+				return "longDoubleRifleVaus";
 			case SHORTVAUS_WIDTH:
-				return "shortVaus";
+				return "shortDoubleRifleVaus";
 			default:
-				return "defaultVaus";
+				return "doubleRifleVaus";
 		}
 	}
 	@Override

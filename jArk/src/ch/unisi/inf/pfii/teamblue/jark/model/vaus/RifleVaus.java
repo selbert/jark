@@ -21,11 +21,11 @@ public final class RifleVaus extends Vaus {
 	public String toString() {
 		switch(vausWidth) {
 			case LONGVAUS_WIDTH:
-				return "longVaus";
+				return "longRifleVaus";
 			case SHORTVAUS_WIDTH:
-				return "shortVaus";
+				return "shortRifleVaus";
 			default:
-				return "defaultVaus";
+				return "rifleVaus";
 		}
 	}
 	

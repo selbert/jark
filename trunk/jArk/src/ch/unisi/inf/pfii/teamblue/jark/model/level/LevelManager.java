@@ -3,13 +3,14 @@ package ch.unisi.inf.pfii.teamblue.jark.model.level;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URL;
-import java.util.ArrayList;
+import java.io.OutputStream;
 import java.util.Properties;
 
 import javax.swing.JOptionPane;
@@ -22,8 +23,6 @@ import ch.unisi.inf.pfii.teamblue.jark.model.brick.DefaultBrick;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.PersistentBrick;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.ResistentBrick;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.VeryResistentBrick;
-import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
-import ch.unisi.inf.pfii.teamblue.jark.view.ImagesRepository;
 
 public class LevelManager implements Constants {
 	private String[][] brickField;
@@ -93,6 +92,9 @@ public class LevelManager implements Constants {
 			details += infos[1];
 		} catch (IOException ex) {
 			System.out.println(ex);
+		} catch (NullPointerException ex) {
+			System.out.println("Problem reading the level "+filename);
+			details = null;
 		}
 		return details;
 	}
@@ -227,21 +229,62 @@ public class LevelManager implements Constants {
 	public final String[] getLevelsDetail(final String[] paths) {
 		final String[] details = new String[paths.length];
 		for (int i = 0; i<paths.length; i++) {
-			details[i] = readLevelDetails("levels/"+paths[i]+".jark");
+			final String temp = readLevelDetails("levels/"+paths[i]+".jark");
+			if (temp != null) {
+				details[i] = temp;
+			} else {
+				details[i] = paths[i];
+			}
 	    }
 		return details;
 	}
 
-
-	public void loadArcadeLevel(int arcadeLevel) {
+	public final void loadArcadeLevel(int arcadeLevel) {
+		final String path = getArcadeLevelPath(arcadeLevel);
+		readArcadeLevelFromFile(path);
+	}
+	public final String getArcadeLevelPath(int arcadeLevel) {
 		Properties properties = new Properties();
 		try {
 			properties.load(LevelManager.class.getResourceAsStream("defaultlevels/levelspath.properties"));
 		} catch (IOException ex) {
 			System.out.println(ex);
 		}
-		final String levelPath = "defaultlevels/" + properties.getProperty(arcadeLevel+"");
-		readArcadeLevelFromFile(levelPath);
+		return "defaultlevels/" + properties.getProperty(arcadeLevel+"");	
 	}
+	
+	private final void copyLevelFileOutside(String path) throws IOException, NullPointerException {
+		final String levelPath = path;
+		final String destPath = "levels/"+levelPath.split("defaultlevels/")[1];
+		final File destFile = new File(destPath);
+		if (destFile.exists()) {
+			return;
+		}
+		final File dir = new File("levels/");
+		if (!dir.isDirectory()) { 
+			dir.mkdir();
+		}
+		final InputStream level = getClass().getResourceAsStream(levelPath);
+		final OutputStream out = new FileOutputStream(destPath); 
+		
+		final byte[] buf = new byte[1024]; 
+		int len = 0; 
+		while ((len = level.read(buf)) > 0) { 
+			out.write(buf, 0, len); 
+		}     
 
+		level.close(); 
+		out.close(); 
+	}
+	
+	public final void copyLevelFilesOutside(final String path) {
+		try {
+			copyLevelFileOutside(path);
+			copyLevelFileOutside(path.split(".jark")[0]+".png");
+		} catch (NullPointerException e) {
+			System.out.println("Couldn't find some level file.");
+		} catch (IOException e) {
+			System.out.println("Couldn't copy the level files outside the JAR.");
+		}
+	}
 }

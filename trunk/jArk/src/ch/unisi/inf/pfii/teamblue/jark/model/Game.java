@@ -4,10 +4,14 @@ import java.awt.Component;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -64,7 +68,7 @@ public final class Game implements Constants {
 	
 	private boolean arcadeMode;
 	
-	private int arcadeLevel;
+	private int arcadeLevelNumber;
 	
 	public Game(final boolean isTest, final LevelManager levelManager) {
 
@@ -84,10 +88,10 @@ public final class Game implements Constants {
 		started = false;
 		gameOver = false;
 		arcadeMode = !isTest;
-		arcadeLevel = 0;
+		arcadeLevelNumber = 0;
 		this.levelManager = levelManager;
 		if (!isTest && arcadeMode) {
-			levelManager.loadArcadeLevel(arcadeLevel);
+			levelManager.loadArcadeLevel(arcadeLevelNumber);
 			final Brick[][] field = levelManager.fieldFromArrays();
 			final String levelName = levelManager.getLevelName();
 			setLevel(new Level(levelName, field, freeBonuses, vaus));
@@ -467,15 +471,16 @@ public final class Game implements Constants {
 	public boolean checkGameOver() {
 		if (level.isCleared()) {
 			fireLevelCleared();
+			levelManager.copyLevelFilesOutside(levelManager.getArcadeLevelPath(arcadeLevelNumber));
 			started = false;
 			balls.clear();
 			bullets.clear();
 			freeBonuses.clear();
 			removeTakenBonuses();
-			if (arcadeMode && arcadeLevel < MAX_LEVEL) {
-				arcadeLevel++;
+			if (arcadeMode && arcadeLevelNumber < MAX_LEVEL) {
+				arcadeLevelNumber++;
 				setVaus(new DefaultVaus(GAME_WIDTH / 2 - VAUS_WIDTH / 2));
-				levelManager.loadArcadeLevel(arcadeLevel);
+				levelManager.loadArcadeLevel(arcadeLevelNumber);
 				final Brick[][] field = levelManager.fieldFromArrays();
 				final String levelName = levelManager.getLevelName();
 				setLevel(new Level(levelName, field, freeBonuses, vaus));

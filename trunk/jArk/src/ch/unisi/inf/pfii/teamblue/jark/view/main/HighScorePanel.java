@@ -41,7 +41,7 @@ public class HighScorePanel extends JPanel {
 					final BufferedReader myInput = new BufferedReader(new FileReader("HighScore.jahs"));
 					String readLine = myInput.readLine();
 					int y = 1;
-					while(readLine != null && y < 10) {
+					while(readLine != null && y <= 10) {
 						final char a = readLine.charAt(0); 
 						final int x = a - '0';
 						String decryptedString = StringEncrypt.decrypt(readLine.substring(1), x);

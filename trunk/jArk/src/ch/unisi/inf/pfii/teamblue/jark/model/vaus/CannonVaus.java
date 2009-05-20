@@ -23,11 +23,11 @@ public final class CannonVaus extends Vaus implements Constants {
 	public String toString() {
 		switch(vausWidth) {
 			case LONGVAUS_WIDTH:
-				return "longVaus";
+				return "longCannonVaus";
 			case SHORTVAUS_WIDTH:
-				return "shortVaus";
+				return "shortCannonVaus";
 			default:
-				return "defaultVaus";
+				return "cannonVaus";
 		}
 	}
 	@Override

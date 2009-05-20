@@ -32,9 +32,10 @@ public class CardPanel extends JPanel {
 	public CardPanel(CardLayout cardLayout, final LevelManager levelManager) {
 		setBorder(new EtchedBorder());
 		setLayout(cardLayout);
-		paths = levelManager.getLevelsPath();
-		levelsDetail = levelManager.getLevelsDetail(paths);
-		
+		String[] pathsTemp = levelManager.getLevelsPath();
+		paths = removeBadLevels(pathsTemp, levelManager.getLevelsDetail(pathsTemp));
+		levelsDetail = removeBadLevels(levelManager.getLevelsDetail(pathsTemp), pathsTemp);
+
 		this.levelManager = levelManager;
 		
 		firstCard = new JPanel();
@@ -67,6 +68,29 @@ public class CardPanel extends JPanel {
 		add(levelCard, "level");
 	}
 	
+	private String[] removeBadLevels(String[] details, String[] paths) {
+		int items = 0;
+		for (int i = 0; i<details.length; i++) {
+			if (!details[i].equals(paths[i])) {
+				items++;
+			}
+		}
+		final String[] tempArray = new String[items];
+		int pos = 0;
+		for (int i = 0; i<details.length; i++) {
+			if (!details[i].equals(paths[i])) {
+				tempArray[pos] = details[i];
+				pos++;
+			}
+		}
+		return tempArray;
+	}
+
+	private void printArray(String[] a) {
+		for(String asd : a) {
+			System.out.println(asd);
+		}
+	}
 	private final void updateLevelImage(String path) {
 		final String imagePath = "levels/"+path+".png";
 		final File image = new File(imagePath);

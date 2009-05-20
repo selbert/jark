@@ -43,7 +43,7 @@ public class CardPanel extends JPanel {
 		JPanel baseCard = new JPanel();
 		baseCard.setLayout(new BoxLayout(baseCard, BoxLayout.Y_AXIS));
 		baseCard.add(new JLabel(ImagesRepository.getIcon("about")));
-		add(baseCard, "base");
+		add(baseCard, "about");
 		
 		firstCard = new JPanel();
 		firstCard.add(new HighScorePanel());

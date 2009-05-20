@@ -30,7 +30,9 @@ public class HighScorePanel extends JPanel {
 		gbc.gridy = 0;
 		gbc.gridwidth = 3;
 		gbc.ipady = 20;
-		add(new JLabel("High Score"), gbc);
+		JLabel titleLabel = new JLabel("High Score");
+		titleLabel.setFont(new Font(getFont().getFamily(), Font.BOLD, 16));
+		add(titleLabel, gbc);
 		gbc.gridwidth = 1;
 		gbc.ipady = 0;
 		
@@ -55,24 +57,24 @@ public class HighScorePanel extends JPanel {
 
 							gbc.fill = GridBagConstraints.BOTH;
 							gbc.anchor = GridBagConstraints.WEST;
-							Insets asd = new Insets(0,0,0,50);
-							gbc.insets = asd;
+							Insets margin = new Insets(0,0,0,70);
+							gbc.insets = margin;
 							gbc.gridx = 0;
 							gbc.gridy = y;
 							JLabel nameLabel = new JLabel(name, JLabel.LEFT);
 							nameLabel.setFont(new Font(getFont().getFamily(), Font.PLAIN, 16));
 							add(nameLabel, gbc);
 							gbc.anchor = GridBagConstraints.CENTER;
-							asd = new Insets(0,0,0,50);
-							gbc.insets = asd;
+							margin = new Insets(0,0,0,70);
+							gbc.insets = margin;
 							gbc.gridx = 1;
 							gbc.gridy = y;
 							JLabel scoreLabel = new JLabel(score+"", JLabel.RIGHT);
 							scoreLabel.setFont(new Font(getFont().getFamily(), Font.PLAIN, 16));
 							add(scoreLabel, gbc);
 							gbc.anchor = GridBagConstraints.EAST;
-							asd = new Insets(0,0,0,0);
-							gbc.insets = asd;
+							margin = new Insets(0,0,0,0);
+							gbc.insets = margin;
 							gbc.gridx = 2;
 							gbc.gridy = y++;
 							JLabel timeLabel = new JLabel(((m<10)?"0":"") + m + ":" + ((s<10)?"0":"") + s, JLabel.RIGHT);

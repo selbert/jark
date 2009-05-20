@@ -1,5 +1,7 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.ball;
 
+import java.util.Random;
+
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.VausListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.VausSetListener;
@@ -26,16 +28,20 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 	protected float speed;
 	protected boolean boxEnabled;
 	protected boolean dead;
+	protected boolean resetted;
+	protected int life;
 	
 	public Ball(final Vaus vaus, final Level level) {
 		this.vaus = vaus;
 		this.level = level;
 		x = vaus.getX() + ((float)vaus.getWidth() / 2) - BALL_RADIUS;
 		y = (VAUS_Y - 2*BALL_RADIUS);
-		speedX = -3;
+		speedX = 0;
 		speedY = 0;
 		speed = BALL_SPEED;
 		speedModifier = 1;
+		life = BALL_LIFE;
+		resetted = false;
 	}
 	
 	@Override
@@ -117,13 +123,13 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 		if (newY < FIELD_HEIGHT && !level.persistentBrickHasBallInside(x,y)) { 
 			boolean bounceX = bounceX(newX);
 			boolean bounceY = bounceY(newY);
-			if (bounceY) {
+			if (bounceY && !resetted) {
 				speedY = -speedY;
 				newY = y;
-			} else if (bounceX) {
+			} else if (bounceX && !resetted) {
 				speedX = -speedX;
 				newX = x;
-			} else if (bounceDiag(newX, newY)) {
+			} else if (bounceDiag(newX, newY) && !resetted) {
 				speedY = -speedY;
 				newY = y;
 				speedX = -speedX;
@@ -147,11 +153,13 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 		if (bounceVaus(newX, newY)) {
 			newY =  VAUS_Y-1 - (BALL_RADIUS*2);
 		}
-		if (!level.persistentBrickHasBallInside(newX,newY) || 
+		if (!resetted && (!level.persistentBrickHasBallInside(newX,newY) || 
 				(level.persistentBrickHasBallInside(newX,newY) && 
-						level.persistentBrickHasBallInside(x,y))) {
+						level.persistentBrickHasBallInside(x,y)))) {
 			x = newX;
 			y = newY;
+		} else if (resetted) {
+			resetted = false;
 		}
 	}
 	
@@ -165,6 +173,7 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 		if (newY + (BALL_RADIUS*2) > VAUS_Y-1 && newY + (BALL_RADIUS*2) < VAUS_Y+(BALL_RADIUS*2) && newX + (BALL_RADIUS*2) >= vaus.getX() && newX <= vaus.getX() + vaus.getWidth()) {
 			speedY = -speedY;
 			speedX = ((newX + BALL_RADIUS) - (vaus.getX() + (vaus.getWidth() / 2))) / (vaus.getWidth() / 10);
+			life = BALL_LIFE;
 			return true;
 		}
 		return false;
@@ -260,7 +269,21 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 	}
 	
 	protected void destroyBrick(final float x, final float y) {
-		level.removeBrick(x, y);
+		int i = level.removeBrick(x, y);
+		if (i >= BALL_LIFE) {
+			life = BALL_LIFE;
+		} else {
+			life += i;
+		}
+		if (life <= 0) {
+			setX(vaus.getX()+(vaus.getWidth()/2)-BALL_RADIUS);
+			setY(VAUS_Y-(2*BALL_RADIUS));
+			Random rnd = new Random();
+			setSpeedX(rnd.nextInt(7)-3);
+			setSpeedY(rnd.nextInt(3)-3);
+			resetted = true;
+			life = BALL_LIFE;
+		}
 	}
 	
 	public void vausMoved(int delta) {

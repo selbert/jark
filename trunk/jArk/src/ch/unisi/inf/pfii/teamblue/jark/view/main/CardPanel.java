@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.io.File;
 
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -28,7 +27,6 @@ public class CardPanel extends JPanel {
 	private String[] paths;
 	private String[] levelsDetail;
 	private int selectedIndex;
-	private final CardLayout cardLayout;
 	
 	
 	public CardPanel(CardLayout cardLayout, final LevelManager levelManager) {
@@ -37,13 +35,7 @@ public class CardPanel extends JPanel {
 		paths = levelManager.getLevelsPath();
 		levelsDetail = levelManager.getLevelsDetail(paths);
 		
-		this.cardLayout = cardLayout;
 		this.levelManager = levelManager;
-		
-		JPanel baseCard = new JPanel();
-		baseCard.setLayout(new BoxLayout(baseCard, BoxLayout.Y_AXIS));
-		baseCard.add(new JLabel(ImagesRepository.getIcon("about")));
-		add(baseCard, "about");
 		
 		firstCard = new JPanel();
 		firstCard.add(new HighScorePanel());

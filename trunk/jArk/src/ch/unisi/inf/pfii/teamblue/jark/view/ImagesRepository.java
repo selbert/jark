@@ -46,8 +46,12 @@ public final class ImagesRepository {
 	}
 
 	private static final ImageIcon fetchImage (final String path) {
-		final String imagePath = "/ch/unisi/inf/pfii/teamblue/jark/view/images/" + properties.getProperty(path);
-		return new ImageIcon(ImagesRepository.class.getResource(imagePath));
+		final String imagePath = "images/" + properties.getProperty(path);
+		try {
+			return new ImageIcon(ImagesRepository.class.getResource(imagePath));
+		} catch (NullPointerException ex) {
+			return new ImageIcon(ImagesRepository.class.getResource("images/noimage.png"));
+		}
 	}
 
 	public static final Image getImage(final String path) {

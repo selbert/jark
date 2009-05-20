@@ -456,7 +456,7 @@ public final class Game implements Constants {
 	 * Check if there are balls in game, if none remove life and restart ball
 	 */
 	public void checkBallsInGame() {
-		if (balls.size() == 0 && started) {
+		if (balls.size() <= 0 && started) {
 			player.decrementLives();
 			started = false;
 			balls.clear();

@@ -22,22 +22,25 @@ import ch.unisi.inf.pfii.teamblue.jark.implementation.StringEncrypt;
 public class HighScorePanel extends JPanel {
 	final GridBagConstraints gbc;
 	public HighScorePanel() {
-		
+
 		setLayout(new GridBagLayout());
 		gbc = new GridBagConstraints();
 		
-		paintComponent(getGraphics());
-	}
-	
-	@Override
-	public void paintComponent(Graphics g) {
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.gridwidth = 3;
+		gbc.ipady = 20;
+		add(new JLabel("High Score"), gbc);
+		gbc.gridwidth = 1;
+		gbc.ipady = 0;
+		
 		final File file = new File("HighScore.jahs");
 		try {
 			if (!file.createNewFile()) {
 				try{
 					final BufferedReader myInput = new BufferedReader(new FileReader("HighScore.jahs"));
 					String readLine = myInput.readLine();
-					int y = 0;
+					int y = 1;
 					while(readLine != null && y < 10) {
 						final char a = readLine.charAt(0); 
 						final int x = a - '0';
@@ -58,7 +61,6 @@ public class HighScorePanel extends JPanel {
 							gbc.gridy = y;
 							JLabel nameLabel = new JLabel(name, JLabel.LEFT);
 							nameLabel.setFont(new Font(getFont().getFamily(), Font.PLAIN, 16));
-							nameLabel.setBorder(new EtchedBorder());
 							add(nameLabel, gbc);
 							gbc.anchor = GridBagConstraints.CENTER;
 							asd = new Insets(0,0,0,50);
@@ -67,7 +69,6 @@ public class HighScorePanel extends JPanel {
 							gbc.gridy = y;
 							JLabel scoreLabel = new JLabel(score+"", JLabel.RIGHT);
 							scoreLabel.setFont(new Font(getFont().getFamily(), Font.PLAIN, 16));
-							scoreLabel.setBorder(new EtchedBorder());
 							add(scoreLabel, gbc);
 							gbc.anchor = GridBagConstraints.EAST;
 							asd = new Insets(0,0,0,0);
@@ -76,10 +77,9 @@ public class HighScorePanel extends JPanel {
 							gbc.gridy = y++;
 							JLabel timeLabel = new JLabel(((m<10)?"0":"") + m + ":" + ((s<10)?"0":"") + s, JLabel.RIGHT);
 							timeLabel.setFont(new Font(getFont().getFamily(), Font.PLAIN, 16));
-							timeLabel.setBorder(new EtchedBorder());
 							add(timeLabel, gbc);
 						} catch (Exception e) {
-							System.out.println("invalid highscore file format!");
+							System.out.println("Invalid highscore file format! Don't cheat :D");
 						}
 						readLine = myInput.readLine();
 					}

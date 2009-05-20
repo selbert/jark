@@ -106,7 +106,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 							String name = "";
 							while(!correctInput) {
 								name = JOptionPane.showInputDialog("You reached the Highscore list!\n\nInsert name:");
-								if (name != null && name.matches("[a-zA-Z_][a-zA-Z_0-9]*")) {
+								if (name != null && name.matches("[a-zA-Z_][a-zA-Z_0-9]{0,11}")) {
 									game.addHighScore(name);
 									correctInput = true;
 								}

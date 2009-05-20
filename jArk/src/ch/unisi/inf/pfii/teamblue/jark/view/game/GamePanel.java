@@ -112,7 +112,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 								}
 							}
 						}
-						getTopLevelAncestor().hide();
+						getTopLevelAncestor().setVisible(false);
 					}
 					if (levelCleared) {
 						levelCleared = false;
@@ -125,10 +125,10 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 					vaus.moveRight();
 					break;
 				case KeyEvent.VK_ESCAPE:
-					play();
 					image = new BufferedImage(GAME_WIDTH, GAME_HEIGHT, BufferedImage.TYPE_BYTE_GRAY);
 					paintComponent( image.createGraphics() );
 					image = scale(image, 0.5);
+					play();
 					repaint();
 					break;
 				case KeyEvent.VK_SPACE:
@@ -231,7 +231,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 	    transparentCursor = Toolkit.getDefaultToolkit().createCustomCursor(image, new Point(0, 0), "invisibleCursor");
 	    
 	    firstTimeRun = true;
-	    
+	    play();
 	}
 	
     private static BufferedImage scale(BufferedImage source, double factor) {
@@ -331,7 +331,8 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 		
 		if (!running && !firstTimeRun) {
 			g2d.drawImage(image, 0,0, null);
-			g2d.drawImage(ImagesRepository.getImage("pause"), 200, 180, this);
+			g2d.drawImage(ImagesRepository.getImage("bonushelp"), 399, 0, this);
+			
 		}
 	}
 

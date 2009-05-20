@@ -52,8 +52,8 @@ public final class MainFrame extends JFrame {
 		arcadeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				selectedButton = "arcade";
-				cardLayout.show(cardPanel, "arcade");
 				cardPanel.updateHighScore();
+				cardLayout.show(cardPanel, "arcade");
 			}	
 		});
 		gbc.gridx = 0;
@@ -84,13 +84,25 @@ public final class MainFrame extends JFrame {
 						new EditorFrame(levelManager, true);
 					}
 				});	
-				cardLayout.show(cardPanel, "arcade");
+				cardLayout.show(cardPanel, "about");
 			}
 		});
 		gbc.gridx = 0;
 		gbc.gridy = 3;
 		gbc.gridwidth = 1;
 		p.add(levelEditorButton, gbc);
+		
+		JButton highScoreButton = new JButton("High Score");
+		highScoreButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ev) {
+				cardPanel.updateHighScore();
+				cardLayout.show(cardPanel, "arcade");
+			}
+		});
+		gbc.gridx = 0;
+		gbc.gridy = 4;
+		gbc.gridwidth = 1;
+		p.add(highScoreButton, gbc);
 		
 		JButton quitButton = new JButton("Quit");
 		quitButton.addActionListener(new ActionListener() {
@@ -127,6 +139,7 @@ public final class MainFrame extends JFrame {
 						}
 					});	
 				}
+				cardLayout.show(cardPanel, "about");
 			}
 		});
 		gbc.gridx = 1;

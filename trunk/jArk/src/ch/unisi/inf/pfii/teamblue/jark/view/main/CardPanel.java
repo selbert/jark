@@ -60,6 +60,7 @@ public class CardPanel extends JPanel {
 				}
 			}
 		});
+		list.setSelectedIndex(0);
 		JScrollPane optionPane = new JScrollPane(list);
 		levelCard.add(optionPane, BorderLayout.SOUTH);
 		labelImage = new JLabel(ImagesRepository.getIcon("initLevel"));

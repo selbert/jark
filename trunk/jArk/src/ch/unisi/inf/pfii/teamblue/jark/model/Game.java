@@ -140,8 +140,8 @@ public final class Game implements Constants {
 		final File file = new File("HighScore.jahs");
 		try {
 			file.createNewFile();
-		} catch (IOException e1) {
-			e1.printStackTrace();
+		} catch (IOException ex) {
+			System.out.println(ex);
 		}
 		try {
 			FileWriter fstream = new FileWriter(file);
@@ -155,8 +155,8 @@ public final class Game implements Constants {
 				highScoreListTimes.remove(index);
 			}
 			out.close();
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (IOException ex) {
+			System.out.println(ex);
 		}
 	}
 	

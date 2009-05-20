@@ -21,6 +21,10 @@ import ch.unisi.inf.pfii.teamblue.jark.implementation.StringEncrypt;
 
 public class HighScorePanel extends JPanel {
 	final GridBagConstraints gbc;
+	private JLabel nameLabel;
+	private JLabel scoreLabel;
+	private JLabel timeLabel;
+	
 	public HighScorePanel() {
 
 		setLayout(new GridBagLayout());
@@ -31,7 +35,7 @@ public class HighScorePanel extends JPanel {
 		gbc.gridwidth = 3;
 		gbc.ipady = 20;
 		JLabel titleLabel = new JLabel("High Score");
-		titleLabel.setFont(new Font(getFont().getFamily(), Font.BOLD, 16));
+		titleLabel.setFont(new Font(getFont().getFamily(), Font.BOLD, 18));
 		add(titleLabel, gbc);
 		gbc.gridwidth = 1;
 		gbc.ipady = 0;
@@ -43,43 +47,24 @@ public class HighScorePanel extends JPanel {
 					final BufferedReader myInput = new BufferedReader(new FileReader("HighScore.jahs"));
 					String readLine = myInput.readLine();
 					int y = 1;
-					while(readLine != null && y <= 10) {
+					addLine("Name", "Score", "Time", y, true);
+					y++;
+					while(readLine != null && y <= 11) {
 						final char a = readLine.charAt(0); 
 						final int x = a - '0';
 						String decryptedString = StringEncrypt.decrypt(readLine.substring(1), x);
 						try {
 							final String name = decryptedString.split(":")[0];
-							final Integer score = Integer.parseInt(decryptedString.split(":")[1]);
-							final Integer time = Integer.parseInt(decryptedString.split(":")[2]);
-
-							int m = (int)(time/60);
-							int s = time%60;
-
-							gbc.fill = GridBagConstraints.BOTH;
-							gbc.anchor = GridBagConstraints.WEST;
-							Insets margin = new Insets(0,0,0,70);
-							gbc.insets = margin;
-							gbc.gridx = 0;
-							gbc.gridy = y;
-							JLabel nameLabel = new JLabel(name, JLabel.LEFT);
-							nameLabel.setFont(new Font(getFont().getFamily(), Font.PLAIN, 16));
-							add(nameLabel, gbc);
-							gbc.anchor = GridBagConstraints.CENTER;
-							margin = new Insets(0,0,0,70);
-							gbc.insets = margin;
-							gbc.gridx = 1;
-							gbc.gridy = y;
-							JLabel scoreLabel = new JLabel(score+"", JLabel.RIGHT);
-							scoreLabel.setFont(new Font(getFont().getFamily(), Font.PLAIN, 16));
-							add(scoreLabel, gbc);
-							gbc.anchor = GridBagConstraints.EAST;
-							margin = new Insets(0,0,0,0);
-							gbc.insets = margin;
-							gbc.gridx = 2;
-							gbc.gridy = y++;
-							JLabel timeLabel = new JLabel(((m<10)?"0":"") + m + ":" + ((s<10)?"0":"") + s, JLabel.RIGHT);
-							timeLabel.setFont(new Font(getFont().getFamily(), Font.PLAIN, 16));
-							add(timeLabel, gbc);
+							final String score = "" + Integer.parseInt(decryptedString.split(":")[1]);
+							final int t = Integer.parseInt(decryptedString.split(":")[2]);
+							final int m = (int)(t/60);
+							final int s = t%60;
+							final String time = ((m<10)?"0":"") + m + ":" + ((s<10)?"0":"") + s;
+	
+							
+							addLine(name, score, time, y, false);
+							y++;
+							
 						} catch (Exception e) {
 							System.out.println("Invalid highscore file format! Don't cheat :D");
 						}
@@ -92,5 +77,33 @@ public class HighScorePanel extends JPanel {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private final void addLine(final String name, final String score, final String time, final int y, final boolean title) {
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.anchor = GridBagConstraints.WEST;
+		Insets margin = new Insets(0,0,0,70);
+		gbc.insets = margin;
+		gbc.gridx = 0;
+		gbc.gridy = y;
+		nameLabel = new JLabel(name, JLabel.LEFT);
+		nameLabel.setFont(new Font(getFont().getFamily(), title?Font.BOLD:Font.PLAIN, title?18:16));
+		add(nameLabel, gbc);
+		gbc.anchor = GridBagConstraints.CENTER;
+		margin = new Insets(0,0,0,70);
+		gbc.insets = margin;
+		gbc.gridx = 1;
+		gbc.gridy = y;
+		scoreLabel = new JLabel(score, JLabel.RIGHT);
+		scoreLabel.setFont(new Font(getFont().getFamily(), title?Font.BOLD:Font.PLAIN, title?18:16));
+		add(scoreLabel, gbc);
+		gbc.anchor = GridBagConstraints.EAST;
+		margin = new Insets(0,0,0,0);
+		gbc.insets = margin;
+		gbc.gridx = 2;
+		gbc.gridy = y;
+		timeLabel = new JLabel(time, JLabel.RIGHT);
+		timeLabel.setFont(new Font(getFont().getFamily(), title?Font.BOLD:Font.PLAIN, title?18:16));
+		add(timeLabel, gbc);
 	}
 }

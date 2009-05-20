@@ -27,7 +27,7 @@ public class CardPanel extends JPanel {
 	private String[] paths;
 	private String[] levelsDetail;
 	private int selectedIndex;
-	
+	private final JLabel baseCard;
 	
 	public CardPanel(CardLayout cardLayout, final LevelManager levelManager) {
 		setBorder(new EtchedBorder());
@@ -38,10 +38,12 @@ public class CardPanel extends JPanel {
 
 		this.levelManager = levelManager;
 		
+		baseCard = new JLabel(ImagesRepository.getIcon("quickguide"));
+		add(baseCard, "base");
+		
 		firstCard = new JPanel();
 		firstCard.add(new HighScorePanel());
 		add(firstCard, "arcade");
-		
 		
 		JPanel levelCard = new JPanel();
 		levelCard.setLayout(new BorderLayout());
@@ -107,7 +109,9 @@ public class CardPanel extends JPanel {
 	}
 
 	public final void updateLevelList() {
-		paths = levelManager.getLevelsPath();
+		String[] pathsTemp = levelManager.getLevelsPath();
+		paths = removeBadLevels(pathsTemp, levelManager.getLevelsDetail(pathsTemp));
+		levelsDetail = removeBadLevels(levelManager.getLevelsDetail(pathsTemp), pathsTemp);
 		list.setListData(levelsDetail);
 	}
 	

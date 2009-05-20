@@ -53,7 +53,7 @@ public final class MainFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				selectedButton = "arcade";
 				cardPanel.updateHighScore();
-				cardLayout.show(cardPanel, "arcade");
+				cardLayout.show(cardPanel, "base");
 			}	
 		});
 		gbc.gridx = 0;
@@ -84,7 +84,7 @@ public final class MainFrame extends JFrame {
 						new EditorFrame(levelManager, true);
 					}
 				});	
-				cardLayout.show(cardPanel, "about");
+				cardLayout.show(cardPanel, "base");
 			}
 		});
 		gbc.gridx = 0;
@@ -139,7 +139,7 @@ public final class MainFrame extends JFrame {
 						}
 					});	
 				}
-				cardLayout.show(cardPanel, "about");
+				cardLayout.show(cardPanel, "base");
 			}
 		});
 		gbc.gridx = 1;

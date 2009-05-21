@@ -66,7 +66,7 @@ public class HighScorePanel extends JPanel {
 							y++;
 							
 						} catch (Exception e) {
-							System.out.println("Invalid highscore file format! Don't cheat :D");
+							System.out.println("Invalid highscore file format! Cheating ish baaad :D");
 						}
 						readLine = myInput.readLine();
 					}

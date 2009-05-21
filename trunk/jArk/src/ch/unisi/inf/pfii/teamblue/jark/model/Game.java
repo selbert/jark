@@ -72,13 +72,13 @@ public final class Game implements Constants {
 		this.levelManager = levelManager;
 		if (!isTest && arcadeMode) {
 			levelManager.loadArcadeLevel(arcadeLevelNumber);
-			final Brick[][] field = levelManager.fieldFromArrays();
+			final Brick[][] field = levelManager.fieldFromStringArrays();
 			final String levelName = levelManager.getLevelName();
 			final int bonusPercentage = levelManager.getBonusPercentage();
 			setLevel(new Level(levelName, field, freeBonuses, vaus,
 					bonusPercentage));
 		} else {
-			final Brick[][] field = levelManager.fieldFromArrays();
+			final Brick[][] field = levelManager.fieldFromStringArrays();
 			final String levelName = levelManager.getLevelName();
 			final int bonusPercentage = levelManager.getBonusPercentage();
 			setLevel(new Level(levelName, field, freeBonuses, vaus,
@@ -442,7 +442,7 @@ public final class Game implements Constants {
 				arcadeLevelNumber++;
 				setVaus(new DefaultVaus(GAME_WIDTH / 2 - VAUS_WIDTH / 2));
 				levelManager.loadArcadeLevel(arcadeLevelNumber);
-				final Brick[][] field = levelManager.fieldFromArrays();
+				final Brick[][] field = levelManager.fieldFromStringArrays();
 				final String levelName = levelManager.getLevelName();
 				final int bonusPercentage = levelManager.getBonusPercentage();
 				setLevel(new Level(levelName, field, freeBonuses, vaus,

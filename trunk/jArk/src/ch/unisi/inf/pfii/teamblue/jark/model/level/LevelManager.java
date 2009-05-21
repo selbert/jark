@@ -104,8 +104,7 @@ public class LevelManager implements Constants {
 		return details;
 	}
 
-	private final void loadField(final String[][] field,
-			final BufferedReader input) {
+	private final void loadField(final String[][] field, final BufferedReader input) {
 		for (int i = 0; i < FIELD_ROWS; i++) {
 			String[] tmp = null;
 			try {
@@ -123,7 +122,7 @@ public class LevelManager implements Constants {
 		}
 	}
 
-	public final Brick[][] fieldFromArrays() {
+	public final Brick[][] fieldFromStringArrays() {
 		final Brick[][] field = new Brick[FIELD_ROWS][FIELD_COLUMNS];
 
 		for (int i = 0; i < FIELD_ROWS; i++) {
@@ -200,6 +199,7 @@ public class LevelManager implements Constants {
 		}
 		return false;
 	}
+	
 	private final void writeToFile(File file) {
 		try {
 			final FileWriter fstream = new FileWriter(file);

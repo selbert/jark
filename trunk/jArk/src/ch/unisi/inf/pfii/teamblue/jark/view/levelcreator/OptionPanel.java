@@ -29,7 +29,7 @@ public class OptionPanel extends JPanel {
 	@SuppressWarnings("serial")
 	public OptionPanel(final JTabbedPane tabbedPane, final FieldPanel fieldPanel) {
 		setLayout(new GridBagLayout());
-
+		setBorder(new EtchedBorder());
 		class AcceptedDocument extends PlainDocument {
 			private final JTextField parent;
 			private final boolean numerical;

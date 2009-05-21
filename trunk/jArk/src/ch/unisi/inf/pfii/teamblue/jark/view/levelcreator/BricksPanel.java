@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.border.EtchedBorder;
 
 import ch.unisi.inf.pfii.teamblue.jark.view.ImagesRepository;
 
@@ -27,6 +28,7 @@ public final class BricksPanel extends JPanel {
 
 	public BricksPanel(final ButtonGroup group, final Properties properties) {
 		setLayout(new GridBagLayout());
+		setBorder(new EtchedBorder());
 		final GridBagConstraints gbc = new GridBagConstraints();
 		this.properties = properties;
 

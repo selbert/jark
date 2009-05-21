@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,6 +16,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.LevelManager;
@@ -26,12 +26,13 @@ import ch.unisi.inf.pfii.teamblue.jark.view.levelcreator.EditorFrame;
 
 @SuppressWarnings("serial")
 public final class MainFrame extends JFrame {
-	
+
 	private final CardLayout cardLayout;
 	private final CardPanel cardPanel;
 	private String selectedButton;
-	
-	public MainFrame(final LevelManager levelManager, final ImagesRepository imagesReference) {
+
+	public MainFrame(final LevelManager levelManager,
+			final ImagesRepository imagesReference) {
 		setTitle("[ jArk ] [ an Arkanoid/Breakout clone ]");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -40,50 +41,51 @@ public final class MainFrame extends JFrame {
 		p.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		p.setLayout(new GridBagLayout());
 		final GridBagConstraints gbc = new GridBagConstraints();
-		
-		JLabel title = new JLabel(ImagesRepository.getIcon("testTitle"), JLabel.CENTER); 
+
+		final JLabel title = new JLabel(ImagesRepository.getIcon("testTitle"),
+				SwingConstants.CENTER);
 		gbc.gridwidth = 2;
 		gbc.ipady = 10;
-		gbc.insets = new Insets(0,0,5,0);
+		gbc.insets = new Insets(0, 0, 5, 0);
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		p.add(title, gbc);
-		
-		JButton arcadeButton = new JButton("Arcade Mode");
+
+		final JButton arcadeButton = new JButton("Arcade Mode");
 		arcadeButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				selectedButton = "arcade";
 				cardLayout.show(cardPanel, "base");
-			}	
+			}
 		});
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 		gbc.gridwidth = 1;
-		gbc.insets = new Insets(0,0,1,5);
+		gbc.insets = new Insets(0, 0, 1, 5);
 		p.add(arcadeButton, gbc);
-		
-		JButton singleLevelButton = new JButton("Single Level");
+
+		final JButton singleLevelButton = new JButton("Single Level");
 		singleLevelButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				cardPanel.updateLevelList();
 				cardPanel.setSelectedItem();
 				cardPanel.setSelectedLevel();
 				selectedButton = "singleLevel";
 				cardLayout.show(cardPanel, "level");
-			}	
+			}
 		});
 		gbc.gridx = 0;
 		gbc.gridy = 2;
 		gbc.gridwidth = 1;
 		p.add(singleLevelButton, gbc);
-		
-		JButton levelEditorButton = new JButton("Level Editor");
+
+		final JButton levelEditorButton = new JButton("Level Editor");
 		levelEditorButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ev) {
+			public void actionPerformed(final ActionEvent ev) {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						new EditorFrame(levelManager, true);
 					}
-				});	
+				});
 				cardLayout.show(cardPanel, "base");
 			}
 		});
@@ -91,10 +93,10 @@ public final class MainFrame extends JFrame {
 		gbc.gridy = 3;
 		gbc.gridwidth = 1;
 		p.add(levelEditorButton, gbc);
-		
-		JButton highScoreButton = new JButton("High Score");
+
+		final JButton highScoreButton = new JButton("High Score");
 		highScoreButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ev) {
+			public void actionPerformed(final ActionEvent ev) {
 				cardPanel.updateHighScore();
 				cardLayout.show(cardPanel, "arcade");
 			}
@@ -103,41 +105,43 @@ public final class MainFrame extends JFrame {
 		gbc.gridy = 4;
 		gbc.gridwidth = 1;
 		p.add(highScoreButton, gbc);
-		
-		JButton quitButton = new JButton("Quit");
+
+		final JButton quitButton = new JButton("Quit");
 		quitButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);			
+			public void actionPerformed(final ActionEvent e) {
+				System.exit(0);
 			}
 		});
 		gbc.gridx = 0;
 		gbc.gridy = 6;
 		gbc.gridwidth = 1;
-		gbc.insets = new Insets(5,0,0,5);
+		gbc.insets = new Insets(5, 0, 0, 5);
 		p.add(quitButton, gbc);
-		
+
 		cardLayout = new CardLayout();
 		cardPanel = new CardPanel(cardLayout, levelManager);
-		
-		JButton playButton = new JButton("Play");
+
+		final JButton playButton = new JButton("Play");
 		playButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				if (selectedButton.equals("arcade")) {
 					final Game game = new Game(false, levelManager);
 					EventQueue.invokeLater(new Runnable() {
 						public void run() {
 							new GameFrame(game);
 						}
-					});	
-				} 
-				if (selectedButton.equals("singleLevel") && cardPanel.getSelectedLevel() != null) {
-					levelManager.readLevelFromFile("levels/"+cardPanel.getSelectedLevel()+".jark");
+					});
+				}
+				if (selectedButton.equals("singleLevel")
+						&& cardPanel.getSelectedLevel() != null) {
+					levelManager.readLevelFromFile("levels/"
+							+ cardPanel.getSelectedLevel() + ".jark");
 					final Game game = new Game(true, levelManager);
 					EventQueue.invokeLater(new Runnable() {
 						public void run() {
 							new GameFrame(game);
 						}
-					});	
+					});
 				}
 				cardLayout.show(cardPanel, "base");
 			}
@@ -145,12 +149,11 @@ public final class MainFrame extends JFrame {
 		gbc.gridx = 1;
 		gbc.gridy = 6;
 		gbc.gridwidth = 1;
-		gbc.insets = new Insets(5,0,0,0);
+		gbc.insets = new Insets(5, 0, 0, 0);
 		p.add(playButton, gbc);
-		
-	
+
 		gbc.fill = GridBagConstraints.BOTH;
-		gbc.insets = new Insets(0,0,0,0);
+		gbc.insets = new Insets(0, 0, 0, 0);
 		gbc.gridx = 1;
 		gbc.gridy = 1;
 		gbc.ipadx = 10;
@@ -159,11 +162,11 @@ public final class MainFrame extends JFrame {
 		gbc.weighty = 2;
 		gbc.weightx = 2;
 		p.add(cardPanel, gbc);
-		
+
 		add(p);
-		
+
 		makeMenu();
-	
+
 		// pack the frame together
 		pack();
 		// center
@@ -171,7 +174,7 @@ public final class MainFrame extends JFrame {
 		// and show it
 		setVisible(true);
 	}
-	
+
 	/**
 	 * Create the Menu
 	 */
@@ -186,7 +189,7 @@ public final class MainFrame extends JFrame {
 		final JMenuItem newGameItem = new JMenuItem("Play Arcade");
 		newGameItem.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
-				//todo
+				// todo
 			}
 		});
 		fileMenu.add(newGameItem);
@@ -208,7 +211,7 @@ public final class MainFrame extends JFrame {
 			}
 		});
 		fileMenu.add(editorItem);
-		
+
 		// another item
 		final JMenuItem highItem = new JMenuItem("High Score");
 		highItem.addActionListener(new ActionListener() {
@@ -217,7 +220,7 @@ public final class MainFrame extends JFrame {
 			}
 		});
 		fileMenu.add(highItem);
-		
+
 		// another item
 		final JMenuItem quitItem = new JMenuItem("Quit");
 		quitItem.addActionListener(new ActionListener() {
@@ -226,11 +229,11 @@ public final class MainFrame extends JFrame {
 			}
 		});
 		fileMenu.add(quitItem);
-		
+
 		// menu help
 		final JMenu helpMenu = new JMenu("Help");
 		menubar.add(helpMenu);
-		
+
 		// another item
 		final JMenuItem helpItem = new JMenuItem("Manual");
 		helpItem.addActionListener(new ActionListener() {
@@ -239,7 +242,7 @@ public final class MainFrame extends JFrame {
 			}
 		});
 		helpMenu.add(helpItem);
-		
+
 		// another item
 		final JMenuItem aboutItem = new JMenuItem("About");
 		aboutItem.addActionListener(new ActionListener() {
@@ -248,8 +251,8 @@ public final class MainFrame extends JFrame {
 			}
 		});
 		helpMenu.add(aboutItem);
-		
-		//set the menubar
+
+		// set the menubar
 		setJMenuBar(menubar);
 	}
 

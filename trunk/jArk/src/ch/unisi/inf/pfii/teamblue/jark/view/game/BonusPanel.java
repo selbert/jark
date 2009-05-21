@@ -34,19 +34,18 @@ import ch.unisi.inf.pfii.teamblue.jark.view.ImagesRepository;
 @SuppressWarnings("serial")
 public final class BonusPanel extends JPanel implements Constants {
 	private final HashMap<Bonus, JLabel> labels;
-	
+
 	public BonusPanel(final Game game) {
 		setBorder(BorderFactory.createLineBorder(Color.black));
 		setLayout(new BoxLayout(BonusPanel.this, BoxLayout.Y_AXIS));
 		labels = new HashMap<Bonus, JLabel>();
-	
+
 		final JLabel title = new JLabel("Active Bonuses");
 		title.setForeground(Color.BLUE);
-		title.setBorder(new EmptyBorder(6,0,0,0));
+		title.setBorder(new EmptyBorder(6, 0, 0, 0));
 		title.setAlignmentX(CENTER_ALIGNMENT);
 		add(title);
-		
-		
+
 		game.addGameListener(new GameListener() {
 			public void bonusErase() {
 				removeAll();
@@ -56,56 +55,61 @@ public final class BonusPanel extends JPanel implements Constants {
 				add(title);
 			}
 
-			public void levelChanged(Level level) {
+			public void levelChanged(final Level level) {
 				setLevelListener(level);
 			}
 
 			public void gameOver() {
 			}
 
-			public void levelCleared(Level level) {
+			public void levelCleared(final Level level) {
 			}
 
 			public void arcadeCleared() {
 			}
 		});
-		
+
 		setLevelListener(game.getLevel());
 	}
-	private final void setLevelListener(Level level) {
+
+	private final void setLevelListener(final Level level) {
 		level.addLevelListener(new LevelListener() {
-			public void bonusReleased(Bonus bonus) {
+			public void bonusReleased(final Bonus bonus) {
 				bonus.addBonusListener(new BonusListener() {
-					public void bonusTaken(Bonus bonus) {
-						int lifeSpan = bonus.getLife();
-						
+					public void bonusTaken(final Bonus bonus) {
+						final int lifeSpan = bonus.getLife();
+
 						if (lifeSpan > 0 && lifeSpan < PERSISTENT) {
-							Set<Bonus> set = labels.keySet();
-							for (Bonus b : set) {
-								if (((b instanceof BallBonus && bonus instanceof BallBonus)
-										|| (b instanceof VausBonus && bonus instanceof VausBonus))
-										&& (b.getBonusClass() == bonus.getBonusClass())) {
+							final Set<Bonus> set = labels.keySet();
+							for (final Bonus b : set) {
+								if (((b instanceof BallBonus && bonus instanceof BallBonus) || (b instanceof VausBonus && bonus instanceof VausBonus))
+										&& (b.getBonusClass() == bonus
+												.getBonusClass())) {
 									remove(labels.get(b));
 									revalidate();
 									repaint();
 								}
-							}		
-							JLabel bonusLabel = new JLabel();
-							bonusLabel.setIcon(ImagesRepository.getIcon(bonus.toString()));
-							bonusLabel.setText(getBonusLifeString(bonus.getLife()));
+							}
+							final JLabel bonusLabel = new JLabel();
+							bonusLabel.setIcon(ImagesRepository.getIcon(bonus
+									.toString()));
+							bonusLabel.setText(getBonusLifeString(bonus
+									.getLife()));
 							bonusLabel.setAlignmentX(CENTER_ALIGNMENT);
-							bonusLabel.setHorizontalTextPosition(SwingConstants.RIGHT);
-							bonusLabel.setBorder(new EmptyBorder(10,0,0,0));
+							bonusLabel
+									.setHorizontalTextPosition(SwingConstants.RIGHT);
+							bonusLabel.setBorder(new EmptyBorder(10, 0, 0, 0));
 							add(bonusLabel);
 							revalidate();
 							labels.put(bonus, bonusLabel);
 						}
 					}
-					
-					public void lifeDecreased(Bonus bonus) {
-						int lifeSpan = bonus.getLife();
+
+					public void lifeDecreased(final Bonus bonus) {
+						final int lifeSpan = bonus.getLife();
 						if (lifeSpan > 0 && lifeSpan < PERSISTENT) {
-							labels.get(bonus).setText(getBonusLifeString(lifeSpan));
+							labels.get(bonus).setText(
+									getBonusLifeString(lifeSpan));
 						} else {
 							remove(labels.get(bonus));
 							labels.remove(bonus);
@@ -113,14 +117,15 @@ public final class BonusPanel extends JPanel implements Constants {
 							repaint();
 						}
 					}
-					
+
 					private final String getBonusLifeString(final int life) {
-						final int secs = life/1000;
-						return (secs < 10) ? "0"+secs : ""+secs;
+						final int secs = life / 1000;
+						return (secs < 10) ? "0" + secs : "" + secs;
 					}
 				});
 			}
-			public void brickHit(Brick brick) {	
+
+			public void brickHit(final Brick brick) {
 			}
 		});
 

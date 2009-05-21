@@ -25,8 +25,7 @@ public final class InteractionPanel extends JPanel {
 
 	public InteractionPanel(final GamePanel gamePanel, final Game game) {
 		setLayout(new GridLayout(2, 1));
-	
-		
+
 		// first button
 		startButton = new JButton("Add Ball");
 		startButton.addActionListener(new ActionListener() {
@@ -39,12 +38,11 @@ public final class InteractionPanel extends JPanel {
 		// another button
 		stopButton = new JButton("Play/Pause");
 		stopButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				gamePanel.play();
 				gamePanel.requestFocusInWindow();
 			}
 		});
-		
 
 		add(startButton);
 		add(stopButton);

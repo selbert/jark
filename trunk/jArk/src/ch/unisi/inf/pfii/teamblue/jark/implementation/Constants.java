@@ -29,7 +29,7 @@ public interface Constants {
 	int BRICK_HEIGHT = 25;
 	int MAX_LEVEL = 20;
 	int BALL_LIFE = 100;
-	//bonus lives (ms)
+	// bonus lives (ms)
 	int INSTANTANEOUS = 0;
 	int PERSISTENT = Integer.MAX_VALUE;
 	int DOUBLE_RIFLE_VAUS = 10000;
@@ -43,8 +43,8 @@ public interface Constants {
 	int STICKY_BALL = 20000;
 	int THE_BOX = 20000;
 	int ULTRA_BALL = 10000;
-	//vaus shooting speed delay (ms)
-	int DOUBLE_RIFLE_DELAY = 100; 
+	// vaus shooting speed delay (ms)
+	int DOUBLE_RIFLE_DELAY = 100;
 	int RIFLE_DELAY = 150;
 	int CANNON_DELAY = 500;
 }

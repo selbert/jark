@@ -47,7 +47,8 @@ import ch.unisi.inf.pfii.teamblue.jark.view.ImagesRepository;
  * 
  */
 
-public final class GamePanel extends JComponent implements Constants, VausSetListener {
+public final class GamePanel extends JComponent implements Constants,
+		VausSetListener {
 	private final Timer timer;
 
 	private Level level;
@@ -63,16 +64,16 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 	private boolean vausIsShooting;
 	private boolean levelCleared;
 	private boolean gameCleared;
-	
+
 	private final Cursor transparentCursor;
-	
+
 	private BufferedImage image;
-	
+
 	public GamePanel(final Game game) {
-		
+
 		game.addGameListener(new GameListener() {
 
-			public void levelChanged(Level level) {
+			public void levelChanged(final Level level) {
 				setLevel(level);
 			}
 
@@ -84,29 +85,35 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 				gameOver = true;
 			}
 
-			public void levelCleared(Level level) {
+			public void levelCleared(final Level level) {
 				levelCleared = true;
 			}
 
 			public void arcadeCleared() {
 				gameCleared = true;
 			}
-			
+
 		});
-		
+
 		setLevel(game.getLevel());
-		
-		KeyListener keyListener = new KeyListener() {
-			public final void keyPressed(KeyEvent ev) {
+
+		final KeyListener keyListener = new KeyListener() {
+			public final void keyPressed(final KeyEvent ev) {
 				switch (ev.getKeyCode()) {
 				case KeyEvent.VK_ENTER:
 					if (gameCleared || gameOver) {
-						if (game.isArcade() && (game.getLeastScore() < game.getPlayer().getScore() || game.getHighScoreListScores().size() < 10)) {
+						if (game.isArcade()
+								&& (game.getLeastScore() < game.getPlayer()
+										.getScore() || game
+										.getHighScoreListScores().size() < 10)) {
 							boolean correctInput = false;
 							String name = "";
-							while(!correctInput) {
-								name = JOptionPane.showInputDialog("You reached the Highscore list!\n\nInsert name:");
-								if (name != null && name.matches("[a-zA-Z_][a-zA-Z_0-9]{0,11}")) {
+							while (!correctInput) {
+								name = JOptionPane
+										.showInputDialog("You reached the Highscore list!\n\nInsert name:");
+								if (name != null
+										&& name
+												.matches("[a-zA-Z_][a-zA-Z_0-9]{0,11}")) {
 									game.addHighScore(name);
 									correctInput = true;
 								}
@@ -118,15 +125,16 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 						levelCleared = false;
 					}
 					return;
-				case KeyEvent.VK_LEFT: 
+				case KeyEvent.VK_LEFT:
 					vaus.moveLeft();
 					break;
 				case KeyEvent.VK_RIGHT:
 					vaus.moveRight();
 					break;
 				case KeyEvent.VK_ESCAPE:
-					image = new BufferedImage(GAME_WIDTH, GAME_HEIGHT, BufferedImage.TYPE_BYTE_GRAY);
-					paintComponent( image.createGraphics() );
+					image = new BufferedImage(GAME_WIDTH, GAME_HEIGHT,
+							BufferedImage.TYPE_BYTE_GRAY);
+					paintComponent(image.createGraphics());
 					image = scale(image, 0.5);
 					play();
 					repaint();
@@ -138,7 +146,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 				}
 			}
 
-			public final void keyReleased(KeyEvent ev) {
+			public final void keyReleased(final KeyEvent ev) {
 				switch (ev.getKeyCode()) {
 				case KeyEvent.VK_LEFT:
 					vaus.stopLeft();
@@ -151,23 +159,23 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 					break;
 				}
 			}
-			
-			public final void keyTyped(KeyEvent ev) {
+
+			public final void keyTyped(final KeyEvent ev) {
 			}
 		};
-		
-		MouseInputAdapter mouseListener = new MouseInputAdapter() {
+
+		final MouseInputAdapter mouseListener = new MouseInputAdapter() {
 			private Robot r;
 			{
 				try {
 					r = new Robot();
-				} catch (AWTException e2) {
+				} catch (final AWTException e2) {
 					e2.printStackTrace();
 				}
 			}
 
 			@Override
-			public void mouseMoved(MouseEvent ev) {
+			public void mouseMoved(final MouseEvent ev) {
 				super.mouseMoved(ev);
 				if (running && !levelCleared) {
 					r.mouseMove((int) getLocationOnScreen().getX() + getWidth()
@@ -178,7 +186,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 			}
 
 			@Override
-			public void mousePressed(MouseEvent ev) {
+			public void mousePressed(final MouseEvent ev) {
 				super.mousePressed(ev);
 				if (!game.isStarted() && !levelCleared) {
 					game.startGame();
@@ -186,12 +194,12 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 			}
 
 			@Override
-			public void mouseReleased(MouseEvent ev) {
+			public void mouseReleased(final MouseEvent ev) {
 				super.mouseReleased(ev);
 			}
 
 			@Override
-			public void mouseEntered(MouseEvent ev) {
+			public void mouseEntered(final MouseEvent ev) {
 				super.mouseEntered(ev);
 				if (running) {
 					setCursor(transparentCursor);
@@ -199,10 +207,10 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 			}
 		};
 
-		ActionListener li = new ActionListener() {
+		final ActionListener li = new ActionListener() {
 			public void actionPerformed(final ActionEvent ev) {
 				game.tick();
-				if (vausIsShooting) { 
+				if (vausIsShooting) {
 					vaus.shoot(game);
 				}
 				repaint();
@@ -227,118 +235,132 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 
 		// to hide the cursor
 		final int[] pixels = new int[16 * 16];
-		final Image image = Toolkit.getDefaultToolkit().createImage(new MemoryImageSource(16, 16, pixels, 0, 16));
-	    transparentCursor = Toolkit.getDefaultToolkit().createCustomCursor(image, new Point(0, 0), "invisibleCursor");
-	    
-	    firstTimeRun = true;
-	    play();
+		final Image image = Toolkit.getDefaultToolkit().createImage(
+				new MemoryImageSource(16, 16, pixels, 0, 16));
+		transparentCursor = Toolkit.getDefaultToolkit().createCustomCursor(
+				image, new Point(0, 0), "invisibleCursor");
+
+		firstTimeRun = true;
+		play();
 	}
-	
-    private static BufferedImage scale(BufferedImage source, double factor) {
-        BufferedImage bi = new BufferedImage(source.getWidth(), source.getHeight(), BufferedImage.TYPE_INT_RGB);
-        Graphics2D g2d = bi.createGraphics();
-        
-        AffineTransform at = AffineTransform.getScaleInstance(factor, factor);
-        g2d.drawRenderedImage(source, at);
-        g2d.dispose();
-        return bi;
-    }
-    
-	private final void setLevel(Level level) {
+
+	private static BufferedImage scale(final BufferedImage source,
+			final double factor) {
+		final BufferedImage bi = new BufferedImage(source.getWidth(), source
+				.getHeight(), BufferedImage.TYPE_INT_RGB);
+		final Graphics2D g2d = bi.createGraphics();
+
+		final AffineTransform at = AffineTransform.getScaleInstance(factor,
+				factor);
+		g2d.drawRenderedImage(source, at);
+		g2d.dispose();
+		return bi;
+	}
+
+	private final void setLevel(final Level level) {
 		this.level = level;
 		level.addLevelListener(new LevelListener() {
-			public void bonusReleased(Bonus bonus) {
+			public void bonusReleased(final Bonus bonus) {
 				bonus.addBonusListener(new BonusListener() {
-					public void bonusTaken(Bonus bonus) {
+					public void bonusTaken(final Bonus bonus) {
 						if (bonus.toString().equals("bonus_box")) {
 							drawBox = true;
 						}
 					}
 
-					public void lifeDecreased(Bonus bonus) {
-						if (bonus.getLife() == 0 && bonus.toString().equals("bonus_box")) {
+					public void lifeDecreased(final Bonus bonus) {
+						if (bonus.getLife() == 0
+								&& bonus.toString().equals("bonus_box")) {
 							drawBox = false;
 						}
 					}
 				});
 			}
 
-			public void brickHit(Brick brick) {
+			public void brickHit(final Brick brick) {
 			}
 		});
 	}
 
 	@Override
-	public final void paintComponent(Graphics g) {
+	public final void paintComponent(final Graphics g) {
 		super.paintComponent(g);
-		Graphics2D g2d = (Graphics2D) g;
+		final Graphics2D g2d = (Graphics2D) g;
 
 		if (gameCleared) {
-			g2d.drawString("Game cleared, press [ENTER] to continue..", 100, 100);
+			g2d.drawString("Game cleared, press [ENTER] to continue..", 100,
+					100);
 			return;
 		}
-		
+
 		if (gameOver) {
 			play();
 			g2d.drawString("GAME OVER YOU n00b!", 100, 100);
 			return;
 		}
-		
+
 		if (levelCleared) {
-			g2d.drawString("Level cleared, press [ENTER] to continue..", 100, 100);
+			g2d.drawString("Level cleared, press [ENTER] to continue..", 100,
+					100);
 			return;
 		}
-		
-		
+
 		g2d.setColor(new Color(0xb0c4de));
 		g2d.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 		final Brick[][] bricks = level.getBricks();
-		
+
 		for (int j = 0; j < bricks.length; j++) {
 			for (int i = 0; i < bricks[j].length; i++) {
 				final Brick brick = bricks[j][i];
 				if (brick != null) {
-					g2d.drawImage(ImagesRepository.getImage(brick.toString()), BRICK_WIDTH * i, j * BRICK_HEIGHT, this);
+					g2d.drawImage(ImagesRepository.getImage(brick.toString()),
+							BRICK_WIDTH * i, j * BRICK_HEIGHT, this);
 				}
 			}
 		}
 
-		for (Bonus bonus : bonuses) {
+		for (final Bonus bonus : bonuses) {
 			final int x = bonus.getX();
 			final int y = bonus.getY();
-			g2d.drawImage(ImagesRepository.getImage(bonus.toString()), x, y, this);
+			g2d.drawImage(ImagesRepository.getImage(bonus.toString()), x, y,
+					this);
 		}
 
-		for (Ball ball : balls) {
+		for (final Ball ball : balls) {
 			final int x = (int) ball.getX();
 			final int y = (int) ball.getY();
-			g2d.drawImage(ImagesRepository.getImage(ball.toString()), x, y, this);
+			g2d.drawImage(ImagesRepository.getImage(ball.toString()), x, y,
+					this);
 		}
-		
-		for (Ball ball : bullets) {
+
+		for (final Ball ball : bullets) {
 			final int x = (int) ball.getX();
 			final int y = (int) ball.getY();
-			g2d.drawImage(ImagesRepository.getImage(ball.toString()), x, y, this);
+			g2d.drawImage(ImagesRepository.getImage(ball.toString()), x, y,
+					this);
 		}
 
 		final String vausType = vaus.toString();
 		if (vausType.toLowerCase().contains("rifle")) {
-			g2d.drawImage(ImagesRepository.getImage(vaus.toString()), vaus.getX(), VAUS_Y-23, this);
+			g2d.drawImage(ImagesRepository.getImage(vaus.toString()), vaus
+					.getX(), VAUS_Y - 23, this);
 		} else if (vausType.toLowerCase().contains("cannon")) {
-			g2d.drawImage(ImagesRepository.getImage(vaus.toString()), vaus.getX(), VAUS_Y-23, this);
+			g2d.drawImage(ImagesRepository.getImage(vaus.toString()), vaus
+					.getX(), VAUS_Y - 23, this);
 		} else {
-			g2d.drawImage(ImagesRepository.getImage(vaus.toString()), vaus.getX(), VAUS_Y, this);
+			g2d.drawImage(ImagesRepository.getImage(vaus.toString()), vaus
+					.getX(), VAUS_Y, this);
 		}
-		
+
 		if (drawBox) {
 			g2d.setColor(Color.ORANGE);
 			g2d.fillRect(0, VAUS_Y + VAUS_HEIGHT + 1, GAME_WIDTH, 3);
 		}
-		
+
 		if (!running && !firstTimeRun) {
-			g2d.drawImage(image, 0,0, null);
+			g2d.drawImage(image, 0, 0, null);
 			g2d.drawImage(ImagesRepository.getImage("bonushelp"), 399, 0, this);
-			
+
 		}
 	}
 
@@ -358,7 +380,7 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 		}
 	}
 
-	public final void setVaus(Vaus vaus) {
+	public final void setVaus(final Vaus vaus) {
 		this.vaus = vaus;
 	}
 

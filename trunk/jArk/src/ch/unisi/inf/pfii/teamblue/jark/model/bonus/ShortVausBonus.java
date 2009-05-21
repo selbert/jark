@@ -7,7 +7,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Game;
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
  * @version $LastChangedDate$
- *
+ * 
  */
 
 public final class ShortVausBonus extends VausBonus {
@@ -15,14 +15,17 @@ public final class ShortVausBonus extends VausBonus {
 		super(1);
 		super.setLife(PERSISTENT);
 	}
+
 	@Override
 	public String toString() {
 		return "malus_shortvaus";
 	}
+
 	@Override
 	public void apply(final Game game) {
 		game.getVaus().setWidth(SHORTVAUS_WIDTH);
 	}
+
 	@Override
 	public final void remove(final Game game) {
 		game.getVaus().setWidth(VAUS_WIDTH);

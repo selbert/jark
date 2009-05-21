@@ -23,7 +23,7 @@ public final class MainPanel extends JPanel {
 
 		gamePanel = new GamePanel(game);
 		westPanel = new WestPanel(gamePanel, game);
-		
+
 		add(gamePanel, BorderLayout.CENTER);
 		add(westPanel, BorderLayout.WEST);
 	}

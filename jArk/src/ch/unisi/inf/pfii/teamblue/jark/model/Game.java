@@ -1,22 +1,13 @@
 package ch.unisi.inf.pfii.teamblue.jark.model;
 
-import java.awt.Component;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Random;
-
-import javax.swing.JOptionPane;
 
 import ch.unisi.inf.pfii.teamblue.jark.implementation.BonusListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
@@ -52,30 +43,30 @@ public final class Game implements Constants {
 	private final ArrayList<String> highScoreListNames;
 	private final ArrayList<Integer> highScoreListScores;
 	private final ArrayList<Integer> highScoreListTimes;
-	
+
 	private final ArrayList<VausSetListener> vausListeners;
 	private final ArrayList<GameListener> gameListeners;
 
 	private final Random rnd;
-	
+
 	private final LevelManager levelManager;
-	
+
 	private Vaus vaus;
-	private Player player;
+	private final Player player;
 	private Level level;
 	private boolean started;
 	private boolean gameOver;
-	
+
 	private boolean arcadeMode;
-	
+
 	private int arcadeLevelNumber;
-	
+
 	public Game(final boolean isTest, final LevelManager levelManager) {
 
-		//init
+		// init
 		rnd = new Random();
 		highScoreListNames = new ArrayList<String>();
-		highScoreListScores = new  ArrayList<Integer>();
+		highScoreListScores = new ArrayList<Integer>();
 		highScoreListTimes = new ArrayList<Integer>();
 		vausListeners = new ArrayList<VausSetListener>();
 		gameListeners = new ArrayList<GameListener>();
@@ -95,143 +86,164 @@ public final class Game implements Constants {
 			final Brick[][] field = levelManager.fieldFromArrays();
 			final String levelName = levelManager.getLevelName();
 			final int bonusPercentage = levelManager.getBonusPercentage();
-			setLevel(new Level(levelName, field, freeBonuses, vaus, bonusPercentage));
+			setLevel(new Level(levelName, field, freeBonuses, vaus,
+					bonusPercentage));
 		} else {
 			final Brick[][] field = levelManager.fieldFromArrays();
 			final String levelName = levelManager.getLevelName();
 			final int bonusPercentage = levelManager.getBonusPercentage();
-			setLevel(new Level(levelName, field, freeBonuses, vaus, bonusPercentage));
+			setLevel(new Level(levelName, field, freeBonuses, vaus,
+					bonusPercentage));
 		}
-		
-		//starting balls
-		for (int i = 0; i < 1; i++) {
-			addRandomBall();
-		}
+
+		addRandomBall();
 		initializeHighScoreFile();
-		
 	}
-	
+
 	public void initializeHighScoreFile() {
 		final File file = new File("HighScore.jahs");
 		try {
 			if (!file.createNewFile()) {
-				try{
-					final BufferedReader myInput = new BufferedReader(new FileReader("HighScore.jahs"));
+				try {
+					final BufferedReader myInput = new BufferedReader(
+							new FileReader("HighScore.jahs"));
 					String readLine = myInput.readLine();
-					while(readLine != null) {
-						final char a = readLine.charAt(0); 
+					while (readLine != null) {
+						final char a = readLine.charAt(0);
 						final int x = a - '0';
-						String decryptedString = StringEncrypt.decrypt(readLine.substring(1), x);
-						String name = decryptedString.split(":")[0];
-						Integer score = Integer.parseInt(decryptedString.split(":")[1]);
-						Integer time = Integer.parseInt(decryptedString.split(":")[2]);
+						final String decryptedString = StringEncrypt.decrypt(
+								readLine.substring(1), x);
+						final String name = decryptedString.split(":")[0];
+						final Integer score = Integer.parseInt(decryptedString
+								.split(":")[1]);
+						final Integer time = Integer.parseInt(decryptedString
+								.split(":")[2]);
 						highScoreListNames.add(name);
 						highScoreListScores.add(score);
 						highScoreListTimes.add(time);
 						readLine = myInput.readLine();
 					}
-				} catch (IOException ex) {
+				} catch (final IOException ex) {
 					System.out.println(ex);
 				}
 			}
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 		}
 	}
+
 	public void writeHighScoreFile() {
 		final File file = new File("HighScore.jahs");
 		try {
 			file.createNewFile();
-		} catch (IOException ex) {
+		} catch (final IOException ex) {
 			System.out.println(ex);
 		}
 		try {
-			FileWriter fstream = new FileWriter(file);
-			BufferedWriter out = new BufferedWriter(fstream);
+			final FileWriter fstream = new FileWriter(file);
+			final BufferedWriter out = new BufferedWriter(fstream);
 			while (highScoreListNames.size() > 0) {
-				int index = getTopScore();
+				final int index = getTopScore();
 				final int x = rnd.nextInt(10);
-				out.write(x + StringEncrypt.encrypt(highScoreListNames.get(index) + ":" + highScoreListScores.get(index) + ":" + highScoreListTimes.get(index),x) + "\n");
+				out.write(x
+						+ StringEncrypt.encrypt(highScoreListNames.get(index)
+								+ ":" + highScoreListScores.get(index) + ":"
+								+ highScoreListTimes.get(index), x) + "\n");
 				highScoreListNames.remove(index);
 				highScoreListScores.remove(index);
 				highScoreListTimes.remove(index);
 			}
 			out.close();
-		} catch (IOException ex) {
+		} catch (final IOException ex) {
 			System.out.println(ex);
 		}
 	}
-	
-	//getters
+
+	// getters
 	public final Brick[][] getBricks() {
 		return level.getBricks();
 	}
+
 	public final ArrayList<Bonus> getBonuses() {
 		return freeBonuses;
 	}
+
 	public final ArrayList<Bonus> getTakenBonuses() {
 		return takenBonuses;
 	}
+
 	public final ArrayList<Ball> getBalls() {
 		return balls;
 	}
+
 	public final int getPlayerLives() {
 		return player.getLives();
 	}
+
 	public final Player getPlayer() {
 		return player;
 	}
+
 	public final Vaus getVaus() {
 		return vaus;
 	}
+
 	public Level getLevel() {
 		return level;
 	}
+
 	public ArrayList<Ball> getBullets() {
 		return bullets;
 	}
+
 	public boolean isStarted() {
 		return started;
 	}
+
 	public boolean isArcade() {
 		return arcadeMode;
 	}
-	
-	//setters
-	public void setStarted(boolean started) {
+
+	// setters
+	public void setStarted(final boolean started) {
 		this.started = started;
 	}
-	public void setArcadeMode(boolean arcade) {
+
+	public void setArcadeMode(final boolean arcade) {
 		arcadeMode = arcade;
 	}
+
 	private final void setLevel(final Level level) {
 		this.level = level;
 		fireLevelChanged();
 		level.addLevelListener(new LevelListener() {
-			public void bonusReleased(Bonus bonus) {
+			public void bonusReleased(final Bonus bonus) {
 				final BonusListener bl = new BonusListener() {
-					public void bonusTaken(Bonus bonus) {
+					public void bonusTaken(final Bonus bonus) {
 						addBonus(bonus);
 					}
-					public void lifeDecreased(Bonus bonus) {
+
+					public void lifeDecreased(final Bonus bonus) {
 					}
 				};
-				bonus.addBonusListener(bl);	
+				bonus.addBonusListener(bl);
 			}
 
-			public void brickHit(Brick brick) {
-				int score = Math.max((int)(brick.getPoints()/4), Math.min(brick.getPoints(), 2*brick.getPoints()- (int)(0.2*(int)(player.getTime()/1000))));
+			public void brickHit(final Brick brick) {
+				final int score = Math.max((brick.getPoints() / 4), Math.min(
+						brick.getPoints(), 2 * brick.getPoints()
+								- (int) (0.2 * (player.getTime() / 1000))));
 				player.incrementScore(score);
 			}
 		});
 		addVausListener(level);
 	}
+
 	public final void setVaus(final Vaus vaus) {
 		this.vaus = vaus;
 		fireVausChanged();
 	}
-	
-	
+
 	/**
 	 * Actions to do at each tick of the game
 	 */
@@ -249,46 +261,51 @@ public final class Game implements Constants {
 			gameOver = checkGameOver();
 		}
 	}
-	
+
 	/**
 	 * Add a ball to the game
+	 * 
 	 * @param ball
 	 */
 	public final void addBall(final Ball ball) {
 		balls.add(ball);
 		addVausListener(ball);
 	}
+
 	public final void replaceBall(final Ball oldBall, final Ball newBall) {
 		removeVausListener(oldBall);
 		addVausListener(newBall);
-		balls.set(balls.indexOf(oldBall),newBall);
+		balls.set(balls.indexOf(oldBall), newBall);
 	}
+
 	private void removeBall(final Ball ball) {
 		balls.remove(ball);
 		removeVausListener(ball);
 	}
+
 	/**
 	 * Add a bullet to the game
+	 * 
 	 * @param bullet
 	 */
 	public final void addBullet(final Ball bullet) {
 		bullets.add(bullet);
 	}
+
 	private void removeBullet(final Ball bullet) {
 		bullets.remove(bullet);
 		removeVausListener(bullet);
 	}
-	
-	private void addBonus(Bonus bonus) {
-		for (int i = 0 ; i < takenBonuses.size(); i++) {
-			Bonus b = takenBonuses.get(i);
-			if (((b instanceof BallBonus && bonus instanceof BallBonus)
-					|| (b instanceof VausBonus && bonus instanceof VausBonus))
+
+	private void addBonus(final Bonus bonus) {
+		for (int i = 0; i < takenBonuses.size(); i++) {
+			final Bonus b = takenBonuses.get(i);
+			if (((b instanceof BallBonus && bonus instanceof BallBonus) || (b instanceof VausBonus && bonus instanceof VausBonus))
 					&& (b.getBonusClass() == bonus.getBonusClass())) {
 				freeBonuses.remove(bonus);
 				bonus.apply(this);
 				takenBonuses.set(i, bonus);
-				
+
 				return;
 			}
 		}
@@ -298,27 +315,28 @@ public final class Game implements Constants {
 			takenBonuses.add(bonus);
 		}
 	}
+
 	/**
 	 * Move all the balls in the game
 	 */
 	public final void moveBalls() {
-		for (int i = 0 ; i < balls.size();) {
+		for (int i = 0; i < balls.size();) {
 			if (balls.get(i).isDead()) {
-				this.removeBall(balls.get(i));
+				removeBall(balls.get(i));
 			} else {
 				balls.get(i).move();
 				i++;
 			}
 		}
 	}
-	
+
 	/**
 	 * Move all the bullets in the game
 	 */
 	public final void moveBullets() {
-		for (int i = 0 ; i < bullets.size();) {
+		for (int i = 0; i < bullets.size();) {
 			if (bullets.get(i).isDead()) {
-				this.removeBullet(bullets.get(i));
+				removeBullet(bullets.get(i));
 			} else {
 				bullets.get(i).move();
 				i++;
@@ -330,8 +348,8 @@ public final class Game implements Constants {
 	 * Move all the free bonuses in the game
 	 */
 	public final void moveBonuses() {
-		for (int i = 0 ; i < freeBonuses.size();) {
-			Bonus bonus = freeBonuses.get(i);
+		for (int i = 0; i < freeBonuses.size();) {
+			final Bonus bonus = freeBonuses.get(i);
 			if (bonus.isDead()) {
 				freeBonuses.remove(i);
 			} else {
@@ -340,14 +358,14 @@ public final class Game implements Constants {
 			}
 		}
 	}
-	
+
 	/**
 	 * Check taken bonuses for expiration
 	 */
 	public final void checkTakenBonuses() {
-		for (int i = 0 ; i < takenBonuses.size();) {
-			Bonus bonus = takenBonuses.get(i);
-			
+		for (int i = 0; i < takenBonuses.size();) {
+			final Bonus bonus = takenBonuses.get(i);
+
 			if (bonus.getLife() < Integer.MAX_VALUE) {
 				bonus.decrementLife();
 				if (bonus.getLife() <= 0) {
@@ -359,87 +377,96 @@ public final class Game implements Constants {
 			i++;
 		}
 	}
+
 	/**
 	 * remove all taken bonuses
 	 */
 	public final void removeTakenBonuses() {
-		for (;0 < takenBonuses.size();) {
+		for (; 0 < takenBonuses.size();) {
 			takenBonuses.get(0).remove(this);
 			takenBonuses.remove(0);
 		}
 		fireBonusErase();
 	}
-	
+
 	/**
 	 * Get a float number from -5 to 5
 	 */
 	private final float getRandomSpeed() {
-		final float rndSpeed = rnd.nextFloat()*5;
+		final float rndSpeed = rnd.nextFloat() * 5;
 		if (rnd.nextBoolean()) {
-			return -1*rndSpeed;
+			return -1 * rndSpeed;
 		}
 		return rndSpeed;
 	}
-	
-	
+
 	/**
 	 * Add a ball at random x speed to the game
 	 */
 	public final void addRandomBall() {
-		Ball newBall = new StartBall(vaus, level);
+		final Ball newBall = new StartBall(vaus, level);
 		newBall.setSpeedX(getRandomSpeed());
 		newBall.setSpeedY(-3);
 		vaus.addVausListener(newBall);
 		addBall(newBall);
 	}
-	
-	//vaus listeners
+
+	// vaus listeners
 	public final void addVausListener(final VausSetListener li) {
 		vausListeners.add(li);
 	}
+
 	public final void removeVausListener(final VausSetListener li) {
 		vausListeners.remove(li);
 	}
+
 	private final void fireVausChanged() {
-		for (VausSetListener li : vausListeners) {
+		for (final VausSetListener li : vausListeners) {
 			li.setVaus(vaus);
 		}
 	}
-	//game listeners
+
+	// game listeners
 	public final void addGameListener(final GameListener li) {
 		gameListeners.add(li);
 	}
+
 	public final void removeGameListener(final GameListener li) {
 		gameListeners.remove(li);
 	}
+
 	private final void fireLevelChanged() {
-		for (GameListener li : gameListeners) {
+		for (final GameListener li : gameListeners) {
 			li.levelChanged(level);
 		}
 	}
+
 	private final void fireLevelCleared() {
-		for (GameListener li : gameListeners) {
+		for (final GameListener li : gameListeners) {
 			li.levelCleared(level);
 		}
 	}
+
 	private final void fireGameOver() {
-		for (GameListener li : gameListeners) {
+		for (final GameListener li : gameListeners) {
 			li.gameOver();
 		}
 	}
+
 	private final void fireBonusErase() {
-		for (GameListener li : gameListeners) {
+		for (final GameListener li : gameListeners) {
 			li.bonusErase();
 		}
 	}
+
 	private void fireArcadeCleared() {
-		for (GameListener li : gameListeners) {
+		for (final GameListener li : gameListeners) {
 			li.arcadeCleared();
 		}
 	}
 
 	public void releaseBalls() {
-		for (Ball b : balls) {
+		for (final Ball b : balls) {
 			b.release();
 		}
 	}
@@ -449,11 +476,11 @@ public final class Game implements Constants {
 	 */
 	public void startGame() {
 		started = true;
-		for (Ball b : balls) {
+		for (final Ball b : balls) {
 			b.start(this);
 		}
 	}
-	
+
 	/**
 	 * Check if there are balls in game, if none remove life and restart ball
 	 */
@@ -464,16 +491,17 @@ public final class Game implements Constants {
 			balls.clear();
 			removeTakenBonuses();
 			freeBonuses.clear();
-			Ball newBall = new StartBall(vaus, level);
+			final Ball newBall = new StartBall(vaus, level);
 			vaus.addVausListener(newBall);
 			balls.add(newBall);
 		}
 	}
-	
+
 	public boolean checkGameOver() {
 		if (level.isCleared()) {
 			fireLevelCleared();
-			levelManager.copyLevelFilesOutside(levelManager.getArcadeLevelPath(arcadeLevelNumber));
+			levelManager.copyLevelFilesOutside(levelManager
+					.getArcadeLevelPath(arcadeLevelNumber));
 			started = false;
 			balls.clear();
 			bullets.clear();
@@ -486,8 +514,9 @@ public final class Game implements Constants {
 				final Brick[][] field = levelManager.fieldFromArrays();
 				final String levelName = levelManager.getLevelName();
 				final int bonusPercentage = levelManager.getBonusPercentage();
-				setLevel(new Level(levelName, field, freeBonuses, vaus, bonusPercentage));
-				Ball newBall = new StartBall(vaus, level);
+				setLevel(new Level(levelName, field, freeBonuses, vaus,
+						bonusPercentage));
+				final Ball newBall = new StartBall(vaus, level);
 				vaus.addVausListener(newBall);
 				addBall(newBall);
 			} else {
@@ -511,33 +540,34 @@ public final class Game implements Constants {
 		if (highScoreListScores.size() > 0) {
 			int returnValue = highScoreListScores.get(0);
 			for (int i = 0; i < highScoreListScores.size(); i++) {
-				int t = highScoreListScores.get(i);
+				final int t = highScoreListScores.get(i);
 				returnValue = Math.min(returnValue, t);
 			}
 			return returnValue;
 		}
 		return 0;
 	}
+
 	public int getTopScore() {
 		if (highScoreListScores.size() > 0) {
 			int returnIndex = 0;
 			for (int i = 0; i < highScoreListScores.size(); i++) {
-				int s = highScoreListScores.get(returnIndex);
-				int t = highScoreListScores.get(i);
+				final int s = highScoreListScores.get(returnIndex);
+				final int t = highScoreListScores.get(i);
 				if (t > s) {
 					returnIndex = i;
 				}
-				
+
 			}
 			return returnIndex;
 		}
 		return 0;
 	}
 
-	public void addHighScore(String name) {
+	public void addHighScore(final String name) {
 		highScoreListNames.add(name);
 		highScoreListScores.add(player.getScore());
-		highScoreListTimes.add((int)(player.getTime()/1000));
+		highScoreListTimes.add((player.getTime() / 1000));
 		writeHighScoreFile();
 	}
 
@@ -545,4 +575,3 @@ public final class Game implements Constants {
 		return highScoreListScores;
 	}
 }
-

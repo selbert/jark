@@ -1,7 +1,6 @@
 package ch.unisi.inf.pfii.teamblue.jark.view.levelcreator;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -32,7 +31,7 @@ public final class EditorFrame extends JFrame {
 	private final CenterPanel centerPanel;
 	private final ButtonGroup group;
 	private final LevelManager levelManager;
-	
+
 	public EditorFrame(final LevelManager levelManager, final boolean visible) {
 		setTitle("[ jArk ] [ Level Creator ]");
 		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -40,22 +39,22 @@ public final class EditorFrame extends JFrame {
 		((JPanel) getContentPane()).setBorder(new EmptyBorder(6, 6, 6, 6));
 		setLayout(new BorderLayout(6, 6));
 		levelManager.reset();
-		
-        this.addWindowListener(new WindowAdapter() {
-            @Override
+
+		addWindowListener(new WindowAdapter() {
+			@Override
 			public void windowClosing(final WindowEvent ev) {
-                quitIfConfirmed();                
-            }
-        });
-        
+				quitIfConfirmed();
+			}
+		});
+
 		makeMenu();
-		
+
 		this.levelManager = levelManager;
 		group = new ButtonGroup();
 		centerPanel = new CenterPanel(levelManager, group);
-	
+
 		add(centerPanel, BorderLayout.CENTER);
-	
+
 		// pack the frame together
 		pack();
 		// center
@@ -64,7 +63,6 @@ public final class EditorFrame extends JFrame {
 		setVisible(visible);
 	}
 
-	
 	/**
 	 * Create the Menu
 	 */
@@ -79,7 +77,7 @@ public final class EditorFrame extends JFrame {
 		final JMenuItem newGameItem = new JMenuItem("New Game");
 		newGameItem.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
-				
+
 			}
 		});
 		fileMenu.add(newGameItem);
@@ -93,16 +91,21 @@ public final class EditorFrame extends JFrame {
 		});
 		fileMenu.add(quitItem);
 
-		//set the menubar
+		// set the menubar
 		setJMenuBar(menubar);
 	}
 
 	private void quitIfConfirmed() {
-		if (centerPanel.getFieldPanel().hasBeenSaved() || JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(EditorFrame.this, "The level has not been saved, all changes will be lost.\nQuit anyway ?", "Quit?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)) {
+		if (centerPanel.getFieldPanel().hasBeenSaved()
+				|| JOptionPane.YES_OPTION == JOptionPane
+						.showConfirmDialog(
+								EditorFrame.this,
+								"The level has not been saved, all changes will be lost.\nQuit anyway ?",
+								"Quit?", JOptionPane.YES_NO_OPTION,
+								JOptionPane.QUESTION_MESSAGE)) {
 			levelManager.reset();
 			dispose();
 		}
 	}
-
 
 }

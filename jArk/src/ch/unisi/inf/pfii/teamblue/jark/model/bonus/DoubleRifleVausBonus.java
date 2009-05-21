@@ -10,32 +10,34 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
  * @version $LastChangedDate$
- *
+ * 
  */
 
 public final class DoubleRifleVausBonus extends VausBonus {
-	
+
 	public DoubleRifleVausBonus() {
 		super(2);
 		super.setLife(DOUBLE_RIFLE_VAUS);
 	}
+
 	@Override
 	public final String toString() {
 		return "bonus_doubleriflevaus";
 	}
+
 	@Override
 	public final void apply(final Game game) {
-		Vaus vaus = game.getVaus();
+		final Vaus vaus = game.getVaus();
 		final Vaus newVaus = new DoubleRifleVaus(vaus.getX());
-		
+
 		game.setVaus(translateVaus(vaus, newVaus));
 	}
-	
+
 	@Override
 	public final void remove(final Game game) {
-		Vaus vaus = game.getVaus();
+		final Vaus vaus = game.getVaus();
 		final Vaus newVaus = new DefaultVaus(vaus.getX());
 		game.setVaus(translateVaus(vaus, newVaus));
 	}
-	
+
 }

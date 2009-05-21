@@ -14,8 +14,9 @@ import java.util.Properties;
 import javax.swing.ImageIcon;
 
 /**
- * Images Repository - lazy loading of the images (after an image is loaded the first time it is stored)
- * Images path mapping is done trough the paths.properties file.
+ * Images Repository - lazy loading of the images (after an image is loaded the
+ * first time it is stored) Images path mapping is done trough the
+ * paths.properties file.
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
  * @version $LastChangedDate$
@@ -28,42 +29,44 @@ public final class ImagesRepository {
 
 	public ImagesRepository() {
 		try {
-			properties.load(ImagesRepository.class.getResourceAsStream("paths.properties"));
-		} catch (IOException e) {
+			properties.load(ImagesRepository.class
+					.getResourceAsStream("paths.properties"));
+		} catch (final IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static final Enumeration<Object> getKeys() {
 		return properties.keys();
 	}
-	
-	public final static ImageIcon getIcon (final String path) {
+
+	public final static ImageIcon getIcon(final String path) {
 		if (!images.containsKey(path)) {
 			images.put(path, fetchImage(path));
 		}
 		return images.get(path);
 	}
 
-	private static final ImageIcon fetchImage (final String path) {
+	private static final ImageIcon fetchImage(final String path) {
 		final String imagePath = "images/" + properties.getProperty(path);
 		try {
 			return new ImageIcon(ImagesRepository.class.getResource(imagePath));
-		} catch (NullPointerException ex) {
-			return new ImageIcon(ImagesRepository.class.getResource("images/noimage.png"));
+		} catch (final NullPointerException ex) {
+			return new ImageIcon(ImagesRepository.class
+					.getResource("images/noimage.png"));
 		}
 	}
 
 	public static final Image getImage(final String path) {
 		return getIcon(path).getImage();
 	}
-	
-	public static final ImageIcon getHighlightedIcon(ImageIcon icon) {
-		Image image = icon.getImage();
-		ImageFilter filter = new RGBImageFilter() {
+
+	public static final ImageIcon getHighlightedIcon(final ImageIcon icon) {
+		final Image image = icon.getImage();
+		final ImageFilter filter = new RGBImageFilter() {
 			@Override
-			public int filterRGB(int x, int y, int rgb) {
-				int brightness = 60;
+			public int filterRGB(final int x, final int y, final int rgb) {
+				final int brightness = 60;
 
 				int r = (rgb >> 16) & 0xff;
 				int g = (rgb >> 8) & 0xff;
@@ -80,10 +83,11 @@ public final class ImagesRepository {
 				return (rgb & 0xff000000) | (r << 16) | (g << 8) | (b << 0);
 			}
 		};
-		FilteredImageSource filteredImage = new FilteredImageSource(image.getSource(), filter);
-		Image newImage = Toolkit.getDefaultToolkit().createImage(filteredImage);
-	    return new ImageIcon(newImage);
+		final FilteredImageSource filteredImage = new FilteredImageSource(image
+				.getSource(), filter);
+		final Image newImage = Toolkit.getDefaultToolkit().createImage(
+				filteredImage);
+		return new ImageIcon(newImage);
 	}
-	
-	
+
 }

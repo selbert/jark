@@ -30,15 +30,16 @@ public class LevelManager implements Constants {
 	private String levelName;
 	private String levelAuthor;
 	private int randomBonusPercentage;
-	
+
 	public LevelManager() {
 		brickField = new String[FIELD_ROWS][FIELD_COLUMNS];
 		bonusField = new String[FIELD_ROWS][FIELD_COLUMNS];
 	}
-	
-	public final void readLevelFromFile(String filepath) {
-		try{
-			final BufferedReader myInput = new BufferedReader(new FileReader(filepath));
+
+	public final void readLevelFromFile(final String filepath) {
+		try {
+			final BufferedReader myInput = new BufferedReader(new FileReader(
+					filepath));
 			final String[] infos = myInput.readLine().split(",");
 			setLevelName(infos[0]);
 			setLevelAuthor(infos[1]);
@@ -47,28 +48,31 @@ public class LevelManager implements Constants {
 			loadField(brickField, myInput);
 			myInput.readLine();
 			loadField(bonusField, myInput);
-		} catch (IOException ex) {
+		} catch (final IOException ex) {
 			System.out.println(ex);
 		}
 	}
-	
-	public void setRandomBonusPercentage(String string) {
+
+	public void setRandomBonusPercentage(final String string) {
 		randomBonusPercentage = Integer.parseInt(string);
 	}
 
-	public final void setLevelAuthor(String levelAuthor) {
+	public final void setLevelAuthor(final String levelAuthor) {
 		this.levelAuthor = levelAuthor;
 	}
+
 	public final String getLevelAuthor() {
 		return levelAuthor;
 	}
+
 	public final int getBonusPercentage() {
 		return randomBonusPercentage;
 	}
 
-	public final void readArcadeLevelFromFile(String filename) {
-		try{
-			final InputStreamReader streamReader = new InputStreamReader(LevelManager.class.getResourceAsStream(filename));
+	public final void readArcadeLevelFromFile(final String filename) {
+		try {
+			final InputStreamReader streamReader = new InputStreamReader(
+					LevelManager.class.getResourceAsStream(filename));
 			final BufferedReader myInput = new BufferedReader(streamReader);
 			final String[] infos = myInput.readLine().split(",");
 			setLevelName(infos[0]);
@@ -78,36 +82,39 @@ public class LevelManager implements Constants {
 			loadField(brickField, myInput);
 			myInput.readLine();
 			loadField(bonusField, myInput);
-		} catch (IOException ex) {
+		} catch (final IOException ex) {
 			System.out.println(ex);
 		}
 	}
-	private final String readLevelDetails(String filename) {
+
+	private final String readLevelDetails(final String filename) {
 		String details = "Info not Found";
-		try{
-			final BufferedReader myInput = new BufferedReader(new FileReader(filename));
+		try {
+			final BufferedReader myInput = new BufferedReader(new FileReader(
+					filename));
 			final String[] infos = myInput.readLine().split(",");
 			details = infos[0];
 			details += " by ";
 			details += infos[1];
-		} catch (IOException ex) {
+		} catch (final IOException ex) {
 			System.out.println(ex);
-		} catch (NullPointerException ex) {
-			System.out.println("Problem reading the level "+filename);
+		} catch (final NullPointerException ex) {
+			System.out.println("Problem reading the level " + filename);
 			details = null;
 		}
 		return details;
 	}
-	
-	private final void loadField(String[][] field, BufferedReader input) {
+
+	private final void loadField(final String[][] field,
+			final BufferedReader input) {
 		for (int i = 0; i < FIELD_ROWS; i++) {
 			String[] tmp = null;
 			try {
 				tmp = input.readLine().split(" ");
-			} catch (IOException ex) {
+			} catch (final IOException ex) {
 				System.out.println(ex);
 			}
-			for (int j = 0; j<FIELD_COLUMNS; j++) {
+			for (int j = 0; j < FIELD_COLUMNS; j++) {
 				if (!tmp[j].equals("null")) {
 					field[i][j] = tmp[j];
 				} else {
@@ -116,14 +123,14 @@ public class LevelManager implements Constants {
 			}
 		}
 	}
-	
+
 	public Brick[][] fieldFromArrays() {
 		final Brick[][] field = new Brick[FIELD_ROWS][FIELD_COLUMNS];
-		
+
 		for (int i = 0; i < FIELD_ROWS; i++) {
-			for (int j=0; j < FIELD_COLUMNS; j++) {
-				Brick brick = stringToBrick(brickField[i][j]);
-				Bonus bonus = Bonuses.stringToBonus(bonusField[i][j]);
+			for (int j = 0; j < FIELD_COLUMNS; j++) {
+				final Brick brick = stringToBrick(brickField[i][j]);
+				final Bonus bonus = Bonuses.stringToBonus(bonusField[i][j]);
 				if (bonus != null) {
 					brick.setBonus(bonus);
 				}
@@ -132,9 +139,8 @@ public class LevelManager implements Constants {
 		}
 		return field;
 	}
-	
-	
-	private Brick stringToBrick(String brickString) {
+
+	private Brick stringToBrick(final String brickString) {
 		if (brickString == null) {
 			return null;
 		} else if (brickString.equals("defaultBrick")) {
@@ -146,64 +152,66 @@ public class LevelManager implements Constants {
 		} else if (brickString.equals("persistentBrick")) {
 			return new PersistentBrick();
 		}
-		return null; 
+		return null;
 	}
 
-	
-	private String fieldToString(String[][] field) {
-		String line ="";
-		for(final String[] i : field) {
+	private String fieldToString(final String[][] field) {
+		String line = "";
+		for (final String[] i : field) {
 			for (final String j : i) {
-				line += j+" ";
+				line += j + " ";
 			}
 			line += "\n";
 		}
 		return line;
 	}
-	
+
 	public String[][] getBrickField() {
 		return brickField;
 	}
-	
-	public void setBrickField(String[][] brickField) {
+
+	public void setBrickField(final String[][] brickField) {
 		this.brickField = brickField;
 	}
-	public void setBonusField(String[][] bonusField) {
+
+	public void setBonusField(final String[][] bonusField) {
 		this.bonusField = bonusField;
 	}
-	
+
 	public String[][] getBonusField() {
 		return bonusField;
 	}
 
-	public void writeLevelToFile(String name) {
+	public void writeLevelToFile(final String name) {
 		final File dir = new File("levels");
 		dir.mkdir();
-		final File file = new File(dir+"/"+name+".jark");
+		final File file = new File(dir + "/" + name + ".jark");
 		try {
 			if (file.createNewFile()) {
-				FileWriter fstream = new FileWriter(file);
-				BufferedWriter out = new BufferedWriter(fstream);
-				out.write(levelName+","+levelAuthor+","+randomBonusPercentage);
+				final FileWriter fstream = new FileWriter(file);
+				final BufferedWriter out = new BufferedWriter(fstream);
+				out.write(levelName + "," + levelAuthor + ","
+						+ randomBonusPercentage);
 				out.write("\n\n");
 				out.write(fieldToString(brickField));
 				out.write("\n");
 				out.write(fieldToString(bonusField));
 				out.close();
 			} else {
-				JOptionPane.showMessageDialog(null, "File \""+name+"\" already exist, choose a different name.");
+				JOptionPane.showMessageDialog(null, "File \"" + name
+						+ "\" already exist, choose a different name.");
 			}
-		} catch (IOException ex) {
+		} catch (final IOException ex) {
 			System.out.println(ex);
 		}
 	}
-	
+
 	public void reset() {
 		brickField = new String[FIELD_ROWS][FIELD_COLUMNS];
 		bonusField = new String[FIELD_ROWS][FIELD_COLUMNS];
 	}
 
-	public void setLevelName(String levelName) {
+	public void setLevelName(final String levelName) {
 		this.levelName = levelName;
 	}
 
@@ -212,80 +220,86 @@ public class LevelManager implements Constants {
 	}
 
 	public final String[] getLevelsPath() {
-	    File dir = new File("levels/");
-		if (!dir.isDirectory()) { 
+		final File dir = new File("levels/");
+		if (!dir.isDirectory()) {
 			dir.mkdir();
 		}
-	    final String[] files = dir.list(new FilenameFilter() {
-			public boolean accept(File dir, String name) {
+		final String[] files = dir.list(new FilenameFilter() {
+			public boolean accept(final File dir, final String name) {
 				return (name.endsWith(".jark"));
 			}
-	    });
-	    for (int i = 0; i<files.length; i++) {
-	    	files[i] = files[i].split(".jark")[0];
-	    }
-	    return files;
+		});
+		for (int i = 0; i < files.length; i++) {
+			files[i] = files[i].split(".jark")[0];
+		}
+		return files;
 	}
-	
+
 	public final String[] getLevelsDetail(final String[] paths) {
 		final String[] details = new String[paths.length];
-		for (int i = 0; i<paths.length; i++) {
-			final String temp = readLevelDetails("levels/"+paths[i]+".jark");
+		for (int i = 0; i < paths.length; i++) {
+			final String temp = readLevelDetails("levels/" + paths[i] + ".jark");
 			if (temp != null) {
 				details[i] = temp;
 			} else {
 				details[i] = paths[i];
 			}
-	    }
+		}
 		return details;
 	}
 
-	public final void loadArcadeLevel(int arcadeLevel) {
+	public final void loadArcadeLevel(final int arcadeLevel) {
 		final String path = getArcadeLevelPath(arcadeLevel);
 		readArcadeLevelFromFile(path);
 	}
-	public final String getArcadeLevelPath(int arcadeLevel) {
-		Properties properties = new Properties();
+
+	public final String getArcadeLevelPath(final int arcadeLevel) {
+		final Properties properties = new Properties();
 		try {
-			properties.load(LevelManager.class.getResourceAsStream("defaultlevels/levelspath.properties"));
-		} catch (IOException ex) {
+			properties
+					.load(LevelManager.class
+							.getResourceAsStream("defaultlevels/levelspath.properties"));
+		} catch (final IOException ex) {
 			System.out.println(ex);
 		}
-		return "defaultlevels/" + properties.getProperty(arcadeLevel+"");	
+		return "defaultlevels/" + properties.getProperty(arcadeLevel + "");
 	}
-	
-	private final void copyLevelFileOutside(String path) throws IOException, NullPointerException {
+
+	private final void copyLevelFileOutside(final String path)
+			throws IOException, NullPointerException {
 		final String levelPath = path;
-		final String destPath = "levels/"+levelPath.split("defaultlevels/")[1];
+		final String destPath = "levels/"
+				+ levelPath.split("defaultlevels/")[1];
 		final File destFile = new File(destPath);
 		if (destFile.exists()) {
 			return;
 		}
 		final File dir = new File("levels/");
-		if (!dir.isDirectory()) { 
+		if (!dir.isDirectory()) {
 			dir.mkdir();
 		}
 		final InputStream level = getClass().getResourceAsStream(levelPath);
-		final OutputStream out = new FileOutputStream(destPath); 
-		
-		final byte[] buf = new byte[1024]; 
-		int len = 0; 
-		while ((len = level.read(buf)) > 0) { 
-			out.write(buf, 0, len); 
-		}     
+		final OutputStream out = new FileOutputStream(destPath);
 
-		level.close(); 
-		out.close(); 
+		final byte[] buf = new byte[1024];
+		int len = 0;
+		while ((len = level.read(buf)) > 0) {
+			out.write(buf, 0, len);
+		}
+
+		level.close();
+		out.close();
 	}
-	
+
 	public final void copyLevelFilesOutside(final String path) {
 		try {
 			copyLevelFileOutside(path);
-			copyLevelFileOutside(path.split(".jark")[0]+".png");
-		} catch (NullPointerException e) {
+			copyLevelFileOutside(path.split(".jark")[0] + ".png");
+		} catch (final NullPointerException e) {
 			System.out.println("Couldn't find some level file.");
-		} catch (IOException e) {
-			System.out.println("Couldn't copy the level files outside the JAR.");
+		} catch (final IOException e) {
+			System.out
+					.println("Couldn't copy the level files outside the JAR.");
 		}
 	}
 }

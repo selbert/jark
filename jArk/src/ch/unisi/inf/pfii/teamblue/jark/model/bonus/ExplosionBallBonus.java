@@ -12,7 +12,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.ball.ExplosionBall;
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
  * @version $LastChangedDate$
- *
+ * 
  */
 
 public final class ExplosionBallBonus extends BallBonus {
@@ -20,36 +20,38 @@ public final class ExplosionBallBonus extends BallBonus {
 		super(2);
 		super.setLife(EXPLOSION_BALL);
 	}
+
 	@Override
 	public final String toString() {
 		return "bonus_explosionball";
 	}
+
 	@Override
 	public final void apply(final Game game) {
 		final ArrayList<Ball> balls = game.getBalls();
 		final int numberOfBalls = balls.size();
-		
+
 		for (int i = 0; i < numberOfBalls; i++) {
 			final Ball oldBall = balls.get(i);
-			final Ball newBall = new ExplosionBall(oldBall.getVaus(), oldBall.getLevel());
-			
+			final Ball newBall = new ExplosionBall(oldBall.getVaus(), oldBall
+					.getLevel());
+
 			game.replaceBall(oldBall, translateBall(oldBall, newBall));
 		}
 	}
-	
+
 	@Override
 	public final void remove(final Game game) {
 		final ArrayList<Ball> balls = game.getBalls();
 		final int numberOfBalls = balls.size();
-		
+
 		for (int i = 0; i < numberOfBalls; i++) {
 			final Ball oldBall = balls.get(i);
-			final Ball newBall = new DefaultBall(oldBall.getVaus(), oldBall.getLevel());
-			
+			final Ball newBall = new DefaultBall(oldBall.getVaus(), oldBall
+					.getLevel());
+
 			game.replaceBall(oldBall, translateBall(oldBall, newBall));
 		}
 	}
-	
-	
-	
+
 }

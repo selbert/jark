@@ -8,8 +8,8 @@ import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 
 /**
  * 
- * This class represents the Vaus (the paddle), it has a state, a size and a position (x).
- * It is extended by the different types of vaus.
+ * This class represents the Vaus (the paddle), it has a state, a size and a
+ * position (x). It is extended by the different types of vaus.
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
  * @version $LastChangedDate$
@@ -22,7 +22,7 @@ public abstract class Vaus implements Constants {
 	private int moveRight;
 	protected int vausWidth;
 	private ArrayList<VausListener> vausListenerList;
-	
+
 	public Vaus(final int posX) {
 		this.posX = posX;
 		vausWidth = VAUS_WIDTH;
@@ -31,15 +31,16 @@ public abstract class Vaus implements Constants {
 
 	@Override
 	public abstract String toString();
-	
-	//getters and setters
+
+	// getters and setters
 	public void setX(final int posX) {
 		fireVausMoved(posX);
 		this.posX = posX;
-		
+
 	}
-	private void fireVausMoved(int i) {
-		for (VausListener li : vausListenerList) {
+
+	private void fireVausMoved(final int i) {
+		for (final VausListener li : vausListenerList) {
 			li.vausMoved(i);
 		}
 	}
@@ -47,21 +48,24 @@ public abstract class Vaus implements Constants {
 	public int getX() {
 		return posX;
 	}
-	public void setWidth(int width) {
+
+	public void setWidth(final int width) {
 		vausWidth = width;
 	}
+
 	public int getWidth() {
 		return vausWidth;
 	}
-	
+
 	/**
 	 * Move the Vaus of a specified delta
+	 * 
 	 * @param deltaX
 	 */
 	public void move(final int delta) {
 		setX(posX + delta);
 	}
-	
+
 	/**
 	 * Move the Vaus based on the moveX field
 	 */
@@ -78,6 +82,7 @@ public abstract class Vaus implements Constants {
 	public final void moveLeft() {
 		moveLeft = 1;
 	}
+
 	public final void moveRight() {
 		moveRight = 1;
 	}
@@ -85,27 +90,29 @@ public abstract class Vaus implements Constants {
 	public void stopLeft() {
 		moveLeft = 0;
 	}
+
 	public void stopRight() {
 		moveRight = 0;
 	}
-	public void shoot(Game game) {
+
+	public void shoot(final Game game) {
 		return;
 	}
 
-	public void addVausListener(VausListener li) {
+	public void addVausListener(final VausListener li) {
 		vausListenerList.add(li);
 	}
 
-	public void removeVausListener(VausListener li) {
+	public void removeVausListener(final VausListener li) {
 		vausListenerList.remove(li);
 	}
-	
-	public void setVausListenerLsit(ArrayList<VausListener> listenerList) {
+
+	public void setVausListenerLsit(final ArrayList<VausListener> listenerList) {
 		vausListenerList = listenerList;
 	}
-	
+
 	public ArrayList<VausListener> getVausListenerLsit() {
 		return vausListenerList;
 	}
-	
+
 }

@@ -23,9 +23,9 @@ public abstract class Bonus implements Constants, VausSetListener {
 	private boolean dead;
 	private int lifeInMill;
 	private final int bonusClass;
-	
+
 	private final ArrayList<BonusListener> listeners;
-	
+
 	public Bonus(final int bonusClass) {
 		x = 0;
 		y = 0;
@@ -34,42 +34,50 @@ public abstract class Bonus implements Constants, VausSetListener {
 		lifeInMill = 30000;
 		this.bonusClass = bonusClass;
 	}
-	
+
 	@Override
 	public abstract String toString();
+
 	public abstract void apply(final Game game);
-	
-	//getters
+
+	// getters
 	public final int getX() {
 		return x;
 	}
+
 	public final int getY() {
 		return y;
 	}
+
 	public final boolean isDead() {
 		return dead;
 	}
+
 	public int getLife() {
 		return lifeInMill;
 	}
+
 	public int getBonusClass() {
 		return bonusClass;
 	}
-	
-	//setters
+
+	// setters
 	public final void setX(final int x) {
 		this.x = x;
 	}
+
 	public final void setY(final int y) {
 		this.y = y;
 	}
+
 	public final void setVaus(final Vaus vaus) {
 		this.vaus = vaus;
 	}
-	public final void setLife(int life) {
+
+	public final void setLife(final int life) {
 		lifeInMill = life;
 	}
-	
+
 	/**
 	 * Called each time the bonus has to move
 	 */
@@ -78,42 +86,43 @@ public abstract class Bonus implements Constants, VausSetListener {
 		checkVausCollision();
 		checkOutOfReach();
 	}
-	
+
 	private final void checkVausCollision() {
-		if (y + BRICK_HEIGHT > VAUS_Y 
+		if (y + BRICK_HEIGHT > VAUS_Y
 				&& y + BRICK_HEIGHT < VAUS_Y + BRICK_HEIGHT
 				&& x + BRICK_WIDTH >= vaus.getX()
 				&& x <= vaus.getX() + vaus.getWidth()) {
 			fireBonusTaken();
 		}
 	}
-	
+
 	private final void checkOutOfReach() {
 		if (y > GAME_HEIGHT) {
 			dead = true;
 		}
 	}
 
-    public void addBonusListener(final BonusListener li) {
-        listeners.add(li);
-    }
+	public void addBonusListener(final BonusListener li) {
+		listeners.add(li);
+	}
 
-    public void removeBonusListener(final BonusListener li) {
-        listeners.remove(li);
-    }
-    
-    protected void fireBonusTaken() {
-        for (final BonusListener li : listeners) {
-            li.bonusTaken(this);
-        }
-    }
-    protected void fireLifeDecreased() {
-        for (final BonusListener li : listeners) {
-            li.lifeDecreased(this);
-        }
-    }
+	public void removeBonusListener(final BonusListener li) {
+		listeners.remove(li);
+	}
 
-	public void remove(Game game) {
+	protected void fireBonusTaken() {
+		for (final BonusListener li : listeners) {
+			li.bonusTaken(this);
+		}
+	}
+
+	protected void fireLifeDecreased() {
+		for (final BonusListener li : listeners) {
+			li.lifeDecreased(this);
+		}
+	}
+
+	public void remove(final Game game) {
 		return;
 	}
 

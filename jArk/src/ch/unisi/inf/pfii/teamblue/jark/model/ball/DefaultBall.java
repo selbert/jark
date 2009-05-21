@@ -8,20 +8,22 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
  * @version $LastChangedDate: 2009-05-07 16:29:47 +0200 (Thu, 07 May 2009) $
- *
+ * 
  */
 
 public class DefaultBall extends Ball {
 
 	public DefaultBall(final Vaus vaus, final Level level) {
-		super(vaus,level);
+		super(vaus, level);
 	}
+
 	@Override
 	public final Ball copy() {
-		Ball returnBall = new DefaultBall(vaus, level);
-		
+		final Ball returnBall = new DefaultBall(vaus, level);
+
 		return transferBall(returnBall);
 	}
+
 	@Override
 	public String toString() {
 		return "defaultBall";

@@ -4,13 +4,13 @@ import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
 
 public abstract class BallBonus extends Bonus {
 
-	public BallBonus(int bonusClass) {
+	public BallBonus(final int bonusClass) {
 		super(bonusClass);
 	}
 
 	@Override
 	public abstract String toString();
-	
+
 	protected final Ball translateBall(final Ball oldBall, final Ball newBall) {
 		oldBall.release();
 		newBall.setSpeedX(oldBall.getSpeedX());

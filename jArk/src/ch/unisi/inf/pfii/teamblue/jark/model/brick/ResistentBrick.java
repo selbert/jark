@@ -1,11 +1,11 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.brick;
 
 /**
- * Resistent Brick - this brick has to be hit more times to be destroyed 
- *  
+ * Resistent Brick - this brick has to be hit more times to be destroyed
+ * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
  * @version $LastChangedDate$
- *
+ * 
  */
 
 public final class ResistentBrick extends Brick {
@@ -14,6 +14,7 @@ public final class ResistentBrick extends Brick {
 		setLives(2);
 		setPoints(8);
 	}
+
 	@Override
 	public final String toString() {
 		final int i = getLives();
@@ -23,5 +24,5 @@ public final class ResistentBrick extends Brick {
 			return "resistentBrick1";
 		}
 	}
-	
+
 }

@@ -10,7 +10,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
  * @version $LastChangedDate$
- *
+ * 
  */
 
 public final class TheBoxBonus extends BallBonus {
@@ -19,24 +19,27 @@ public final class TheBoxBonus extends BallBonus {
 		super(3);
 		super.setLife(THE_BOX);
 	}
+
 	@Override
 	public String toString() {
 		return "bonus_box";
 	}
+
 	@Override
 	public void apply(final Game game) {
 		final ArrayList<Ball> balls = game.getBalls();
 		final int numberOfBalls = balls.size();
-		
+
 		for (int i = 0; i < numberOfBalls; i++) {
 			balls.get(i).setBoxEnabled(true);
 		}
 	}
+
 	@Override
 	public final void remove(final Game game) {
 		final ArrayList<Ball> balls = game.getBalls();
 		final int numberOfBalls = balls.size();
-		
+
 		for (int i = 0; i < numberOfBalls; i++) {
 			balls.get(i).setBoxEnabled(false);
 		}

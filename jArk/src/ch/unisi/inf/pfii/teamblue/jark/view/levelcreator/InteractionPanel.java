@@ -48,7 +48,7 @@ public final class InteractionPanel extends JPanel {
 					return;
 				}
 				final String name = JOptionPane
-						.showInputDialog("The level will be saved in the folder \"levels/\", \na \".jark\" extension will be automatically added.\n\nInput a name:");
+						.showInputDialog(centerPanel, "The level will be saved in the folder \"levels/\", \na \".jark\" extension will be automatically added.\n\nInput a name:", "Save level", JOptionPane.INFORMATION_MESSAGE);
 				if (name != null) {
 					
 					levelManager.setLevelAuthor(op.getLevelAuthor());

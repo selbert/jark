@@ -37,11 +37,6 @@ public final class Level implements Constants, VausSetListener {
 
 	/**
 	 * Constructor of Level, creates a new level (field of bricks).
-	 * 
-	 * @param numOfBonus
-	 *            total bonuses at disposition
-	 * @param freeBonuses
-	 *            ArrayList of bonus dropping to the vaus
 	 */
 
 	public Level(final String name, final Brick[][] brickField,
@@ -114,38 +109,6 @@ public final class Level implements Constants, VausSetListener {
 				.nextInt(bonusArray.length)]));
 	}
 
-	/**
-	 * Create a level from a file with format: lineID.rowID.blockType (i.e.
-	 * 0.1.0)
-	 * 
-	 * @param levelNumber
-	 *            filename
-	 */
-	@SuppressWarnings("unused")
-	private final void createLevel(final int levelNumber) {
-		try {
-			final URL filePath = getClass().getResource(
-					"defaultlevels/" + levelNumber);
-			final InputStreamReader streamReader = new InputStreamReader(
-					filePath.openStream());
-			final BufferedReader myInput = new BufferedReader(streamReader);
-			String thisLine = "";
-
-			while ((thisLine = myInput.readLine()) != null) {
-
-				final String[] brickInfo = thisLine.split("\\.");
-				if (brickInfo.length > 1) {
-					final int row = Integer.parseInt(brickInfo[0]);
-					final int col = Integer.parseInt(brickInfo[1]);
-					final int type = Integer.parseInt(brickInfo[2]);
-
-					bricks[row][col] = Utils.intToBrick(type);
-				}
-			}
-		} catch (final IOException ex) {
-			System.out.println(ex);
-		}
-	}
 
 	/**
 	 * Add bonuses to random bricks

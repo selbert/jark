@@ -41,9 +41,9 @@ public final class DoubleRifleVaus extends Vaus {
 	private final void shootBullet(Game game) {
 		Bullet newBullet = new Bullet(this, game.getLevel());
 		if (lastShotLeft) {
-			newBullet.setX(posX+getWidth() - (2*BALL_RADIUS));
+			newBullet.setX(posX+getWidth() - (2*BALL_RADIUS) -9);
 		} else {
-			newBullet.setX(posX);
+			newBullet.setX(posX+13);
 		}
 		lastShotLeft = !lastShotLeft;
 		newBullet.setSpeedY(-5);

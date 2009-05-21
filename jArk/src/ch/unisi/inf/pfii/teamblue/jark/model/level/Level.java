@@ -42,29 +42,22 @@ public final class Level implements Constants, VausSetListener {
 	 * @param freeBonuses ArrayList of bonus dropping to the vaus 
 	 */
 	
-	public Level(final String name, final Brick[][] brickField, final ArrayList<Bonus> freeBonuses, final Vaus vaus) {
+	public Level(final String name, final Brick[][] brickField, final ArrayList<Bonus> freeBonuses, final Vaus vaus, final int bonusPercentage) {
 		rnd = new Random();
 		listeners = new ArrayList<LevelListener>();
 		this.name = name;
 		this.vaus = vaus;
 		this.freeBonuses = freeBonuses;
 		bricks = brickField;
-	}
-	
-	public Level(final int numOfBonus, final ArrayList<Bonus> freeBonuses, final Vaus vaus) {
-		bricks = new Brick[FIELD_ROWS][FIELD_COLUMNS];
-		if (bonusDistString == null) {
-			bonusDistString = getDistributionString();
+		if (bonusPercentage > 0) {
+			if (bonusDistString == null) {
+				bonusDistString = getDistributionString();
+			}
+			System.out.println(bonusPercentage);
+			System.out.println(getNumberOfDestroyableBrick());
+			System.out.println((int)((float)getNumberOfDestroyableBrick()/100*bonusPercentage));
+			addRandomBonus((int)((float)getNumberOfDestroyableBrick()/100*bonusPercentage));
 		}
-		this.freeBonuses = freeBonuses;
-		listeners = new ArrayList<LevelListener>();
-		this.vaus = vaus;
-		rnd = new Random();
-		createTestFieldLevel();
-		//createLevel(0);
-		name = "Random Level";
-		addRandomBonus(numOfBonus);
-		//TODO name num of bonus, .. all in the level file!
 	}
 	
 	//getters and setters
@@ -77,6 +70,17 @@ public final class Level implements Constants, VausSetListener {
 		for (Bonus b : freeBonuses) {
 			b.setVaus(vaus);
 		}
+	}
+	private final int getNumberOfDestroyableBrick() {
+		int returnNumber = 0;
+		for(Brick[] rowOfBricks : bricks) {
+			for (Brick brick : rowOfBricks) {
+				if (brick != null && !(brick instanceof PersistentBrick)) {
+					returnNumber++;
+				}
+			}
+		}
+		return returnNumber;
 	}
 	
 	/**
@@ -153,7 +157,7 @@ public final class Level implements Constants, VausSetListener {
 		
 		for(Brick[] rowOfBricks : bricks) {
 			for (Brick brick : rowOfBricks) {
-				if (brick != null) {
+				if (brick != null && !(brick instanceof PersistentBrick)) {
 					listOfBricks.add(brick);
 				}
 			}

@@ -38,7 +38,6 @@ public class HighScores {
 		final File file = new File("HighScore.jahs");
 		try {
 			if (!file.createNewFile()) {
-				try {
 					final BufferedReader myInput = new BufferedReader(
 							new FileReader("HighScore.jahs"));
 					String readLine = myInput.readLine();
@@ -57,12 +56,11 @@ public class HighScores {
 						highScoreListTimes.add(time);
 						readLine = myInput.readLine();
 					}
-				} catch (final IOException ex) {
-					System.out.println(ex);
-				}
+			} else {
+				file.createNewFile();
 			}
-		} catch (final IOException e) {
-			e.printStackTrace();
+		} catch (final Exception ex) {
+			System.out.println("Problem accessing Highscore file.");
 		}
 	}
 	
@@ -71,7 +69,7 @@ public class HighScores {
 		try {
 			file.createNewFile();
 		} catch (final IOException ex) {
-			System.out.println(ex);
+			System.out.println("Problem accessing Highscore file.");
 		}
 		try {
 			final FileWriter fstream = new FileWriter(file);
@@ -89,7 +87,7 @@ public class HighScores {
 			}
 			out.close();
 		} catch (final IOException ex) {
-			System.out.println(ex);
+			System.out.println("Problem writing to Highscore file.");
 		}
 	}
 	public final int getTopScore() {

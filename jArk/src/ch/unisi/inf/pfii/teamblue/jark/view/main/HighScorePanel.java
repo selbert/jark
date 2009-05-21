@@ -39,38 +39,38 @@ public class HighScorePanel extends JPanel {
 		final File file = new File("HighScore.jahs");
 		try {
 			if (!file.createNewFile()) {
-					final BufferedReader myInput = new BufferedReader(
-							new FileReader("HighScore.jahs"));
-					String readLine = myInput.readLine();
-					int y = 1;
-					addLine("Name", "Score", "Time", y, true);
-					y++;
-					while (readLine != null && y <= 11) {
-						final char a = readLine.charAt(0);
-						final int x = a - '0';
-						final String decryptedString = StringEncrypt.decrypt(
-								readLine.substring(1), x);
-						try {
-							final String name = decryptedString.split(":")[0];
-							final String score = ""
-									+ Integer.parseInt(decryptedString
-											.split(":")[1]);
-							final int t = Integer.parseInt(decryptedString
-									.split(":")[2]);
-							final int m = (t / 60);
-							final int s = t % 60;
-							final String time = ((m < 10) ? "0" : "") + m + ":"
-									+ ((s < 10) ? "0" : "") + s;
+				final BufferedReader myInput = new BufferedReader(
+						new FileReader("HighScore.jahs"));
+				String readLine = myInput.readLine();
+				int y = 1;
+				addLine("Name", "Score", "Time", y, true);
+				y++;
+				while (readLine != null && y <= 11) {
+					final char a = readLine.charAt(0);
+					final int x = a - '0';
+					final String decryptedString = StringEncrypt.decrypt(
+							readLine.substring(1), x);
+					try {
+						final String name = decryptedString.split(":")[0];
+						final String score = ""
+							+ Integer.parseInt(decryptedString
+									.split(":")[1]);
+						final int t = Integer.parseInt(decryptedString
+								.split(":")[2]);
+						final int m = (t / 60);
+						final int s = t % 60;
+						final String time = ((m < 10) ? "0" : "") + m + ":"
+						+ ((s < 10) ? "0" : "") + s;
 
-							addLine(name, score, time, y, false);
-							y++;
+						addLine(name, score, time, y, false);
+						y++;
 
-						} catch (final Exception e) {
-							System.out.println("Invalid highscore file format! Cheating ish baaad :D");
-							return;
-						}
-						readLine = myInput.readLine();
+					} catch (final Exception e) {
+						System.out.println("Invalid highscore file format! Cheating ish baaad :D");
+						return;
 					}
+					readLine = myInput.readLine();
+				}
 			} else {
 				file.createNewFile();
 			}

@@ -28,19 +28,19 @@ public final class Player implements Constants {
 		listeners = new ArrayList<PlayerListener>();
 	}
 
-	public String getName() {
+	public final String getName() {
 		return name;
 	}
 
-	public void setLives(final int lives) {
+	public final void setLives(final int lives) {
 		this.lives = lives;
 	}
 
-	public int getLives() {
+	public final int getLives() {
 		return lives;
 	}
 
-	public void incrementTime() {
+	public final void incrementTime() {
 		gameTime += TICKS_PER_SECOND;
 		if ((gameTime / 1000) > gameTimeInSeconds) {
 			gameTimeInSeconds = (gameTime / 1000);
@@ -48,54 +48,54 @@ public final class Player implements Constants {
 		}
 	}
 
-	public void incrementLives() {
+	public final void incrementLives() {
 		lives++;
 		fireModifiedLives();
 	}
 
-	public void decrementLives() {
+	public final void decrementLives() {
 		lives--;
 		fireModifiedLives();
 	}
 
-	public void setScore(final int score) {
+	public final void setScore(final int score) {
 		this.score = score;
 	}
 
-	public void incrementScore(final int score) {
+	public final void incrementScore(final int score) {
 		this.score += score;
 		fireModifiedScore();
 	}
 
-	public int getScore() {
+	public final int getScore() {
 		return score;
 	}
 
-	public int getTime() {
+	public final int getTime() {
 		return gameTime;
 	}
 
-	public void addPlayerListener(final PlayerListener li) {
+	public final void addPlayerListener(final PlayerListener li) {
 		listeners.add(li);
 	}
 
-	public void removePlayerListener(final PlayerListener li) {
+	public final void removePlayerListener(final PlayerListener li) {
 		listeners.remove(li);
 	}
 
-	public void fireModifiedLives() {
+	public final void fireModifiedLives() {
 		for (final PlayerListener li : listeners) {
 			li.modifiedLives(lives);
 		}
 	}
 
-	public void fireModifiedScore() {
+	public final void fireModifiedScore() {
 		for (final PlayerListener li : listeners) {
 			li.modifiedScore(score);
 		}
 	}
 
-	public void fireModifiedTime() {
+	public final void fireModifiedTime() {
 		for (final PlayerListener li : listeners) {
 			li.modifiedTime(gameTimeInSeconds);
 		}

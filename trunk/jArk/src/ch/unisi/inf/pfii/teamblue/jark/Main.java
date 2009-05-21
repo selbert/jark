@@ -19,7 +19,7 @@ import ch.unisi.inf.pfii.teamblue.jark.view.main.MainFrame;
  * 
  */
 
-public class Main {
+public final class Main {
 
 	public static void main(final String[] args) {
 		final LevelManager levelManager = new LevelManager();

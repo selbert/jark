@@ -1,6 +1,6 @@
 package ch.unisi.inf.pfii.teamblue.jark.implementation;
 
-public class StringEncrypt {
+public final class StringEncrypt {
 
 	public static final String encrypt(final String string, final int code) {
 		String encryptedString;

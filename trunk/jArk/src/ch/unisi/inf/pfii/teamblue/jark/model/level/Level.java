@@ -57,10 +57,6 @@ public final class Level implements Constants, VausSetListener {
 			if (bonusDistString == null) {
 				bonusDistString = getDistributionString();
 			}
-			System.out.println(bonusPercentage);
-			System.out.println(getNumberOfDestroyableBrick());
-			System.out
-					.println((int) ((float) getNumberOfDestroyableBrick() / 100 * bonusPercentage));
 			addRandomBonus((int) ((float) getNumberOfDestroyableBrick() / 100 * bonusPercentage));
 		}
 	}

@@ -38,8 +38,7 @@ public class LevelManager implements Constants {
 
 	public final void readLevelFromFile(final String filepath) {
 		try {
-			final BufferedReader myInput = new BufferedReader(new FileReader(
-					filepath));
+			final BufferedReader myInput = new BufferedReader(new FileReader(filepath));
 			final String[] infos = myInput.readLine().split(",");
 			setLevelName(infos[0]);
 			setLevelAuthor(infos[1]);
@@ -182,30 +181,40 @@ public class LevelManager implements Constants {
 		return bonusField;
 	}
 
-	public final void writeLevelToFile(final String name) {
+	public final boolean writeLevelToFile(final String name) {
 		final File dir = new File("levels");
 		dir.mkdir();
 		final File file = new File(dir + "/" + name + ".jark");
 		try {
 			if (file.createNewFile()) {
-				final FileWriter fstream = new FileWriter(file);
-				final BufferedWriter out = new BufferedWriter(fstream);
-				out.write(levelName + "," + levelAuthor + ","
-						+ randomBonusPercentage);
-				out.write("\n\n");
-				out.write(fieldToString(brickField));
-				out.write("\n");
-				out.write(fieldToString(bonusField));
-				out.close();
+				writeToFile(file);
+				return true;
 			} else {
-				JOptionPane.showMessageDialog(null, "File \"" + name
-						+ "\" already exist, choose a different name.");
+				if (JOptionPane.showConfirmDialog(null, "File "+name+" already exists, overwrite ?", "File already exists", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
+					writeToFile(file);
+					return true;
+				} 
 			}
 		} catch (final IOException ex) {
 			System.out.println(ex);
 		}
+		return false;
 	}
-
+	private final void writeToFile(File file) {
+		try {
+			final FileWriter fstream = new FileWriter(file);
+			final BufferedWriter out = new BufferedWriter(fstream);
+			out.write(levelName + "," + levelAuthor + "," + randomBonusPercentage);
+			out.write("\n\n");
+			out.write(fieldToString(brickField));
+			out.write("\n");
+			out.write(fieldToString(bonusField));
+			out.close();
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null, "Error, impossible to write the file.");
+		}
+	}
+	
 	public final void reset() {
 		brickField = new String[FIELD_ROWS][FIELD_COLUMNS];
 		bonusField = new String[FIELD_ROWS][FIELD_COLUMNS];

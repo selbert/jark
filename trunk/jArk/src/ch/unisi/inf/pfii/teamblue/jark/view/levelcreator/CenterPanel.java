@@ -29,7 +29,7 @@ public final class CenterPanel extends JComponent implements Constants {
 	private final FieldImage fieldImage;
 	private final OptionPanel optionPanel;
 	private final Properties properties = new Properties();
-
+	private final JTabbedPane tabbedPane;
 	public CenterPanel(final LevelManager levelManager, final ButtonGroup group) {
 		try {
 			properties.load(getClass().getResourceAsStream("desc.properties"));
@@ -62,7 +62,7 @@ public final class CenterPanel extends JComponent implements Constants {
 		gbc.gridy = 1;
 		gbc.gridwidth = 1;
 
-		final JTabbedPane tabbedPane = new JTabbedPane();
+		tabbedPane = new JTabbedPane();
 
 		final BricksPanel bricks = new BricksPanel(group, properties);
 		tabbedPane.addTab("Bricks", bricks);
@@ -87,5 +87,9 @@ public final class CenterPanel extends JComponent implements Constants {
 
 	public final OptionPanel getOptionPanel() {
 		return optionPanel;
+	}
+	
+	public final void showOptionTab() {
+		tabbedPane.setSelectedComponent(optionPanel);
 	}
 }

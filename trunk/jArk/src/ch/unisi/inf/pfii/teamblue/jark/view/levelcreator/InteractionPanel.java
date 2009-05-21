@@ -42,7 +42,7 @@ public final class InteractionPanel extends JPanel {
 			public void actionPerformed(final ActionEvent e) {
 				final FieldPanel fp = centerPanel.getFieldPanel();
 				final OptionPanel op = centerPanel.getOptionPanel();
-				if (op.getLevelAuthor() == null && op.getLevelName() == null) {
+				if (op.getLevelAuthor() == null || op.getLevelName() == null) {
 					JOptionPane.showMessageDialog(centerPanel, "You must input valid level name and author before saving it.", "Missing informations", JOptionPane.WARNING_MESSAGE);
 					centerPanel.showOptionTab();
 					return;

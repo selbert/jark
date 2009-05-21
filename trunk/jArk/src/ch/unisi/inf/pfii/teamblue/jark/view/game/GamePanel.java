@@ -144,7 +144,6 @@ public final class GamePanel extends JComponent implements Constants,
 					break;
 				case KeyEvent.VK_SPACE:
 					vausIsShooting = true;
-					game.releaseBalls();
 					break;
 				}
 			}
@@ -180,17 +179,20 @@ public final class GamePanel extends JComponent implements Constants,
 			@Override
 			public void mouseMoved(final MouseEvent ev) {
 				super.mouseMoved(ev);
-				if (running && !levelCleared) {
+				if (running) {
 					r.mouseMove((int) getLocationOnScreen().getX() + getWidth()
 							/ 2, (int) getLocationOnScreen().getY()
 							+ getHeight() / 2);
-					vaus.move(ev.getX() - getWidth() / 2);
+					if  (!levelCleared) {
+						vaus.move(ev.getX() - getWidth() / 2);
+					}
 				}
 			}
 
 			@Override
 			public void mousePressed(final MouseEvent ev) {
 				super.mousePressed(ev);
+				game.releaseBalls();
 				if (!game.isStarted() && !levelCleared) {
 					game.startGame();
 				}
@@ -299,14 +301,13 @@ public final class GamePanel extends JComponent implements Constants,
 		final Graphics2D g2d = (Graphics2D) g;
 
 		if (gameCleared) {
-			g2d.drawString("Game cleared, press [ENTER] to continue..", 100,
-					100);
+			g2d.drawImage(ImagesRepository.getImage("gamecleared"), 0, 0, this);
 			return;
 		}
 
 		if (gameOver) {
 			play();
-			g2d.drawString("GAME OVER YOU n00b!", 100, 100);
+			g2d.drawImage(ImagesRepository.getImage("gameover"), 0, 0, this);
 			return;
 		}
 
@@ -381,6 +382,7 @@ public final class GamePanel extends JComponent implements Constants,
 			g2d.setColor(Color.GRAY);
 			g2d.drawRect(0, 0, 399, 300);
 		}
+		
 	}
 
 	/**

@@ -374,7 +374,9 @@ public final class GamePanel extends JComponent implements Constants,
 
 		if (!running && !firstTimeRun) {
 			g2d.drawImage(image, 0, 0, null);
+			g2d.drawImage(ImagesRepository.getImage("gamepaused"), 399, 0, this);
 			g2d.drawImage(ImagesRepository.getImage("bonushelp"), 399, 300, this);
+			g2d.drawImage(ImagesRepository.getImage("credits"), 0, 300, this);
 
 		}
 	}

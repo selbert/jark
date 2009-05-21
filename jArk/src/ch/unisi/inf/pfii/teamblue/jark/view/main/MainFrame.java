@@ -52,7 +52,6 @@ public final class MainFrame extends JFrame {
 		arcadeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				selectedButton = "arcade";
-				cardPanel.updateHighScore();
 				cardLayout.show(cardPanel, "base");
 			}	
 		});

@@ -47,8 +47,6 @@ public final class EditorFrame extends JFrame {
 			}
 		});
 
-		makeMenu();
-
 		this.levelManager = levelManager;
 		group = new ButtonGroup();
 		centerPanel = new CenterPanel(levelManager, group);
@@ -61,38 +59,6 @@ public final class EditorFrame extends JFrame {
 		setLocationRelativeTo(null);
 		// and show it
 		setVisible(visible);
-	}
-
-	/**
-	 * Create the Menu
-	 */
-	private final void makeMenu() {
-		final JMenuBar menubar = new JMenuBar();
-
-		// menu file
-		final JMenu fileMenu = new JMenu("File");
-		menubar.add(fileMenu);
-
-		// menu items: using anonymous inner classes for events
-		final JMenuItem newGameItem = new JMenuItem("New Game");
-		newGameItem.addActionListener(new ActionListener() {
-			public void actionPerformed(final ActionEvent e) {
-
-			}
-		});
-		fileMenu.add(newGameItem);
-
-		// another item
-		final JMenuItem quitItem = new JMenuItem("Quit");
-		quitItem.addActionListener(new ActionListener() {
-			public void actionPerformed(final ActionEvent e) {
-				quitIfConfirmed();
-			}
-		});
-		fileMenu.add(quitItem);
-
-		// set the menubar
-		setJMenuBar(menubar);
 	}
 
 	private final void quitIfConfirmed() {

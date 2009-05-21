@@ -29,10 +29,9 @@ public final class ImagesRepository {
 
 	public ImagesRepository() {
 		try {
-			properties.load(ImagesRepository.class
-					.getResourceAsStream("paths.properties"));
+			properties.load(ImagesRepository.class.getResourceAsStream("paths.properties"));
 		} catch (final IOException e) {
-			e.printStackTrace();
+			System.out.println("Missing paths file.");
 		}
 	}
 
@@ -52,8 +51,11 @@ public final class ImagesRepository {
 		try {
 			return new ImageIcon(ImagesRepository.class.getResource(imagePath));
 		} catch (final NullPointerException ex) {
-			return new ImageIcon(ImagesRepository.class
-					.getResource("images/noimage.png"));
+			try {
+				return new ImageIcon(ImagesRepository.class.getResource("images/"+path+".png"));
+			} catch (NullPointerException exx) {
+				return new ImageIcon(ImagesRepository.class.getResource("images/noimage.png"));
+			}
 		}
 	}
 

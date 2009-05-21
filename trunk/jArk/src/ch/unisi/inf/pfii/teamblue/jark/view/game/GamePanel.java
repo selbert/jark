@@ -80,6 +80,7 @@ public final class GamePanel extends JComponent implements Constants,
 
 			public void bonusErase() {
 				drawBox = false;
+				lightOff = false;
 			}
 
 			public void gameOver() {
@@ -270,7 +271,6 @@ public final class GamePanel extends JComponent implements Constants,
 						}
 						if (bonus.toString().equals("malus_lightoff")) {
 							lightOff = true;
-							System.out.println("OFF");
 						}
 					}
 

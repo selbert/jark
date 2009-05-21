@@ -40,22 +40,27 @@ public final class InteractionPanel extends JPanel {
 		saveButton = new JButton("Save");
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
+				final FieldPanel fp = centerPanel.getFieldPanel();
+				final OptionPanel op = centerPanel.getOptionPanel();
+				if (op.getLevelAuthor() == null && op.getLevelName() == null) {
+					JOptionPane.showMessageDialog(centerPanel, "You must input valid level name and author before saving it.", "Missing informations", JOptionPane.WARNING_MESSAGE);
+					centerPanel.showOptionTab();
+					return;
+				}
 				final String name = JOptionPane
 						.showInputDialog("The level will be saved in the folder \"levels/\", \na \".jark\" extension will be automatically added.\n\nInput a name:");
 				if (name != null) {
-					final FieldPanel fp = centerPanel.getFieldPanel();
-					final OptionPanel op = centerPanel.getOptionPanel();
+					
 					levelManager.setLevelAuthor(op.getLevelAuthor());
 					levelManager.setLevelName(op.getLevelName());
-					levelManager.setRandomBonusPercentage(op
-							.getRandomBonusNum()
-							+ "");
+					levelManager.setRandomBonusPercentage(op.getRandomBonusNum()+ "");
 
-					fp.togglePanelForPrintScreen();
-					fieldImage.saveImage(name);
-					levelManager.writeLevelToFile(name);
-					fp.setSaved(true);
-					fp.togglePanelForPrintScreen();
+					if (levelManager.writeLevelToFile(name)) {
+						fp.togglePanelForPrintScreen();
+						fieldImage.saveImage(name);
+						fp.setSaved(true);
+						fp.togglePanelForPrintScreen();
+					}
 				}
 			}
 		});
@@ -69,9 +74,7 @@ public final class InteractionPanel extends JPanel {
 				fc.setFileFilter(new FileFilter() {
 					@Override
 					public boolean accept(final File file) {
-						if (file.isDirectory()
-								|| file.getName().toLowerCase().endsWith(
-										".jark")) {
+						if (file.isDirectory() || file.getName().toLowerCase().endsWith(".jark")) {
 							return true;
 						}
 						return false;

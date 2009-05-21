@@ -185,7 +185,7 @@ public class OptionPanel extends JPanel {
 	public final String getLevelName() {
 		final String temp = levelName.getText();
 		if (temp == null || !temp.matches("[a-zA-Z_][a-zA-Z_0-9]*")) {
-			return "Anon";
+			return null;
 		} else {
 			return temp;
 		}
@@ -198,7 +198,7 @@ public class OptionPanel extends JPanel {
 	public final String getLevelAuthor() {
 		final String temp = levelAuthor.getText();
 		if (temp == null || !temp.matches("[a-zA-Z_][a-zA-Z_0-9]*")) {
-			return "Anonymous";
+			return null;
 		} else {
 			return temp;
 		}

@@ -371,7 +371,6 @@ public final class GamePanel extends JComponent implements Constants,
 			g2d.setColor(new Color(0,0,0,180));
 			g2d.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 			g2d.drawImage(ImagesRepository.getImage("levelcleared"), 0, 0, this);
-			//g2d.drawString("Level cleared, press [ENTER] to continue..", 100, 100);
 		}
 		
 		if (!running && !firstTimeRun) {

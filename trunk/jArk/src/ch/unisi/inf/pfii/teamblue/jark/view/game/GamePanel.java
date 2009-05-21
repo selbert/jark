@@ -113,9 +113,10 @@ public final class GamePanel extends JComponent implements Constants,
 							while (!correctInput) {
 								name = JOptionPane
 										.showInputDialog("You reached the Highscore list!\n\nInsert name:");
-								if (name != null
-										&& name
-												.matches("[a-zA-Z_][a-zA-Z_0-9]{0,11}")) {
+								if (name == null) {
+									game.addHighScore("Anonymous");
+									correctInput = true;
+								} else if (name.matches("[a-zA-Z_][a-zA-Z_0-9]{0,11}")) {
 									game.addHighScore(name);
 									correctInput = true;
 								}

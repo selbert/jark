@@ -67,6 +67,7 @@ public final class MainFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				cardPanel.updateLevelList();
 				cardPanel.setSelectedItem();
+				cardPanel.setSelectedLevel();
 				selectedButton = "singleLevel";
 				cardLayout.show(cardPanel, "level");
 			}	

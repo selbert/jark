@@ -71,6 +71,16 @@ public class CardPanel extends JPanel {
 		add(levelCard, "level");
 	}
 	
+	public final void setSelectedLevel() {
+		try {
+			selectedLevel = paths[selectedIndex];
+			updateLevelImage(selectedLevel);
+		} catch (ArrayIndexOutOfBoundsException ex) {
+			selectedLevel = null;
+		}
+		
+	}
+	
 	private String[] removeBadLevels(String[] details, String[] paths) {
 		int items = 0;
 		for (int i = 0; i<details.length; i++) {
@@ -89,11 +99,6 @@ public class CardPanel extends JPanel {
 		return tempArray;
 	}
 
-	private void printArray(String[] a) {
-		for(String asd : a) {
-			System.out.println(asd);
-		}
-	}
 	private final void updateLevelImage(String path) {
 		final String imagePath = "levels/"+path+".png";
 		final File image = new File(imagePath);

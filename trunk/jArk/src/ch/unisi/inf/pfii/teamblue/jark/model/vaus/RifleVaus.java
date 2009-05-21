@@ -39,7 +39,7 @@ public final class RifleVaus extends Vaus {
 	
 	private final void shootBullet(Game game) {
 		Bullet newBullet = new Bullet(this, game.getLevel());
-		newBullet.setX(posX-BALL_RADIUS+getWidth()/2);
+		newBullet.setX(posX-BALL_RADIUS+getWidth()/2+2);
 		newBullet.setSpeedY(-5);
 		game.addBullet(newBullet);
 	}

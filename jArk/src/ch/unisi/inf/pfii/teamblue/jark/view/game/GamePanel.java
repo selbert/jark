@@ -321,8 +321,14 @@ public final class GamePanel extends JComponent implements Constants, VausSetLis
 			g2d.drawImage(ImagesRepository.getImage(ball.toString()), x, y, this);
 		}
 
-		
-		g2d.drawImage(ImagesRepository.getImage(vaus.toString()), vaus.getX(), VAUS_Y, this);
+		final String vausType = vaus.toString();
+		if (vausType.toLowerCase().contains("rifle")) {
+			g2d.drawImage(ImagesRepository.getImage(vaus.toString()), vaus.getX(), VAUS_Y-23, this);
+		} else if (vausType.toLowerCase().contains("cannon")) {
+			g2d.drawImage(ImagesRepository.getImage(vaus.toString()), vaus.getX(), VAUS_Y-23, this);
+		} else {
+			g2d.drawImage(ImagesRepository.getImage(vaus.toString()), vaus.getX(), VAUS_Y, this);
+		}
 		
 		if (drawBox) {
 			g2d.setColor(Color.ORANGE);

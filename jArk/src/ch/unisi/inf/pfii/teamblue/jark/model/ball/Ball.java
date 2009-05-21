@@ -270,19 +270,21 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 	
 	protected void destroyBrick(final float x, final float y) {
 		int i = level.removeBrick(x, y);
-		if (i >= BALL_LIFE) {
-			life = BALL_LIFE;
-		} else {
-			life += i;
-		}
-		if (life <= 0) {
-			setX(vaus.getX()+(vaus.getWidth()/2)-BALL_RADIUS);
-			setY(VAUS_Y-(2*BALL_RADIUS));
-			Random rnd = new Random();
-			setSpeedX(rnd.nextInt(7)-3);
-			setSpeedY(rnd.nextInt(3)-3);
-			resetted = true;
-			life = BALL_LIFE;
+		if (!(this instanceof UltraBall)) {
+			if (i >= BALL_LIFE) {
+				life = BALL_LIFE;
+			} else {
+				life += i;
+			}
+			if (life <= 0) {
+				setX(vaus.getX()+(vaus.getWidth()/2)-BALL_RADIUS);
+				setY(VAUS_Y-(2*BALL_RADIUS));
+				Random rnd = new Random();
+				setSpeedX(rnd.nextInt(7)-3);
+				setSpeedY(rnd.nextInt(3)-3);
+				resetted = true;
+				life = BALL_LIFE;
+			}
 		}
 	}
 	

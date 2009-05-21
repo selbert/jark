@@ -94,11 +94,13 @@ public final class Game implements Constants {
 			levelManager.loadArcadeLevel(arcadeLevelNumber);
 			final Brick[][] field = levelManager.fieldFromArrays();
 			final String levelName = levelManager.getLevelName();
-			setLevel(new Level(levelName, field, freeBonuses, vaus));
+			final int bonusPercentage = levelManager.getBonusPercentage();
+			setLevel(new Level(levelName, field, freeBonuses, vaus, bonusPercentage));
 		} else {
 			final Brick[][] field = levelManager.fieldFromArrays();
 			final String levelName = levelManager.getLevelName();
-			setLevel(new Level(levelName, field, freeBonuses, vaus));
+			final int bonusPercentage = levelManager.getBonusPercentage();
+			setLevel(new Level(levelName, field, freeBonuses, vaus, bonusPercentage));
 		}
 		
 		//starting balls
@@ -483,7 +485,8 @@ public final class Game implements Constants {
 				levelManager.loadArcadeLevel(arcadeLevelNumber);
 				final Brick[][] field = levelManager.fieldFromArrays();
 				final String levelName = levelManager.getLevelName();
-				setLevel(new Level(levelName, field, freeBonuses, vaus));
+				final int bonusPercentage = levelManager.getBonusPercentage();
+				setLevel(new Level(levelName, field, freeBonuses, vaus, bonusPercentage));
 				Ball newBall = new StartBall(vaus, level);
 				vaus.addVausListener(newBall);
 				addBall(newBall);

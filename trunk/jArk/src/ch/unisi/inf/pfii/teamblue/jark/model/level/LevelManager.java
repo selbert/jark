@@ -133,6 +133,7 @@ public class LevelManager implements Constants {
 		return field;
 	}
 	
+	
 	private Brick stringToBrick(String brickString) {
 		if (brickString == null) {
 			return null;

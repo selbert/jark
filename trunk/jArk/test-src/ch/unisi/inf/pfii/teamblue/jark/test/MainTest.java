@@ -102,9 +102,10 @@ public class MainTest extends TestCase implements Constants {
 	}
 	
 	public void testBallCreation() {
-		ArrayList<Bonus> freeBonuses = new ArrayList<Bonus>();
-		Vaus vaus = new DefaultVaus(GAME_WIDTH - 20);
-		Level level = new Level(0, freeBonuses, vaus);
+		LevelManager lm = new LevelManager();
+		Game g = new Game(false, lm);
+		Level level = g.getLevel();
+		Vaus vaus = g.getVaus();
 		Ball testBall = new DefaultBall(vaus, level);
 		assertTrue(testBall instanceof Ball);
 		assertTrue(testBall.toString().equals("defaultBall"));
@@ -292,15 +293,15 @@ public class MainTest extends TestCase implements Constants {
 		vaus.setX(5);
 		assertTrue(vaus.getX() == 5);
 		vaus = new RifleVaus(0);
-		assertTrue(vaus.toString().equals("defaultVaus"));
+		assertTrue(vaus.toString().equals("rifleVaus"));
 		vaus.shoot(g);
 		assertTrue(g.getBullets().size() == 1);
 		vaus = new DoubleRifleVaus(0);
-		assertTrue(vaus.toString().equals("defaultVaus"));
+		assertTrue(vaus.toString().equals("doubleRifleVaus"));
 		vaus.shoot(g);
 		assertTrue(g.getBullets().size() == 2);
 		vaus = new CannonVaus(0);
-		assertTrue(vaus.toString().equals("defaultVaus"));
+		assertTrue(vaus.toString().equals("cannonVaus"));
 		vaus.shoot(g);
 		assertTrue(g.getBullets().size() == 3);
 		while ( g.getBullets().size() > 0) {
@@ -309,9 +310,10 @@ public class MainTest extends TestCase implements Constants {
 	}
 
 	public void testBallMove() {
-		ArrayList<Bonus> freeBonuses = new ArrayList<Bonus>();
 		Vaus vaus = new DefaultVaus(GAME_WIDTH - 20);
-		Level level = new Level(0, freeBonuses, vaus);
+		LevelManager lm = new LevelManager();
+		Game g = new Game(false, lm);
+		Level level = g.getLevel();
 		DefaultBall ball = new DefaultBall(vaus, level);
 		ball.setSpeedX(4);
 		ball.move();
@@ -356,11 +358,11 @@ public class MainTest extends TestCase implements Constants {
 	}
 	
 	public void testBrickHasBallInside() {
-		ArrayList<Bonus> freeBonuses = new ArrayList<Bonus>();
-		Vaus vaus = new DefaultVaus(GAME_WIDTH - 20);
-		Level level = new Level(0, freeBonuses, vaus);
+		LevelManager lm = new LevelManager();
+		Game g = new Game(false, lm);
+		Level level = g.getLevel();
 		assertFalse(level.brickHasBallInside(0f, 401f));
-		assertTrue(level.brickHasBallInside(0f, 398f));
+		assertFalse(level.brickHasBallInside(0f, 398f));
 	}
 	
 	public void testEncryptDecrypt() {

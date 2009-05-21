@@ -310,12 +310,6 @@ public final class GamePanel extends JComponent implements Constants,
 			return;
 		}
 
-		if (levelCleared) {
-			g2d.drawString("Level cleared, press [ENTER] to continue..", 100,
-					100);
-			return;
-		}
-
 		g2d.setColor(new Color(0xb0c4de));
 		g2d.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 		final Brick[][] bricks = level.getBricks();
@@ -373,6 +367,13 @@ public final class GamePanel extends JComponent implements Constants,
 			g2d.fillRect(0, VAUS_Y + VAUS_HEIGHT + 1, GAME_WIDTH, 3);
 		}
 
+		if (levelCleared) {
+			g2d.setColor(new Color(0,0,0,180));
+			g2d.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+			g2d.drawImage(ImagesRepository.getImage("levelcleared"), 0, 0, this);
+			//g2d.drawString("Level cleared, press [ENTER] to continue..", 100, 100);
+		}
+		
 		if (!running && !firstTimeRun) {
 			g2d.drawImage(image, 0, 0, null);
 			g2d.drawImage(ImagesRepository.getImage("gamepaused"), 399, 0, this);

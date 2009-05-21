@@ -35,7 +35,7 @@ public class FieldImage implements Constants {
 		}
 	}
 
-	private static BufferedImage scale(final BufferedImage source,
+	private final static BufferedImage scale(final BufferedImage source,
 			final double factor) {
 		final BufferedImage bi = new BufferedImage(source.getWidth() / 2,
 				source.getHeight() / 2, BufferedImage.TYPE_INT_RGB);

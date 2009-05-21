@@ -20,7 +20,7 @@ public final class CannonVaus extends Vaus implements Constants {
 	}
 
 	@Override
-	public String toString() {
+	public final String toString() {
 		switch (vausWidth) {
 		case LONGVAUS_WIDTH:
 			return "longCannonVaus";

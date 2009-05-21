@@ -26,7 +26,7 @@ public class StartBall extends Ball {
 	}
 
 	@Override
-	public String toString() {
+	public final String toString() {
 		return "startBall";
 	}
 

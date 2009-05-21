@@ -63,7 +63,7 @@ public final class GhostBall extends Ball {
 	}
 
 	@Override
-	protected void destroyBrick(final float x, final float y) {
+	protected final void destroyBrick(final float x, final float y) {
 	}
 
 	@Override

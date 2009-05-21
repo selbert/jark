@@ -163,11 +163,11 @@ public final class FieldPanel extends JComponent implements Constants {
 		}
 	}
 
-	public void setSaved(final boolean saved) {
+	public final void setSaved(final boolean saved) {
 		this.saved = saved;
 	}
 
-	public Boolean hasBeenSaved() {
+	public final Boolean hasBeenSaved() {
 		return saved;
 	}
 

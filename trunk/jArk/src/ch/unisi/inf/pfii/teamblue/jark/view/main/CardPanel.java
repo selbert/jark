@@ -84,7 +84,7 @@ public class CardPanel extends JPanel {
 
 	}
 
-	private String[] removeBadLevels(final String[] details,
+	private final String[] removeBadLevels(final String[] details,
 			final String[] paths) {
 		int items = 0;
 		for (int i = 0; i < details.length; i++) {

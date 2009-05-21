@@ -118,7 +118,7 @@ public final class RubberBall extends Ball {
 	}
 
 	@Override
-	protected boolean bounceDiag(final float newX, final float newY) {
+	protected final boolean bounceDiag(final float newX, final float newY) {
 		if (level.brickHasBallInside(newX, newY)
 				|| level.brickHasBallInside(newX, newY + (2 * BALL_RADIUS))
 				|| level.brickHasBallInside(newX + (2 * BALL_RADIUS), newY)

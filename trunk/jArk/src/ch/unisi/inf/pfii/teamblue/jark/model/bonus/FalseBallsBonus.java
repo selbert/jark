@@ -1,6 +1,7 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.bonus;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
@@ -17,10 +18,13 @@ import ch.unisi.inf.pfii.teamblue.jark.model.ball.RubberBall;
  */
 
 public final class FalseBallsBonus extends BallBonus {
+	
+	private final Random rnd;
 
 	public FalseBallsBonus() {
 		super(2);
 		super.setLife(FALSE_BALLS);
+		rnd = new Random();
 	}
 
 	@Override
@@ -41,10 +45,10 @@ public final class FalseBallsBonus extends BallBonus {
 
 			game.replaceBall(oldBall, newBall);
 
-			for (int j = 0; j < 5; j++) {
+			for (int j = 0; j < 3; j++) {
 				final Ball newBall1 = newBall.copy();
 
-				newBall1.setSpeedX(-1 * newBall.getSpeedX());
+				newBall1.setSpeedX((float) (rnd.nextInt(70)-30)/10);
 				newBall1.setSpeedY(newBall.getSpeedY());
 				newBall1.setBoxEnabled(newBall.getBoxEnabled());
 				newBall1.setSpeedMod(newBall.getSpeedMod());

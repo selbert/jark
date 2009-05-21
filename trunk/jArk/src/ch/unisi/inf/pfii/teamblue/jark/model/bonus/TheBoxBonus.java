@@ -21,12 +21,12 @@ public final class TheBoxBonus extends BallBonus {
 	}
 
 	@Override
-	public String toString() {
+	public final String toString() {
 		return "bonus_box";
 	}
 
 	@Override
-	public void apply(final Game game) {
+	public final void apply(final Game game) {
 		final ArrayList<Ball> balls = game.getBalls();
 		final int numberOfBalls = balls.size();
 

@@ -10,12 +10,12 @@ public class LightOffBonus extends PlayerBonus {
 	}
 
 	@Override
-	public String toString() {
+	public final String toString() {
 		return "malus_lightoff";
 	}
 
 	@Override
-	public void apply(Game game) {
+	public final void apply(Game game) {
 	}
 
 }

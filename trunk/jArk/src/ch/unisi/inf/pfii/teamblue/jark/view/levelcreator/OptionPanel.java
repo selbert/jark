@@ -178,11 +178,11 @@ public class OptionPanel extends JPanel {
 		add(checks, gbcOuter);
 	}
 
-	public void setLevelName(final String name) {
+	public final void setLevelName(final String name) {
 		levelName.setText(name);
 	}
 
-	public String getLevelName() {
+	public final String getLevelName() {
 		final String temp = levelName.getText();
 		if (temp == null || !temp.matches("[a-zA-Z_][a-zA-Z_0-9]*")) {
 			return "Anon";
@@ -191,11 +191,11 @@ public class OptionPanel extends JPanel {
 		}
 	}
 
-	public void setLevelAuthor(final String author) {
+	public final void setLevelAuthor(final String author) {
 		levelAuthor.setText(author);
 	}
 
-	public String getLevelAuthor() {
+	public final String getLevelAuthor() {
 		final String temp = levelAuthor.getText();
 		if (temp == null || !temp.matches("[a-zA-Z_][a-zA-Z_0-9]*")) {
 			return "Anonymous";
@@ -204,14 +204,14 @@ public class OptionPanel extends JPanel {
 		}
 	}
 
-	public void setRandomBonusNum(final int bonusPercentage) {
+	public final void setRandomBonusNum(final int bonusPercentage) {
 		if (bonusPercentage != 0) {
 			randomBonus.setSelected(true);
 			numOfBonuses.setText(bonusPercentage + "");
 		}
 	}
 
-	public int getRandomBonusNum() {
+	public final int getRandomBonusNum() {
 		if (randomBonus.isSelected()
 				&& numOfBonuses.getText().matches("[0-9]{1,2}")) {
 			return Integer.parseInt(numOfBonuses.getText());

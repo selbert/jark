@@ -253,27 +253,27 @@ public final class Level implements Constants, VausSetListener {
 		return 0;
 	}
 
-	public void addLevelListener(final LevelListener li) {
+	public final void addLevelListener(final LevelListener li) {
 		listeners.add(li);
 	}
 
-	public void removeLevelListener(final LevelListener li) {
+	public final void removeLevelListener(final LevelListener li) {
 		listeners.remove(li);
 	}
 
-	public void fireBonusReleased(final Bonus bonus) {
+	public final void fireBonusReleased(final Bonus bonus) {
 		for (final LevelListener li : listeners) {
 			li.bonusReleased(bonus);
 		}
 	}
 
-	public void fireBrickHit(final Brick brick) {
+	public final void fireBrickHit(final Brick brick) {
 		for (final LevelListener li : listeners) {
 			li.brickHit(brick);
 		}
 	}
 
-	public boolean isCleared() {
+	public final boolean isCleared() {
 		boolean accumulator = true;
 		for (int i = 0; (i < bricks.length) && accumulator; i++) {
 			for (int j = 0; (j < bricks[i].length) && accumulator; j++) {
@@ -284,7 +284,7 @@ public final class Level implements Constants, VausSetListener {
 		return accumulator;
 	}
 
-	public String getName() {
+	public final String getName() {
 		return name;
 	}
 }

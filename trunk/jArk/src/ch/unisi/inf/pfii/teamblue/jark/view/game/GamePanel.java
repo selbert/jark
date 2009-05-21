@@ -246,7 +246,7 @@ public final class GamePanel extends JComponent implements Constants,
 		play();
 	}
 
-	private static BufferedImage scale(final BufferedImage source,
+	private final static BufferedImage scale(final BufferedImage source,
 			final double factor) {
 		final BufferedImage bi = new BufferedImage(source.getWidth(), source
 				.getHeight(), BufferedImage.TYPE_INT_RGB);

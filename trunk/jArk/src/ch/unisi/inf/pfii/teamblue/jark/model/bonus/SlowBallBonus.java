@@ -21,12 +21,12 @@ public final class SlowBallBonus extends BallBonus {
 	}
 
 	@Override
-	public String toString() {
+	public final String toString() {
 		return "neutral_slowball";
 	}
 
 	@Override
-	public void apply(final Game game) {
+	public final void apply(final Game game) {
 		final ArrayList<Ball> balls = game.getBalls();
 		final int numberOfBalls = balls.size();
 

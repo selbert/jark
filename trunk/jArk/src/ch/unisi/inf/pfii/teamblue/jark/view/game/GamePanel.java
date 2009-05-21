@@ -58,6 +58,7 @@ public final class GamePanel extends JComponent implements Constants,
 	private Vaus vaus;
 
 	private boolean drawBox;
+	private boolean lightOff;
 	private boolean running;
 	private boolean gameOver;
 	private boolean firstTimeRun;
@@ -262,16 +263,25 @@ public final class GamePanel extends JComponent implements Constants,
 		level.addLevelListener(new LevelListener() {
 			public void bonusReleased(final Bonus bonus) {
 				bonus.addBonusListener(new BonusListener() {
+
 					public void bonusTaken(final Bonus bonus) {
 						if (bonus.toString().equals("bonus_box")) {
 							drawBox = true;
 						}
+						if (bonus.toString().equals("malus_lightoff")) {
+							lightOff = true;
+							System.out.println("OFF");
+						}
 					}
 
 					public void lifeDecreased(final Bonus bonus) {
-						if (bonus.getLife() == 0
-								&& bonus.toString().equals("bonus_box")) {
-							drawBox = false;
+						if (bonus.getLife() == 0) {
+							if (bonus.toString().equals("bonus_box")) {
+								drawBox = false;
+							} 
+							if (bonus.toString().equals("malus_lightoff")) {
+								lightOff = false;
+							} 
 						}
 					}
 				});
@@ -319,6 +329,11 @@ public final class GamePanel extends JComponent implements Constants,
 			}
 		}
 
+		if (lightOff) {
+			g2d.setColor(new Color(0,0,0));
+			g2d.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+		}
+		
 		for (final Bonus bonus : bonuses) {
 			final int x = bonus.getX();
 			final int y = bonus.getY();

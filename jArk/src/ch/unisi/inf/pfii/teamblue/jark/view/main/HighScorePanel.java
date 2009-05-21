@@ -39,7 +39,6 @@ public class HighScorePanel extends JPanel {
 		final File file = new File("HighScore.jahs");
 		try {
 			if (!file.createNewFile()) {
-				try {
 					final BufferedReader myInput = new BufferedReader(
 							new FileReader("HighScore.jahs"));
 					String readLine = myInput.readLine();
@@ -67,17 +66,16 @@ public class HighScorePanel extends JPanel {
 							y++;
 
 						} catch (final Exception e) {
-							System.out
-									.println("Invalid highscore file format! Cheating ish baaad :D");
+							System.out.println("Invalid highscore file format! Cheating ish baaad :D");
+							return;
 						}
 						readLine = myInput.readLine();
 					}
-				} catch (final IOException ex) {
-					System.out.println(ex);
-				}
+			} else {
+				file.createNewFile();
 			}
-		} catch (final IOException e) {
-			e.printStackTrace();
+		} catch (final Exception ex) {
+			System.out.println("Problem accessing Highscore file.");
 		}
 	}
 

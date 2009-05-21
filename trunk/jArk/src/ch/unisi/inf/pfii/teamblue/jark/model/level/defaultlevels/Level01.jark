@@ -1,0 +1,35 @@
+LightOn,Stefano,0
+
+null null null null null null null null null null null null null null 
+null null null null null null null null null null null null null null 
+null null null null null null null null null null null null null null 
+null null null null null null null null null null null null null null 
+null null null null null null null null null null null null null null 
+null null null null null null null null null null null null null null 
+null null null null null null null null null null null null null null 
+null null null null null null null null null null null null null null 
+null null defaultBrick null null persistentBrick persistentBrick persistentBrick persistentBrick null null defaultBrick null null 
+null null null resistentBrick resistentBrick persistentBrick persistentBrick persistentBrick persistentBrick resistentBrick resistentBrick null null null 
+null null null resistentBrick defaultBrick defaultBrick defaultBrick defaultBrick defaultBrick defaultBrick resistentBrick null null null 
+null null null resistentBrick defaultBrick null null null null defaultBrick resistentBrick null null null 
+null null null resistentBrick defaultBrick null veryResistentBrick veryResistentBrick null defaultBrick resistentBrick null null null 
+persistentBrick persistentBrick veryResistentBrick resistentBrick defaultBrick null resistentBrick resistentBrick null defaultBrick resistentBrick veryResistentBrick persistentBrick persistentBrick 
+defaultBrick persistentBrick persistentBrick defaultBrick defaultBrick defaultBrick defaultBrick defaultBrick defaultBrick defaultBrick defaultBrick persistentBrick persistentBrick defaultBrick 
+defaultBrick defaultBrick defaultBrick defaultBrick defaultBrick defaultBrick defaultBrick defaultBrick defaultBrick defaultBrick defaultBrick defaultBrick defaultBrick defaultBrick 
+
+null null null null null null null null null null null null null null 
+null null null null null null null null null null null null null null 
+null null null null null null null null null null null null null null 
+null null null null null null null null null null null null null null 
+null null null null null null null null null null null null null null 
+null null null null null null null null null null null null null null 
+null null null null null null null null null null null null null null 
+null null null null null null null null null null null null null null 
+null null bonus_ultraball null null null null null null null null bonus_ultraball null null 
+null null null null bonus_addlife null null null null bonus_addlife null null null null 
+null null null null null null bonus_cannonvaus bonus_cannonvaus null null null null null null 
+null null null null null null null null null null null null null null 
+null null null null null null neutral_fastball neutral_fastball null null null null null null 
+null null null null null null null null null null null null null null 
+bonus_doubleriflevaus null null null null null malus_lightoff malus_lightoff null null null null null bonus_doubleriflevaus 
+malus_lightoff null null null malus_ghostball malus_ghostball bonus_cannonvaus bonus_cannonvaus malus_ghostball malus_ghostball null null null malus_lightoff 

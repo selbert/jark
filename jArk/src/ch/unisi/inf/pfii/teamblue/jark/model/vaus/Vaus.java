@@ -33,27 +33,27 @@ public abstract class Vaus implements Constants {
 	public abstract String toString();
 
 	// getters and setters
-	public void setX(final int posX) {
+	public final void setX(final int posX) {
 		fireVausMoved(posX);
 		this.posX = posX;
 
 	}
 
-	private void fireVausMoved(final int i) {
+	private final void fireVausMoved(final int i) {
 		for (final VausListener li : vausListenerList) {
 			li.vausMoved(i);
 		}
 	}
 
-	public int getX() {
+	public final int getX() {
 		return posX;
 	}
 
-	public void setWidth(final int width) {
+	public final void setWidth(final int width) {
 		vausWidth = width;
 	}
 
-	public int getWidth() {
+	public final int getWidth() {
 		return vausWidth;
 	}
 
@@ -62,7 +62,7 @@ public abstract class Vaus implements Constants {
 	 * 
 	 * @param deltaX
 	 */
-	public void move(final int delta) {
+	public final void move(final int delta) {
 		setX(posX + delta);
 	}
 
@@ -87,11 +87,11 @@ public abstract class Vaus implements Constants {
 		moveRight = 1;
 	}
 
-	public void stopLeft() {
+	public final void stopLeft() {
 		moveLeft = 0;
 	}
 
-	public void stopRight() {
+	public final void stopRight() {
 		moveRight = 0;
 	}
 
@@ -99,19 +99,19 @@ public abstract class Vaus implements Constants {
 		return;
 	}
 
-	public void addVausListener(final VausListener li) {
+	public final void addVausListener(final VausListener li) {
 		vausListenerList.add(li);
 	}
 
-	public void removeVausListener(final VausListener li) {
+	public final void removeVausListener(final VausListener li) {
 		vausListenerList.remove(li);
 	}
 
-	public void setVausListenerLsit(final ArrayList<VausListener> listenerList) {
+	public final void setVausListenerLsit(final ArrayList<VausListener> listenerList) {
 		vausListenerList = listenerList;
 	}
 
-	public ArrayList<VausListener> getVausListenerLsit() {
+	public final ArrayList<VausListener> getVausListenerLsit() {
 		return vausListenerList;
 	}
 

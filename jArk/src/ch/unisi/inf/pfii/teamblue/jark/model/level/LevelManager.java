@@ -53,7 +53,7 @@ public class LevelManager implements Constants {
 		}
 	}
 
-	public void setRandomBonusPercentage(final String string) {
+	public final void setRandomBonusPercentage(final String string) {
 		randomBonusPercentage = Integer.parseInt(string);
 	}
 
@@ -124,7 +124,7 @@ public class LevelManager implements Constants {
 		}
 	}
 
-	public Brick[][] fieldFromArrays() {
+	public final Brick[][] fieldFromArrays() {
 		final Brick[][] field = new Brick[FIELD_ROWS][FIELD_COLUMNS];
 
 		for (int i = 0; i < FIELD_ROWS; i++) {
@@ -140,7 +140,7 @@ public class LevelManager implements Constants {
 		return field;
 	}
 
-	private Brick stringToBrick(final String brickString) {
+	private final Brick stringToBrick(final String brickString) {
 		if (brickString == null) {
 			return null;
 		} else if (brickString.equals("defaultBrick")) {
@@ -155,7 +155,7 @@ public class LevelManager implements Constants {
 		return null;
 	}
 
-	private String fieldToString(final String[][] field) {
+	private final String fieldToString(final String[][] field) {
 		String line = "";
 		for (final String[] i : field) {
 			for (final String j : i) {
@@ -166,23 +166,23 @@ public class LevelManager implements Constants {
 		return line;
 	}
 
-	public String[][] getBrickField() {
+	public final String[][] getBrickField() {
 		return brickField;
 	}
 
-	public void setBrickField(final String[][] brickField) {
+	public final void setBrickField(final String[][] brickField) {
 		this.brickField = brickField;
 	}
 
-	public void setBonusField(final String[][] bonusField) {
+	public final void setBonusField(final String[][] bonusField) {
 		this.bonusField = bonusField;
 	}
 
-	public String[][] getBonusField() {
+	public final String[][] getBonusField() {
 		return bonusField;
 	}
 
-	public void writeLevelToFile(final String name) {
+	public final void writeLevelToFile(final String name) {
 		final File dir = new File("levels");
 		dir.mkdir();
 		final File file = new File(dir + "/" + name + ".jark");
@@ -206,16 +206,16 @@ public class LevelManager implements Constants {
 		}
 	}
 
-	public void reset() {
+	public final void reset() {
 		brickField = new String[FIELD_ROWS][FIELD_COLUMNS];
 		bonusField = new String[FIELD_ROWS][FIELD_COLUMNS];
 	}
 
-	public void setLevelName(final String levelName) {
+	public final void setLevelName(final String levelName) {
 		this.levelName = levelName;
 	}
 
-	public String getLevelName() {
+	public final String getLevelName() {
 		return levelName;
 	}
 

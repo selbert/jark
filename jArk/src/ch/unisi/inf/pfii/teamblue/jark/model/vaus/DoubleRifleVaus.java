@@ -20,7 +20,7 @@ public final class DoubleRifleVaus extends Vaus {
 	}
 
 	@Override
-	public String toString() {
+	public final String toString() {
 		switch (vausWidth) {
 		case LONGVAUS_WIDTH:
 			return "longDoubleRifleVaus";

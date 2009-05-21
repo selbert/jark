@@ -17,12 +17,12 @@ public final class LongVausBonus extends VausBonus {
 	}
 
 	@Override
-	public String toString() {
+	public final String toString() {
 		return "bonus_longvaus";
 	}
 
 	@Override
-	public void apply(final Game game) {
+	public final void apply(final Game game) {
 		game.getVaus().setWidth(LONGVAUS_WIDTH);
 	}
 

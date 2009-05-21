@@ -21,12 +21,12 @@ public final class CannonVausBonus extends VausBonus {
 	}
 
 	@Override
-	public String toString() {
+	public final String toString() {
 		return "bonus_cannonvaus";
 	}
 
 	@Override
-	public void apply(final Game game) {
+	public final void apply(final Game game) {
 		final Vaus vaus = game.getVaus();
 		final Vaus newVaus = new CannonVaus(vaus.getX());
 		game.setVaus(translateVaus(vaus, newVaus));

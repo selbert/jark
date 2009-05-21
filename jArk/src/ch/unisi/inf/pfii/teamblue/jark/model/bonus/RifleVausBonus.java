@@ -26,7 +26,7 @@ public final class RifleVausBonus extends VausBonus {
 	}
 
 	@Override
-	public void apply(final Game game) {
+	public final void apply(final Game game) {
 		final Vaus vaus = game.getVaus();
 		final Vaus newVaus = new RifleVaus(vaus.getX());
 		game.setVaus(translateVaus(vaus, newVaus));

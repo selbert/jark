@@ -112,7 +112,6 @@ public final class InteractionPanel extends JPanel {
 			public void actionPerformed(final ActionEvent e) {
 				levelManager.setLevelName("Test Level");
 				final OptionPanel op = centerPanel.getOptionPanel();
-				System.out.println(op.getRandomBonusNum() + "");
 				levelManager.setRandomBonusPercentage(op.getRandomBonusNum()
 						+ "");
 				final Game game = new Game(true, levelManager);

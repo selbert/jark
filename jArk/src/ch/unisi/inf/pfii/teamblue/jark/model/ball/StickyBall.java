@@ -40,7 +40,7 @@ public final class StickyBall extends Ball {
 		this.vausRelPos = vausRelPos;
 	}
 
-	private boolean getSticky() {
+	private final boolean getSticky() {
 		return sticked;
 	}
 
@@ -50,7 +50,7 @@ public final class StickyBall extends Ball {
 	}
 
 	@Override
-	protected boolean bounceVaus(final float newX, final float newY) {
+	protected final boolean bounceVaus(final float newX, final float newY) {
 		if (!sticked && newY + (BALL_RADIUS * 2) > VAUS_Y - 1
 				&& newY + (BALL_RADIUS * 2) < VAUS_Y + (BALL_RADIUS * 2)
 				&& newX + (BALL_RADIUS * 2) >= vaus.getX()
@@ -80,7 +80,7 @@ public final class StickyBall extends Ball {
 	}
 
 	@Override
-	public void release() {
+	public final void release() {
 		if (sticked) {
 			sticked = !sticked;
 			setSpeedX(((getX() + BALL_RADIUS) - (vaus.getX() + (vaus.getWidth() / 2)))

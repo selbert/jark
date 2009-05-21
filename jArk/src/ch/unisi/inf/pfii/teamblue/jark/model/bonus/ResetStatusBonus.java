@@ -18,12 +18,12 @@ public final class ResetStatusBonus extends PlayerBonus {
 	}
 
 	@Override
-	public String toString() {
+	public final String toString() {
 		return "neutral_resetstatus";
 	}
 
 	@Override
-	public void apply(final Game game) {
+	public final void apply(final Game game) {
 		game.removeTakenBonuses();
 	}
 

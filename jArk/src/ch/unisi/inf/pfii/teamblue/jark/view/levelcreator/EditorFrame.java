@@ -95,7 +95,7 @@ public final class EditorFrame extends JFrame {
 		setJMenuBar(menubar);
 	}
 
-	private void quitIfConfirmed() {
+	private final void quitIfConfirmed() {
 		if (centerPanel.getFieldPanel().hasBeenSaved()
 				|| JOptionPane.YES_OPTION == JOptionPane
 						.showConfirmDialog(

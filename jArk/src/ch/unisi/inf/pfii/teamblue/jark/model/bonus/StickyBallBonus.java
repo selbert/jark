@@ -23,7 +23,7 @@ public final class StickyBallBonus extends BallBonus {
 	}
 
 	@Override
-	public String toString() {
+	public final String toString() {
 		return "neutral_stickyball";
 	}
 

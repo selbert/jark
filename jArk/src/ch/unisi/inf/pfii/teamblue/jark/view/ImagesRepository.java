@@ -36,7 +36,7 @@ public final class ImagesRepository {
 		}
 	}
 
-	public static final Enumeration<Object> getKeys() {
+	public final static Enumeration<Object> getKeys() {
 		return properties.keys();
 	}
 
@@ -47,7 +47,7 @@ public final class ImagesRepository {
 		return images.get(path);
 	}
 
-	private static final ImageIcon fetchImage(final String path) {
+	private final static ImageIcon fetchImage(final String path) {
 		final String imagePath = "images/" + properties.getProperty(path);
 		try {
 			return new ImageIcon(ImagesRepository.class.getResource(imagePath));
@@ -57,11 +57,11 @@ public final class ImagesRepository {
 		}
 	}
 
-	public static final Image getImage(final String path) {
+	public final static Image getImage(final String path) {
 		return getIcon(path).getImage();
 	}
 
-	public static final ImageIcon getHighlightedIcon(final ImageIcon icon) {
+	public final static ImageIcon getHighlightedIcon(final ImageIcon icon) {
 		final Image image = icon.getImage();
 		final ImageFilter filter = new RGBImageFilter() {
 			@Override

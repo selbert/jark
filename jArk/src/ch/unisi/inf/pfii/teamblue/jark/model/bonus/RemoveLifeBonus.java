@@ -18,12 +18,12 @@ public final class RemoveLifeBonus extends PlayerBonus {
 	}
 
 	@Override
-	public String toString() {
+	public final String toString() {
 		return "malus_removelife";
 	}
 
 	@Override
-	public void apply(final Game game) {
+	public final void apply(final Game game) {
 		game.getPlayer().decrementLives();
 	}
 

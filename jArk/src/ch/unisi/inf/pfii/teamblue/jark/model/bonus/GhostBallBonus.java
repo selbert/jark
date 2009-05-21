@@ -23,12 +23,12 @@ public final class GhostBallBonus extends BallBonus {
 	}
 
 	@Override
-	public String toString() {
+	public final String toString() {
 		return "malus_ghostball";
 	}
 
 	@Override
-	public void apply(final Game game) {
+	public final void apply(final Game game) {
 		final ArrayList<Ball> balls = game.getBalls();
 		final int numberOfBalls = balls.size();
 

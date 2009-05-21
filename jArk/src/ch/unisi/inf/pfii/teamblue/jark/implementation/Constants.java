@@ -43,6 +43,7 @@ public interface Constants {
 	int STICKY_BALL = 20000;
 	int THE_BOX = 20000;
 	int ULTRA_BALL = 10000;
+	int LIGHT_OFF = 10000;
 	// vaus shooting speed delay (ms)
 	int DOUBLE_RIFLE_DELAY = 100;
 	int RIFLE_DELAY = 150;

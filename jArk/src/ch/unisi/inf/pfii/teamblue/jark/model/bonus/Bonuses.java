@@ -10,24 +10,25 @@ package ch.unisi.inf.pfii.teamblue.jark.model.bonus;
 
 public enum Bonuses {
 
-	STICKY(0, "neutral_stickyball", 5, new StickyBallBonus()), SLOW(1,
-			"neutral_slowball", 5, new SlowBallBonus()), LONG(2,
-			"bonus_longvaus", 5, new LongVausBonus()), EXPLOSIVE(3,
-			"bonus_explosionball", 4, new ExplosionBallBonus()), DOUBLE(4,
-			"bonus_doubleball", 4, new DoubleBallBonus()), RIFLE(5,
-			"bonus_riflevaus", 4, new RifleVausBonus()), ULTRA(6,
-			"bonus_ultraball", 3, new UltraBallBonus()), DBL_RIFLE(7,
-			"bonus_doubleriflevaus", 3, new DoubleRifleVausBonus()), CANNON(8,
-			"bonus_cannonvaus", 2, new CannonVausBonus()), BOX(9, "bonus_box",
-			1, new TheBoxBonus()), FAST(10, "neutral_fastball", 5,
-			new FastBallBonus()), SHORT(11, "malus_shortvaus", 5,
-			new ShortVausBonus()), GHOST(12, "malus_ghostball", 3,
-			new GhostBallBonus()), RESET(13, "neutral_resetstatus", 3,
-			new ResetStatusBonus()), FALSE(14, "malus_falseball", 2,
-			new FalseBallsBonus()), REM_LIFE(15, "malus_removelife", 1,
-			new RemoveLifeBonus()), ADD_LIFE(16, "bonus_addlife", 1,
-			new AddLifeBonus());
-
+	STICKY(0, "neutral_stickyball", 5, new StickyBallBonus()), 
+	SLOW(1,"neutral_slowball", 5, new SlowBallBonus()), 
+	LONG(2,"bonus_longvaus", 5, new LongVausBonus()), 
+	EXPLOSIVE(3,"bonus_explosionball", 4, new ExplosionBallBonus()), 
+	DOUBLE(4,"bonus_doubleball", 4, new DoubleBallBonus()), 
+	RIFLE(5,"bonus_riflevaus", 4, new RifleVausBonus()), 
+	ULTRA(6,"bonus_ultraball", 3, new UltraBallBonus()), 
+	DBL_RIFLE(7,"bonus_doubleriflevaus", 3, new DoubleRifleVausBonus()), 
+	CANNON(8,"bonus_cannonvaus", 2, new CannonVausBonus()), 
+	BOX(9, "bonus_box", 1, new TheBoxBonus()), 
+	FAST(10, "neutral_fastball", 5, new FastBallBonus()), 
+	SHORT(11, "malus_shortvaus", 5, new ShortVausBonus()), 
+	GHOST(12, "malus_ghostball", 3, new GhostBallBonus()), 
+	RESET(13, "neutral_resetstatus", 3, new ResetStatusBonus()), 
+	FALSE(14, "malus_falseball", 2, new FalseBallsBonus()), 
+	REM_LIFE(15, "malus_removelife", 1, new RemoveLifeBonus()), 
+	ADD_LIFE(16, "bonus_addlife", 1, new AddLifeBonus()),
+	LIGHT_OFF(17, "malus_lightoff", 1, new LightOffBonus());
+	
 	private final int probability;
 	private final int bonusNumber;
 	private final Bonus bonus;

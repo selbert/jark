@@ -18,6 +18,7 @@ public final class Player implements Constants {
 	private final String name;
 	private int gameTime;
 	private int gameTimeInSeconds;
+	private int levelTime;
 	private int score;
 	private int lives;
 
@@ -42,6 +43,7 @@ public final class Player implements Constants {
 
 	public final void incrementTime() {
 		gameTime += TICKS_PER_SECOND;
+		levelTime += TICKS_PER_SECOND;
 		if ((gameTime / 1000) > gameTimeInSeconds) {
 			gameTimeInSeconds = (gameTime / 1000);
 			fireModifiedTime();
@@ -74,6 +76,10 @@ public final class Player implements Constants {
 	public final int getTime() {
 		return gameTime;
 	}
+	
+	public final int getLevelTime() {
+		return levelTime;
+	}
 
 	public final void addPlayerListener(final PlayerListener li) {
 		listeners.add(li);
@@ -99,5 +105,9 @@ public final class Player implements Constants {
 		for (final PlayerListener li : listeners) {
 			li.modifiedTime(gameTimeInSeconds);
 		}
+	}
+
+	public void resetLevelTime() {
+		levelTime = 0;
 	}
 }

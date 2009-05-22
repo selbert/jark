@@ -144,6 +144,7 @@ public final class Game implements Constants {
 
 	private final void setLevel(final Level level) {
 		this.level = level;
+		player.resetLevelTime();
 		fireLevelChanged();
 		level.addLevelListener(new LevelListener() {
 			public void bonusReleased(final Bonus bonus) {
@@ -161,7 +162,7 @@ public final class Game implements Constants {
 			public void brickHit(final Brick brick) {
 				final int score = Math.max((brick.getPoints() / 4), Math.min(
 						brick.getPoints(), 2 * brick.getPoints()
-								- (int) (0.2 * (player.getTime() / 1000))));
+								- (int) (0.2 * (player.getLevelTime() / 1000))));
 				player.incrementScore(score);
 			}
 		});

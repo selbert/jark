@@ -418,6 +418,7 @@ public final class Game implements Constants {
 			player.decrementLives();
 			started = false;
 			balls.clear();
+			bullets.clear();
 			removeTakenBonuses();
 			freeBonuses.clear();
 			final Ball newBall = new StartBall(vaus, level);

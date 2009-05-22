@@ -9,7 +9,6 @@ import javax.swing.plaf.metal.MetalLookAndFeel;
 
 import ch.unisi.inf.pfii.teamblue.jark.model.level.LevelManager;
 import ch.unisi.inf.pfii.teamblue.jark.view.ImagesRepository;
-import ch.unisi.inf.pfii.teamblue.jark.view.audio.AudioPlayer;
 import ch.unisi.inf.pfii.teamblue.jark.view.main.MainFrame;
 
 /**

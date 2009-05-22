@@ -25,7 +25,7 @@ public final class Main {
 	public static void main(final String[] args) {
 		final LevelManager levelManager = new LevelManager();
 		final ImagesRepository imagesRepo = new ImagesRepository();
-
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

@@ -1,20 +1,29 @@
 package ch.unisi.inf.pfii.teamblue.jark.view.audio;
 
-import java.applet.AudioClip;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+
+import javazoom.jl.player.Player;
 
 public class AudioPlayer {
-	private static ExecutorService executor;
-	static {
-		executor = Executors.newFixedThreadPool(5);
-	}
-	public final static void play(final String file) {
-		executor.execute(new Runnable() {
-			public void run() {
-				AudioClip clip = java.applet.Applet.newAudioClip(getClass().getResource("sounds/"+file+".wav"));
-				clip.play( );
-			}
-		});
-	}
+	 	private static Player player;
+	 
+	   public static void play(final String filename) {
+	        try {
+	            BufferedInputStream bis = new BufferedInputStream(AudioPlayer.class.getResourceAsStream("sounds/"+filename+".mp3"));
+	            player = new Player(bis);
+	        }
+	        catch (Exception e) {
+	            System.out.println("Problem playing file " + filename);
+	            System.out.println(e);
+	        }
+
+	        new Thread() {
+	            public void run() {
+	                try { player.play(); }
+	                catch (Exception e) { System.out.println(e); }
+	            }
+	        }.start();
+
+	    }
 }

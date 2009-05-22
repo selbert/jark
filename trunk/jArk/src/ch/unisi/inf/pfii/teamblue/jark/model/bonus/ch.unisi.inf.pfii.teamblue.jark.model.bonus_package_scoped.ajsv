@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AgileJ Ltd. (http://www.agilej.com)-->
+<ajsv>
+    <diagram scope="scopeElementSets.elementSet.Switchable Types In Package" style="standardDiagramStyles.diagramStyle.Standard Basic Style" version="1.5.3">
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Visibility" switchValue="public, protected, package, private"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Signature Length" switchValue="short"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Manhattan Lines" switchValue="dependence, fields, inheritance"/>
+        <switch switchID="scopeElementSets.stylePatternSwitch.Scope Package" switchValue="ch\.unisi\.inf\.pfii\.teamblue\.jark\.model\.bonus"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Line Types" switchValue="dependence, field, inheritance"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Members" switchValue="fields, methods, inners, initializers"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonuses" project="jArk" xLocation="-482" yLocation="-389"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.StickyBallBonus" project="jArk" xLocation="423" yLocation="216"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.CannonVausBonus" project="jArk" xLocation="943" yLocation="-260"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.VausBonus" project="jArk" xLocation="1088" yLocation="-45"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.RifleVausBonus" project="jArk" xLocation="1234" yLocation="-270"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.SlowBallBonus" project="jArk" xLocation="628" yLocation="206"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.DoubleRifleVausBonus" project="jArk" xLocation="820" yLocation="-46"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.PlayerBonus" project="jArk" xLocation="409" yLocation="-297"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.GhostBallBonus" project="jArk" xLocation="309" yLocation="524"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus" project="jArk" xLocation="-334" yLocation="203"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.ExplosionBallBonus" project="jArk" xLocation="304" yLocation="384"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.TheBoxBonus" project="jArk" xLocation="783" yLocation="620"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.RemoveLifeBonus" project="jArk" xLocation="175" yLocation="-301"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.ResetStatusBonus" project="jArk" xLocation="387" yLocation="-484"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.FastBallBonus" project="jArk" xLocation="389" yLocation="667"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.UltraBallBonus" project="jArk" xLocation="816" yLocation="339"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.FalseBallsBonus" project="jArk" xLocation="581" yLocation="653"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.LongVausBonus" project="jArk" xLocation="1096" yLocation="140"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.ShortVausBonus" project="jArk" xLocation="1355" yLocation="-29"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.BallBonus" project="jArk" xLocation="569" yLocation="436"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.DoubleBallBonus" project="jArk" xLocation="796" yLocation="479"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.AddLifeBonus" project="jArk" xLocation="623" yLocation="-300"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.bonus.LightOffBonus" project="jArk" xLocation="407" yLocation="-135"/>
+    </diagram>
+</ajsv>

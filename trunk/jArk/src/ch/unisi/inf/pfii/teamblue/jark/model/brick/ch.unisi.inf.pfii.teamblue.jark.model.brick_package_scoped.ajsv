@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AgileJ Ltd. (http://www.agilej.com)-->
+<ajsv>
+    <diagram scope="scopeElementSets.elementSet.Switchable Types In Package" style="standardDiagramStyles.diagramStyle.Standard Basic Style" version="1.5.3">
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Visibility" switchValue="public, protected, package, private"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Signature Length" switchValue="short"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Manhattan Lines" switchValue="dependence, fields, inheritance"/>
+        <switch switchID="scopeElementSets.stylePatternSwitch.Scope Package" switchValue="ch\.unisi\.inf\.pfii\.teamblue\.jark\.model\.brick"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Line Types" switchValue="dependence, field, inheritance"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Members" switchValue="fields, methods, inners, initializers"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.brick.PersistentBrick" project="jArk" xLocation="9" yLocation="109"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.brick.Brick" project="jArk" xLocation="236" yLocation="-41"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.brick.DefaultBrick" project="jArk" xLocation="356" yLocation="317"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.brick.VeryResistentBrick" project="jArk" xLocation="111" yLocation="317"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.brick.ResistentBrick" project="jArk" xLocation="489" yLocation="108"/>
+    </diagram>
+</ajsv>

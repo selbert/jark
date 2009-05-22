@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AgileJ Ltd. (http://www.agilej.com)-->
+<ajsv>
+    <diagram scope="scopeElementSets.elementSet.Switchable Types In Package" style="standardDiagramStyles.diagramStyle.Standard Basic Style" version="1.5.3">
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Visibility" switchValue="public, protected, package, private"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Signature Length" switchValue="short"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Manhattan Lines" switchValue="dependence, fields, inheritance"/>
+        <switch switchID="scopeElementSets.stylePatternSwitch.Scope Package" switchValue="ch\.unisi\.inf\.pfii\.teamblue\.jark\.model\.ball"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Line Types" switchValue="dependence, field, inheritance"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Members" switchValue="fields, methods, inners, initializers"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.ball.StartBall" project="jArk" xLocation="900" yLocation="164"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.ball.StickyBall" project="jArk" xLocation="263" yLocation="152"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.ball.UltraBall" project="jArk" xLocation="908" yLocation="617"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.ball.ExplosionBall" project="jArk" xLocation="275" yLocation="493"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.ball.DefaultBall" project="jArk" xLocation="899" yLocation="443"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.ball.GhostBall" project="jArk" xLocation="892" yLocation="768"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball" project="jArk" xLocation="535" yLocation="130"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.ball.RubberBall" project="jArk" xLocation="271" yLocation="707"/>
+    </diagram>
+</ajsv>

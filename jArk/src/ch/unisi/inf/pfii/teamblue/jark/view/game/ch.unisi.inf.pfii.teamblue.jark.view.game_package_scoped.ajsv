@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AgileJ Ltd. (http://www.agilej.com)-->
+<ajsv>
+    <diagram scope="scopeElementSets.elementSet.Switchable Types In Package" style="standardDiagramStyles.diagramStyle.Standard Basic Style" version="1.5.3">
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Visibility" switchValue="public, protected, package, private"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Signature Length" switchValue="short"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Manhattan Lines" switchValue="dependence, fields, inheritance"/>
+        <switch switchID="scopeElementSets.stylePatternSwitch.Scope Package" switchValue="ch\.unisi\.inf\.pfii\.teamblue\.jark\.view\.game"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Line Types" switchValue="dependence, field, inheritance"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Members" switchValue="fields, methods, inners, initializers"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.view.game.BonusPanel" project="jArk" xLocation="525" yLocation="-72"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.view.game.WestPanel" project="jArk" xLocation="331" yLocation="140"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.view.game.InfoPanel" project="jArk" xLocation="535" yLocation="308"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.view.game.MainPanel" project="jArk" xLocation="230" yLocation="-75"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.view.game.GamePanel" project="jArk" xLocation="-62" yLocation="5"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.view.game.GameFrame" project="jArk" xLocation="-61" yLocation="-92"/>
+    </diagram>
+</ajsv>

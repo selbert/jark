@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AgileJ Ltd. (http://www.agilej.com)-->
+<ajsv>
+    <diagram scope="scopeElementSets.elementSet.Switchable Types In Package" style="standardDiagramStyles.diagramStyle.Standard Basic Style" version="1.5.3">
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Visibility" switchValue="public, protected, package, private"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Signature Length" switchValue="short"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Manhattan Lines" switchValue="dependence, fields, inheritance"/>
+        <switch switchID="scopeElementSets.stylePatternSwitch.Scope Package" switchValue="ch\.unisi\.inf\.pfii\.teamblue\.jark\.model\.vaus"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Line Types" switchValue="dependence, field, inheritance"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Members" switchValue="fields, methods, inners, initializers"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.vaus.CannonVaus" project="jArk" xLocation="715" yLocation="219"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus" project="jArk" xLocation="384" yLocation="98"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.vaus.DefaultVaus" project="jArk" xLocation="125" yLocation="246"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.vaus.DoubleRifleVaus" project="jArk" xLocation="119" yLocation="391"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.model.vaus.RifleVaus" project="jArk" xLocation="706" yLocation="403"/>
+    </diagram>
+</ajsv>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AgileJ Ltd. (http://www.agilej.com)-->
+<ajsv>
+    <diagram scope="scopeElementSets.elementSet.Switchable Types In Package" style="standardDiagramStyles.diagramStyle.Standard Basic Style" version="1.5.3">
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Visibility" switchValue="public, protected, package, private"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Signature Length" switchValue="short"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Manhattan Lines" switchValue="dependence, fields, inheritance"/>
+        <switch switchID="scopeElementSets.stylePatternSwitch.Scope Package" switchValue="ch\.unisi\.inf\.pfii\.teamblue\.jark\.implementation"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Line Types" switchValue="dependence, field, inheritance"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Members" switchValue="fields, methods, inners, initializers"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.implementation.LevelListener" project="jArk" xLocation="382" yLocation="-77"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.implementation.StringEncrypt" project="jArk" xLocation="382" yLocation="-423"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.implementation.VausSetListener" project="jArk" xLocation="373" yLocation="-568"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.implementation.VausListener" project="jArk" xLocation="384" yLocation="-497"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.implementation.Utils" project="jArk" xLocation="376" yLocation="-180"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.implementation.PlayerListener" project="jArk" xLocation="383" yLocation="12"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.implementation.BonusListener" project="jArk" xLocation="369" yLocation="-669"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.implementation.Constants" project="jArk" xLocation="74" yLocation="-654"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.implementation.GameListener" project="jArk" xLocation="381" yLocation="-333"/>
+    </diagram>
+</ajsv>

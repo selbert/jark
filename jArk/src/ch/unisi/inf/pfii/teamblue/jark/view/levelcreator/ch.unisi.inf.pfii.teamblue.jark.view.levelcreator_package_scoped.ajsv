@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AgileJ Ltd. (http://www.agilej.com)-->
+<ajsv>
+    <diagram scope="scopeElementSets.elementSet.Switchable Types In Package" style="standardDiagramStyles.diagramStyle.Standard Basic Style" version="1.5.3">
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Visibility" switchValue="public, protected, package, private"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Signature Length" switchValue="short"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Manhattan Lines" switchValue="dependence, fields, inheritance"/>
+        <switch switchID="scopeElementSets.stylePatternSwitch.Scope Package" switchValue="ch\.unisi\.inf\.pfii\.teamblue\.jark\.view\.levelcreator"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Line Types" switchValue="dependence, field, inheritance"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Members" switchValue="fields, methods, inners, initializers"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.view.levelcreator.FieldPanel" project="jArk" xLocation="468" yLocation="-152"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.view.levelcreator.EditorFrame" project="jArk" xLocation="-73" yLocation="-151"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.view.levelcreator.InteractionPanel" project="jArk" xLocation="220" yLocation="145"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.view.levelcreator.CenterPanel" project="jArk" xLocation="202" yLocation="-155"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.view.levelcreator.BonusPanel" project="jArk" xLocation="238" yLocation="376"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.view.levelcreator.FieldImage" project="jArk" xLocation="387" yLocation="340"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.view.levelcreator.BricksPanel" project="jArk" xLocation="63" yLocation="371"/>
+        <class className="ch.unisi.inf.pfii.teamblue.jark.view.levelcreator.OptionPanel" project="jArk" xLocation="-52" yLocation="66"/>
+    </diagram>
+</ajsv>

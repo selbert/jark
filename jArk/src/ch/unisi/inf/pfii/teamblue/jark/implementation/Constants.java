@@ -28,7 +28,7 @@ public interface Constants {
 	int BRICK_WIDTH = 57;
 	int BRICK_HEIGHT = 25;
 	int MAX_LEVEL = 7;
-	int BALL_LIFE = 100;
+	int BALL_LIFE = 20;
 	// bonus lives (ms)
 	int INSTANTANEOUS = 0;
 	int PERSISTENT = Integer.MAX_VALUE;

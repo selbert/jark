@@ -29,7 +29,7 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 	protected boolean boxEnabled;
 	protected boolean dead;
 	protected boolean resetted;
-	protected int life;
+	protected long ballLastDestroy;
 
 	public Ball(final Vaus vaus, final Level level) {
 		this.vaus = vaus;
@@ -40,7 +40,7 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 		speedY = 0;
 		speed = BALL_SPEED;
 		speedModifier = 1;
-		life = BALL_LIFE;
+		ballLastDestroy = System.currentTimeMillis();
 		resetted = false;
 	}
 
@@ -119,6 +119,15 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 	 * Moves a ball
 	 */
 	public void move() {
+		if ((ballLastDestroy + BALL_LIFE*1000) -System.currentTimeMillis() <= 0) {
+			setX(vaus.getX() + (vaus.getWidth() / 2) - BALL_RADIUS);
+			setY(VAUS_Y - (2 * BALL_RADIUS));
+			final Random rnd = new Random();
+			setSpeedX(rnd.nextInt(7) - 3);
+			setSpeedY(rnd.nextInt(3) - 3);
+			resetted = true;
+			ballLastDestroy = System.currentTimeMillis();
+		}
 		final float speedHypot = sqrt(speedX * speedX + speedY * speedY);
 		final float speedx = (speedX / speedHypot) * speed * speedModifier;
 		final float speedy = (speedY / speedHypot) * speed * speedModifier;
@@ -194,7 +203,7 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 			speedY = -speedY;
 			speedX = ((newX + BALL_RADIUS) - (vaus.getX() + (vaus.getWidth() / 2)))
 					/ (vaus.getWidth() / 10);
-			life = BALL_LIFE;
+			ballLastDestroy = System.currentTimeMillis();
 			return true;
 		}
 		return false;
@@ -297,22 +306,9 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 	}
 
 	protected void destroyBrick(final float x, final float y) {
-		final int i = level.removeBrick(x, y);
-		if (!(this instanceof UltraBall)) {
-			if (i >= BALL_LIFE) {
-				life = BALL_LIFE;
-			} else {
-				life += i;
-			}
-			if (life <= 0) {
-				setX(vaus.getX() + (vaus.getWidth() / 2) - BALL_RADIUS);
-				setY(VAUS_Y - (2 * BALL_RADIUS));
-				final Random rnd = new Random();
-				setSpeedX(rnd.nextInt(7) - 3);
-				setSpeedY(rnd.nextInt(3) - 3);
-				resetted = true;
-				life = BALL_LIFE;
-			}
+		boolean i = level.removeBrick(x, y);
+		if (i) {
+			ballLastDestroy = System.currentTimeMillis();
 		}
 	}
 

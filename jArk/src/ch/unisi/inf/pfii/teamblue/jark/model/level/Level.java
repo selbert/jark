@@ -182,7 +182,7 @@ public final class Level implements Constants, VausSetListener {
 	 * @param pos
 	 *            the position array
 	 */
-	public final int removeBrick(final float remX, final float remY) {
+	public final boolean removeBrick(final float remX, final float remY) {
 		if (remX > 0 && remX < FIELD_WIDTH && remY < FIELD_HEIGHT && remY > 0) {
 			final int[] pos = Utils.getFieldPosition((int) remX, (int) remY);
 			final Brick brick = bricks[pos[1]][pos[0]];
@@ -206,14 +206,12 @@ public final class Level implements Constants, VausSetListener {
 				} else {
 					// persistent brick - do nothing
 				}
-				if (brick instanceof PersistentBrick) {
-					return -1;
-				} else {
-					return Integer.MAX_VALUE;
+				if (!(brick instanceof PersistentBrick)) {
+					return true;
 				}
 			}
 		}
-		return 0;
+		return false;
 	}
 
 	public final void addLevelListener(final LevelListener li) {

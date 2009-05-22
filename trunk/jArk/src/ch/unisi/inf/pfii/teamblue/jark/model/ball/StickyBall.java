@@ -59,7 +59,7 @@ public final class StickyBall extends Ball {
 			sticked = true;
 			speedY = 0;
 			speedX = 0;
-			life = BALL_LIFE;
+			ballLastDestroy = System.currentTimeMillis();
 			return true;
 		}
 		return false;
@@ -69,6 +69,8 @@ public final class StickyBall extends Ball {
 	public final void move() {
 		if (!sticked) {
 			super.move();
+		} else {
+			ballLastDestroy = System.currentTimeMillis();
 		}
 	}
 

@@ -38,6 +38,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.brick.Brick;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
 import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
 import ch.unisi.inf.pfii.teamblue.jark.view.ImagesRepository;
+import ch.unisi.inf.pfii.teamblue.jark.view.audio.AudioPlayer;
 
 /**
  * The game panel, it should show the bricks the balls and the vaus
@@ -269,6 +270,7 @@ public final class GamePanel extends JComponent implements Constants,
 				bonus.addBonusListener(new BonusListener() {
 
 					public void bonusTaken(final Bonus bonus) {
+						AudioPlayer.play("shot1");
 						if (bonus.toString().equals("bonus_box")) {
 							drawBox = true;
 						}

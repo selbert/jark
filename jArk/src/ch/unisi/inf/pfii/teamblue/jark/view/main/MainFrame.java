@@ -44,7 +44,7 @@ public final class MainFrame extends JFrame {
 		p.setLayout(new GridBagLayout());
 		final GridBagConstraints gbc = new GridBagConstraints();
 
-		final JLabel title = new JLabel(ImagesRepository.getIcon("testTitle"),
+		final JLabel title = new JLabel(ImagesRepository.getIcon("title"),
 				SwingConstants.CENTER);
 		gbc.gridwidth = 2;
 		gbc.ipady = 10;

@@ -79,6 +79,15 @@ public class HighScorePanel extends JPanel {
 		}
 	}
 
+	/**
+	 * Add a line to the Highscore list
+	 * 
+	 * @param name
+	 * @param score
+	 * @param time
+	 * @param y
+	 * @param title
+	 */
 	private final void addLine(final String name, final String score,
 			final String time, final int y, final boolean title) {
 		gbc.fill = GridBagConstraints.BOTH;

@@ -249,6 +249,14 @@ public final class GamePanel extends JComponent implements Constants,
 		play();
 	}
 
+	/**
+	 * scales an image by a factor and returns it
+	 * 
+	 * @param source
+	 * @param factor
+	 * 
+	 * @return the scaled image
+	 */
 	private final static BufferedImage scale(final BufferedImage source,
 			final double factor) {
 		final BufferedImage bi = new BufferedImage(source.getWidth(), source
@@ -262,6 +270,11 @@ public final class GamePanel extends JComponent implements Constants,
 		return bi;
 	}
 
+	/**
+	 * sets the level and adds the action to perform when the level fires its listeners
+	 * 
+	 * @param level
+	 */
 	private final void setLevel(final Level level) {
 		this.level = level;
 		level.addLevelListener(new LevelListener() {

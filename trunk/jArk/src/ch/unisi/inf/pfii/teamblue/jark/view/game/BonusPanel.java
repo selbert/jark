@@ -15,6 +15,7 @@ import ch.unisi.inf.pfii.teamblue.jark.implementation.BonusListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.Constants;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.GameListener;
 import ch.unisi.inf.pfii.teamblue.jark.implementation.LevelListener;
+import ch.unisi.inf.pfii.teamblue.jark.implementation.VausListener;
 import ch.unisi.inf.pfii.teamblue.jark.model.Game;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.BallBonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
@@ -72,6 +73,11 @@ public final class BonusPanel extends JPanel implements Constants {
 		setLevelListener(game.getLevel());
 	}
 
+	/**
+	 * sets the actions to perform when a level fires at the listeners
+	 * 
+	 * @param level
+	 */
 	private final void setLevelListener(final Level level) {
 		level.addLevelListener(new LevelListener() {
 			public void bonusReleased(final Bonus bonus) {

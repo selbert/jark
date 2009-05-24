@@ -3,6 +3,7 @@ package ch.unisi.inf.pfii.teamblue.jark.model.level;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -24,6 +25,16 @@ import ch.unisi.inf.pfii.teamblue.jark.model.brick.PersistentBrick;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.ResistentBrick;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.VeryResistentBrick;
 
+/**
+ * This class main purpose is to connect the Game with the Level Editor and the Game Frame
+ * It stores arrays of strings which represents the fields (brick and bonus), 
+ * the level Name and Author and the percentage of bonus in a level (if specified).
+ * 
+ * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
+ * @version $LastChangedDate$
+ * 
+ */
+
 public class LevelManager implements Constants {
 	private String[][] brickField;
 	private String[][] bonusField;
@@ -36,74 +47,96 @@ public class LevelManager implements Constants {
 		bonusField = new String[FIELD_ROWS][FIELD_COLUMNS];
 	}
 
-	public final void readLevelFromFile(final String filepath) {
-		try {
-			final BufferedReader myInput = new BufferedReader(new FileReader(filepath));
-			final String[] infos = myInput.readLine().split(",");
-			setLevelName(infos[0]);
-			setLevelAuthor(infos[1]);
-			setRandomBonusPercentage(infos[2]);
-			myInput.readLine();
-			loadField(brickField, myInput);
-			myInput.readLine();
-			loadField(bonusField, myInput);
-		} catch (final IOException ex) {
-			System.out.println(ex);
-		}
-	}
-
-	public final void setRandomBonusPercentage(final String string) {
-		randomBonusPercentage = Integer.parseInt(string);
-	}
-
-	public final void setLevelAuthor(final String levelAuthor) {
-		this.levelAuthor = levelAuthor;
-	}
-
+	//getters	
 	public final String getLevelAuthor() {
 		return levelAuthor;
 	}
-
 	public final int getBonusPercentage() {
 		return randomBonusPercentage;
 	}
-
+	public final String[][] getBrickField() {
+		return brickField;
+	}
+	public final String[][] getBonusField() {
+		return bonusField;
+	}
+	public final String getLevelName() {
+		return levelName;
+	}
+	
+	//setters
+	public final void setBrickField(final String[][] brickField) {
+		this.brickField = brickField;
+	}
+	public final void setBonusField(final String[][] bonusField) {
+		this.bonusField = bonusField;
+	}
+	public final void setRandomBonusPercentage(final String string) {
+		randomBonusPercentage = Integer.parseInt(string);
+	}
+	public final void setLevelAuthor(final String levelAuthor) {
+		this.levelAuthor = levelAuthor;
+	}
+	public final void setLevelName(final String levelName) {
+		this.levelName = levelName;
+	}
+	
+	/**
+	 * Reset the level
+	 */
+	public final void reset() {
+		brickField = new String[FIELD_ROWS][FIELD_COLUMNS];
+		bonusField = new String[FIELD_ROWS][FIELD_COLUMNS];
+		levelName = "";
+		levelAuthor = "";
+		randomBonusPercentage = 0;
+	}
+	
+	/**
+	 * Read a level from a level file and sets all the required fields
+	 * @param level path
+	 * @throws IOException 
+	 */
+	public final void readLevelFromFile(final String filepath) throws IOException {
+		final BufferedReader myInput = new BufferedReader(new FileReader(filepath));
+		parseLevelFromFile(myInput);
+	}
+	
+	/**
+	 * Read an arcade level from a level file and sets all the required fields 
+	 * This is internal in the JAR, therefore should never fail.
+	 * @param level path
+	 * @throws IOException 
+	 */
 	public final void readArcadeLevelFromFile(final String filename) {
 		try {
-			final InputStreamReader streamReader = new InputStreamReader(
-					LevelManager.class.getResourceAsStream(filename));
+			final InputStreamReader streamReader = new InputStreamReader(LevelManager.class.getResourceAsStream(filename));
 			final BufferedReader myInput = new BufferedReader(streamReader);
-			final String[] infos = myInput.readLine().split(",");
-			setLevelName(infos[0]);
-			setLevelAuthor(infos[1]);
-			setRandomBonusPercentage(infos[2]);
-			myInput.readLine();
-			loadField(brickField, myInput);
-			myInput.readLine();
-			loadField(bonusField, myInput);
+			parseLevelFromFile(myInput);
 		} catch (final IOException ex) {
-			System.out.println(ex);
+			System.out.println("Error loading arcade level - should never happen!");
 		}
 	}
-
-	private final String readLevelDetails(final String filename) {
-		String details = "Info not Found";
-		try {
-			final BufferedReader myInput = new BufferedReader(new FileReader(
-					filename));
-			final String[] infos = myInput.readLine().split(",");
-			details = infos[0];
-			details += " by ";
-			details += infos[1];
-		} catch (final IOException ex) {
-			System.out.println(ex);
-		} catch (final NullPointerException ex) {
-			System.out.println("Problem reading the level " + filename);
-			details = null;
-		}
-		return details;
+	
+	/**
+	 * Parse level from level file
+	 */
+	private final void parseLevelFromFile(final BufferedReader myInput) throws IOException {
+		final String[] infos = myInput.readLine().split(",");
+		setLevelName(infos[0]);
+		setLevelAuthor(infos[1]);
+		setRandomBonusPercentage(infos[2]);
+		myInput.readLine();
+		loadField(brickField, myInput);
+		myInput.readLine();
+		loadField(bonusField, myInput);
 	}
-
+	
+	/**
+	 * Parse a level field and stores it in the corresponding array
+	 * @param field (bricks or bonus)
+	 * @param input (the buffer)
+	 */
 	private final void loadField(final String[][] field, final BufferedReader input) {
 		for (int i = 0; i < FIELD_ROWS; i++) {
 			String[] tmp = null;
@@ -122,6 +155,10 @@ public class LevelManager implements Constants {
 		}
 	}
 
+	/**
+	 * Parse a field of strings and converts it into bricks with bonuses
+	 * @return a field of bricks
+	 */
 	public final Brick[][] fieldFromStringArrays() {
 		final Brick[][] field = new Brick[FIELD_ROWS][FIELD_COLUMNS];
 
@@ -138,6 +175,11 @@ public class LevelManager implements Constants {
 		return field;
 	}
 
+	/**
+	 * Given a string returns the corresponding brick
+	 * @param brickString
+	 * @return a the specified brick
+	 */
 	private final Brick stringToBrick(final String brickString) {
 		if (brickString == null) {
 			return null;
@@ -153,6 +195,13 @@ public class LevelManager implements Constants {
 		return null;
 	}
 
+	/**
+	 * Given a field of strings parse them into a single string
+	 * Used to save a level.
+	 * 
+	 * @param field
+	 * @return string corresponding to a field
+	 */
 	private final String fieldToString(final String[][] field) {
 		String line = "";
 		for (final String[] i : field) {
@@ -163,23 +212,12 @@ public class LevelManager implements Constants {
 		}
 		return line;
 	}
-
-	public final String[][] getBrickField() {
-		return brickField;
-	}
-
-	public final void setBrickField(final String[][] brickField) {
-		this.brickField = brickField;
-	}
-
-	public final void setBonusField(final String[][] bonusField) {
-		this.bonusField = bonusField;
-	}
-
-	public final String[][] getBonusField() {
-		return bonusField;
-	}
-
+	
+	/**
+	 * To save a level in a file
+	 * @param name of the file
+	 * @return true if success else false
+	 */
 	public final boolean writeLevelToFile(final String name) {
 		final File dir = new File("levels");
 		dir.mkdir();
@@ -200,6 +238,10 @@ public class LevelManager implements Constants {
 		return false;
 	}
 	
+	/**
+	 * The actual writing to file
+	 * @param file
+	 */
 	private final void writeToFile(File file) {
 		try {
 			final FileWriter fstream = new FileWriter(file);
@@ -215,19 +257,11 @@ public class LevelManager implements Constants {
 		}
 	}
 	
-	public final void reset() {
-		brickField = new String[FIELD_ROWS][FIELD_COLUMNS];
-		bonusField = new String[FIELD_ROWS][FIELD_COLUMNS];
-	}
-
-	public final void setLevelName(final String levelName) {
-		this.levelName = levelName;
-	}
-
-	public final String getLevelName() {
-		return levelName;
-	}
-
+	/**
+	 * Compute an array of strings corresponding to level paths
+	 * Used in the main frame, to show single levels
+	 * @return array of levels paths
+	 */
 	public final String[] getLevelsPath() {
 		final File dir = new File("levels/");
 		if (!dir.isDirectory()) {
@@ -243,7 +277,13 @@ public class LevelManager implements Constants {
 		}
 		return files;
 	}
-
+	
+	/**
+	 * Used with readLevelDetails, stores in an array the details
+	 * Used in single level selector (main frame)
+	 * @param paths
+	 * @return array of level details (name - author)
+	 */
 	public final String[] getLevelsDetail(final String[] paths) {
 		final String[] details = new String[paths.length];
 		for (int i = 0; i < paths.length; i++) {
@@ -257,11 +297,45 @@ public class LevelManager implements Constants {
 		return details;
 	}
 
+	
+	/**
+	 * Read and parse level info
+	 * @param filename
+	 * @return a string of informations (Name by Author)
+	 */
+	private final String readLevelDetails(final String filename) {
+		String details = "Info not Found";
+		try {
+			final BufferedReader myInput = new BufferedReader(new FileReader(
+					filename));
+			final String[] infos = myInput.readLine().split(",");
+			details = infos[0];
+			details += " by ";
+			details += infos[1];
+		} catch (final IOException ex) {
+			System.out.println(ex);
+		} catch (final NullPointerException ex) {
+			System.out.println("Problem reading the level " + filename);
+			details = null;
+		}
+		return details;
+	}
+	
+	/**
+	 * Load an arcade level
+	 * @param arcadeLevel (int representing the level number)
+	 */
 	public final void loadArcadeLevel(final int arcadeLevel) {
 		final String path = getArcadeLevelPath(arcadeLevel);
 		readArcadeLevelFromFile(path);
 	}
-
+	
+	/**
+	 * Given a level position, returns the path to that level.
+	 * Uses properties file.
+	 * @param arcadeLevel
+	 * @return
+	 */
 	public final String getArcadeLevelPath(final int arcadeLevel) {
 		final Properties properties = new Properties();
 		try {
@@ -274,6 +348,13 @@ public class LevelManager implements Constants {
 		return "defaultlevels/" + properties.getProperty(arcadeLevel + "");
 	}
 
+	/**
+	 * Used to copy the level from the jar to the "levels/" folder.
+	 * 
+	 * @param path
+	 * @throws IOException
+	 * @throws NullPointerException
+	 */
 	private final void copyLevelFileOutside(final String path)
 			throws IOException, NullPointerException {
 		final String levelPath = path;
@@ -300,6 +381,10 @@ public class LevelManager implements Constants {
 		out.close();
 	}
 
+	/**
+	 * With the previous method saves the files outside the jar.
+	 * @param path
+	 */
 	public final void copyLevelFilesOutside(final String path) {
 		try {
 			copyLevelFileOutside(path);

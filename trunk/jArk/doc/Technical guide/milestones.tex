@@ -1,141 +1,106 @@
-\chapter*{Milestones}
-\label{cha:milestones}
-\addcontentsline{toc}{chapter}{Milestones}
+\chapter*{Schedule}
+\label{cha:issues}
+\addcontentsline{toc}{chapter}{Schedule}
 
-\section*{M1, initial idea}
+\section*{Milestone 1: Initial idea}
 \label{sec:m1}
-\addcontentsline{toc}{section}{M1, initial idea}
-/* MODEL */\\
-\\
-// class to describe ball\\
-class Ball\\
-// class to describe the vaus/paddle\\
-class Vaus\\
-// class to describe a brick\\
-class Brick\\
-\\
-birck types :\\
- - 0 : normal\\
- - 1 : double\\
- - 2 : triple\\
- - 3 : fixed\\
-\\
-// class that describes the position of the bricks on a level (maybe parsing files)\\
-class Level\\
-// class that contain information about the player\\
-class Player\\
-// class that holds information about bonus\\
-class Bonus:\\
- - 0 : sticky ball(1)\\
- - 1 : slow ball(1)\\
- - 2 : long vaus(1)\\
- - 3 : explosion ball(2)\\
- - 4 : doubling ball(2)\\
- - 5 : laser(2)\\
- - 6 : ultra ball(3)\\
- - 7 : double laser(3)\\
- - 8 : missile (4)\\
- - 9 : the black box (5)\\
- - 10 : fast ball(1)\\
- - 11 : short vaus (1)\\
- - 12 : ghost ball (2)\\
- - 13 : block freeze (inefficient ball) (3)\\
- - 14 : reset vaus (3)\\
- - 15 : false balls (become true after time) (4)\\
- - 16 : death (5)\\
-\\
-// enum to hold the different types of bonus\\
-enum BonusEnum\\
-// class that holds information about the current state of the game\\
-class Game\\
-\\
-/* CONTROLLER */\\
-\\
-// class to parse mouse/keyboard inputs\\
-class InputParser\\
-// enum with messages (maybe taken from a file?)\\
-enum MessageEnum\\
-// class to receive input and print outputs\\
-class Console\\
-\\
-/* VIEW */\\
-\\
-// class to design the output (draw all)\\
-class Field\\
+\addcontentsline{toc}{section}{Milestone 1: Initial idea}
+The game should be divided into three main packages.
 
-\section*{M2: Ball implementation}
+\subsection*{Model}
+Classes: Game, Player, Ball, Vaus, Brick, Level, Bonus\\
+Enum: Bonuses, to retrieve bonus with certain probability\\
+Bircks: normal, double hit, triple hit, persistent\\
+Bonuses:
+\begin{description}
+\item[Sticky ball] Makes the ball stick to the Vaus
+\item[Slow ball] Decreases ball speed
+\item[Long Vaus] Makes the vaus longer
+\item[Explosion ball] Increases the ball destroying power
+\item[Double ball] Doubles the balls in game
+\item[Rifle Vaus] The Vaus wll be able to shoot
+\item[Ultra ball] Makes the ball ultra powerfull
+\item[Double Rifle Vaus] The Vaus will get 2 rifles
+\item[Cannon Vaus] The Vaus will get a cannon
+\item[The box] A box will surround the game preventing balls from escaping
+\item[Fast ball] Increases ball speed
+\item[Short Vaus] Makes teh Vaus shorter
+\item[Ghost ball] Make the ball transparent and incapable of destroying
+\item[False balls] Doubles the balls and makes them false
+\item[Reset Status] Erases all the bonuses
+\item[Death] Loses one life
+\item[Life] Increase ones lives
+\item[Light off] Turn off the light
+\end{description}
+
+\subsection*{Controller}
+Listeners, Utilities classes, Constants of the game, .. 
+
+\subsection*{View}
+Main frame, Game frame, Editor frame, ..
+
+\section*{Milestone 2: Ball implementation}
 \label{sec:m2}
-\addcontentsline{toc}{section}{M2: Ball implementation}
-- Added inheritance (bonus, brick, vaus)\\
+\addcontentsline{toc}{section}{Milestone 2: Ball implementation}
+- Added inheritance (bonus, brick, vaus now have subclasses for each type)\\
 - Changed packet structure (issue 2 and 3)\\
 - Removed state from vaus (issue 1)\\
-- Solved issue 1 (google code).\\
+- Solved issue 1 (google code)\\
 \\
-- issue: bouncing method.\\
-	- solved with current and next position of the ball on the matrix.\\
+Issues:\\
+How to make the ball bounce, solved with current and next position of the ball on the matrix\\
+Bonus returning without passing from ball (to lower the coupling), bonus are managed by game, ball returns the brick to explode and the game class lets the level class handle it and return a bonus.\\
 \\
-- issue: bonus returning w/o passing from ball (to lower the coupling)\\
-	- bonus treated by game, ball returns the brick to explode and the game class lets the level class handle it and return a bonus.\\
+At this point the project has to be run from bash in order to view the simulation (only the field is shown, the ball is invisible at the moment).\\
 \\
-- project has to be run from bash in order to view the simulation (only the field is shown, the ball is invisible at the moment)\\
-to run it: just press enter continuously, or type something to quit. You will see the bricks hit by the ball disappearing. \\
-\\
-*****\\
-Pay attention: also if we have few tests, we are quit sure the implemented things are working properly.\\
+We have few tests, but the test we have comprehend a lot of methods.\\
 Moreover this is an early stage of our project, we have to improve a lot of things and change a lot more.\\
-The most important element at this time, is the ball. And this is tested.\\
-*****\\
+The most important element at this time, is the ball. And this is tested.
 
-\section*{M3: Basic GUI}
+\section*{Milestone 3: Basic GUI}
 \label{sec:m3}
-\addcontentsline{toc}{section}{M3: Basic GUI}
-For this Milestone we implemented a basic GUI with mouse and key event listener,and a main Thread which provides us with a sort of "tick" where we reprint the game and update everything.\\
+\addcontentsline{toc}{section}{Milestone 3: Basic GUI}
+For this Milestone we implemented a basic GUI with mouse and key event listener.\\
+A main Thread provides us with a sort of "tick" where we repaint the game and update everything.\\
+\\
+Issue:\\
+How to compute the intersection between the ball (which is not a pixel anymore) and the bricks\\
+How to make the ball bounce on the vaus\\
+How to structure the view (divided in panels, ...)\\
 
-Issues: how to compute the intersection between the ball (which is not a pixel anymore) and the bricks, \\
-		how to make the ball bounce on the vaus\\
-		how to structure the view (divided in panels, ...)\\
-
-\section*{M4: Bonus and brick}
+\section*{Milestone 4: Bonus and brick}
 \label{sec:m4}
-\addcontentsline{toc}{section}{M4: Bonus and brick}
-
-Issues: .jar not working\\
-\\
-TODO:	we have to finish implementing some bonus\\
-		add some listener\\
-		add player support\\
-		add ending event\\
-		finish the gui\\
-		add a level editor\\
-		add an algorithm to create levels\\
-		...\\
-\\
+\addcontentsline{toc}{section}{Milestone 4: Bonus and brick}
 Solved Issues:\\
-- The view has to know the Model, and not the inverse. \\
-  We had to refactor the project. At this moment Model and View are completely divided.\\
-- The different images of each element (bonus, vaus, ball and brick) were inside the element, and each time they were needed they were created (new). Now the images are all in a class in View and there is only one instance of each image for all the elements (they are created wih the constructor of that class and only the reference is passed on).\\
-- We had to add Listeners in order to apply the changes given by bonuses (ie. to the vaus)\\
+The view has to know the Model, and not the inverse. \\
+We had to refactor the project. At this moment Model and View are completely divided.\\
+\\
+The different images of each element (bonus, vaus, ball and brick) were inside the element, and each time they were needed they were created (new).\\
+Now the images are all in a class in View and there is only one instance of each image for all the elements (they are created wih the constructor of that class and only the reference is passed on).\\
+We had to add Listeners in order to apply the changes given by bonuses (ie. to the vaus)\\
 \\
 Implemented:\\
 Bonuses: everything except for shooting vauses and sticky ball (lives are half implemented)\\
-
+\\
 Brick types: \\
-we have 4 different bricks: \\
+We have 4 different bricks: \\
 default, destroyed the fist time it is hit;\\
 persistent, which doesn't get destroyed;\\
 resistent, needs to be hit 2 times\\
 very resistent, three times.\\
 \\
-Images: each bonus/vaus/ball/brick has its image. \\
-		Those images are created inside an hashmap in view.ImagesReference, and only a reference is given to the GamePanel which draws them.\\
+Images:\\
+Each bonus/vaus/ball/brick has its image. \\
+Those images are created inside an hashmap in viev, ImagesReference, 
+and only a reference is given to the GamePanel which draws them.\\
 \\
-Swing Timer instead of Threads\\
+We changed to Swing Timer instead of Threads.\\
+\\
+Furthermore, we added more tests, fixed a lot of bugs, and refactored the entire project.
 
-Furthermore, we added more tests, fixed a lot of bugs, and refactored the entire project.\\
-
-\section*{M5: Level editor}
+\section*{Milestone 5: Level editor}
 \label{sec:m5}
-\addcontentsline{toc}{section}{M5: Level editor}
+\addcontentsline{toc}{section}{Milestone 5: Level editor}
 Done:\\
 - lots of bugfixes.\\
 - Level Editor (with save/load/test capabilities).\\
@@ -149,10 +114,20 @@ Done:\\
 Problems encountered (solved): \\
 - find a "good" way to implement the editor.\\
 - display taken bonuses and their duration on main screen.\\
-\\
+\\\
 Problems: \\
 - code duplication (ie. bonus strings).\\
 
-\section*{M6: }
+\section*{Milestone 6: Project complete}
 \label{sec:m6}
-\addcontentsline{toc}{section}{M6: Ball implementation}
+\addcontentsline{toc}{section}{Milestone 6: Project complete}
+We made a lot of changes in this Milestone:\\
+instead of loading all the images at the beginning we now use a sort of  ``lazy loading'': whenever an image is required it gets also stored in a Hashmap, if the same image is required another time, it gets taken from the HashMap directly.\\ 
+Furthermore we use Properties file sto store the path to the images and default levels.\\
+The GUI has been finished, with a perfectly working level editor and a main frame with a card pane to display the different things.\\
+We implemented the HighScore, a new Bonus (turn off the light) and much more.\\
+\\
+The only thing we miss at this point, is the sounds.\\
+But we had some trouble implementing them (not working properly), so we decided to not have them.\\
+\\
+The project can be considered complete. 

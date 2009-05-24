@@ -7,6 +7,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -15,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
@@ -134,14 +136,18 @@ public final class MainFrame extends JFrame {
 				}
 				if (selectedButton.equals("singleLevel")
 						&& cardPanel.getSelectedLevel() != null) {
-					levelManager.readLevelFromFile("levels/"
-							+ cardPanel.getSelectedLevel() + ".jark");
-					final Game game = new Game(true, levelManager);
-					EventQueue.invokeLater(new Runnable() {
-						public void run() {
-							new GameFrame(game);
-						}
-					});
+					try {
+						levelManager.readLevelFromFile("levels/"
+								+ cardPanel.getSelectedLevel() + ".jark");
+						final Game game = new Game(true, levelManager);
+						EventQueue.invokeLater(new Runnable() {
+							public void run() {
+								new GameFrame(game);
+							}
+						});
+					} catch (IOException e1) {
+						JOptionPane.showMessageDialog(cardPanel, "Problem loading file level", "Problem loading level", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 				cardLayout.show(cardPanel, "base");
 			}

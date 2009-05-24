@@ -11,10 +11,14 @@
 \section*{The Game}
 \addcontentsline{toc}{section}{The Game}
 \label{sec:game}
-Much like the game 'Pong', the player controls the "Vaus", a space vessel that acts as the game's "paddle" which prevents a ball from falling from the playing field, attempting to bounce it against a number of bricks. The ball striking a brick causes the brick to disappear. When all the bricks are gone, the player goes to the next level, where another pattern of bricks appear. There are a number of variations (bricks that have to be hit multiple times, flying enemy ships, etc.) and power-up capsules to enhance the Vaus (expand the Vaus, multiply the number of balls, equip a laser cannon, break directly to the next level, etc), but the gameplay remains the same.
+Arkanoid is similar to 'Pong', the player controls the "Vaus", a space vessel that acts as the game's "paddle" which prevents a ball from falling from the playing field, attempting to bounce it against a number of bricks.\\
+The ball hitting a brick causes the brick to disappear. When all the bricks are gone, the player goes to the next level, where another pattern of bricks appear.\\
+Each brick could contain a Bonus which gives the player some particular ability, like an Ultra ball, a Rifle on the Vaus, .. 
 
 \section*{Motivation}
 \addcontentsline{toc}{section}{Motivation}
 \label{sec:moti}
 
-We chose to implement Arkanoid...
+We choose to implement Arkanoid because it seemed to offer us a lot of freedom choosing which bonus implement and how, create a level editor, custom levels with strange shapes and so on. \\
+Furthermore we could easily apply the Object Oriented feature of Java, for instance a Bonus is an abstract class with many subclasses, each of which is a specific Bonus (ie. FastBallBonus).\\
+The same goes for the Vaus, for the Ball and for the Bricks.\\

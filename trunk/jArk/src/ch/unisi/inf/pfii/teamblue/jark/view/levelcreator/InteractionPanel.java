@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -91,20 +92,24 @@ public final class InteractionPanel extends JPanel {
 				if (returnVal == JFileChooser.APPROVE_OPTION
 						&& (centerPanel.getFieldPanel().hasBeenSaved() || JOptionPane.YES_OPTION == JOptionPane
 								.showConfirmDialog(
-										null,
+										centerPanel,
 										"The level has not been saved, all changes will be lost.\nLoad a new level anyway ?",
 										"Load?", JOptionPane.YES_NO_OPTION,
 										JOptionPane.QUESTION_MESSAGE))) {
 					centerPanel.getFieldPanel().setSaved(true);
-					levelManager.readLevelFromFile(fc.getSelectedFile()
-							.getAbsolutePath());
-					centerPanel.getOptionPanel().setLevelAuthor(
-							levelManager.getLevelAuthor());
-					centerPanel.getOptionPanel().setLevelName(
-							levelManager.getLevelName());
-					centerPanel.getOptionPanel().setRandomBonusNum(
-							levelManager.getBonusPercentage());
-					centerPanel.getFieldPanel().repaint();
+					try {
+						levelManager.readLevelFromFile(fc.getSelectedFile()
+								.getAbsolutePath());
+						centerPanel.getOptionPanel().setLevelAuthor(
+								levelManager.getLevelAuthor());
+						centerPanel.getOptionPanel().setLevelName(
+								levelManager.getLevelName());
+						centerPanel.getOptionPanel().setRandomBonusNum(
+								levelManager.getBonusPercentage());
+						centerPanel.getFieldPanel().repaint();
+					} catch (IOException ex) {
+						JOptionPane.showMessageDialog(centerPanel, "Problem loading file level", "Problem loading level", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			}
 		});

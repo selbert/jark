@@ -15,7 +15,7 @@ This two classes are here to assure the correct storage, load and creation of le
 \section*{Ball}
 \label{sec:ball}
 \addcontentsline{toc}{section}{Ball}
-The abstarct class Ball with its subclasses holds all the necessary information about position, speed and how to move a specific ball object. A Ball is modelized as a square and, to let it bounce correctly, at every tick it checks the four corners.
+The abstarct class Ball with its subclasses holds all the necessary information about position, speed and how to move a specific ball object. A Ball is modelized as a square and, to let it bounce correctly, at every tick it checks the four corners, it begins by checking vertical and horizontal axis and then it looks at the diagonal, in case that one of the checks returns true, tha ball will be bounced on the opposite direction and destroys the brick.
 
 \section*{Bonus}
 \label{sec:bonus}

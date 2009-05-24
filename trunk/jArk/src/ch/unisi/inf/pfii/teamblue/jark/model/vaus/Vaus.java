@@ -28,7 +28,11 @@ public abstract class Vaus implements Constants {
 		vausWidth = VAUS_WIDTH;
 		vausListenerList = new ArrayList<VausListener>();
 	}
-
+	/**
+	 * translates a Vaus to a String
+	 * 
+	 * @return the String version of the Vaus
+	 */
 	@Override
 	public abstract String toString();
 
@@ -39,11 +43,6 @@ public abstract class Vaus implements Constants {
 
 	}
 
-	private final void fireVausMoved(final int i) {
-		for (final VausListener li : vausListenerList) {
-			li.vausMoved(i);
-		}
-	}
 
 	public final int getX() {
 		return posX;
@@ -95,6 +94,11 @@ public abstract class Vaus implements Constants {
 		moveRight = 0;
 	}
 
+	/**
+	 * if possible, shoot an ammunition
+	 * 
+	 * @param game
+	 */
 	public void shoot(final Game game) {
 		return;
 	}
@@ -109,6 +113,13 @@ public abstract class Vaus implements Constants {
 
 	public final void setVausListenerLsit(final ArrayList<VausListener> listenerList) {
 		vausListenerList = listenerList;
+	}
+	
+
+	private final void fireVausMoved(final int i) {
+		for (final VausListener li : vausListenerList) {
+			li.vausMoved(i);
+		}
 	}
 
 	public final ArrayList<VausListener> getVausListenerLsit() {

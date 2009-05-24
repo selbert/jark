@@ -202,12 +202,25 @@ public final class Game implements Constants {
 		addVausListener(ball);
 	}
 
+	/**
+	 * Replace a ball with another one
+	 * 
+	 * @param oldBall
+	 * 				the ball we want to replace
+	 * @param newBall
+	 * 				the new ball
+	 */
 	public final void replaceBall(final Ball oldBall, final Ball newBall) {
 		removeVausListener(oldBall);
 		addVausListener(newBall);
 		balls.set(balls.indexOf(oldBall), newBall);
 	}
 
+	/**
+	 * Remove a ball from the game
+	 * 
+	 * @param ball
+	 */
 	private void removeBall(final Ball ball) {
 		balls.remove(ball);
 		removeVausListener(ball);
@@ -221,12 +234,22 @@ public final class Game implements Constants {
 	public final void addBullet(final Ball bullet) {
 		bullets.add(bullet);
 	}
-
+	
+	/**
+	 * Remove a bullet from the game
+	 * 
+	 * @param bullet
+	 */
 	private void removeBullet(final Ball bullet) {
 		bullets.remove(bullet);
 		removeVausListener(bullet);
 	}
 
+	/**
+	 * Add a bonus to the taken bonuses
+	 * 
+	 * @param bonus
+	 */
 	private void addBonus(final Bonus bonus) {
 		for (int i = 0; i < takenBonuses.size(); i++) {
 			final Bonus b = takenBonuses.get(i);
@@ -414,7 +437,7 @@ public final class Game implements Constants {
 	/**
 	 * Check if there are balls in game, if none remove life and restart ball
 	 */
-	public void checkBallsInGame() {
+	private void checkBallsInGame() {
 		if (balls.size() <= 0 && started) {
 			player.decrementLives();
 			started = false;
@@ -430,7 +453,7 @@ public final class Game implements Constants {
 	/**
 	 * Check if the level is cleared or if the player has no more lives and ends the level or the game
 	 */
-	public boolean checkGameOver() {
+	private boolean checkGameOver() {
 		if (level.isCleared()) {
 			fireLevelCleared();
 			levelManager.copyLevelFilesOutside(levelManager

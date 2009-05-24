@@ -15,7 +15,7 @@ import ch.unisi.inf.pfii.teamblue.jark.implementation.StringEncrypt;
  * The HighScores class handels highscores
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
- * @version $LastChangedDate: 2009-05-21 15:09:37 +0200 (Thu, 21 May 2009) $
+ * @version $LastChangedDate$
  * 
  */
 
@@ -34,7 +34,10 @@ public class HighScores {
 		initializeHighScoreFile();
 	}
 
-	public final void initializeHighScoreFile() {
+	/**
+	 * method that initializes the highscore file and arraylist
+	 */
+	private final void initializeHighScoreFile() {
 		final File file = new File("HighScore.jahs");
 		try {
 			if (!file.createNewFile()) {
@@ -63,7 +66,9 @@ public class HighScores {
 			System.out.println("Problem accessing Highscore file.");
 		}
 	}
-	
+	/**
+	 * method that writes the arraylist of highscores into a file
+	 */
 	public final void writeHighScoreFile() {
 		final File file = new File("HighScore.jahs");
 		try {
@@ -90,6 +95,11 @@ public class HighScores {
 			System.out.println("Problem writing to Highscore file.");
 		}
 	}
+	/**
+	 * method that searches for the highest highscore
+	 * 
+	 * @return highest highscore
+	 */
 	public final int getTopScore() {
 		if (highScoreListScores.size() > 0) {
 			int returnIndex = 0;
@@ -105,6 +115,15 @@ public class HighScores {
 		}
 		return 0;
 	}
+	
+	/**
+	 * method that adds a highscore to the highscore arraylist
+	 * 
+	 * @param name
+	 * 			the name that the player inserts
+	 * @param player
+	 * 			the player object that is currently playing
+	 */
 
 	public final void addHighScore(final String name, final Player player) {
 		highScoreListNames.add(name);
@@ -113,10 +132,16 @@ public class HighScores {
 		writeHighScoreFile();
 	}
 
+	//getter
 	public final ArrayList<Integer> getHighScoreListScores() {
 		return highScoreListScores;
 	}
 	
+	/**
+	 * method that searches for the least highscore
+	 * 
+	 * @return least highscore
+	 */
 	public final int getLeastScore() {
 		if (highScoreListScores.size() > 0) {
 			int returnValue = highScoreListScores.get(0);

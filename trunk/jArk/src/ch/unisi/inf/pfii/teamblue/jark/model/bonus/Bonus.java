@@ -35,9 +35,19 @@ public abstract class Bonus implements Constants, VausSetListener {
 		this.bonusClass = bonusClass;
 	}
 
+	/**
+	 * translates a Bonus to a String
+	 * 
+	 * @return the String version of the Bonus
+	 */
 	@Override
 	public abstract String toString();
 
+	/**
+	 * applies a bonus to a game
+	 * 
+	 * @param game
+	 */
 	public abstract void apply(final Game game);
 
 	// getters
@@ -77,6 +87,10 @@ public abstract class Bonus implements Constants, VausSetListener {
 	public final void setLife(final int life) {
 		lifeInMill = life;
 	}
+	public void decrementLife() {
+		lifeInMill -= TICKS_PER_SECOND;
+		fireLifeDecreased();
+	}
 
 	/**
 	 * Called each time the bonus has to move
@@ -87,6 +101,9 @@ public abstract class Bonus implements Constants, VausSetListener {
 		checkOutOfReach();
 	}
 
+	/**
+	 * Checks if a bonus collides woth the vaus
+	 */
 	private final void checkVausCollision() {
 		if (y + BRICK_HEIGHT > VAUS_Y
 				&& y + BRICK_HEIGHT < VAUS_Y + BRICK_HEIGHT
@@ -96,6 +113,9 @@ public abstract class Bonus implements Constants, VausSetListener {
 		}
 	}
 
+	/**
+	 * check whenever a bonus is out of reach and, in the case, sets the dead field to true
+	 */
 	private final void checkOutOfReach() {
 		if (y > GAME_HEIGHT) {
 			dead = true;
@@ -122,13 +142,15 @@ public abstract class Bonus implements Constants, VausSetListener {
 		}
 	}
 
+	/**
+	 * removes the effect of the bonus from the game
+	 * 
+	 * @param game
+	 */
 	public void remove(final Game game) {
 		return;
 	}
 
-	public void decrementLife() {
-		lifeInMill -= TICKS_PER_SECOND;
-		fireLifeDecreased();
-	}
+	
 
 }

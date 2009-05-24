@@ -29,25 +29,34 @@ public final class Player implements Constants {
 		listeners = new ArrayList<PlayerListener>();
 	}
 
+	//getters
 	public final String getName() {
 		return name;
-	}
-
-	public final void setLives(final int lives) {
-		this.lives = lives;
 	}
 
 	public final int getLives() {
 		return lives;
 	}
+	
+	public final int getScore() {
+		return score;
+	}
 
-	public final void incrementTime() {
-		gameTime += TICKS_PER_SECOND;
-		levelTime += TICKS_PER_SECOND;
-		if ((gameTime / 1000) > gameTimeInSeconds) {
-			gameTimeInSeconds = (gameTime / 1000);
-			fireModifiedTime();
-		}
+	public final int getTime() {
+		return gameTime;
+	}
+	
+	public final int getLevelTime() {
+		return levelTime;
+	}
+	
+	//setters
+	public final void setLives(final int lives) {
+		this.lives = lives;
+	}
+
+	public void resetLevelTime() {
+		levelTime = 0;
 	}
 
 	public final void incrementLives() {
@@ -68,19 +77,20 @@ public final class Player implements Constants {
 		this.score += score;
 		fireModifiedScore();
 	}
-
-	public final int getScore() {
-		return score;
-	}
-
-	public final int getTime() {
-		return gameTime;
+	
+	/**
+	 * method that increments level and game time by the tick
+	 */
+	public final void incrementTime() {
+		gameTime += TICKS_PER_SECOND;
+		levelTime += TICKS_PER_SECOND;
+		if ((gameTime / 1000) > gameTimeInSeconds) {
+			gameTimeInSeconds = (gameTime / 1000);
+			fireModifiedTime();
+		}
 	}
 	
-	public final int getLevelTime() {
-		return levelTime;
-	}
-
+	// listener handlers
 	public final void addPlayerListener(final PlayerListener li) {
 		listeners.add(li);
 	}
@@ -89,25 +99,21 @@ public final class Player implements Constants {
 		listeners.remove(li);
 	}
 
-	public final void fireModifiedLives() {
+	private final void fireModifiedLives() {
 		for (final PlayerListener li : listeners) {
 			li.modifiedLives(lives);
 		}
 	}
 
-	public final void fireModifiedScore() {
+	private final void fireModifiedScore() {
 		for (final PlayerListener li : listeners) {
 			li.modifiedScore(score);
 		}
 	}
 
-	public final void fireModifiedTime() {
+	private final void fireModifiedTime() {
 		for (final PlayerListener li : listeners) {
 			li.modifiedTime(gameTimeInSeconds);
 		}
-	}
-
-	public void resetLevelTime() {
-		levelTime = 0;
 	}
 }

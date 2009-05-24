@@ -44,9 +44,19 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 		resetted = false;
 	}
 
+	
+	/**
+	 * translates a Ball to a String
+	 * 
+	 * @return the String version of the Ball
+	 */
 	@Override
 	public abstract String toString();
-
+	/**
+	 * produces a copy of the ball
+	 * 
+	 * @return a copy of this Ball
+	 */
 	public abstract Ball copy();
 
 	// setters
@@ -224,7 +234,7 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 	 * Check the intersections of the X component of the ball
 	 * 
 	 * @param newX
-	 * @return
+	 * @return true if the ball bounced on a brick, false if not
 	 */
 	protected boolean bounceX(final float newX) {
 		if (level.brickHasBallInside(newX, y)) {
@@ -253,6 +263,13 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 		return false;
 	}
 
+	/**
+	 * Check the intersections of a diagonal movement of the ball
+	 * 
+	 * @param newX
+	 * @param newY
+	 * @return true if the ball bounced on a brick, false if not
+	 */
 	protected boolean bounceDiag(final float newX, final float newY) {
 		if (level.brickHasBallInside(newX, newY)) {
 			destroyBrick(newX, newY);
@@ -276,7 +293,7 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 	 * Check the intersections of the Y component of the ball
 	 * 
 	 * @param newY
-	 * @return
+	 * @return true if the ball bounced on a brick, false if not
 	 */
 	protected boolean bounceY(final float newY) {
 		if (level.brickHasBallInside(x, newY)) {
@@ -304,16 +321,69 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 		}
 		return false;
 	}
-
+	
+	/**
+	 * Destroy a brick
+	 * 
+	 * @param x
+	 * @param y
+	 */
 	protected void destroyBrick(final float x, final float y) {
 		boolean i = level.removeBrick(x, y);
 		if (i) {
 			ballLastDestroy = System.currentTimeMillis();
 		}
 	}
-
+	
+	/**
+	 * Assign to the given ball all the settings of this ball
+	 * 
+	 * @param returnBall
+	 * @return a ball with the settings of this ball
+	 */
+	protected Ball transferBall(final Ball returnBall) {
+		returnBall.setX(x);
+		returnBall.setY(y);
+		returnBall.setSpeedMod(speedModifier);
+		returnBall.setBoxEnabled(getBoxEnabled());
+		return returnBall;
+	}
+	
+	/**
+	 * Action performed when Vaus is moved by a delta
+	 * 
+	 * @param delta
+	 */
 	public void vausMoved(final int delta) {
 	}
+	/**
+	 * Action performed when the game starts (StartingBall)
+	 * 
+	 * @param game
+	 */
+	public void start(final Game game) {
+	}
+	/**
+	 * Action performed when clicked (StickyBall)
+	 * 
+	 */
+	public void release() {
+	}
+	/**
+	 * Set the sticky factor (StickyBall)
+	 * 
+	 * @param sticky
+	 */
+	public void setSticky(final boolean sticky) {
+	}
+	/**
+	 * Set the position relative to the vaus (StickyBall)
+	 * 
+	 * @param vausRelPos
+	 */
+	public void setVausRelPos(final float vausRelPos) {
+	}
+
 
 	/**
 	 * For test purposes only
@@ -324,23 +394,4 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 		return x + " " + y + " " + speedX + " " + speedY;
 	}
 
-	public void release() {
-	}
-
-	public void setSticky(final boolean sticky) {
-	}
-
-	public void setVausRelPos(final float vausRelPos) {
-	}
-
-	protected Ball transferBall(final Ball returnBall) {
-		returnBall.setX(x);
-		returnBall.setY(y);
-		returnBall.setSpeedMod(speedModifier);
-		returnBall.setBoxEnabled(getBoxEnabled());
-		return returnBall;
-	}
-
-	public void start(final Game game) {
-	}
 }

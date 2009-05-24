@@ -7,7 +7,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.vaus.Vaus;
  * This ball does nothing
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
- * @version $LastChangedDate: 2009-05-11 23:23:13 +0200 (Mon, 11 May 2009) $
+ * @version $LastChangedDate$
  * 
  */
 

@@ -1,9 +1,5 @@
 package ch.unisi.inf.pfii.teamblue.jark.model.level;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -80,6 +76,10 @@ public final class Level implements Constants, VausSetListener {
 		}
 		return returnNumber;
 	}
+	
+	public final String getName() {
+		return name;
+	}
 
 	/**
 	 * Creates a string with the index of the bonus repeated the times defined
@@ -151,7 +151,14 @@ public final class Level implements Constants, VausSetListener {
 			return false;
 		}
 	}
-
+	
+	/**
+	 * Returns true if the given position is inside a  persistent brick
+	 * 
+	 * @param x
+	 * @param y
+	 * @return true if inside a brick
+	 */
 	public final boolean persistentBrickHasBallInside(final float x,
 			final float y) {
 		// return false;
@@ -234,6 +241,11 @@ public final class Level implements Constants, VausSetListener {
 		}
 	}
 
+	/**
+	 * Returns true if the level has no more destroyable brick inside  
+	 *
+	 * @return true if level is cleared
+	 */
 	public final boolean isCleared() {
 		boolean accumulator = true;
 		for (int i = 0; (i < bricks.length) && accumulator; i++) {
@@ -243,9 +255,5 @@ public final class Level implements Constants, VausSetListener {
 			}
 		}
 		return accumulator;
-	}
-
-	public final String getName() {
-		return name;
 	}
 }

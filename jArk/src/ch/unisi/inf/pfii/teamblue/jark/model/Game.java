@@ -171,7 +171,16 @@ public final class Game implements Constants {
 	}
 	
 	public final void setRandomLevel(final int bonusPercentage) {
+		started = false;
+		balls.clear();
+		bullets.clear();
+		freeBonuses.clear();
+		removeTakenBonuses();
+		setVaus(new DefaultVaus(GAME_WIDTH / 2 - VAUS_WIDTH / 2));
 		setLevel(new Level(bonusPercentage, freeBonuses, vaus));
+		final Ball newBall = new StartBall(vaus, level);
+		vaus.addVausListener(newBall);
+		addBall(newBall);
 	}
 
 	public final void setVaus(final Vaus vaus) {

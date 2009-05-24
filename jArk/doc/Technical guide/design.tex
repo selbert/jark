@@ -10,12 +10,12 @@ This is the class that runs and coordinates the core of the game, it holds refer
 \section*{Level and LevelManager}
 \label{sec:level}
 \addcontentsline{toc}{section}{Level and LevelManager}
-This two classes are here to assure the correct storage, load and creation of level. The Level class also provides methods to destroy brick and retrieve the bonuses that are in there. The LevelManager class centers its funcionality providing methods to load and store level into files.
+This two classes are here to assure the correct storage, load and creation of level. The Level class also provides methods to destroy brick and retrieve the bonuses that are in there. The LevelManager class centers its functionality providing methods to load and store level into files, mainly used to connect the Level Editor with the Game and the Game Frame.
 
 \section*{Ball}
 \label{sec:ball}
 \addcontentsline{toc}{section}{Ball}
-The Ball class with its subclasses holds all the necessary information about position, speed and how to move a specific ball object. A Ball is modelized as a square and, to let it bounce correctly, at every tick it checks the four corners.
+The abstarct class Ball with its subclasses holds all the necessary information about position, speed and how to move a specific ball object. A Ball is modelized as a square and, to let it bounce correctly, at every tick it checks the four corners.
 
 \section*{Bonus}
 \label{sec:bonus}
@@ -25,7 +25,7 @@ Bonus is an abstract class that is extended by 3 different types of bonuses: Pla
 \section*{Vaus}
 \label{sec:vaus}
 \addcontentsline{toc}{section}{Vaus}
-Here we store all we need to know about the Vaus, with the 4 subclasses it's possible to have all the different paddle that we need and move them.
+Another abstract class, here we store all we need to know about the Vaus, with the 4 subclasses it's possible to have all the different paddle that we need and move them.
 
 \section*{GamePanel}
 \label{sec:gamepanel}

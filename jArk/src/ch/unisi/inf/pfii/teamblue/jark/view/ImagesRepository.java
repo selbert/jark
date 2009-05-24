@@ -27,6 +27,9 @@ public final class ImagesRepository {
 	private final static Map<String, ImageIcon> images = new HashMap<String, ImageIcon>();
 	private final static Properties properties = new Properties();
 
+	/**
+	 * Constructor: load the properties with images paths
+	 */
 	public ImagesRepository() {
 		try {
 			properties.load(ImagesRepository.class.getResourceAsStream("paths.properties"));
@@ -34,18 +37,35 @@ public final class ImagesRepository {
 			System.out.println("Missing paths file.");
 		}
 	}
-
+	
+	/**
+	 * Get an enumeration of keys (images names)
+	 * @return images names in properties file
+	 */
 	public final static Enumeration<Object> getKeys() {
 		return properties.keys();
 	}
-
-	public final static ImageIcon getIcon(final String path) {
-		if (!images.containsKey(path)) {
-			images.put(path, fetchImage(path));
+	
+	/**
+	 * Given an image key returns the ImageIcon, 
+	 * if the HashMap doesn't contain the image, it puts it in.
+	 * @param key
+	 * @return ImageIcon
+	 */
+	public final static ImageIcon getIcon(final String key) {
+		if (!images.containsKey(key)) {
+			images.put(key, fetchImage(key));
 		}
-		return images.get(path);
+		return images.get(key);
 	}
-
+	
+	/**
+	 * Compute the image complete path and creates the actual imageicon,
+	 * This method will not be called twice for the same image.
+	 * 
+	 * @param image file path
+	 * @return ImageIcon to store into HashMap
+	 */
 	private final static ImageIcon fetchImage(final String path) {
 		final String imagePath = "images/" + properties.getProperty(path);
 		try {
@@ -58,11 +78,23 @@ public final class ImagesRepository {
 			}
 		}
 	}
-
+	
+	/**
+	 * Get an Image instead of an ImageIcon
+	 * @param path
+	 * @return Image
+	 */
 	public final static Image getImage(final String path) {
 		return getIcon(path).getImage();
 	}
-
+	
+	/**
+	 * Given an ImageIcon returns the same image with some filter applied.
+	 * In this case we increase the brightness.
+	 * 
+	 * @param icon
+	 * @return modified icon
+	 */
 	public final static ImageIcon getHighlightedIcon(final ImageIcon icon) {
 		final Image image = icon.getImage();
 		final ImageFilter filter = new RGBImageFilter() {

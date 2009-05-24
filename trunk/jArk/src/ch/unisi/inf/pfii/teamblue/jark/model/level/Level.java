@@ -34,6 +34,22 @@ public final class Level implements Constants, VausSetListener {
 	/**
 	 * Constructor of Level, creates a new level (field of bricks).
 	 */
+	
+	public Level(final int bonusPercentage, final ArrayList<Bonus> freeBonuses, final Vaus vaus) {
+		rnd = new Random();
+		listeners = new ArrayList<LevelListener>();
+		this.name = "Random";
+		this.vaus = vaus;
+		this.freeBonuses = freeBonuses;
+		bricks = createRandomLevel();
+		if (bonusPercentage > 0) {
+			if (bonusDistString == null) {
+				bonusDistString = getDistributionString();
+			}
+			addRandomBonus((int) ((float) getNumberOfDestroyableBrick() / 100 * bonusPercentage));
+		}
+		
+	}
 
 	public Level(final String name, final Brick[][] brickField,
 			final ArrayList<Bonus> freeBonuses, final Vaus vaus,
@@ -131,6 +147,16 @@ public final class Level implements Constants, VausSetListener {
 			final Bonus bonus = createBonus();
 			listOfBricks.remove(index).setBonus(bonus);
 		}
+	}
+	
+	private final Brick[][] createRandomLevel() {
+		Brick[][] bricks = new Brick[FIELD_ROWS][FIELD_COLUMNS];
+		for (int row = 4; row<FIELD_ROWS; row++) {
+			for (int col = 0; col<FIELD_COLUMNS; col++) {
+				bricks[row][col] = Utils.intToBrick(rnd.nextInt(15));
+			}
+		}
+		return bricks;
 	}
 
 	/**

@@ -169,6 +169,10 @@ public final class Game implements Constants {
 		});
 		addVausListener(level);
 	}
+	
+	public final void setRandomLevel(final int bonusPercentage) {
+		setLevel(new Level(bonusPercentage, freeBonuses, vaus));
+	}
 
 	public final void setVaus(final Vaus vaus) {
 		this.vaus = vaus;

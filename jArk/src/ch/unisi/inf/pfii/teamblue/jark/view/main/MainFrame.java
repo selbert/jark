@@ -83,6 +83,20 @@ public final class MainFrame extends JFrame {
 		gbc.gridwidth = 1;
 		p.add(singleLevelButton, gbc);
 
+		final JButton fastGameButton = new JButton("Fast Game");
+		fastGameButton.addActionListener(new ActionListener() {
+			public void actionPerformed(final ActionEvent ev) {
+				final Game game = new Game(true, levelManager);
+				game.setRandomLevel(50);
+				startGameGUI(game);
+				cardLayout.show(cardPanel, "base");
+			}
+		});
+		gbc.gridx = 0;
+		gbc.gridy = 3;
+		gbc.gridwidth = 1;
+		p.add(fastGameButton, gbc);
+		
 		final JButton levelEditorButton = new JButton("Level Editor");
 		levelEditorButton.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent ev) {
@@ -95,7 +109,7 @@ public final class MainFrame extends JFrame {
 			}
 		});
 		gbc.gridx = 0;
-		gbc.gridy = 3;
+		gbc.gridy = 4;
 		gbc.gridwidth = 1;
 		p.add(levelEditorButton, gbc);
 
@@ -107,7 +121,7 @@ public final class MainFrame extends JFrame {
 			}
 		});
 		gbc.gridx = 0;
-		gbc.gridy = 4;
+		gbc.gridy = 5;
 		gbc.gridwidth = 1;
 		p.add(highScoreButton, gbc);
 
@@ -118,7 +132,7 @@ public final class MainFrame extends JFrame {
 			}
 		});
 		gbc.gridx = 0;
-		gbc.gridy = 6;
+		gbc.gridy = 7;
 		gbc.gridwidth = 1;
 		gbc.insets = new Insets(5, 0, 0, 5);
 		p.add(quitButton, gbc);
@@ -148,7 +162,7 @@ public final class MainFrame extends JFrame {
 			}
 		});
 		gbc.gridx = 1;
-		gbc.gridy = 6;
+		gbc.gridy = 7;
 		gbc.gridwidth = 1;
 		gbc.insets = new Insets(5, 0, 0, 0);
 		p.add(playButton, gbc);
@@ -159,7 +173,7 @@ public final class MainFrame extends JFrame {
 		gbc.gridy = 1;
 		gbc.ipadx = 10;
 		gbc.gridwidth = 1;
-		gbc.gridheight = 5;
+		gbc.gridheight = 6;
 		gbc.weighty = 2;
 		gbc.weightx = 2;
 		p.add(cardPanel, gbc);

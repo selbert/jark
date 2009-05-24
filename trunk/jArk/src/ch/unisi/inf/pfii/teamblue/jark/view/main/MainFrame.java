@@ -8,6 +8,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.URL;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -31,6 +32,7 @@ public final class MainFrame extends JFrame {
 
 	private final CardLayout cardLayout;
 	private final CardPanel cardPanel;
+	private final LevelManager levelManager;
 	private String selectedButton;
 
 	public MainFrame(final LevelManager levelManager,
@@ -39,6 +41,7 @@ public final class MainFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		selectedButton = "arcade";
+		this.levelManager = levelManager;
 		final JPanel p = new JPanel();
 		p.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		p.setLayout(new GridBagLayout());
@@ -128,11 +131,7 @@ public final class MainFrame extends JFrame {
 			public void actionPerformed(final ActionEvent e) {
 				if (selectedButton.equals("arcade")) {
 					final Game game = new Game(false, levelManager);
-					EventQueue.invokeLater(new Runnable() {
-						public void run() {
-							new GameFrame(game);
-						}
-					});
+					startGameGUI(game);
 				}
 				if (selectedButton.equals("singleLevel")
 						&& cardPanel.getSelectedLevel() != null) {
@@ -140,11 +139,7 @@ public final class MainFrame extends JFrame {
 						levelManager.readLevelFromFile("levels/"
 								+ cardPanel.getSelectedLevel() + ".jark");
 						final Game game = new Game(true, levelManager);
-						EventQueue.invokeLater(new Runnable() {
-							public void run() {
-								new GameFrame(game);
-							}
-						});
+						startGameGUI(game);
 					} catch (IOException e1) {
 						JOptionPane.showMessageDialog(cardPanel, "Problem loading file level", "Problem loading level", JOptionPane.ERROR_MESSAGE);
 					}
@@ -195,7 +190,8 @@ public final class MainFrame extends JFrame {
 		final JMenuItem newGameItem = new JMenuItem("Play Arcade");
 		newGameItem.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
-				// todo
+				final Game game = new Game(false, levelManager);
+				startGameGUI(game);
 			}
 		});
 		fileMenu.add(newGameItem);
@@ -204,7 +200,9 @@ public final class MainFrame extends JFrame {
 		final JMenuItem rndLevelItem = new JMenuItem("Random Level");
 		rndLevelItem.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
-				quitApp();
+				final Game game = new Game(true, levelManager);
+				game.setRandomLevel(50);
+				startGameGUI(game);
 			}
 		});
 		fileMenu.add(rndLevelItem);
@@ -213,7 +211,12 @@ public final class MainFrame extends JFrame {
 		final JMenuItem editorItem = new JMenuItem("Level Editor");
 		editorItem.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
-				quitApp();
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						new EditorFrame(levelManager, true);
+					}
+				});
+				cardLayout.show(cardPanel, "base");
 			}
 		});
 		fileMenu.add(editorItem);
@@ -222,7 +225,8 @@ public final class MainFrame extends JFrame {
 		final JMenuItem highItem = new JMenuItem("High Score");
 		highItem.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
-				quitApp();
+				cardPanel.updateHighScore();
+				cardLayout.show(cardPanel, "arcade");
 			}
 		});
 		fileMenu.add(highItem);
@@ -231,7 +235,7 @@ public final class MainFrame extends JFrame {
 		final JMenuItem quitItem = new JMenuItem("Quit");
 		quitItem.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
-				quitApp();
+				System.exit(0);
 			}
 		});
 		fileMenu.add(quitItem);
@@ -244,7 +248,7 @@ public final class MainFrame extends JFrame {
 		final JMenuItem helpItem = new JMenuItem("Manual");
 		helpItem.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
-				quitApp();
+				JOptionPane.showMessageDialog(null, "<html>To view the jArk Manual go to:<br> <a href=\"http://code.google.com/p/jark/downloads\">http://code.google.com/p/jark/downloads</a></html>", "Online Manual", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		helpMenu.add(helpItem);
@@ -253,7 +257,7 @@ public final class MainFrame extends JFrame {
 		final JMenuItem aboutItem = new JMenuItem("About");
 		aboutItem.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
-				quitApp();
+				JOptionPane.showMessageDialog(null, "<html>jArk has been made by<br><b>Stefano Pongelli</b> &#60;pongells@lu.unisi.ch&#62; <br>and<br><b>Thomas Selber</b> &#60;selbert@lu.unisi.ch&#62;<br>for Programming Fundamentals 2 at UNISI.ch", "About jArk", JOptionPane.WARNING_MESSAGE);
 			}
 		});
 		helpMenu.add(aboutItem);
@@ -261,9 +265,13 @@ public final class MainFrame extends JFrame {
 		// set the menubar
 		setJMenuBar(menubar);
 	}
-
-	private final void quitApp() {
-		System.exit(0);
+	
+	private final void startGameGUI(final Game game) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				new GameFrame(game);
+			}
+		});
 	}
-
+	
 }

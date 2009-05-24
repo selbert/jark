@@ -190,7 +190,7 @@ public class MainTest extends TestCase implements Constants {
 		assertTrue(bonus.toString().equals("malus_falseball"));
 		bonus.apply(g);
 		bonus.remove(g);
-		assertEquals(g.getBalls().size(), 24);
+		assertEquals(g.getBalls().size(), 16);
 		bonus = new FastBallBonus();
 		assertTrue(bonus.toString().equals("neutral_fastball"));
 		bonus.apply(g);
@@ -319,17 +319,17 @@ public class MainTest extends TestCase implements Constants {
 		ball.setSpeedX(4);
 		ball.move();
 		ball.move();
-		assertTrue(ball.toStringTest().equals("778.2 543.0 -3.8 -0.0"));
+		assertTrue(ball.toStringTest().equals("779.0 543.0 -3.8 -0.0"));
 		ball.move();
-		assertTrue(ball.toStringTest().equals("774.4 543.0 -3.8 -0.0"));
+		assertTrue(ball.toStringTest().equals("776.0 543.0 -3.8 -0.0"));
 		vaus = new DefaultVaus(0);
 		ball = new DefaultBall(vaus, level);
 		ball.setSpeedX(-4);
 		ball.move();
 		ball.move();
-		assertTrue(ball.toStringTest().equals("37.6 543.0 -0.4 -0.0"));
+		assertTrue(ball.toStringTest().equals("36.0 543.0 -0.3 -0.0"));
 		ball.move();
-		assertTrue(ball.toStringTest().equals("37.199997 543.0 -0.4 -0.0"));
+		assertTrue(ball.toStringTest().equals("33.0 543.0 -0.3 -0.0"));
 		vaus = new DefaultVaus(0);
 		ball = new DefaultBall(vaus, level);
 		ball.setSpeedY(-5);
@@ -337,9 +337,10 @@ public class MainTest extends TestCase implements Constants {
 			ball.move();
 		}
 		ball.move();
-		assertTrue(ball.toStringTest().equals("42.0 404.0 0.0 -5.0"));
+
+		assertTrue(ball.toStringTest().equals("42.0 460.0 0.0 -5.0"));
 		ball.move();
-		assertTrue(ball.toStringTest().equals("42.0 404.0 0.0 5.0"));
+		assertTrue(ball.toStringTest().equals("42.0 457.0 0.0 -5.0"));
 		// the block in 10,395 disappears.
 	}
 

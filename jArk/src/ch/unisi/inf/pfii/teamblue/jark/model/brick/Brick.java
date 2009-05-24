@@ -15,12 +15,18 @@ public abstract class Brick {
 	private int points;
 	private Bonus bonus;
 
-	@Override
-	public abstract String toString();
 
 	public Brick() {
 		bonus = null;
 	}
+	
+	/**
+	 * translates a Brick to a String
+	 * 
+	 * @return the String version of the Brick
+	 */
+	@Override
+	public abstract String toString();
 
 	// getters
 	public final Bonus getBonus() {

@@ -11,7 +11,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.ball.GhostBall;
  * Changes the balls into ultra balls
  * 
  * @author Stefano.Pongelli@lu.unisi.ch, Thomas.Selber@lu.unisi.ch
- * @version $LastChangedDate: 2009-05-11 21:38:29 +0200 (Mon, 11 May 2009) $
+ * @version $LastChangedDate$
  * 
  */
 

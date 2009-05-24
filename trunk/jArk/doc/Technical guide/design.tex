@@ -1,0 +1,33 @@
+\chapter*{Design}
+\label{cha:design}
+\addcontentsline{toc}{chapter}{Design}
+
+\section*{Game}
+\label{sec:game}
+\addcontentsline{toc}{section}{Game}
+This is the class that runs and coordinates the core of the game, it holds references to all moving and non-moving objects in the playing area. Here we have a tick method that steps the whole world forward and some method to check if the game is over or if the level is cleared.
+
+\section*{Level and LevelManager}
+\label{sec:level}
+\addcontentsline{toc}{section}{Level and LevelManager}
+This two classes are here to assure the correct storage, load and creation of level. The Level class also provides methods to destroy brick and retrieve the bonuses that are in there. The LevelManager class centers its funcionality providing methods to load and store level into files.
+
+\section*{Ball}
+\label{sec:ball}
+\addcontentsline{toc}{section}{Ball}
+The Ball class with its subclasses holds all the necessary information about position, speed and how to move a specific ball object. A Ball is modelized as a square and, to let it bounce correctly, at every tick it checks the four corners.
+
+\section*{Bonus}
+\label{sec:bonus}
+\addcontentsline{toc}{section}{Bonus}
+Bonus is an abstract class that is extended by 3 different types of bonuses: PlayerBonus, BallBonus or VausBonus. Each of our 18 bonuses extends one of those three bonus type. A bonus applies itself to a game with the method apply(Game game) and removes the effect with the similar method remove(Game game). Every bonus has also a bonusClass, an int used to identify different classes of bonus of the same type, so that we can overwrite bonus of the same type and bonusClass.
+
+\section*{Vaus}
+\label{sec:vaus}
+\addcontentsline{toc}{section}{Vaus}
+Here we store all we need to know about the Vaus, with the 4 subclasses it's possible to have all the different paddle that we need and move them.
+
+\section*{GamePanel}
+\label{sec:gamepanel}
+\addcontentsline{toc}{section}{GamePanel}
+This class provides us an object able to translate what happens in a Game object to something visible and allows the user to interact with the core of our game.

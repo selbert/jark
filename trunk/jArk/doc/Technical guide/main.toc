@@ -1,0 +1,22 @@
+\contentsline {chapter}{Introduction}{2}
+\contentsline {section}{Group Composition}{2}
+\contentsline {section}{The Game}{2}
+\contentsline {section}{Motivation}{2}
+\contentsline {chapter}{Requirements}{3}
+\contentsline {section}{Game Types}{3}
+\contentsline {chapter}{Milestones}{4}
+\contentsline {section}{M1, initial idea}{4}
+\contentsline {section}{M2: Ball implementation}{5}
+\contentsline {section}{M3: Basic GUI}{6}
+\contentsline {section}{M4: Bonus and brick}{6}
+\contentsline {section}{M5: Level editor}{7}
+\contentsline {section}{M6: Ball implementation}{8}
+\contentsline {chapter}{Design}{9}
+\contentsline {section}{Game}{9}
+\contentsline {section}{Level and LevelManager}{9}
+\contentsline {section}{Ball}{9}
+\contentsline {section}{Bonus}{9}
+\contentsline {section}{Vaus}{10}
+\contentsline {section}{GamePanel}{10}
+\contentsline {chapter}{References}{11}
+\contentsline {section}{General Informations}{11}

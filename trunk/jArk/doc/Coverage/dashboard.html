@@ -1,0 +1,763 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+        <link rel="SHORTCUT ICON" href="img/clover.ico" />
+
+    <style type="text/css" media="screen">
+        @import url('style.css');
+        @import url('roundedcorners.css');
+            </style>
+    
+    <script src="sorttable.js" type="text/javascript"></script>
+    <script src="overlibmws.js" type="text/javascript"><!-- overLIB (c) Erik Bosrup --></script>
+    <script src="overlibmws_shadow.js" type="text/javascript" ></script>
+    <script src="clover.js" type="text/javascript"></script>
+    <script src="cloud.js" type="text/javascript"></script>
+    <script src="help.js" type="text/javascript"></script>
+  <title>jArk Coverage Report</title>
+</head>
+<body onload="setBrowserTitle('jArk Coverage Report: Dashboard')">
+<table cellspacing="0" cellpadding="2" class="barGraph">
+
+  <tr>
+    <td colspan="2">
+
+    <div class="roundedLarge">
+      <b class="ctop"><b class="cb1"></b><b class="cb2"></b><b class="cb3"></b><b class="cb4"></b></b>
+      <div class="roundedContent">
+    <table width="100%" class="" cellspacing="0"><tr class="reportHeader">
+    <td valign="top" class="titleText">Clover Coverage  Report -  jArk Coverage Report <div class="timestamp"><b>Coverage timestamp:</b>&nbsp;Sun May 24 2009 20:24:26 CEST</div>
+
+        
+    
+            <div class="navBar"><span class="navBarCurrent">Overview</span>&nbsp;&nbsp;&nbsp;Package&nbsp;&nbsp;&nbsp;File</div>
+    
+    <div class="navBarLink">
+        &nbsp;&nbsp;&nbsp;
+        <a href="index.html" target="_top">FRAMES</a>&nbsp;&nbsp;
+        <a href="dashboard.html" target="_top">NO FRAMES</a>&nbsp;&nbsp;
+        <label onclick="toggleHelp(this);" class="nonHelpItem">SHOW HELP</label>&nbsp;&nbsp;
+    </div>
+
+    </td>
+
+    
+        
+
+     <td  id="td-header-stats" class="headerStats" valign="top" style="font-weight: normal;width:40%; text-align: right; display: ;">
+         <table style="text-align: right; white-space:nowrap;">
+         <tr>
+           <td colspan="11" class="totalText" style="text-align: left"><label>Statistics for project Clover database Sun May 24 2009 20:25:37 CEST:</label></td>
+         </tr>
+         <tr>
+           <td  class="totalText"><label onkeyup="return help_stmts + 'project';">Stmts:</label></td>
+           <td >      2,378
+  </td>
+           <td style="width: 5%">&nbsp;</td>
+           <td  class="totalText"><label onkeyup="return help_loc + 'project';">LOC:</label></td>
+           <td >      7,264
+  </td>
+           <td style="width: 10%">&nbsp;</td>
+           <td  class="totalText"><label onkeyup="return help_cmp + 'project';">Total cmp:</label></td>
+           <td >      939
+  </td>
+           <td style="width: 5%">&nbsp;</td>
+           <td  class="totalText"><label onkeyup="return help_stmts_per_method;">Stmts/Method:</label></td>
+           <td >      4.64
+  </td>
+         </tr>
+         <tr>
+           <td  class="totalText"><label onkeyup="return help_branches + 'project';">Branches:</label></td>
+           <td >      546
+  </td>
+           <td style="width: 5%">&nbsp;</td>
+           <td  class="totalText"><label onkeyup="return help_ncloc + 'project';">NCLOC:</label></td>
+           <td >      5,098
+  </td>
+           <td style="width: 10%">&nbsp;</td>
+           <td  class="totalText"><label onkeyup="return help_cmp_density + 'project';">Cmp density:</label></td>
+           <td >      0.39
+  </td>
+           <td style="width: 5%">&nbsp;</td>
+           <td  class="totalText"><label onkeyup="return help_methods_per_class;">Methods/Class:</label></td>
+           <td >      6.17
+  </td>
+         </tr>
+         <tr>
+           <td  class="totalText"><label onkeyup="return help_methods + 'project';">Methods:</label></td>
+           <td >      512
+  </td>
+           <td style="width: 5%">&nbsp;</td>
+                    <td  class="totalText"><label onkeyup="return help_files + 'project';">Files:</label></td>
+           <td >      82
+  </td>
+                    <td style="width: 10%">&nbsp;</td>
+           <td  class="totalText"><label onkeyup="return help_avg_method_cmp + 'project';">Avg method cmp:</label></td>
+           <td >      1.83
+  </td>
+           <td style="width: 5%">&nbsp;</td>
+                     <td  class="totalText"><label onkeyup="return help_classes_per_package;">Classes/Pkg:</label></td>
+           <td >      5.93
+  </td>
+          
+         </tr>
+           <tr>
+            <td  class="totalText"><label onkeyup="return help_classes + 'project';">Classes:</label></td>
+            <td >      83
+  </td>
+            <td style="width: 5%">&nbsp;</td>
+                      <td  class="totalText"><label onkeyup="return help_packages + 'project';">Packages:</label></td>
+            <td >      14
+  </td>
+                     <td style="width: 10%">&nbsp;</td>
+         </tr>
+             </table>
+     </td>
+
+    
+    
+    
+
+     <td  id="td-filtered-header-stats" class="headerStats" valign="top" style="font-weight: normal;width:40%; text-align: right; display: none;">
+         <table style="text-align: right; white-space:nowrap;">
+         <tr>
+           <td colspan="11" class="totalText" style="text-align: left"><label>Statistics for project Clover database Sun May 24 2009 20:25:37 CEST:</label></td>
+         </tr>
+         <tr>
+           <td  class="totalText"><label onkeyup="return help_stmts + 'project';">Stmts:</label></td>
+           <td >      2,378
+  </td>
+           <td style="width: 5%">&nbsp;</td>
+           <td  class="totalText"><label onkeyup="return help_loc + 'project';">LOC:</label></td>
+           <td >      7,264
+  </td>
+           <td style="width: 10%">&nbsp;</td>
+           <td  class="totalText"><label onkeyup="return help_cmp + 'project';">Total cmp:</label></td>
+           <td >      939
+  </td>
+           <td style="width: 5%">&nbsp;</td>
+           <td  class="totalText"><label onkeyup="return help_stmts_per_method;">Stmts/Method:</label></td>
+           <td >      4.64
+  </td>
+         </tr>
+         <tr>
+           <td  class="totalText"><label onkeyup="return help_branches + 'project';">Branches:</label></td>
+           <td >      546
+  </td>
+           <td style="width: 5%">&nbsp;</td>
+           <td  class="totalText"><label onkeyup="return help_ncloc + 'project';">NCLOC:</label></td>
+           <td >      5,098
+  </td>
+           <td style="width: 10%">&nbsp;</td>
+           <td  class="totalText"><label onkeyup="return help_cmp_density + 'project';">Cmp density:</label></td>
+           <td >      0.39
+  </td>
+           <td style="width: 5%">&nbsp;</td>
+           <td  class="totalText"><label onkeyup="return help_methods_per_class;">Methods/Class:</label></td>
+           <td >      6.17
+  </td>
+         </tr>
+         <tr>
+           <td  class="totalText"><label onkeyup="return help_methods + 'project';">Methods:</label></td>
+           <td >      512
+  </td>
+           <td style="width: 5%">&nbsp;</td>
+                    <td  class="totalText"><label onkeyup="return help_files + 'project';">Files:</label></td>
+           <td >      82
+  </td>
+                    <td style="width: 10%">&nbsp;</td>
+           <td  class="totalText"><label onkeyup="return help_avg_method_cmp + 'project';">Avg method cmp:</label></td>
+           <td >      1.83
+  </td>
+           <td style="width: 5%">&nbsp;</td>
+                     <td  class="totalText"><label onkeyup="return help_classes_per_package;">Classes/Pkg:</label></td>
+           <td >      5.93
+  </td>
+          
+         </tr>
+           <tr>
+            <td  class="totalText"><label onkeyup="return help_classes + 'project';">Classes:</label></td>
+            <td >      83
+  </td>
+            <td style="width: 5%">&nbsp;</td>
+                      <td  class="totalText"><label onkeyup="return help_packages + 'project';">Packages:</label></td>
+            <td >      14
+  </td>
+                     <td style="width: 10%">&nbsp;</td>
+         </tr>
+             </table>
+     </td>
+</tr>
+
+    </table>
+  </div>
+  <b class="cbottom"><b class="cb4"></b><b class="cb3"></b><b class="cb2"></b><b class="cb1"></b></b>
+  </div>
+
+   </td>
+  </tr>
+
+
+<tr class="titleText">
+    <td class="evalBar" colspan="2">
+        This report was generated with an evaluation license. <a href="http://www.atlassian.com/software/clover">Purchase Clover</a> or <a href="http://confluence.atlassian.com/x/JAgQCQ">configure your license.</a>
+    </td>
+</tr>
+
+
+<tr><td class="hbreak" colspan="2" ></td></tr>
+
+        
+<tr valign="top">
+
+    <td class="hbreak" colspan="1">
+    <div class="left-third">
+                <div class="tags roundedLarge" style="padding: 5px;">
+            <b class="ctop $cnrclass"><b class="cb1"></b><b class="cb2"></b><b class="cb3"></b><b class="cb4"></b></b>
+        <div class="roundedContent" style="padding: 5px;">
+                
+            <label class="titleText link" onkeyup="return help_dash_coverage;" onclick="self.location='pkg-summary.html'">Coverage</label><span> 83 classes, 2,943 / 3,436 elements</span>
+            <table><tr><td>85.7%
+</td>
+<td class="graphBar " align="center">
+<span class="sortValue">0.8565192</span>
+<div>
+    <div style="width: 200px; font-size:0px;"></div>
+    <div title="14.3% Not Covered"  style="min-width: 200px;"  class="barNegative ">
+       <div title="85.7% Covered" class="barPositive " style="width: 85.7%"></div>
+    </div>
+</div></td></tr></table>
+                </div>
+            <b class="cbottom"><b class="cb4"></b><b class="cb3"></b><b class="cb2"></b><b class="cb1"></b></b>
+        </div>
+    
+                        <div class="tags roundedLarge" style="padding: 5px;">
+            <b class="ctop $cnrclass"><b class="cb1"></b><b class="cb2"></b><b class="cb3"></b><b class="cb4"></b></b>
+        <div class="roundedContent" style="padding: 5px;">
+                <div><label class="titleText link" onkeyup="return help_dash_coverage;" onclick="self.location='pkg-summary.html'">Class Coverage Distribution</label></div>
+            <div class="center"><img src="img/classDistrubutionChart.png" alt="img/classDistrubutionChart.png" usemap="#classDistrubutionChart.png"/>
+            <map id="classDistrubutionChart.png" name="classDistrubutionChart.png">
+<area shape="rect" coords="245,12,263,149" title="53 classes have 91-100% coverage" alt="" nohref="nohref"/>
+<area shape="rect" coords="225,132,243,150" title="7 classes have 81-90% coverage" alt="" nohref="nohref"/>
+<area shape="rect" coords="204,129,222,149" title="8 classes have 71-80% coverage" alt="" nohref="nohref"/>
+<area shape="rect" coords="183,147,201,149" title="1 class has 61-70% coverage" alt="" nohref="nohref"/>
+<area shape="rect" coords="141,147,159,149" title="1 class has 41-50% coverage" alt="" nohref="nohref"/>
+<area shape="rect" coords="38,134,56,149" title="6 classes have 0% coverage" alt="" nohref="nohref"/>
+</map></div>
+                </div>
+            <b class="cbottom"><b class="cb4"></b><b class="cb3"></b><b class="cb2"></b><b class="cb1"></b></b>
+        </div>
+            
+                        <div class="tags roundedLarge" style="padding: 5px;">
+            <b class="ctop $cnrclass"><b class="cb1"></b><b class="cb2"></b><b class="cb3"></b><b class="cb4"></b></b>
+        <div class="roundedContent" style="padding: 5px;">
+                <div><label class="titleText link" onkeyup="return help_dash_risks;" onclick="self.location='proj-risks.html'">Class Complexity</label></div>
+            <div class="center"><img src="img/classComplexityChart.png" alt="img/classComplexityChart.png" usemap="#classComplexityChart.png"/>
+            <map id="classComplexityChart.png" name="classComplexityChart.png">
+<area shape="poly" coords="260,146,257,149,255,146,257,144,260,146,260,146" title="Cmp: 4; Cov: 100%; VeryResistentBrick" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/brick/VeryResistentBrick.html#VeryResistentBrick"/>
+<area shape="poly" coords="235,41,232,44,230,41,232,39,235,41,235,41" title="Cmp: 71; Cov: 88%; GamePanel" alt="" href="ch/unisi/inf/pfii/teamblue/jark/view/game/GamePanel.html#GamePanel"/>
+<area shape="poly" coords="260,143,257,146,255,143,257,141,260,143,260,143" title="Cmp: 6; Cov: 100%; SlowBallBonus" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/bonus/SlowBallBonus.html#SlowBallBonus"/>
+<area shape="poly" coords="260,148,257,150,255,148,257,145,260,148,260,148" title="Cmp: 3; Cov: 100%; DefaultBall" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/ball/DefaultBall.html#DefaultBall"/>
+<area shape="poly" coords="233,37,230,39,228,37,230,34,233,37,233,37" title="Cmp: 74; Cov: 87%; Ball" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/ball/Ball.html#Ball"/>
+<area shape="poly" coords="231,124,228,127,226,124,228,122,231,124,231,124" title="Cmp: 18; Cov: 86%; HighScores" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/HighScores.html#HighScores"/>
+<area shape="poly" coords="260,145,257,147,255,145,257,142,260,145,260,145" title="Cmp: 5; Cov: 100%; StartBall" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/ball/StartBall.html#StartBall"/>
+<area shape="poly" coords="260,143,257,146,255,143,257,141,260,143,260,143" title="Cmp: 6; Cov: 100%; SlowBallBonus" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/bonus/SlowBallBonus.html#SlowBallBonus"/>
+<area shape="poly" coords="204,129,201,132,199,129,201,127,204,129,204,129" title="Cmp: 15; Cov: 73%; Bullet" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/vaus/ammunitions/Bullet.html#Bullet"/>
+<area shape="poly" coords="218,146,216,149,213,146,216,144,218,146,218,146" title="Cmp: 4; Cov: 80%; DefaultVaus" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/vaus/DefaultVaus.html#DefaultVaus"/>
+<area shape="poly" coords="260,142,257,144,255,142,257,139,260,142,260,142" title="Cmp: 7; Cov: 100%; BonusPanel" alt="" href="ch/unisi/inf/pfii/teamblue/jark/view/levelcreator/BonusPanel.html#BonusPanel"/>
+<area shape="poly" coords="251,118,249,121,246,118,249,116,251,118,251,118" title="Cmp: 22; Cov: 96%; Player" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/Player.html#Player"/>
+<area shape="poly" coords="52,142,49,144,47,142,49,139,52,142,52,142" title="Cmp: 7; Cov: 0%; ImagesReference" alt="" href="ch/unisi/inf/pfii/teamblue/jark/view/ImagesReference.html#ImagesReference"/>
+<area shape="poly" coords="247,135,245,138,242,135,245,133,247,135,247,135" title="Cmp: 11; Cov: 94%; ImagesRepository" alt="" href="ch/unisi/inf/pfii/teamblue/jark/view/ImagesRepository.html#ImagesRepository"/>
+<area shape="poly" coords="260,148,257,150,255,148,257,145,260,148,260,148" title="Cmp: 3; Cov: 100%; DefaultBall" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/ball/DefaultBall.html#DefaultBall"/>
+<area shape="poly" coords="260,143,257,146,255,143,257,141,260,143,260,143" title="Cmp: 6; Cov: 100%; SlowBallBonus" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/bonus/SlowBallBonus.html#SlowBallBonus"/>
+<area shape="poly" coords="260,145,257,147,255,145,257,142,260,145,260,145" title="Cmp: 5; Cov: 100%; StartBall" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/ball/StartBall.html#StartBall"/>
+<area shape="poly" coords="251,112,249,114,246,112,249,109,251,112,251,112" title="Cmp: 26; Cov: 96%; Bonus" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/bonus/Bonus.html#Bonus"/>
+<area shape="poly" coords="247,138,245,141,242,138,245,136,247,138,247,138" title="Cmp: 9; Cov: 94%; InfoPanel" alt="" href="ch/unisi/inf/pfii/teamblue/jark/view/game/InfoPanel.html#InfoPanel"/>
+<area shape="poly" coords="189,65,187,67,184,65,187,62,189,65,189,65" title="Cmp: 56; Cov: 66%; Level" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/level/Level.html#Level"/>
+<area shape="poly" coords="233,117,230,119,228,117,230,114,233,117,233,117" title="Cmp: 23; Cov: 87%; MainFrame" alt="" href="ch/unisi/inf/pfii/teamblue/jark/view/main/MainFrame.html#MainFrame"/>
+<area shape="poly" coords="260,149,257,152,255,149,257,147,260,149,260,149" title="Cmp: 2; Cov: 100%; WestPanel" alt="" href="ch/unisi/inf/pfii/teamblue/jark/view/game/WestPanel.html#WestPanel"/>
+<area shape="poly" coords="260,146,257,149,255,146,257,144,260,146,260,146" title="Cmp: 4; Cov: 100%; VeryResistentBrick" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/brick/VeryResistentBrick.html#VeryResistentBrick"/>
+<area shape="poly" coords="239,148,236,150,234,148,236,145,239,148,239,148" title="Cmp: 3; Cov: 90%; Main" alt="" href="ch/unisi/inf/pfii/teamblue/jark/Main.html#Main"/>
+<area shape="poly" coords="260,149,257,152,255,149,257,147,260,149,260,149" title="Cmp: 2; Cov: 100%; WestPanel" alt="" href="ch/unisi/inf/pfii/teamblue/jark/view/game/WestPanel.html#WestPanel"/>
+<area shape="poly" coords="218,56,216,58,213,56,216,53,218,56,218,56" title="Cmp: 62; Cov: 80%; LevelManager" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/level/LevelManager.html#LevelManager"/>
+<area shape="poly" coords="204,129,201,132,199,129,201,127,204,129,204,129" title="Cmp: 15; Cov: 73%; Bullet" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/vaus/ammunitions/Bullet.html#Bullet"/>
+<area shape="poly" coords="256,118,253,121,251,118,253,116,256,118,256,118" title="Cmp: 22; Cov: 98%; BonusPanel" alt="" href="ch/unisi/inf/pfii/teamblue/jark/view/game/BonusPanel.html#BonusPanel"/>
+<area shape="poly" coords="260,142,257,144,255,142,257,139,260,142,260,142" title="Cmp: 7; Cov: 100%; BonusPanel" alt="" href="ch/unisi/inf/pfii/teamblue/jark/view/levelcreator/BonusPanel.html#BonusPanel"/>
+<area shape="poly" coords="52,145,49,147,47,145,49,142,52,145,52,145" title="Cmp: 5; Cov: 0%; InteractionPanel" alt="" href="ch/unisi/inf/pfii/teamblue/jark/view/main/InteractionPanel.html#InteractionPanel"/>
+<area shape="poly" coords="52,151,49,154,47,151,49,149,52,151,52,151" title="Cmp: 1; Cov: 0%; WestPanel" alt="" href="ch/unisi/inf/pfii/teamblue/jark/view/levelcreator/WestPanel.html#WestPanel"/>
+<area shape="poly" coords="245,135,243,138,240,135,243,133,245,135,245,135" title="Cmp: 11; Cov: 93%; GhostBall" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/ball/GhostBall.html#GhostBall"/>
+<area shape="poly" coords="260,146,257,149,255,146,257,144,260,146,260,146" title="Cmp: 4; Cov: 100%; VeryResistentBrick" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/brick/VeryResistentBrick.html#VeryResistentBrick"/>
+<area shape="poly" coords="222,121,220,124,217,121,220,119,222,121,222,121" title="Cmp: 20; Cov: 82%; Vaus" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/vaus/Vaus.html#Vaus"/>
+<area shape="poly" coords="260,146,257,149,255,146,257,144,260,146,260,146" title="Cmp: 4; Cov: 100%; VeryResistentBrick" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/brick/VeryResistentBrick.html#VeryResistentBrick"/>
+<area shape="poly" coords="253,145,251,147,248,145,251,142,253,145,253,145" title="Cmp: 5; Cov: 97%; CenterPanel" alt="" href="ch/unisi/inf/pfii/teamblue/jark/view/levelcreator/CenterPanel.html#CenterPanel"/>
+<area shape="poly" coords="251,124,249,127,246,124,249,122,251,124,251,124" title="Cmp: 18; Cov: 96%; CardPanel" alt="" href="ch/unisi/inf/pfii/teamblue/jark/view/main/CardPanel.html#CardPanel"/>
+<area shape="poly" coords="260,146,257,149,255,146,257,144,260,146,260,146" title="Cmp: 4; Cov: 100%; VeryResistentBrick" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/brick/VeryResistentBrick.html#VeryResistentBrick"/>
+<area shape="poly" coords="260,148,257,150,255,148,257,145,260,148,260,148" title="Cmp: 3; Cov: 100%; DefaultBall" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/ball/DefaultBall.html#DefaultBall"/>
+<area shape="poly" coords="243,142,241,144,238,142,241,139,243,142,243,142" title="Cmp: 7; Cov: 92%; HighScorePanel" alt="" href="ch/unisi/inf/pfii/teamblue/jark/view/main/HighScorePanel.html#HighScorePanel"/>
+<area shape="poly" coords="260,143,257,146,255,143,257,141,260,143,260,143" title="Cmp: 6; Cov: 100%; SlowBallBonus" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/bonus/SlowBallBonus.html#SlowBallBonus"/>
+<area shape="poly" coords="243,140,241,143,238,140,241,138,243,140,243,140" title="Cmp: 8; Cov: 92%; DoubleRifleVaus" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/vaus/DoubleRifleVaus.html#DoubleRifleVaus"/>
+<area shape="poly" coords="260,140,257,143,255,140,257,138,260,140,260,140" title="Cmp: 8; Cov: 100%; Brick" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/brick/Brick.html#Brick"/>
+<area shape="poly" coords="260,149,257,152,255,149,257,147,260,149,260,149" title="Cmp: 2; Cov: 100%; WestPanel" alt="" href="ch/unisi/inf/pfii/teamblue/jark/view/game/WestPanel.html#WestPanel"/>
+<area shape="poly" coords="224,98,222,100,219,98,222,95,224,98,224,98" title="Cmp: 35; Cov: 83%; RubberBall" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/ball/RubberBall.html#RubberBall"/>
+<area shape="poly" coords="260,146,257,149,255,146,257,144,260,146,260,146" title="Cmp: 4; Cov: 100%; VeryResistentBrick" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/brick/VeryResistentBrick.html#VeryResistentBrick"/>
+<area shape="poly" coords="143,143,141,146,138,143,141,141,143,143,143,143" title="Cmp: 6; Cov: 44%; Utils" alt="" href="ch/unisi/inf/pfii/teamblue/jark/implementation/Utils.html#Utils"/>
+<area shape="poly" coords="260,149,257,152,255,149,257,147,260,149,260,149" title="Cmp: 2; Cov: 100%; WestPanel" alt="" href="ch/unisi/inf/pfii/teamblue/jark/view/game/WestPanel.html#WestPanel"/>
+<area shape="poly" coords="218,142,216,144,213,142,216,139,218,142,218,142" title="Cmp: 7; Cov: 80%; CannonVaus" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/vaus/CannonVaus.html#CannonVaus"/>
+<area shape="poly" coords="260,146,257,149,255,146,257,144,260,146,260,146" title="Cmp: 4; Cov: 100%; VeryResistentBrick" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/brick/VeryResistentBrick.html#VeryResistentBrick"/>
+<area shape="poly" coords="260,146,257,149,255,146,257,144,260,146,260,146" title="Cmp: 4; Cov: 100%; VeryResistentBrick" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/brick/VeryResistentBrick.html#VeryResistentBrick"/>
+<area shape="poly" coords="210,142,207,144,205,142,207,139,210,142,210,142" title="Cmp: 7; Cov: 76%; RifleVaus" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/vaus/RifleVaus.html#RifleVaus"/>
+<area shape="poly" coords="260,151,257,154,255,151,257,149,260,151,260,151" title="Cmp: 1; Cov: 100%; PlayerBonus" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/bonus/PlayerBonus.html#PlayerBonus"/>
+<area shape="poly" coords="260,148,257,150,255,148,257,145,260,148,260,148" title="Cmp: 3; Cov: 100%; DefaultBall" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/ball/DefaultBall.html#DefaultBall"/>
+<area shape="poly" coords="247,134,245,136,242,134,245,131,247,134,247,134" title="Cmp: 12; Cov: 94%; UltraBall" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/ball/UltraBall.html#UltraBall"/>
+<area shape="poly" coords="52,151,49,154,47,151,49,149,52,151,52,151" title="Cmp: 1; Cov: 0%; WestPanel" alt="" href="ch/unisi/inf/pfii/teamblue/jark/view/levelcreator/WestPanel.html#WestPanel"/>
+<area shape="poly" coords="260,151,257,154,255,151,257,149,260,151,260,151" title="Cmp: 1; Cov: 100%; PlayerBonus" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/bonus/PlayerBonus.html#PlayerBonus"/>
+<area shape="poly" coords="260,143,257,146,255,143,257,141,260,143,260,143" title="Cmp: 6; Cov: 100%; SlowBallBonus" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/bonus/SlowBallBonus.html#SlowBallBonus"/>
+<area shape="poly" coords="52,140,49,143,47,140,49,138,52,140,52,140" title="Cmp: 8; Cov: 0%; MainFrame" alt="" href="testmain/MainFrame.html#MainFrame"/>
+<area shape="poly" coords="260,151,257,154,255,151,257,149,260,151,260,151" title="Cmp: 1; Cov: 100%; PlayerBonus" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/bonus/PlayerBonus.html#PlayerBonus"/>
+<area shape="poly" coords="245,15,243,17,240,15,243,12,245,15,245,15" title="Cmp: 88; Cov: 93%; Game" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/Game.html#Game"/>
+<area shape="poly" coords="218,124,216,127,213,124,216,122,218,124,218,124" title="Cmp: 18; Cov: 80%; OptionPanel" alt="" href="ch/unisi/inf/pfii/teamblue/jark/view/levelcreator/OptionPanel.html#OptionPanel"/>
+<area shape="poly" coords="247,124,245,127,242,124,245,122,247,124,247,124" title="Cmp: 18; Cov: 94%; InteractionPanel" alt="" href="ch/unisi/inf/pfii/teamblue/jark/view/levelcreator/InteractionPanel.html#InteractionPanel"/>
+<area shape="poly" coords="260,143,257,146,255,143,257,141,260,143,260,143" title="Cmp: 6; Cov: 100%; SlowBallBonus" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/bonus/SlowBallBonus.html#SlowBallBonus"/>
+<area shape="poly" coords="260,146,257,149,255,146,257,144,260,146,260,146" title="Cmp: 4; Cov: 100%; VeryResistentBrick" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/brick/VeryResistentBrick.html#VeryResistentBrick"/>
+<area shape="poly" coords="260,143,257,146,255,143,257,141,260,143,260,143" title="Cmp: 6; Cov: 100%; SlowBallBonus" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/bonus/SlowBallBonus.html#SlowBallBonus"/>
+<area shape="poly" coords="260,148,257,150,255,148,257,145,260,148,260,148" title="Cmp: 3; Cov: 100%; DefaultBall" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/ball/DefaultBall.html#DefaultBall"/>
+<area shape="poly" coords="249,145,247,147,244,145,247,142,249,145,249,145" title="Cmp: 5; Cov: 95%; EditorFrame" alt="" href="ch/unisi/inf/pfii/teamblue/jark/view/levelcreator/EditorFrame.html#EditorFrame"/>
+<area shape="poly" coords="260,148,257,150,255,148,257,145,260,148,260,148" title="Cmp: 3; Cov: 100%; DefaultBall" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/ball/DefaultBall.html#DefaultBall"/>
+<area shape="poly" coords="243,95,241,97,238,95,241,92,243,95,243,95" title="Cmp: 37; Cov: 92%; FieldPanel" alt="" href="ch/unisi/inf/pfii/teamblue/jark/view/levelcreator/FieldPanel.html#FieldPanel"/>
+<area shape="poly" coords="52,148,49,150,47,148,49,145,52,148,52,148" title="Cmp: 3; Cov: 0%; InteractionPanel" alt="" href="ch/unisi/inf/pfii/teamblue/jark/view/game/InteractionPanel.html#InteractionPanel"/>
+<area shape="poly" coords="260,124,257,127,255,124,257,122,260,124,260,124" title="Cmp: 18; Cov: 100%; StickyBall" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/ball/StickyBall.html#StickyBall"/>
+<area shape="poly" coords="260,143,257,146,255,143,257,141,260,143,260,143" title="Cmp: 6; Cov: 100%; SlowBallBonus" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/bonus/SlowBallBonus.html#SlowBallBonus"/>
+<area shape="poly" coords="208,131,205,133,203,131,205,128,208,131,208,131" title="Cmp: 14; Cov: 75%; Bonuses" alt="" href="ch/unisi/inf/pfii/teamblue/jark/model/bonus/Bonuses.html#Bonuses"/>
+<area shape="poly" coords="260,149,257,152,255,149,257,147,260,149,260,149" title="Cmp: 2; Cov: 100%; WestPanel" alt="" href="ch/unisi/inf/pfii/teamblue/jark/view/game/WestPanel.html#WestPanel"/>
+<area shape="poly" coords="260,149,257,152,255,149,257,147,260,149,260,149" title="Cmp: 2; Cov: 100%; WestPanel" alt="" href="ch/unisi/inf/pfii/teamblue/jark/view/game/WestPanel.html#WestPanel"/>
+</map></div>
+                </div>
+            <b class="cbottom"><b class="cb4"></b><b class="cb3"></b><b class="cb2"></b><b class="cb1"></b></b>
+        </div>
+            
+                <div class="tags roundedLarge" style="padding: 5px;">
+            <b class="ctop $cnrclass"><b class="cb1"></b><b class="cb2"></b><b class="cb3"></b><b class="cb4"></b></b>
+        <div class="roundedContent" style="padding: 5px;">
+            <label class="titleText link" onkeyup="return help_dash_packages;" onclick="self.location='pkg-summary.html'">Most Complex Packages</label>
+        
+        <table>
+                    
+                        <tr><td>1. </td><td>90%
+</td>
+<td class="graphBar " align="center">
+<span class="sortValue">0.9</span>
+<div>
+    <div style="width: 40px; font-size:0px;"></div>
+    <div title="10% Not Covered"  style="min-width: 40px;"  class="barNegative ">
+       <div title="90% Covered" class="barPositive " style="width: 90%"></div>
+    </div>
+</div></td><td><a class="tag" href="ch/unisi/inf/pfii/teamblue/jark/model/ball/pkg-summary.html">ch.unisi.inf.pfii.teamblue.jark.model.ball</a> (162)</td></tr>
+                    
+                        <tr><td>2. </td><td>97.4%
+</td>
+<td class="graphBar " align="center">
+<span class="sortValue">0.97442454</span>
+<div>
+    <div style="width: 40px; font-size:0px;"></div>
+    <div title="2.6% Not Covered"  style="min-width: 40px;"  class="barNegative ">
+       <div title="97.4% Covered" class="barPositive " style="width: 97.4%"></div>
+    </div>
+</div></td><td><a class="tag" href="ch/unisi/inf/pfii/teamblue/jark/model/bonus/pkg-summary.html">ch.unisi.inf.pfii.teamblue.jark.model.bonus</a> (130)</td></tr>
+                    
+                        <tr><td>3. </td><td>92.7%
+</td>
+<td class="graphBar " align="center">
+<span class="sortValue">0.9270073</span>
+<div>
+    <div style="width: 40px; font-size:0px;"></div>
+    <div title="7.3% Not Covered"  style="min-width: 40px;"  class="barNegative ">
+       <div title="92.7% Covered" class="barPositive " style="width: 92.7%"></div>
+    </div>
+</div></td><td><a class="tag" href="ch/unisi/inf/pfii/teamblue/jark/model/pkg-summary.html">ch.unisi.inf.pfii.teamblue.jark.model</a> (128)</td></tr>
+                    
+                        <tr><td>4. </td><td>74.7%
+</td>
+<td class="graphBar " align="center">
+<span class="sortValue">0.747191</span>
+<div>
+    <div style="width: 40px; font-size:0px;"></div>
+    <div title="25.3% Not Covered"  style="min-width: 40px;"  class="barNegative ">
+       <div title="74.7% Covered" class="barPositive " style="width: 74.7%"></div>
+    </div>
+</div></td><td><a class="tag" href="ch/unisi/inf/pfii/teamblue/jark/model/level/pkg-summary.html">ch.unisi.inf.pfii.teamblue.jark.model.level</a> (118)</td></tr>
+                    
+                        <tr><td>5. </td><td>89%
+</td>
+<td class="graphBar " align="center">
+<span class="sortValue">0.8896552</span>
+<div>
+    <div style="width: 40px; font-size:0px;"></div>
+    <div title="11% Not Covered"  style="min-width: 40px;"  class="barNegative ">
+       <div title="89% Covered" class="barPositive " style="width: 89%"></div>
+    </div>
+</div></td><td><a class="tag" href="ch/unisi/inf/pfii/teamblue/jark/view/game/pkg-summary.html">ch.unisi.inf.pfii.teamblue.jark.view.game</a> (109)</td></tr>
+                </table>
+                </div>
+            <b class="cbottom"><b class="cb4"></b><b class="cb3"></b><b class="cb2"></b><b class="cb1"></b></b>
+        </div>
+                    <div class="tags roundedLarge" style="padding: 5px;">
+            <b class="ctop $cnrclass"><b class="cb1"></b><b class="cb2"></b><b class="cb3"></b><b class="cb4"></b></b>
+        <div class="roundedContent" style="padding: 5px;">
+            <label class="titleText link" onkeyup="return help_dash_classes;" onclick="self.location='pkg-summary.html'">Most Complex Classes</label>
+        <table>
+                    
+                        <tr><td>1. </td><td>93.9%
+</td>
+<td class="graphBar " align="center">
+<span class="sortValue">0.93862814</span>
+<div>
+    <div style="width: 40px; font-size:0px;"></div>
+    <div title="6.1% Not Covered"  style="min-width: 40px;"  class="barNegative ">
+       <div title="93.9% Covered" class="barPositive " style="width: 93.9%"></div>
+    </div>
+</div></td><td>
+                    <a  class="tag" href="ch/unisi/inf/pfii/teamblue/jark/model/Game.html#Game"  title="ch.unisi.inf.pfii.teamblue.jark.model.Game">Game</a>
+                (88)
+            </td></tr>
+                    
+                        <tr><td>2. </td><td>87.4%
+</td>
+<td class="graphBar " align="center">
+<span class="sortValue">0.87447697</span>
+<div>
+    <div style="width: 40px; font-size:0px;"></div>
+    <div title="12.6% Not Covered"  style="min-width: 40px;"  class="barNegative ">
+       <div title="87.4% Covered" class="barPositive " style="width: 87.4%"></div>
+    </div>
+</div></td><td>
+                    <a  class="tag" href="ch/unisi/inf/pfii/teamblue/jark/model/ball/Ball.html#Ball"  title="ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball">Ball</a>
+                (74)
+            </td></tr>
+                    
+                        <tr><td>3. </td><td>88.7%
+</td>
+<td class="graphBar " align="center">
+<span class="sortValue">0.88671875</span>
+<div>
+    <div style="width: 40px; font-size:0px;"></div>
+    <div title="11.3% Not Covered"  style="min-width: 40px;"  class="barNegative ">
+       <div title="88.7% Covered" class="barPositive " style="width: 88.7%"></div>
+    </div>
+</div></td><td>
+                    <a  class="tag" href="ch/unisi/inf/pfii/teamblue/jark/view/game/GamePanel.html#GamePanel"  title="ch.unisi.inf.pfii.teamblue.jark.view.game.GamePanel">GamePanel</a>
+                (71)
+            </td></tr>
+                    
+                        <tr><td>4. </td><td>80%
+</td>
+<td class="graphBar " align="center">
+<span class="sortValue">0.8</span>
+<div>
+    <div style="width: 40px; font-size:0px;"></div>
+    <div title="20% Not Covered"  style="min-width: 40px;"  class="barNegative ">
+       <div title="80% Covered" class="barPositive " style="width: 80%"></div>
+    </div>
+</div></td><td>
+                    <a  class="tag" href="ch/unisi/inf/pfii/teamblue/jark/model/level/LevelManager.html#LevelManager"  title="ch.unisi.inf.pfii.teamblue.jark.model.level.LevelManager">LevelManager</a>
+                (62)
+            </td></tr>
+                    
+                        <tr><td>5. </td><td>66.2%
+</td>
+<td class="graphBar " align="center">
+<span class="sortValue">0.6617647</span>
+<div>
+    <div style="width: 40px; font-size:0px;"></div>
+    <div title="33.8% Not Covered"  style="min-width: 40px;"  class="barNegative ">
+       <div title="66.2% Covered" class="barPositive " style="width: 66.2%"></div>
+    </div>
+</div></td><td>
+                    <a  class="tag" href="ch/unisi/inf/pfii/teamblue/jark/model/level/Level.html#Level"  title="ch.unisi.inf.pfii.teamblue.jark.model.level.Level">Level</a>
+                (56)
+            </td></tr>
+                </table>
+
+                </div>
+            <b class="cbottom"><b class="cb4"></b><b class="cb3"></b><b class="cb2"></b><b class="cb1"></b></b>
+        </div>
+    
+    </div>
+    <div class="right-twothirds">
+
+                <div class="tags roundedLarge" style="padding: 5px;">
+            <b class="ctop $cnrclass"><b class="cb1"></b><b class="cb2"></b><b class="cb3"></b><b class="cb4"></b></b>
+        <div class="roundedContent" style="padding: 5px;">
+                            <label class="titleText link" onkeyup="return help_dash_test_results;" onclick="self.location='test-pkg-summary.html'">Test Results</label>
+                <span> <span class="">0 / 0</span> tests 0 secs</span>
+            <table>
+                                    
+    <tr><td class="hint helpOverBG" colspan="1">No test results could be found. Please
+    ensure that you have instrumented your unit tests correctly.
+    </td></tr>
+    <tr><td class="hbreak" colspan="1">&nbsp;</td></tr>
+                            </table>
+                </div>
+            <b class="cbottom"><b class="cb4"></b><b class="cb3"></b><b class="cb2"></b><b class="cb1"></b></b>
+        </div>
+    
+                <div class="tags roundedLarge" style="padding: 5px;">
+            <b class="ctop $cnrclass"><b class="cb1"></b><b class="cb2"></b><b class="cb3"></b><b class="cb4"></b></b>
+        <div class="roundedContent" style="padding: 5px;">
+                <label class="titleText link" onkeyup="return help_dash_risks;" onclick="self.location='proj-risks.html'">Top 20 Project Risks</label>
+            <div>
+            
+                                           <a class="tag" href="ch/unisi/inf/pfii/teamblue/jark/model/vaus/ammunitions/Rocket.html#Rocket"
+               style="font-size: 22px;color:#3405ca"
+               title="Average Method Complexity - 3.75 , Coverage - 73.3% ">Rocket</a>
+                          
+                                           <a class="tag" href="ch/unisi/inf/pfii/teamblue/jark/model/level/Level.html#Level"
+               style="font-size: 21px;color:#3405ca"
+               title="Average Method Complexity - 3.5 , Coverage - 66.2% ">Level</a>
+                          
+                                           <a class="tag" href="ch/unisi/inf/pfii/teamblue/jark/model/vaus/ammunitions/Bullet.html#Bullet"
+               style="font-size: 22px;color:#3405ca"
+               title="Average Method Complexity - 3.75 , Coverage - 73.3% ">Bullet</a>
+                          
+                                           <a class="tag" href="ch/unisi/inf/pfii/teamblue/jark/model/bonus/Bonuses.html#Bonuses"
+               style="font-size: 21px;color:#3405ca"
+               title="Average Method Complexity - 3.5 , Coverage - 75% ">Bonuses</a>
+                          
+                                           <a class="tag" href="ch/unisi/inf/pfii/teamblue/jark/model/ball/RubberBall.html#RubberBall"
+               style="font-size: 25px;color:#1b05e3"
+               title="Average Method Complexity - 4.375 , Coverage - 83.3% ">RubberBall</a>
+                          
+                                           <a class="tag" href="ch/unisi/inf/pfii/teamblue/jark/implementation/Utils.html#Utils"
+               style="font-size: 16px;color:#660598"
+               title="Average Method Complexity - 2 , Coverage - 44.4% ">Utils</a>
+                          
+                                           <a class="tag" href="ch/unisi/inf/pfii/teamblue/jark/model/level/LevelManager.html#LevelManager"
+               style="font-size: 16px;color:#1b05e3"
+               title="Average Method Complexity - 2.067 , Coverage - 80% ">LevelManager</a>
+                          
+                                           <a class="tag" href="ch/unisi/inf/pfii/teamblue/jark/model/HighScores.html#HighScores"
+               style="font-size: 18px;color:#1b05e3"
+               title="Average Method Complexity - 2.571 , Coverage - 86.7% ">HighScores</a>
+                          
+                                           <a class="tag" href="ch/unisi/inf/pfii/teamblue/jark/view/levelcreator/OptionPanel.html#OptionPanel"
+               style="font-size: 16px;color:#1b05e3"
+               title="Average Method Complexity - 2 , Coverage - 80.2% ">OptionPanel</a>
+                          
+                                           <a class="tag" href="ch/unisi/inf/pfii/teamblue/jark/view/game/GamePanel.html#GamePanel"
+               style="font-size: 18px;color:#0205fc"
+               title="Average Method Complexity - 2.731 , Coverage - 88.7% ">GamePanel</a>
+                          
+                                           <a class="tag" href="ch/unisi/inf/pfii/teamblue/jark/view/main/HighScorePanel.html#HighScorePanel"
+               style="font-size: 21px;color:#0205fc"
+               title="Average Method Complexity - 3.5 , Coverage - 92.9% ">HighScorePanel</a>
+                          
+                                           <a class="tag" href="ch/unisi/inf/pfii/teamblue/jark/model/ball/Ball.html#Ball"
+               style="font-size: 17px;color:#1b05e3"
+               title="Average Method Complexity - 2.387 , Coverage - 87.4% ">Ball</a>
+                          
+                                           <a class="tag" href="ch/unisi/inf/pfii/teamblue/jark/model/vaus/DefaultVaus.html#DefaultVaus"
+               style="font-size: 16px;color:#1b05e3"
+               title="Average Method Complexity - 2 , Coverage - 80% ">DefaultVaus</a>
+                          
+                                           <a class="tag" href="ch/unisi/inf/pfii/teamblue/jark/view/ImagesReference.html#ImagesReference"
+               style="font-size: 12px;color:#e4051a"
+               title="Average Method Complexity - 1 , Coverage - 0% ">ImagesReference</a>
+                          
+                                           <a class="tag" href="ch/unisi/inf/pfii/teamblue/jark/model/vaus/RifleVaus.html#RifleVaus"
+               style="font-size: 15px;color:#3405ca"
+               title="Average Method Complexity - 1.75 , Coverage - 76.2% ">RifleVaus</a>
+                          
+                                           <a class="tag" href="ch/unisi/inf/pfii/teamblue/jark/model/ball/UltraBall.html#UltraBall"
+               style="font-size: 19px;color:#0205fc"
+               title="Average Method Complexity - 3 , Coverage - 94% ">UltraBall</a>
+                          
+                                           <a class="tag" href="testmain/MainFrame.html#MainFrame"
+               style="font-size: 12px;color:#e4051a"
+               title="Average Method Complexity - 1 , Coverage - 0% ">MainFrame</a>
+                          
+                                           <a class="tag" href="ch/unisi/inf/pfii/teamblue/jark/view/levelcreator/FieldPanel.html#FieldPanel"
+               style="font-size: 18px;color:#0205fc"
+               title="Average Method Complexity - 2.467 , Coverage - 92.9% ">FieldPanel</a>
+                          
+                                           <a class="tag" href="ch/unisi/inf/pfii/teamblue/jark/view/main/InteractionPanel.html#InteractionPanel"
+               style="font-size: 12px;color:#e4051a"
+               title="Average Method Complexity - 1 , Coverage - 0% ">InteractionPanel</a>
+                          
+                                           <a class="tag" href="ch/unisi/inf/pfii/teamblue/jark/model/vaus/CannonVaus.html#CannonVaus"
+               style="font-size: 15px;color:#1b05e3"
+               title="Average Method Complexity - 1.75 , Coverage - 81% ">CannonVaus</a>
+                                      </div>
+                </div>
+            <b class="cbottom"><b class="cb4"></b><b class="cb3"></b><b class="cb2"></b><b class="cb1"></b></b>
+        </div>
+    
+                        <div class="tags roundedLarge" style="padding: 5px;">
+            <b class="ctop $cnrclass"><b class="cb1"></b><b class="cb2"></b><b class="cb3"></b><b class="cb4"></b></b>
+        <div class="roundedContent" style="padding: 5px;">
+                <label class="titleText link" onkeyup="return help_dash_untested_methods;" onclick="self.location='test-pkg-summary.html'">Least Tested Methods</label>
+            <table>
+                
+                <tr>
+                    <td align="right">1.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="ImagesReference.ImagesReference()" href="ch/unisi/inf/pfii/teamblue/jark/view/ImagesReference.html?line=25#src-25">ImagesReference.ImagesReference()</a> (1)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">2.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="Level.addRandomBonus(int)&nbsp;:&nbsp;void" href="ch/unisi/inf/pfii/teamblue/jark/model/level/Level.html?line=118#src-118">Level.addRandomBonus(int)&nbsp;:&nbsp;void</a> (6)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">3.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="Level.getDistributionString()&nbsp;:&nbsp;String" href="ch/unisi/inf/pfii/teamblue/jark/model/level/Level.html?line=88#src-88">Level.getDistributionString()&nbsp;:&nbsp;String</a> (3)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">4.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="ImagesReference.filterRGB(int,int,int)&nbsp;:&nbsp;int" href="ch/unisi/inf/pfii/teamblue/jark/view/ImagesReference.html?line=102#src-102">ImagesReference.filterRGB(int,int,int)&nbsp;:&nbsp;int</a> (1)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">5.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="MainFrame.makeMenu()&nbsp;:&nbsp;void" href="testmain/MainFrame.html?line=43#src-43">MainFrame.makeMenu()&nbsp;:&nbsp;void</a> (1)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">6.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="Utils.intToBrick(int)&nbsp;:&nbsp;Brick" href="ch/unisi/inf/pfii/teamblue/jark/implementation/Utils.html?line=58#src-58">Utils.intToBrick(int)&nbsp;:&nbsp;Brick</a> (4)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">7.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="OptionPanel.itemStateChanged(ItemEvent)&nbsp;:&nbsp;void" href="ch/unisi/inf/pfii/teamblue/jark/view/levelcreator/OptionPanel.html?line=151#src-151">OptionPanel.itemStateChanged(ItemEvent)&nbsp;:&nbsp;void</a> (2)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">8.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="Level.getNumberOfDestroyableBrick()&nbsp;:&nbsp;int" href="ch/unisi/inf/pfii/teamblue/jark/model/level/Level.html?line=68#src-68">Level.getNumberOfDestroyableBrick()&nbsp;:&nbsp;int</a> (5)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">9.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="MainFrame.MainFrame()" href="testmain/MainFrame.html?line=15#src-15">MainFrame.MainFrame()</a> (1)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">10.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="InteractionPanel.InteractionPanel(CenterPanel,LevelManager)" href="ch/unisi/inf/pfii/teamblue/jark/view/main/InteractionPanel.html?line=31#src-31">InteractionPanel.InteractionPanel(CenterPanel,LevelManager)</a> (1)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">11.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="InteractionPanel.InteractionPanel(GamePanel,Game)" href="ch/unisi/inf/pfii/teamblue/jark/view/game/InteractionPanel.html?line=26#src-26">InteractionPanel.InteractionPanel(GamePanel,Game)</a> (1)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">12.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="WestPanel.WestPanel(CenterPanel,LevelManager,ButtonGroup)" href="ch/unisi/inf/pfii/teamblue/jark/view/levelcreator/WestPanel.html?line=15#src-15">WestPanel.WestPanel(CenterPanel,LevelManager,ButtonGroup)</a> (1)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">13.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="OptionPanel.itemStateChanged(ItemEvent)&nbsp;:&nbsp;void" href="ch/unisi/inf/pfii/teamblue/jark/view/levelcreator/OptionPanel.html?line=135#src-135">OptionPanel.itemStateChanged(ItemEvent)&nbsp;:&nbsp;void</a> (2)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">14.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="ImagesReference.getHighlightedIcon(ImageIcon)&nbsp;:&nbsp;ImageIcon" href="ch/unisi/inf/pfii/teamblue/jark/view/ImagesReference.html?line=99#src-99">ImagesReference.getHighlightedIcon(ImageIcon)&nbsp;:&nbsp;ImageIcon</a> (1)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">15.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="Game.fireArcadeCleared()&nbsp;:&nbsp;void" href="ch/unisi/inf/pfii/teamblue/jark/model/Game.html?line=415#src-415">Game.fireArcadeCleared()&nbsp;:&nbsp;void</a> (2)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">16.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="InteractionPanel.actionPerformed(ActionEvent)&nbsp;:&nbsp;void" href="ch/unisi/inf/pfii/teamblue/jark/view/game/InteractionPanel.html?line=32#src-32">InteractionPanel.actionPerformed(ActionEvent)&nbsp;:&nbsp;void</a> (1)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">17.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="InteractionPanel.actionPerformed(ActionEvent)&nbsp;:&nbsp;void" href="ch/unisi/inf/pfii/teamblue/jark/view/game/InteractionPanel.html?line=41#src-41">InteractionPanel.actionPerformed(ActionEvent)&nbsp;:&nbsp;void</a> (1)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">18.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="CenterPanel.CenterPanel()" href="ch/unisi/inf/pfii/teamblue/jark/view/main/CenterPanel.html?line=22#src-22">CenterPanel.CenterPanel()</a> (1)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">19.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="InteractionPanel.actionPerformed(ActionEvent)&nbsp;:&nbsp;void" href="ch/unisi/inf/pfii/teamblue/jark/view/main/InteractionPanel.html?line=39#src-39">InteractionPanel.actionPerformed(ActionEvent)&nbsp;:&nbsp;void</a> (1)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">20.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="MainFrame.actionPerformed(ActionEvent)&nbsp;:&nbsp;void" href="ch/unisi/inf/pfii/teamblue/jark/view/main/MainFrame.html?line=57#src-57">MainFrame.actionPerformed(ActionEvent)&nbsp;:&nbsp;void</a> (1)
+                    </td>
+                </tr>
+                            </table>
+                </div>
+            <b class="cbottom"><b class="cb4"></b><b class="cb3"></b><b class="cb2"></b><b class="cb1"></b></b>
+        </div>
+            
+    </div>
+
+    </td>
+</tr>
+
+<tr><td class="hbreak" colspan="1">&nbsp;</td></tr>
+<tr><td class="hbreak" colspan="1">&nbsp;</td></tr>
+<tr><td class="footer" colspan="1">
+<table>
+<tr>
+ <td><a target="_new" href="http://www.atlassian.com/software/clover"><img alt="Clover" src="img/logo.gif" style="border:none"/></a></td><td style="white-space:nowrap;"><i>Report generated by </i>Clover <a target="_new" href="http://www.atlassian.com/software/clover">Code Coverage</a> v2.4.3<i><br/>Sun May 24 2009 20:28:46 CEST</i>.</td>
+<td>&nbsp;</td><td style="BORDER-LEFT: #9c9c9c 1px solid;">&nbsp;</td><td>Clover: Evaluation License registered to USI. You have 10 day(s) before your license expires.</td>
+</tr>
+</table>
+</td>
+</tr></table>
+</body>
+</html>

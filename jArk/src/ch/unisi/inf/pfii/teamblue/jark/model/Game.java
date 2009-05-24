@@ -12,6 +12,7 @@ import ch.unisi.inf.pfii.teamblue.jark.model.ball.Ball;
 import ch.unisi.inf.pfii.teamblue.jark.model.ball.StartBall;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.BallBonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.Bonus;
+import ch.unisi.inf.pfii.teamblue.jark.model.bonus.PlayerBonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.bonus.VausBonus;
 import ch.unisi.inf.pfii.teamblue.jark.model.brick.Brick;
 import ch.unisi.inf.pfii.teamblue.jark.model.level.Level;
@@ -253,7 +254,9 @@ public final class Game implements Constants {
 	private void addBonus(final Bonus bonus) {
 		for (int i = 0; i < takenBonuses.size(); i++) {
 			final Bonus b = takenBonuses.get(i);
-			if (((b instanceof BallBonus && bonus instanceof BallBonus) || (b instanceof VausBonus && bonus instanceof VausBonus))
+			if (((b instanceof BallBonus && bonus instanceof BallBonus) 
+				|| (b instanceof VausBonus && bonus instanceof VausBonus)
+				|| (b instanceof PlayerBonus && bonus instanceof PlayerBonus))
 					&& (b.getBonusClass() == bonus.getBonusClass())) {
 				freeBonuses.remove(bonus);
 				bonus.apply(this);

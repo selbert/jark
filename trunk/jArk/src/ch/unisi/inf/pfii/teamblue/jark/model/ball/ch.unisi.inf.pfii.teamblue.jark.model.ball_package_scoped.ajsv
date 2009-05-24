@@ -7,7 +7,7 @@
         <switch switchID="standardDiagramStyles.styleEnumSwitch.Manhattan Lines" switchValue="dependence, fields, inheritance"/>
         <switch switchID="scopeElementSets.stylePatternSwitch.Scope Package" switchValue="ch\.unisi\.inf\.pfii\.teamblue\.jark\.model\.ball"/>
         <switch switchID="standardDiagramStyles.styleEnumSwitch.Line Types" switchValue="dependence, field, inheritance"/>
-        <switch switchID="standardDiagramStyles.styleEnumSwitch.Members" switchValue="fields, methods, inners, initializers"/>
+        <switch switchID="standardDiagramStyles.styleEnumSwitch.Members" switchValue="fields, inners, initializers"/>
         <class className="ch.unisi.inf.pfii.teamblue.jark.model.ball.StartBall" project="jArk" xLocation="900" yLocation="164"/>
         <class className="ch.unisi.inf.pfii.teamblue.jark.model.ball.StickyBall" project="jArk" xLocation="263" yLocation="152"/>
         <class className="ch.unisi.inf.pfii.teamblue.jark.model.ball.UltraBall" project="jArk" xLocation="908" yLocation="617"/>

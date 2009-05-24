@@ -257,7 +257,10 @@ public final class MainFrame extends JFrame {
 		final JMenuItem aboutItem = new JMenuItem("About");
 		aboutItem.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "<html>jArk has been made by<br><b>Stefano Pongelli</b> &#60;pongells@lu.unisi.ch&#62; <br>and<br><b>Thomas Selber</b> &#60;selbert@lu.unisi.ch&#62;<br>for Programming Fundamentals 2 at UNISI.ch", "About jArk", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, "<html>jArk has been made by<br><br>" +
+						"<center><b>Stefano Pongelli</b><br>&#60;pongells@lu.unisi.ch&#62; " +
+						"<br>and<br><b>Thomas Selber</b><br>&#60;selbert@lu.unisi.ch&#62;</center>" +
+						"<br>for Programming Fundamentals 2 at UNISI.ch", "About jArk", JOptionPane.WARNING_MESSAGE);
 			}
 		});
 		helpMenu.add(aboutItem);

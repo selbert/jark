@@ -3,7 +3,6 @@ package ch.unisi.inf.pfii.teamblue.jark.model.level;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -62,6 +61,19 @@ public class LevelManager implements Constants {
 	}
 	public final String getLevelName() {
 		return levelName;
+	}
+	public final static int getMaxLevel() {
+		final Properties properties = new Properties();
+		int returnValue = 0;
+		try {
+			properties
+					.load(LevelManager.class
+							.getResourceAsStream("defaultlevels/levelspath.properties"));
+			returnValue = properties.size() - 1;
+		} catch (final IOException ex) {
+			System.out.println(ex);
+		}
+		return returnValue;
 	}
 	
 	//setters

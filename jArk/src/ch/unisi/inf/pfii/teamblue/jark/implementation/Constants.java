@@ -1,5 +1,7 @@
 package ch.unisi.inf.pfii.teamblue.jark.implementation;
 
+import ch.unisi.inf.pfii.teamblue.jark.model.level.LevelManager;
+
 /**
  * All the constants of the game are taken from this interface
  * 
@@ -27,7 +29,7 @@ public interface Constants {
 	int FIELD_ROWS = 16;
 	int BRICK_WIDTH = 57;
 	int BRICK_HEIGHT = 25;
-	int MAX_LEVEL = 7;
+	int MAX_LEVEL = LevelManager.getMaxLevel();
 	int BALL_LIFE = 20;
 	// bonus lives (ms)
 	int INSTANTANEOUS = 0;

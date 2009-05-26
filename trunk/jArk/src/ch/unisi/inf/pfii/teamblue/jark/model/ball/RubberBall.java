@@ -34,7 +34,7 @@ public final class RubberBall extends Ball {
 
 		if (boxEnabled && newY + (2 * BALL_RADIUS) >= VAUS_Y + VAUS_HEIGHT + 1) {
 			speedY = -speedY;
-			y = (VAUS_Y - (2 * BALL_RADIUS));
+			y = VAUS_Y;
 			return;
 		}
 
@@ -76,9 +76,9 @@ public final class RubberBall extends Ball {
 		if (bounceVaus(newX, newY)) {
 			newY = VAUS_Y - 1 - (BALL_RADIUS * 2);
 		}
-		if (!level.persistentBrickHasBallInside(newX, newY)
-				|| (level.persistentBrickHasBallInside(newX, newY) && level
-						.persistentBrickHasBallInside(x, y))) {
+		if (!level.someBrickHasBallInside(newX, newY)
+				|| (level.someBrickHasBallInside(newX, newY) && level
+						.someBrickHasBallInside(x, y))) {
 			x = newX;
 			y = newY;
 		}

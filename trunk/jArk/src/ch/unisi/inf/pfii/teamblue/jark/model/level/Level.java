@@ -179,7 +179,7 @@ public final class Level implements Constants, VausSetListener {
 	}
 	
 	/**
-	 * Returns true if the given position is inside a  persistent brick
+	 * Returns true if the given ball position is inside a  persistent brick
 	 * 
 	 * @param x
 	 * @param y
@@ -187,7 +187,6 @@ public final class Level implements Constants, VausSetListener {
 	 */
 	public final boolean persistentBrickHasBallInside(final float x,
 			final float y) {
-		// return false;
 		try {
 			final int[] pos = Utils.getFieldPosition((int) x, (int) y);
 			final int[] pos1 = Utils.getFieldPosition(
@@ -201,6 +200,36 @@ public final class Level implements Constants, VausSetListener {
 					|| (bricks[pos1[1]][pos1[0]] != null && bricks[pos1[1]][pos1[0]] instanceof PersistentBrick)
 					|| (bricks[pos2[1]][pos2[0]] != null && bricks[pos2[1]][pos2[0]] instanceof PersistentBrick)
 					|| (bricks[pos3[1]][pos3[0]] != null && bricks[pos3[1]][pos3[0]] instanceof PersistentBrick)) {
+				return true;
+			}
+			return false;
+		} catch (final ArrayIndexOutOfBoundsException e) {
+			return false;
+		}
+	}
+	
+	/**
+	 * Returns true if the given position is inside a  persistent brick
+	 * 
+	 * @param x
+	 * @param y
+	 * @return true if inside a brick
+	 */
+	public final boolean someBrickHasBallInside(final float x,
+			final float y) {
+		try {
+			final int[] pos = Utils.getFieldPosition((int) x, (int) y);
+			final int[] pos1 = Utils.getFieldPosition(
+					(int) (x + (2 * BALL_RADIUS)), (int) y);
+			final int[] pos2 = Utils.getFieldPosition((int) x,
+					(int) (y + (2 * BALL_RADIUS)));
+			final int[] pos3 = Utils.getFieldPosition(
+					(int) (x + (2 * BALL_RADIUS)),
+					(int) (y + (2 * BALL_RADIUS)));
+			if (bricks[pos[1]][pos[0]] != null
+					|| bricks[pos1[1]][pos1[0]] != null
+					|| bricks[pos2[1]][pos2[0]] != null
+					|| bricks[pos3[1]][pos3[0]] != null) {
 				return true;
 			}
 			return false;

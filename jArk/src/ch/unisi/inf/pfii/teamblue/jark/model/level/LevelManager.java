@@ -158,7 +158,7 @@ public class LevelManager implements Constants {
 				System.out.println(ex);
 			}
 			for (int j = 0; j < FIELD_COLUMNS; j++) {
-				if (!tmp[j].equals("null")) {
+				if (!tmp[j].trim().equals("null")) {
 					field[i][j] = tmp[j];
 				} else {
 					field[i][j] = null;

@@ -49,7 +49,7 @@ public final class CenterPanel extends JComponent implements Constants {
 
 		final JPanel borderPanel = new JPanel();
 		borderPanel.setLayout(null);
-		borderPanel.setPreferredSize(new Dimension(800, 402));
+		borderPanel.setPreferredSize(new Dimension(FIELD_WIDTH+2, FIELD_HEIGHT+2));
 		borderPanel.setBackground(Color.BLACK);
 		fieldPanel = new FieldPanel(levelManager, group);
 		fieldImage = new FieldImage(fieldPanel);

@@ -24,9 +24,9 @@ public interface Constants {
 	int LONGVAUS_WIDTH = 150;
 	int SHORTVAUS_WIDTH = 65;
 	int FIELD_WIDTH = 798;
-	int FIELD_HEIGHT = 400;
+	int FIELD_HEIGHT = 525;
 	int FIELD_COLUMNS = 14;
-	int FIELD_ROWS = 16;
+	int FIELD_ROWS = 21;
 	int BRICK_WIDTH = 57;
 	int BRICK_HEIGHT = 25;
 	int MAX_LEVEL = LevelManager.getMaxLevel();

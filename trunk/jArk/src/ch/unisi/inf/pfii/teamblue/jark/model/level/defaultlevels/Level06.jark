@@ -16,6 +16,11 @@ resistentBrick defaultBrick defaultBrick null null null defaultBrick null defaul
 null resistentBrick defaultBrick defaultBrick null null resistentBrick defaultBrick defaultBrick null persistentBrick null null null 
 null null resistentBrick defaultBrick defaultBrick resistentBrick defaultBrick defaultBrick null null null null null null 
 null null null resistentBrick defaultBrick defaultBrick defaultBrick null null null null null null null 
+null null null null null null null null null null null null null null 
+null null null null null null null null null null null null null null 
+null null null null null null null null null null null null null null
+null null null null null null null null null null null null null null  
+null null null null null null null null null null null null null null
 
 null null null null null null null null null null null null null null 
 null null null null neutral_slowball null null null null neutral_slowball null null null null 
@@ -33,3 +38,8 @@ null null neutral_fastball null null null null null null null null null null nul
 null null null null null null null bonus_longvaus null null null null null null 
 null null null bonus_longvaus null null null null null null null null null null 
 null null null null null null null null null null null null null null 
+null null null null null null null null null null null null null null 
+null null null null null null null null null null null null null null 
+null null null null null null null null null null null null null null
+null null null null null null null null null null null null null null  
+null null null null null null null null null null null null null null

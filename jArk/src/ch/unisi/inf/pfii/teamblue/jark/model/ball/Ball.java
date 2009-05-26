@@ -146,7 +146,7 @@ public abstract class Ball implements Constants, VausSetListener, VausListener {
 
 		if (boxEnabled && newY + (2 * BALL_RADIUS) >= VAUS_Y + VAUS_HEIGHT + 1) {
 			speedY = -speedY;
-			y = (VAUS_Y - (2 * BALL_RADIUS));
+			y = VAUS_Y;
 			return;
 		}
 		if (newY >= GAME_HEIGHT) {

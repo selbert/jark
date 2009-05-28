@@ -24,11 +24,13 @@ public final class LongVausBonus extends VausBonus {
 	@Override
 	public final void apply(final Game game) {
 		game.getVaus().setWidth(LONGVAUS_WIDTH);
+		game.releaseBalls();
 	}
 
 	@Override
 	public final void remove(final Game game) {
 		game.getVaus().setWidth(VAUS_WIDTH);
+		game.releaseBalls();
 	}
 
 }
